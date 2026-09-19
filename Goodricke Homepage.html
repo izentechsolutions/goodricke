@@ -1604,9 +1604,11 @@
     transition:opacity .35s ease,visibility .35s ease;
   }
   .stickybar.show{
-    opacity:1;
-    pointer-events:auto;
-    visibility:visible;
+    opacity:1 !important;
+    pointer-events:auto !important;
+    visibility:visible !important;
+    display:flex !important;
+    transform:translateX(-50%) !important;
   }
   .stickybar.show .sticky-inner{animation:stickyIn .75s cubic-bezier(.2,.7,.2,1) both;}
   .sticky-inner{
@@ -1835,10 +1837,6 @@ a {
 /* ---------- 1. PHONES / SMALL TABLETS ---------- */
 @media screen and (max-width: 767px) {
   
-  .stickybar.show {
-    visibility: hidden !important;
-  }
-
   /* Safe-area support for modern iPhones and rounded/cut-out displays. */
   .hero,
   .site-footer {
@@ -1861,6 +1859,15 @@ a {
     width: 100% !important;
     height: 100% !important;
   }
+
+.stickybar.show {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  display: flex !important;
+  transform: translateX(-50%) !important;
+  opacity: -0.1 !important;
+}
 
   .hero-slide {
     background-position: 55% center !important;
@@ -1918,35 +1925,6 @@ a {
     display: none !important;
   }
 
-    /* OPEN */
-    .pillnav.open {
-        display: flex !important;
-    }
-
-    /* MENU LINKS */
-    .pillnav a {
-        min-height: 48px !important;
-
-        display: flex !important;
-        align-items: center !important;
-
-        padding: 8px 0 !important;
-
-        background: transparent !important;
-        color: #111 !important;
-
-        font-size: 16px !important;
-        font-weight: 500 !important;
-
-        text-decoration: none !important;
-    }
-
-    .pillnav a.active {
-        color: #111 !important;
-        background: transparent !important;
-    }
-
-}
   .navactions {
     gap: 8px !important;
     flex: 0 0 auto !important;
@@ -1990,6 +1968,7 @@ a {
     justify-content: center !important;
     align-items: flex-start !important;
     transform: none !important;
+    z-index: 1;
   }
 
   .hero-copy h1 {
@@ -2883,26 +2862,6 @@ a {
 
 
 
-    /* ADD THIS */
-    .menu-toggle {
-        position: relative !important;
-        z-index: 99999 !important;
-
-        pointer-events: auto !important;
-        cursor: pointer !important;
-
-        width: 44px !important;
-        height: 44px !important;
-
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-
-        background: transparent !important;
-        border: 0 !important;
-        color: #111 !important;
-    }
-
     /* your other mobile CSS... */
 
 
@@ -3040,11 +2999,11 @@ MENU MOBILE */
         pointer-events: auto !important;
     }
 
-    .menu-toggle .menu-icon {
-      display: block;
-    width: 38px;
-    height: 45px;
-    color: #fff;
+   .menu-toggle .menu-icon {
+        display: block;
+        width: 40px;
+        height: 42px;
+        color: #fff;
     }
 
     .menu-toggle .close-icon {
@@ -3105,8 +3064,11 @@ MENU MOBILE */
 
     .pillnav a {
         display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
         text-align: left !important;
-                min-height: 48px !important;
+        width: 100% !important;
+        min-height: 48px !important;
 
         padding: 8px 0 !important;
 
@@ -3124,29 +3086,6 @@ MENU MOBILE */
 
 </style>
 </head>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-
-    const menuToggle = document.querySelector('.menu-toggle');
-    const menu = document.querySelector('.pillnav');
-
-    if (!menuToggle || !menu) return;
-
-    menuToggle.addEventListener('click', function () {
-        menu.classList.toggle('open');
-        menuToggle.classList.toggle('active');
-    });
-
-    menu.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', function () {
-            menu.classList.remove('open');
-            menuToggle.classList.remove('active');
-        });
-    });
-
-});
-</script>
-
 <body>
 <header class="stickybar" id="stickybar" style="top:15px;width:807px;height:59px;">
   <div class="sticky-inner">
@@ -3529,7 +3468,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <h2 style="text-transform:uppercase;">Loved by Thousands, Backed by Nature</h2>
   <p class="voices-sub">Real people. Real results. See why our community keeps coming back for more.</p>
   <div class="voices-row">
-    <figure class="voice-card" style="background-color:#FAF8E3;"><img class="voice-card-mark" src="uploads/Tertiary Logo_Green-d3d24e6f.png" alt="" aria-hidden="true" style="opacity:1;top:307.037px;">
+    <figure class="voice-card" style="background-color:#FAF8E3;"><img class="voice-card-mark" src="uploads/Tertiary Logo_Green-d3d24e6f.png" alt="" aria-hidden="true" style="opacity:1;">
       <p class="voice-rating"><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5.0</p>
       <p class="voice-product">Symphony Zesty Lemon Green Tea, 25 Tea Bags</p>
       <blockquote class="voice-text">&ldquo; Very good product. I like It. I am giving 5 star for this. The quality and Taste of the tea is good. and the jar is absolutely an added advantage. Thank you very much Goodricktea.&rdquo;</blockquote>
@@ -3619,6 +3558,53 @@ document.addEventListener('DOMContentLoaded', function () {
   </div>
 </footer>
 <p class="footer-disclaimer">Disclaimer - The displayed images of teas or liquor on the website is for representation purpose only. Their appearance is subject to variances.</p>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.pillnav');
+
+    if (!menuToggle || !menu) return;
+
+    menuToggle.addEventListener('click', function () {
+        menu.classList.toggle('open');
+        menuToggle.classList.toggle('active');
+    });
+
+    menu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+            menu.classList.remove('open');
+            menuToggle.classList.remove('active');
+        });
+    });
+
+});
+</script>
+
+<script>
+(function () {
+    function initStickyHeader() {
+        var bar = document.getElementById('stickybar');
+        if (!bar) return;
+
+        function updateStickyHeader() {
+            var scrolled = (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0) > 420;
+            bar.classList.toggle('show', scrolled);
+        }
+
+        window.addEventListener('scroll', updateStickyHeader, { passive: true });
+        window.addEventListener('resize', updateStickyHeader);
+        updateStickyHeader();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initStickyHeader);
+    } else {
+        initStickyHeader();
+    }
+})();
+</script>
 
 </body>
 </html>
