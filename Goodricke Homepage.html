@@ -453,8 +453,8 @@
     transition:opacity .4s ease;
     
   }
-  .story-content:hover .story-edge-icon{animation:storyIconSpin 14s linear infinite reverse,storyIconDissolve 2.2s ease-in-out infinite;}
-  @keyframes storyIconDissolve{0%,100%{opacity:0.09;}50%{opacity:0.02;}}
+ .story-edge-icon{animation:storyIconSpin 14s linear infinite reverse,storyIconDissolve 2.2s ease-in-out infinite;}
+  /* @keyframes storyIconDissolve{0%,100%{opacity:0.09;}50%{opacity:0.02;}} */
   @keyframes storyIconSpin{to{transform:translateY(-50%) rotate(360deg);}}
   .story-logo{width:136px;height:auto;flex-shrink:0;}
   .story-text p{
@@ -713,6 +713,26 @@
     color:var(--page-fg);
     margin:0;
   }
+.range-button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    width: fit-content !important;
+    padding: 17px 32px;
+    border-radius: 213px;
+    margin: 20px auto 0 !important;
+}
+
+.range-button svg {
+    width: 18px !important;
+    height: 18px !important;
+    min-width: 18px !important;
+    min-height: 18px !important;
+    display: block !important;
+    flex-shrink: 0 !important;
+}
+
   .shop-filters{
     display:flex;
     justify-content:center;
@@ -1429,7 +1449,7 @@
     font-family:"Arpona","Georgia",serif;
     font-weight:700;
     font-size:clamp(18px,2.2vw,28px);
-    color:#b9bcb4;
+    color:#5c5c5d !important;
     margin:14px 0 0;
   }
   .unbox-stage{
@@ -1609,6 +1629,8 @@
     visibility:visible !important;
     display:flex !important;
     transform:translateX(-50%) !important;
+    width: 100% !important;
+  max-width: 671px;
   }
   .stickybar.show .sticky-inner{animation:stickyIn .75s cubic-bezier(.2,.7,.2,1) both;}
   .sticky-inner{
@@ -1986,6 +2008,9 @@ a {
     font-size: 14px !important;
     line-height: 1.48 !important;
   }
+.range-button{
+12px 24px;
+}
 
   .hero-ctas {
     width: 100% !important;
@@ -3092,10 +3117,9 @@ MENU MOBILE */
     <img class="sticky-icon" src="./goodricke-icon-green.png" alt="Goodricke">
     <nav class="sticky-links">
       <a href="#">Home</a>
-      <a href="#">Our Teas</a>
-      <a href="#">Corporate</a>
-      <a href="#">Investors</a>
-      <a href="#">The Good Way</a>
+      <a href="#">Shop</a>
+      <a href="#">Our Gardens</a>
+      <a href="#">Journal</a>
       <a href="#">Contact</a>
     </nav>
     <a href="#" class="sticky-cart" aria-label="Cart">
@@ -3173,7 +3197,7 @@ MENU MOBILE */
 <section class="unbox" style="background-color:#F6F2E7;padding-top:200px;padding-bottom:200px;">
   <div class="unbox-inner">
     <div class="unbox-head">
-      <h2><span class="u-light" style="color:#333333;">Unbox More<span style="color:#333333;letter-spacing:-0.6px;display:inline !important;">Than Tea</span></span></h2>
+      <h2><span class="u-light" style="color:#333333;">Unbox More Than Tea</span></h2>
       <p class="unbox-sub" style="font-family:inter;font-weight:400;font-size:16px;color:#969696;">Enjoy Premium Gift Wrapping</p>
     </div>
     <div class="unbox-stage" style="background:url('./adobestock_492737037-1-mu6qnz5d-73gu.jpg') center/cover no-repeat;">
@@ -3195,7 +3219,7 @@ MENU MOBILE */
     <div class="range-card range-card--hero" style="background-color:#3B6230;">
       <span class="range-badge">Bestseller</span>
       <span class="range-code" style="color:#FFFFFF;border:1px solid #2A5126;">- 1kg</span>
-      <h3 style="font-family:arpona;font-weight:400;font-size:21px;padding-bottom:0px;color:#FFFFFF;">Goodricke Khaass Exclusive Assam Tea</h3>
+      <h3 style="font-family:arpona;font-weight:400;font-size:21px;padding-bottom:0px;color:#FFFFFF;">Goodricke Roasted Darjeeling Tea</h3>
       <div class="range-media"><img src="./chatgpt-image-sep-18-2026-11_50_25-am-mu6phmwl-srck.png" alt="Daily Synbiotic" width="1292" height="1217" style="max-width:100%;height:auto;aspect-ratio:1292/1217;margin-top:24px;"></div>
       <a href="#" class="range-shop" style="background-color:#FFFFFF;color:#2A5126;">Shop Now <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <p class="range-price" style="color:#FFFFFF;">&#8377;350.00</p>
@@ -3203,7 +3227,7 @@ MENU MOBILE */
     <div class="range-card" style="background-color:#3B6230;">
       <span class="range-badge">New</span>
       <span class="range-code" style="color:#FFFFFF;border:1px solid #2D4D0E;">- 1kg</span>
-      <h3 style="color:#FFFFFF;">Goodricke Khaass Exclusive Assam Tea</h3>
+      <h3 style="color:#FFFFFF;">Goodricke Chai Leaf Tea</h3>
       <div class="range-media"><img src="./chatgpt-image-sep-18-2026-11_48_08-am-mu6phsg3-lay4.png" alt="Daily Multivitamin" width="1292" height="1217" style="max-width:100%;height:auto;aspect-ratio:1292/1217;margin-top:24px;"></div>
       <a href="#" class="range-shop" style="color:#2A5126;background-color:#FFFFFF;">Shop Now </a>
       <p class="range-price" style="color:#FFFFFF;">&#8377;350.00</p>
@@ -3219,7 +3243,7 @@ MENU MOBILE */
     <div class="range-card" style="background-color:#3B6230;">
       <span class="range-badge">New</span>
       <span class="range-code" style="color:#FFFFFF;border:1px solid #2D4D0E;">- 1kg</span>
-      <h3 style="color:#FFFFFF;">Goodricke Khaass Exclusive Assam Tea</h3>
+      <h3 style="color:#FFFFFF;">Goodricke Castleton Premium Muscatel Darjeeling Tea</h3>
       <div class="range-media"><img src="./chatgpt-image-sep-18-2026-11_53_30-am-mu6pi71r-ip4a.png" alt="Sleep + Restore" width="1292" height="1217" style="max-width:100%;height:auto;aspect-ratio:1292/1217;margin-top:24px;"></div>
       <a href="#" class="range-shop" style="color:#2A5126;background-color:#FFFFFF;">Shop Now </a>
       <p class="range-price" style="color:#FFFFFF;">&#8377;350.00</p>
@@ -3304,6 +3328,7 @@ MENU MOBILE */
       </div>
     </div>
   </div>
+  <a href="#" class="range-button" style="background-color:#2A5126;color:#ffffff;">Shop Now </a>
 </section>
 
 <section class="region" style="background:url('./adobestock_459255987-mu5ip3ue-7947.jpeg') center/cover no-repeat;display:grid;flex-direction:column-reverse;align-items:center;width:100%;justify-content:center;">
@@ -3341,46 +3366,46 @@ MENU MOBILE */
   </div>
   <div class="team-row" id="teamRow">
     <div class="team-card">
-      <img class="ph" src="./team-portrait.png" alt="Khaass Assam">
-      <span class="team-pill team-pill--name">Kaspars</span>
+      <img class="ph" src="./khaass-pack4.jpg" alt="Khaass Assam">
+      
       <button class="team-plus" type="button" aria-label="More about Khaass Assam"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
-      <span class="team-pill team-pill--role">Founder</span>
+      
       <div class="team-over">
         <h3>Khaass Assam</h3>
-        <p>Bold Assam leaves blended for a full-bodied, malty cup that carries milk beautifully.</p>
+        <p>Bold Assam leaves blended for a full-bodied, malty cup <br>that carries milk beautifully.</p>
         <a href="#">Explore Collection <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
     </div>
     <div class="team-card">
-      <img class="ph" src="./team-portrait.png" alt="Darjeeling First Flush">
-      <span class="team-pill team-pill--name">Christina</span>
+      <img class="ph" src="./khaass-pack2.jpg" alt="Darjeeling First Flush">
+     
       <button class="team-plus" type="button" aria-label="More about Darjeeling First Flush"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
-      <span class="team-pill team-pill--role">SMM guru</span>
+      
       <div class="team-over">
         <h3>Darjeeling First Flush</h3>
-        <p>Delicate spring pluckings with a bright, floral character and a clean finish.</p>
+        <p>Delicate spring pluckings with a bright, floral <br>character and a clean finish.</p>
         <a href="#">Explore Collection <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
     </div>
     <div class="team-card">
-      <img class="ph" src="./team-portrait.png" alt="Roasted Darjeeling">
-      <span class="team-pill team-pill--name">Noah</span>
+      <img class="ph" src="./khaass-pack3.jpg" alt="Roasted Darjeeling">
+      
       <button class="team-plus" type="button" aria-label="More about Roasted Darjeeling"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
-      <span class="team-pill team-pill--role">Sales Manager</span>
+      
       <div class="team-over">
         <h3>Roasted Darjeeling</h3>
-        <p>Slow-roasted leaves with warm, nutty depth for an unhurried afternoon.</p>
+        <p>Slow-roasted leaves with warm, nutty depth for <br>an unhurried afternoon.</p>
         <a href="#">Explore Collection <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
     </div>
     <div class="team-card">
       <img class="ph" src="./team-portrait.png" alt="Thurbo Whole Leaf">
-      <span class="team-pill team-pill--name">Thurbo</span>
+      
       <button class="team-plus" type="button" aria-label="More about Thurbo Whole Leaf"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
-      <span class="team-pill team-pill--role">Single estate</span>
+      
       <div class="team-over">
         <h3>Thurbo Whole Leaf</h3>
-        <p>Whole-leaf muscatel from one of Darjeeling&rsquo;s most storied gardens.</p>
+        <p>Whole-leaf muscatel from one of Darjeeling&rsquo;s <br>most storied gardens.</p>
         <a href="#">Explore Collection <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
     </div>
