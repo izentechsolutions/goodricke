@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1419,6 +1420,28 @@
 
 @media (max-width: 767px) {
 
+.insta-section {
+    padding: 72px 16px 76px !important;
+    
+  }
+
+.range-buttonn{
+display: inline-flex;
+  align-items: center;
+  gap: var(--btn-gap);
+  background: var(--btn-bg);
+  color: #fff;
+  font: var(--btn-font);
+  letter-spacing: .01em;
+  padding: var(--btn-pad);
+  border-radius: var(--btn-radius);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--btn-transition);
+  margin: 10px 0 !important;}
+
   .team .team-row {
     gap: 14px;
 
@@ -1449,13 +1472,19 @@
     grid-template-columns:minmax(260px,1.15fr) repeat(auto-fit,minmax(170px,1fr));
     gap:40px clamp(24px,4vw,56px);
   }
-  .footer-brand h2{
-    font-family:"Arpona","Georgia",serif;
-    font-size:30px;
-    font-weight:600;
-    color:#fff;
-    margin:0 0 14px;
+  
+  
+  
+ .footer-brand h2 {
+  font-family: "Arpona","Georgia",serif;
+  font-size: 30px;
+  font-weight: 400 !important;
+  color: #fff;
+  margin:0 !important;
+  text-transform: uppercase !important;
   }
+  
+  
   .footer-brand p{font-size:14.5px;line-height:1.7;color:rgba(232,240,221,0.72);margin:0 0 22px;max-width:36ch;}
   .footer-signup{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px;}
   .footer-signup input{
@@ -2089,7 +2118,7 @@
     display:flex !important;
     flex-direction:column;
     align-items:center;
-    gap:14px;
+    gap:0px;
   }
   .team-eyebrow,
   .eyebrow-tag,
@@ -2139,7 +2168,7 @@
     font-weight:400 !important;
     font-size:30px !important;
     line-height:1.24 !important;
-    margin-bottom: 0;
+    margin: 4px 0;
   }
   .range-head p,
   .shop-head p,
@@ -2154,6 +2183,7 @@
     font-weight:400 !important;
     font-size:16px !important;
     line-height:1.55 !important;
+	margin:5px !important;
   }
 
   /* ---------- responsive ---------- */
@@ -2175,7 +2205,7 @@
     }
     .story-media{height:68vw;max-height:440px;}
     .story-frame{top:7%;left:7%;right:7%;}
-    .story-content{padding:44px clamp(20px,6vw,40px) 56px;gap:22px;}
+    .story-content{padding:44px clamp(20px,6vw,40px) 70px;gap:22px;}
     .story-logo{width:118px;}
     .story-text p{font-size:16.5px;}
     .story-tag{left:10%;top:50%;}
@@ -2191,7 +2221,7 @@
     .shop{padding:64px clamp(20px,6vw,40px) 56px;}
     .shop-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
     .shop-nav{display:none;}
-    .range-head{grid-template-columns:1fr;gap:18px;}
+    .range-head{grid-template-columns:1fr;gap:0px;}
     .range-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
 
     .region{padding:72px clamp(20px,6vw,40px);}
@@ -2513,13 +2543,13 @@ a {
 
   /* ---------- PRODUCT RANGE ---------- */
   .range {
-    padding: 64px 16px 72px !important;
+    padding: 0 16px 72px !important
   }
 
   .range-head {
     width: 100% !important;
     padding-bottom: 0 !important;
-    gap: 10px !important;
+    gap: 0px !important;
   }
 
   .range-head h2 {
@@ -2638,7 +2668,7 @@ a {
   .story-content {
     width: 100% !important;
     max-width: none !important;
-    padding: 48px 20px 56px !important;
+    padding: 48px 20px 70px !important;
     gap: 18px !important;
   }
 
@@ -2840,7 +2870,7 @@ a {
 
   /* ---------- PRODUCTS / TEAM SLIDER ---------- */
   .team {
-    padding: 56px 16px 60px !important;
+    padding: 70px 16px 70px !important;
   }
 
   .team-head {
@@ -3157,6 +3187,16 @@ a {
     width: 32px !important;
     height: 32px !important;
   }
+  
+  .quality-inner h2{
+  font-size: clamp(27px, 7.8vw, 34px) !important;
+  text-transform: uppercase;
+  }
+  
+  .insta-head h2{
+  font-size: 30px;
+  text-transform: uppercase;
+  }
 
   /* ---------- FOOTER ---------- */
   .site-footer {
@@ -3168,10 +3208,7 @@ a {
     gap: 34px !important;
   }
 
-  .footer-brand h2 {
-    font-size: 26px !important;
-    line-height: 1.15 !important;
-  }
+  
 
   .footer-brand p {
     max-width: 34ch !important;
@@ -3317,6 +3354,11 @@ a {
   margin-top: 12px;
 }
 
+.range-price.gkr-price{
+font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
 .range-sizes span {
   display: inline-flex;
   align-items: center;
@@ -3331,7 +3373,7 @@ a {
   border-radius: 999px;
 
   color: #fff;
-  font-size: 16px;
+  font-size: 13px;
   line-height: 1;
 }
 
@@ -3631,7 +3673,7 @@ MENU MOBILE */
   /* ---------- INSTAGRAM FEED ---------- */
   .insta-section{
     background:#FFFEF5;
-    padding:80px clamp(24px,6vw,80px) 90px;
+    padding:200px clamp(24px,6vw,80px) 200px;
   }
   .insta-head{
     text-align:center;
@@ -3921,12 +3963,12 @@ MENU MOBILE */
   gap:7px !important;
 }
 .gk-product-info .size-chips span{
-  font-size:11px !important;
+  font-size:13px !important;
   padding:4px 10px !important;
   background:transparent;
 }
 .gk-product-info .shop-price{
-  font-size:17px !important;
+  font-size:20px !important;
   font-weight:500 !important;
 }
 .gk-slider-btn{
@@ -3963,7 +4005,7 @@ MENU MOBILE */
 }
 
 @media (max-width:900px){
-  .goodricke-products-section{padding:70px 16px 78px !important;}
+  .goodricke-products-section{padding:0 16px 70px !important;}
   .goodricke-products-head{margin-bottom:22px !important;}
   .goodricke-product-filters{margin-bottom:28px !important;gap:8px !important;overflow-x:auto;justify-content:flex-start !important;padding:0 2px 4px;scrollbar-width:none;}
   .goodricke-product-filters::-webkit-scrollbar{display:none;}
@@ -4398,6 +4440,24 @@ MENU MOBILE */
     transform: none !important;
   }
 }
+.region h2{
+margin:0 auto 28px !important;
+}
+
+.quality-inner h2{
+margin:0 auto 12px !important;
+
+}
+  .quality-inner h2{
+ 
+  text-transform: uppercase !important;
+  }
+  
+  .insta-head h2{
+  
+  text-transform: uppercase !important;
+  }
+
 </style>
 
 <script id="goodricke-click-only-script">
