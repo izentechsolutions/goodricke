@@ -684,7 +684,7 @@ The only external URLs are ordinary links (Instagram profile and posts).
   113 local references, **1 broken, and it was already broken in the approved version**:
   `index.html` unbox slide 3 → `./adobestock_1003230309-mu6iyxtp-l08b.jpg`. That file never existed at the root
   (only `uploads/adobestock_1003230309-mu6iyxtp-l08b.jpg`, now `assets/images/hero-slide-2.jpg`, and a `.png` version, now in `_review/images/`).
-  It was left untouched, because fixing it would change how the page looks. **Awaiting a decision from the brand.**
+  **Decision: ignored.** The reference is left exactly as in the approved page, so slide 3 still shows no image, as it always has. Nothing references that file, and nothing was added or changed for it.
 - **Round-trip check:** re-inlining every CSS/JS file, re-embedding the fonts and the hero JPEG, and restoring the old
   paths reproduces the original `Goodricke Homepage.html` **exactly**, apart from the `./` prefix of two CSS `url()` paths.
 - **Screenshots** (Playwright/Chromium, clock frozen, videos paused, full page) of the original backup vs. the new version:
@@ -694,6 +694,14 @@ The only external URLs are ordinary links (Instagram profile and posts).
   - Shop mega-menu opened and hovered to "Assam Tea" (tests the image-swap script): **0 pixels differ**, and the preview image swaps correctly.
   - Scrolled mobile view: **0 pixels differ**.
   - Screenshots are in `docs/verification/` (orig-* vs new-*).
+- **Transitions and animations** (`docs/compare-transitions.js` + `docs/compare-frames.py`): 124 frames per site at 1440px and 390px.
+  JS timers ran on a frozen clock, and before each frame every CSS animation/transition was paused and sampled
+  twice, once mid-transition (150 ms in) and once settled. Frames covered: hero and unbox slider timeline (0 → 24 s),
+  a full-page scroll sweep (sticky header expand, hero/unbox/range overlaps, scroll-expand, promo crossfade),
+  and hover on range, shop and region cards. The original was captured twice to measure its own run-to-run noise.
+  Result (two full runs): **every frame that differs between original and new also differs between two runs of the
+  original** (real-time CSS animations on the hero headline and the unbox overlay). No frame differs only in the new version.
+  All other frames match pixel for pixel.
 - **Console:** no JavaScript errors in either version. The only console error in both is the 404 above.
   Font faces loaded (Arpona 400/600, Inter normal/italic) are the same in both.
 
