@@ -1,0 +1,7 @@
+
+/* Remove the left/right slide (prev/next) arrow buttons from the
+   Bestsellers/.shop product carousel only. The row still supports
+   native swipe/drag scrolling, so nothing else about it changes. */
+.shop .gk-product-carousel .shop-nav{
+  display:none !important;
+}

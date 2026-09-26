@@ -1,0 +1,179 @@
+
+/* ==========================================================
+   TWO COMPLETELY SEPARATE PRODUCT INTERACTIONS
+
+   SECTION A = .gkr-*  -> Whole Body / Range
+   SECTION B = .gks-*  -> Bestsellers
+
+   MOBILE: TAP/CLICK ONLY
+   DESKTOP: MOUSE HOVER
+
+   These selectors do NOT use the other section's namespace.
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   SECTION A — RANGE / GREEN PRODUCT CARDS
+   ---------------------------------------------------------- */
+
+.gkr-card .gkr-actions,
+.gkr-card .gkr-add{
+  opacity:0 !important;
+  visibility:hidden !important;
+  pointer-events:none !important;
+  transition:
+    opacity .8s cubic-bezier(.22,1,.36,1),
+    visibility .8s ease,
+    transform .9s cubic-bezier(.22,1,.36,1) !important;
+}
+
+.gkr-card .gkr-actions{
+  transform:translateX(14px) !important;
+}
+.gkr-card .gkr-add{
+  transform:translateY(14px) !important;
+}
+
+/* Desktop A: hover */
+@media (min-width:769px) and (hover:hover) and (pointer:fine){
+  .gkr-card:hover .gkr-actions{
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+    transform:translateX(0) !important;
+  }
+  .gkr-card:hover .gkr-add{
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+    transform:translateY(0) !important;
+  }
+
+  .gkr-card:hover .gkr-media img{
+    transform:scale(1.035) !important;
+  }
+
+  .gkr-card:hover .gkr-sizes,
+  .gkr-card:hover .gkr-price{
+    opacity:0 !important;
+    visibility:hidden !important;
+    pointer-events:none !important;
+  }
+}
+
+/* Mobile A: NO hover, click only */
+@media (max-width:768px){
+  .gkr-card:hover .gkr-actions,
+  .gkr-card:hover .gkr-add{
+    opacity:0 !important;
+    visibility:hidden !important;
+    pointer-events:none !important;
+  }
+
+  .gkr-card.gkr-active .gkr-actions{
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+    transform:translateX(0) !important;
+    z-index:50 !important;
+  }
+
+  .gkr-card.gkr-active .gkr-add{
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+    transform:translateY(0) !important;
+    z-index:50 !important;
+  }
+
+  .gkr-card.gkr-active .gkr-sizes,
+  .gkr-card.gkr-active .gkr-price{
+    opacity:0 !important;
+    visibility:hidden !important;
+    pointer-events:none !important;
+  }
+}
+
+
+/* ----------------------------------------------------------
+   SECTION B — BESTSELLERS PRODUCT CARDS
+   ---------------------------------------------------------- */
+
+.gks-card .gks-actions,
+.gks-card .gks-add{
+  opacity:0 !important;
+  visibility:hidden !important;
+  pointer-events:none !important;
+  transition:
+    opacity .8s cubic-bezier(.22,1,.36,1),
+    visibility .8s ease,
+    transform .9s cubic-bezier(.22,1,.36,1) !important;
+}
+
+.gks-card .gks-actions{
+  transform:translateX(14px) !important;
+}
+.gks-card .gks-add{
+  transform:translateY(14px) !important;
+}
+
+/* Desktop B: hover */
+@media (min-width:769px) and (hover:hover) and (pointer:fine){
+  .gks-card:hover .gks-actions{
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+    transform:translateX(0) !important;
+  }
+  .gks-card:hover .gks-add{
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+    transform:translateY(0) !important;
+  }
+
+  .gks-card:hover .gks-media > img,
+  .gks-card:hover .gks-media > div > img{
+    transform:scale(1.035) !important;
+  }
+
+  .gks-card:hover .gks-sizes,
+  .gks-card:hover .gks-price{
+    opacity:0 !important;
+    visibility:hidden !important;
+    pointer-events:none !important;
+  }
+}
+
+/* Mobile B: NO hover, click only */
+@media (max-width:768px){
+  .gks-card:hover .gks-actions,
+  .gks-card:hover .gks-add{
+    opacity:0 !important;
+    visibility:hidden !important;
+    pointer-events:none !important;
+  }
+
+  .gks-card.gks-active .gks-actions{
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+    transform:translateX(0) !important;
+    z-index:50 !important;
+  }
+
+  .gks-card.gks-active .gks-add{
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+    transform:translateY(0) !important;
+    z-index:50 !important;
+  }
+
+  .gks-card.gks-active .gks-sizes,
+  .gks-card.gks-active .gks-price{
+    opacity:0 !important;
+    visibility:hidden !important;
+    pointer-events:none !important;
+  }
+}
+

@@ -1,0 +1,53 @@
+
+/* Cart button moves off the photo and sits beside the price, always
+   visible; the only hover effect left is its background/icon color. */
+.range .gkr-price-row{
+  order:4 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:12px !important;
+  margin-top:8px !important;
+  width:100%;
+}
+/* the site has a global ".range-price{order:4}" rule that, once the price
+   sits inside this new flex row, would otherwise put it after the cart
+   button — pin the visual order explicitly: price left, cart right. */
+.range .gkr-price-row .range-price{order:1 !important;}
+.range .gkr-price-row .range-add-cart{order:2 !important;}
+
+.range .range-add-cart{
+  position:static !important;
+  opacity:1 !important;
+  visibility:visible !important;
+  pointer-events:auto !important;
+  left:auto !important;
+  right:auto !important;
+  bottom:auto !important;
+  flex:0 0 auto;
+  width:auto !important;
+  height:42px !important;
+  padding:0 18px !important;
+  border-radius:999px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:8px !important;
+  font-size:12.5px !important;
+  font-weight:600 !important;
+  letter-spacing:.03em !important;
+  background:#FAF8E3 !important;
+  border:1px solid rgba(22,36,13,.16) !important;
+  box-shadow:0 7px 20px rgba(10,26,2,.16) !important;
+  color:#12270a;
+  transform:scale(1) !important;
+  transition:background .25s ease, color .25s ease, border-color .25s ease, box-shadow .3s ease, transform .45s cubic-bezier(.34,1.56,.64,1) !important;
+}
+.range .range-add-cart svg{width:16px !important;height:16px !important;flex:0 0 auto;}
+.range .range-add-cart:hover{
+  background:var(--brand-green) !important;
+  border-color:var(--brand-green) !important;
+  color:#fff !important;
+  box-shadow:0 12px 26px rgba(10,26,2,.28) !important;
+  /* transform:scale(1.12) !important; */
+}

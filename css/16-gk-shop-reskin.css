@@ -1,0 +1,142 @@
+
+.shop .shop-card{
+  background:#F2F2D8 !important;
+  border-radius:18px !important;
+  padding:14px 14px 22px !important;
+  text-align:left !important;
+  
+}
+
+.shop .shop-card-media{
+  width:100% !important;
+  aspect-ratio:1/1.02 !important;
+  margin:0 0 18px !important;
+  border-radius:14px !important;
+  background:#FAF8E3 !important;
+}
+
+.shop .sale-badge,
+.shop .sale-badge--choice{
+  top:12px !important;
+  left:12px !important;
+  background:#e33a3a !important;
+  color:#fff !important;
+  font-weight:600 !important;
+  font-family:"Inter",system-ui,sans-serif !important;
+}
+
+.shop .gk-product-actions{
+  display:flex !important;
+  flex-direction:column !important;
+}
+.shop .gk-product-actions .gk-action-btn:nth-child(1){order:2 !important;}
+.shop .gk-product-actions .gk-action-btn:nth-child(2){order:1 !important;}
+.shop .gk-product-actions .gk-action-btn:nth-child(3){order:3 !important;}
+
+.shop .shop-card-info{
+  padding-top:0 !important;
+  text-align:left !important;
+}
+.shop .shop-card-info h3{
+  font-family:"Inter",system-ui,sans-serif !important;
+  color:#16240d !important;
+  font-size:16.5px !important;
+  font-weight:600 !important;
+  letter-spacing:0 !important;
+  min-height:0 !important;
+  text-align:left !important;
+  display:block !important;
+  margin:0 0 10px !important;
+}
+
+.shop .size-chips{
+  justify-content:flex-start !important;
+  margin:0 0 10px !important;
+}
+.shop .size-chips span{
+  font-family:"Inter",system-ui,sans-serif;
+  font-size:12px !important;
+  color:#16240d !important;
+  border:1px solid rgba(22,36,13,.22) !important;
+  padding:4px 11px !important;
+  border-radius:999px !important;
+  background:transparent !important;
+}
+
+.shop .shop-price{
+  font-family:"Inter",system-ui,sans-serif !important;
+  color:var(--brand-green) !important;
+  font-size:18px !important;
+  font-weight:400 !important;
+  margin:0 !important;
+}
+
+/* Price + size chips must stay visible on hover (the legacy hover
+   rules for this section fade them out) — these selectors are made
+   deliberately more specific so they win over those. */
+@media (min-width:769px) and (hover:hover) and (pointer:fine){
+  .shop .gk-product-card:hover .gk-product-info .size-chips,
+  .shop .gk-product-card:hover .gk-product-info .shop-price{
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+  }
+}
+@media (max-width:768px){
+  .shop .gk-product-card.gks-active .gk-product-info .size-chips,
+  .shop .gk-product-card.gks-active .gk-product-info .shop-price{
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+  }
+}
+
+/* Cart button moves off the photo and sits beside the price, always
+   visible; the only hover effect left is its background/icon color —
+   identical recipe to the one already shipped for .range. */
+.shop .gks-price-row{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:12px !important;
+  margin-top:8px !important;
+  width:100%;
+}
+.shop .gks-price-row .shop-price{order:1 !important;}
+.shop .gks-price-row .gk-add-cart{order:2 !important;}
+
+.shop .gk-add-cart{
+  position:static !important;
+  opacity:1 !important;
+  visibility:visible !important;
+  pointer-events:auto !important;
+  left:auto !important;
+  right:auto !important;
+  bottom:auto !important;
+  flex:0 0 auto;
+  width:auto !important;
+  height:42px !important;
+  padding:0 18px !important;
+  border-radius:999px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:8px !important;
+  font-size:12.5px !important;
+  font-weight:600 !important;
+  letter-spacing:.03em !important;
+  background:#FAF8E3 !important;
+  border:1px solid rgba(22,36,13,.16) !important;
+  /* box-shadow:0 7px 20px rgba(10,26,2,.16) !important; */
+  color:#12270a;
+  transform:scale(1) !important;
+  transition:background .25s ease, color .25s ease, border-color .25s ease, box-shadow .3s ease, transform .45s cubic-bezier(.34,1.56,.64,1) !important;
+}
+.shop .gk-add-cart svg{width:16px !important;height:16px !important;flex:0 0 auto;}
+.shop .gk-add-cart:hover{
+  background:var(--brand-green) !important;
+  border-color:var(--brand-green) !important;
+  color:#fff !important;
+  /* box-shadow:0 12px 26px rgba(10,26,2,.28) !important; */
+  /* transform:scale(1.12) !important; */
+}

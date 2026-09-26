@@ -1,0 +1,125 @@
+
+/* ============================================================
+   CLICK-ONLY PRODUCT ACTIONS
+   No product hover interaction.
+   Actions appear only after the product card is clicked/tapped.
+   ============================================================ */
+
+/* Never trigger the product actions from :hover */
+.gk-product-card:hover .gk-product-actions,
+.gk-product-card:hover .gk-add-cart {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translate(14px, 0) !important;
+}
+
+.gk-product-card:hover .gk-add-cart {
+  transform: translateY(14px) !important;
+}
+
+/* No image zoom on hover */
+.gk-product-card:hover .gk-product-media > img,
+.gk-product-card:hover .gk-product-media > div > img {
+  transform: none !important;
+}
+
+.gk-product-card:hover .gk-product-media::after {
+  opacity: 0 !important;
+}
+
+/* Click/tap state */
+.gk-product-card.gk-card-active .gk-product-actions {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateX(0) !important;
+}
+
+.gk-product-card.gk-card-active .gk-add-cart {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateY(0) !important;
+}
+
+.gk-product-card.gk-card-active .gk-product-media > img,
+.gk-product-card.gk-card-active .gk-product-media > div > img {
+  transform: scale(1.035) !important;
+}
+
+.gk-product-card.gk-card-active .gk-product-media::after {
+  opacity: 1 !important;
+}
+
+/* Smooth click-only transition */
+.gk-product-actions,
+.gk-add-cart,
+.gk-product-media > img,
+.gk-product-media > div > img,
+.gk-product-media::after {
+  transition:
+    opacity 0.9s cubic-bezier(.22,1,.36,1),
+    visibility 0.9s ease,
+    transform 1s cubic-bezier(.22,1,.36,1),
+    background 0.4s ease !important;
+}
+
+/* Mobile: still hidden until product is tapped */
+@media (max-width: 900px), (hover: none) {
+  .gk-product-card .gk-product-actions,
+  .gk-product-card .gk-add-cart {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translate(14px,0) !important;
+  }
+
+  .gk-product-card .gk-add-cart {
+    transform: translateY(14px) !important;
+  }
+
+  .gk-product-card.gk-card-active .gk-product-actions {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateX(0) !important;
+  }
+
+  .gk-product-card.gk-card-active .gk-add-cart {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+
+  .gk-product-card:hover .gk-product-actions,
+  .gk-product-card:hover .gk-add-cart {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .gk-product-card:hover .gk-product-media > img,
+  .gk-product-card:hover .gk-product-media > div > img {
+    transform: none !important;
+  }
+}
+.region h2{
+margin:0 auto 28px !important;
+}
+
+.quality-inner h2{
+margin:0 auto 12px !important;
+
+}
+  .quality-inner h2{
+ 
+  text-transform: uppercase !important;
+  }
+  
+  .insta-head h2{
+  
+  text-transform: uppercase !important;
+  }
+

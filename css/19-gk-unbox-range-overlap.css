@@ -1,0 +1,33 @@
+
+/* ==========================================================
+   UNBOX -> RANGE CINEMATIC OVERLAP (same treatment as HERO -> UNBOX)
+   .range is pulled up over the still-pinned/held .unbox section (the
+   ScrollExpand hold already keeps .unbox pinned for an extra ~1.5
+   viewport heights after its card finishes expanding) so it slides
+   over it like a curtain, darkening .unbox as it goes. Scope: only
+   these two sections.
+   ========================================================== */
+.hero-scene > .unbox::after{           /* dimmer: unbox darkens as range covers it */
+  content:"";
+  position:absolute; inset:0;
+  z-index:6;                            /* above the expanded .unbox-stage (z-index:3) */
+  pointer-events:none;
+  background:#0a1a02;
+  opacity:calc(var(--unbox-cover-p, 0) * .8);
+}
+.range{
+  position:relative;
+  z-index:3;
+  /* margin-top:-100vh; */
+  /* border-radius:32px 32px 0 0; */
+  box-shadow:0 -30px 70px rgba(4,16,4,.45);
+  /* transform:translateY(calc((1 - var(--unbox-cover-p, 0)) * 32vh)); */
+  will-change:transform;
+}
+@media (max-width:767px){
+  .range{ margin-top:-55vh; transform:translateY(calc((1 - var(--unbox-cover-p, 0)) * 20vh)); }
+}
+@media (prefers-reduced-motion:reduce){
+  .range{ margin-top:0; box-shadow:none; border-radius:0; transform:none; }
+  .hero-scene > .unbox::after{ opacity:0 !important; }
+}

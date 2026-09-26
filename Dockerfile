@@ -3,8 +3,7 @@ FROM nginx:1.27-alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY . /usr/share/nginx/html
 
-# Rename the HTML file so nginx serves it as the root index
-RUN mv "/usr/share/nginx/html/Goodricke Homepage.html" /usr/share/nginx/html/index.html
+# index.html is the homepage (no rename step needed after the reorganization)
 
 EXPOSE 8080
 

@@ -1,0 +1,186 @@
+
+/* ==========================================================
+   FINAL PRODUCT INTERACTION
+   Actions appear ONLY after clicking/tapping the product.
+   Applies to both .range-card and .gk-product-card.
+   ========================================================== */
+
+.range-card,
+.gk-product-card {
+  position: relative;
+}
+
+/* ---------- NEVER OPEN ON HOVER ---------- */
+
+/* Range cards */
+.range-card:hover .range-product-actions,
+.range-card:hover .range-add-cart {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.range-card:hover .range-media img {
+  transform: none !important;
+}
+
+.range-card:hover .range-media::after {
+  opacity: 0 !important;
+}
+
+/* Bestseller/product cards */
+.gk-product-card:hover .gk-product-actions,
+.gk-product-card:hover .gk-add-cart {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.gk-product-card:hover .gk-product-media > img,
+.gk-product-card:hover .gk-product-media > div > img {
+  transform: none !important;
+}
+
+.gk-product-card:hover .gk-product-media::after {
+  opacity: 0 !important;
+}
+
+/* ---------- SMOOTH INITIAL STATE ---------- */
+
+.range-product-actions,
+.range-add-cart,
+.gk-product-actions,
+.gk-add-cart {
+  transition:
+    opacity 0.9s cubic-bezier(.22,1,.36,1),
+    visibility 0.9s ease,
+    transform 0.95s cubic-bezier(.22,1,.36,1) !important;
+}
+
+/* ---------- RANGE CARD: CLICK STATE ---------- */
+
+.range-card .range-product-actions,
+.range-card .range-add-cart {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.range-card .range-product-actions {
+  transform: translateX(14px) !important;
+}
+
+.range-card .range-add-cart {
+  transform: translateY(14px) !important;
+}
+
+.range-card.range-card-active .range-product-actions {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateX(0) !important;
+  z-index: 30 !important;
+}
+
+.range-card.range-card-active .range-add-cart {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateY(0) !important;
+  z-index: 30 !important;
+}
+
+/* Range card: keep image, badge and title */
+.range-card.range-card-active .range-media,
+.range-card.range-card-active .range-media img,
+.range-card.range-card-active .range-badge,
+.range-card.range-card-active h3 {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Range card: hide sizes and price after click */
+.range-card.range-card-active .range-sizes,
+.range-card.range-card-active .range-variants,
+.range-card.range-card-active .variants,
+.range-card.range-card-active .weight-options,
+.range-card.range-card-active .weights,
+.range-card.range-card-active .range-price {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* ---------- BESTSELLER CARD: CLICK STATE ---------- */
+
+.gk-product-card .gk-product-actions,
+.gk-product-card .gk-add-cart {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.gk-product-card .gk-product-actions {
+  transform: translateX(14px) !important;
+}
+
+.gk-product-card .gk-add-cart {
+  transform: translateY(14px) !important;
+}
+
+.gk-product-card.gk-card-active .gk-product-actions {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateX(0) !important;
+}
+
+.gk-product-card.gk-card-active .gk-add-cart {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateY(0) !important;
+}
+
+/* Keep image, badge and product name */
+.gk-product-card.gk-card-active .gk-product-media,
+.gk-product-card.gk-card-active .gk-product-media > img,
+.gk-product-card.gk-card-active .sale-badge,
+.gk-product-card.gk-card-active .gk-product-info h3 {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Hide weight/size and price after click */
+.gk-product-card.gk-card-active .size-chips,
+.gk-product-card.gk-card-active .shop-price {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* No hover zoom/filter in the final interaction */
+.range-card.range-card-active .range-media img,
+.gk-product-card.gk-card-active .gk-product-media > img,
+.gk-product-card.gk-card-active .gk-product-media > div > img {
+  transition: transform 1s cubic-bezier(.22,1,.36,1) !important;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 900px), (hover: none) {
+  .range-card:hover .range-product-actions,
+  .range-card:hover .range-add-cart,
+  .gk-product-card:hover .gk-product-actions,
+  .gk-product-card:hover .gk-add-cart {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .range-card:hover .range-media img,
+  .gk-product-card:hover .gk-product-media > img,
+  .gk-product-card:hover .gk-product-media > div > img {
+    transform: none !important;
+  }
+}

@@ -1,0 +1,61 @@
+
+/* ==========================================================
+   HEADER MENU — HOVER DROPDOWNS (Shop, Our Gardens, Login/Register)
+   Desktop-only (hover-capable pointer); mobile/tablet nav is untouched.
+   ========================================================== */
+.pillnav-item{ position:relative; }
+.pillnav-dropdown{ display:none; }
+
+@media (min-width:768px) and (hover:hover) and (pointer:fine){
+  .pillnav-dropdown{
+    display:block;
+    position:absolute;
+    top:100%;
+    left:0;
+    padding-top:10px;
+    min-width:200px;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-6px);
+    transition:opacity .22s ease, transform .22s ease, visibility 0s linear .22s;
+    z-index:50;
+  }
+  .pillnav-dropdown.pillnav-dropdown--right{ left:auto; right:0; }
+  .pillnav-item:hover .pillnav-dropdown,
+  .pillnav-item:focus-within .pillnav-dropdown{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+    transition-delay:0s;
+  }
+  .pillnav-dropdown-inner{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    background:rgba(10,26,2,.92);
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:16px;
+    -webkit-backdrop-filter:blur(14px) saturate(140%);
+    backdrop-filter:blur(14px) saturate(140%);
+    padding:8px;
+  }
+  .pillnav-dropdown-inner a{
+    display:block;
+    padding:10px 14px;
+    border-radius:10px;
+    font:500 13px/1.2 "Inter","Segoe UI",system-ui,sans-serif;
+    color:#f2eee0;
+    white-space:nowrap;
+    transition:background .18s ease;
+  }
+  .pillnav-dropdown-inner a:hover{ background:rgba(255,255,255,.14); }
+  .pillnav-caret{ margin-left:2px; transition:transform .2s ease; position:relative; top:1px; }
+  .pillnav-item:hover .pillnav-caret{ transform:rotate(180deg); }
+
+  /* sticky (scrolled) header nav sits lower/smaller — align its dropdown & caret */
+  .sticky-pillnav-item .pillnav-dropdown{ top:100%; }
+  #stickybar .pillnav-dropdown-inner a{ font-size:13px; }
+}
+@media (prefers-reduced-motion:reduce){
+  .pillnav-dropdown{ transition:none !important; }
+}

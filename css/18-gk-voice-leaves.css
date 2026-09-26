@@ -1,0 +1,19 @@
+
+/* 5-star rating replaced with 5 small leaf badges (same leaf glyph
+   already used in the "Purchased: ..." line below), scoped to the
+   testimonial cards only. */
+.voice-rating-leaves{
+  display:inline-flex;
+  align-items:center;
+  gap:3px;
+}
+.voice-rating-leaves i{
+  display:grid;
+  place-items:center;
+  border-radius:999px;
+  background:#dbe7a5;
+  color:#3c5416;
+  flex-shrink:0;
+  margin: 2px;
+}
+.voice-rating-leaves i svg{width:19px;height:19px;}

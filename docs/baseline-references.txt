@@ -1,0 +1,1056 @@
+
+## <!doctype html>.html
+5	href	//s3.envato.com
+6	href	https://public-assets.envato-static.com/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png
+7	href	https://public-assets.envato-static.com/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+39	href	https://public-assets.envato-static.com/assets/market/core/index-0c608be2c2b6c4722cff4af026b6e56bbfb1eb7ea8116d20e6815ffa818764d4.css
+40	href	https://public-assets.envato-static.com/assets/market/pages/preview/index-457550c0311c719db250e79989e7462091be593549fb6bcb3801c9182189d1e5.css
+42	href	https://public-assets.envato-static.com/assets/icons/favicons/apple-touch-icon-72x72-precomposed-ea6fb08063069270d41814bdcea6a36fee5fffaba8ec1f0be6ccf3ebbb63dddb.png
+43	href	https://public-assets.envato-static.com/assets/icons/favicons/apple-touch-icon-114x114-precomposed-bab982e452fbea0c6821ffac2547e01e4b78e1df209253520c7c4e293849c4d3.png
+44	href	https://public-assets.envato-static.com/assets/icons/favicons/apple-touch-icon-120x120-precomposed-8275dc5d1417e913b7bd8ad048dccd1719510f0ca4434f139d675172c1095386.png
+45	href	https://public-assets.envato-static.com/assets/icons/favicons/apple-touch-icon-144x144-precomposed-c581101b4f39d1ba1c4a5e45edb6b3418847c5c387b376930c6a9922071c8148.png
+46	href	https://public-assets.envato-static.com/assets/icons/favicons/apple-touch-icon-precomposed-c581101b4f39d1ba1c4a5e45edb6b3418847c5c387b376930c6a9922071c8148.png
+48	src	https://public-assets.envato-static.com/assets/market/pages/full_screen_preview/index-32a2c775445fe25800101c1fc917865a21c9decbe4ded4ebfdf0b8240b6bb989.js
+71	url()	/assets/common/pagination_loader-ccdae013a8bbb92cbd0d52d6e1db2fea8a05b335a67409822029a16505e9adb5.gif
+71	url()	/assets/PolySans-Family/PolySans-Neutral-97805fdcd154c8dade0711b51e8ee36a88f411929fc0fdc812782006232b1407.otf
+71	url()	/assets/PolySans-Family/PolySans-Median-3a831d451fb6e08a2d12ff4af107eea1a4ee286096911338ec3985e89f59c841.otf
+71	url()	/assets/common/input-validation__valid-ad0699536415d38e62ad0ed66070d56104aabeb5dc4ce4742ee841fdcf5ed338.svg
+71	url()	/assets/common/input-validation__invalid-ecb44f2043f8a65c6b5cfdf3b5b813e4b66ba72e20c1bfa98dc03ec091673a27.svg
+71	url()	/assets/common/input-validation__warning-74518a1b8f84c370ba6b297fe6d1a99c376fe0c1d5beec24487c22bc6f1df8e2.svg
+71	url()	/assets/common/input-validation__pending-eda46ca6b1d93ee958f6291dcffb19f26970274b1a3405d86e6194d9486f330b.gif
+71	url()	data:image/svg+xml,<svg width=…(data URI)
+71	url()	data:image/svg+xml,<svg width=…(data URI)
+71	url()	data:image/svg+xml,<svg width=…(data URI)
+71	url()	data:image/svg+xml;utf8,<svg x…(data URI)
+71	url()	data:image/svg+xml;utf8,<svg x…(data URI)
+71	url()	data:image/svg+xml,<svg width=…(data URI)
+71	url()	/assets/logos/envato_market-dd390ae860330996644c1c109912d2bf63885fc075b87215ace9b5b4bdc71cc8.svg
+71	url()	/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png
+71	url()	/assets/logos/envato_market-dd390ae860330996644c1c109912d2bf63885fc075b87215ace9b5b4bdc71cc8.svg
+71	url()	/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png
+71	url()	/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png
+71	url()	/assets/generated_sprites/logos_2x-e385160dbd01e36a8d63d91938791184292305a2df166640baee0f7be3c9b481.png
+71	url()	/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png
+71	url()	/assets/generated_sprites/logos_2x-e385160dbd01e36a8d63d91938791184292305a2df166640baee0f7be3c9b481.png
+71	url()	/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png
+71	url()	/assets/generated_sprites/logos_2x-e385160dbd01e36a8d63d91938791184292305a2df166640baee0f7be3c9b481.png
+71	url()	/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png
+71	url()	/assets/generated_sprites/logos_2x-e385160dbd01e36a8d63d91938791184292305a2df166640baee0f7be3c9b481.png
+71	url()	/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png
+71	url()	/assets/generated_sprites/logos_2x-e385160dbd01e36a8d63d91938791184292305a2df166640baee0f7be3c9b481.png
+71	url()	/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png
+71	url()	/assets/generated_sprites/logos_2x-e385160dbd01e36a8d63d91938791184292305a2df166640baee0f7be3c9b481.png
+71	url()	/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png
+71	url()	/assets/generated_sprites/logos_2x-e385160dbd01e36a8d63d91938791184292305a2df166640baee0f7be3c9b481.png
+71	url()	/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png
+71	url()	/assets/generated_sprites/logos_2x-e385160dbd01e36a8d63d91938791184292305a2df166640baee0f7be3c9b481.png
+71	url()	data:image/svg+xml,<svg width=…(data URI)
+71	url()	/assets/logos/envato_market-dd390ae860330996644c1c109912d2bf63885fc075b87215ace9b5b4bdc71cc8.svg
+71	url()	/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png
+71	url()	/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png
+71	url()	/assets/generated_sprites/logos_2x-e385160dbd01e36a8d63d91938791184292305a2df166640baee0f7be3c9b481.png
+71	url()	/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png
+71	url()	/assets/generated_sprites/logos_2x-e385160dbd01e36a8d63d91938791184292305a2df166640baee0f7be3c9b481.png
+71	url()	/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png
+71	url()	/assets/generated_sprites/logos_2x-e385160dbd01e36a8d63d91938791184292305a2df166640baee0f7be3c9b481.png
+71	url()	/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png
+71	url()	/assets/generated_sprites/logos_2x-e385160dbd01e36a8d63d91938791184292305a2df166640baee0f7be3c9b481.png
+71	url()	/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png
+71	url()	/assets/generated_sprites/logos_2x-e385160dbd01e36a8d63d91938791184292305a2df166640baee0f7be3c9b481.png
+71	url()	/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png
+71	url()	/assets/generated_sprites/logos_2x-e385160dbd01e36a8d63d91938791184292305a2df166640baee0f7be3c9b481.png
+71	url()	/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png
+71	url()	/assets/generated_sprites/logos_2x-e385160dbd01e36a8d63d91938791184292305a2df166640baee0f7be3c9b481.png
+71	url()	/assets/community-research/bg-community-research-b8a71218af174a3ae434a3f085b1de4466416b2af9b6915620830121b5a93ad7.jpg
+71	url()	/assets/badges/bg-badges-b66f7cdb26693ff988b114cb32609b150602f04b5e5cf6be6dbfb2d1fef90183.jpg
+71	url()	/assets/common/bg-page-section--light-df7df4ee3302cefd79e92f8178eed1e5d4e535f3b5450288dcc05ba63bfbe904.png
+71	url()	/assets/common/bg-page-section-a07ab97ca4070e5b25b36ca4d0f246eb1c7ed28403482e573fac8b14dcd2c112.png
+71	url()	/assets/logos/envato_market-dd390ae860330996644c1c109912d2bf63885fc075b87215ace9b5b4bdc71cc8.svg
+71	url()	/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png
+71	url()	data:image/svg+xml,%3Csvg xmln…(data URI)
+71	url()	/assets/marketplace-glyphs/marketplace-glyphs-e72c235d8798e8242163d10f68f4eaa9d6919c4689c705a6c30fe80cf3d4ff9d.eot
+71	url()	/assets/marketplace-glyphs/marketplace-glyphs-e72c235d8798e8242163d10f68f4eaa9d6919c4689c705a6c30fe80cf3d4ff9d.eot?#iefix
+71	url()	/assets/marketplace-glyphs/marketplace-glyphs-85cc828ca8d675d6613f41b266689cea348332a12f6966cbe08583f16f208a40.woff
+71	url()	/assets/marketplace-glyphs/marketplace-glyphs-b94c8b32d03aa7203117cb403f5ad0a09e621925822c3eec0c404e13e0408ea2.ttf
+71	url()	/assets/marketplace-glyphs/marketplace-glyphs-497c4a115add7b2c6b95117c155d0f698e5e26954c4b49217034ad39ee66d743.svg#marketplace-glyphs
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png
+71	url()	/assets/common/small_loader_white-6f8d2990cd27635755902725fb95d2f8cbe1730dd684ec9aeded751b88f7485f.gif
+78	href	https://themeforest.net/item/soxa-natural-product-landing-page-woocommerce-theme/64423795
+83	href	https://themeforest.net/checkout/from_item/64423795?license=regular&amp;support=bundle_6month
+87	src	https://demo2.wpopal.com/soxa/
+154	src	https://www.googletagmanager.com/ns.html?id=GTM-W8KL5Q5
+166	src	https://consent.cookiebot.com/uc.js
+
+## Goodricke Homepage (final).html
+13	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+18	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+23	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+28	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+33	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+38	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+43	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+48	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+53	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+58	url()	data:font/ttf;base64,AAEAAAAVA…(data URI)
+63	url()	data:font/ttf;base64,AAEAAAAVA…(data URI)
+111	url()	data:image/jpeg;base64,/9j/4AA…(data URI)
+290	url()	./hero-garden.png
+867	url()	images/region-bg.png
+1714	url()	./unbox-garden.jpeg
+5404	href	#
+5404	data-img	./hero-tea-cup.jpeg
+5405	href	#
+5405	data-img	images/assam.png
+5406	href	#
+5406	data-img	images/darjeeling.png
+5407	href	#
+5407	data-img	images/dooars.png
+5408	href	#
+5408	data-img	./chatgpt-image-sep-18-2026-11_51_51-am-mu6pt1qv-ey9o.png
+5411	src	./hero-tea-cup.jpeg
+5412	src	./hero-tea-cup.jpeg
+5419	href	#
+5419	data-img	images/assam.png
+5420	href	#
+5420	data-img	images/darjeeling.png
+5421	href	#
+5421	data-img	images/dooars.png
+5424	src	images/assam.png
+5425	src	images/assam.png
+5432	href	#
+5432	src	./goodricke-icon-green.png
+5433	href	#
+5433	href	#
+5433	href	#
+5433	href	#
+5433	href	#
+5435	href	#
+5439	href	#
+5439	href	#
+5439	href	#
+5439	href	#
+5439	href	#
+5447	url()	./hero-garden.png
+5448	url()	uploads/adobestock_1003230309-mu6iyxtp-l08b.jpg
+5449	url()	uploads/slide-3.jpg
+5450	url()	uploads/slide3.jpg
+5456	src	./secondary-logo_white-mu5rs8bf-ngry.png
+5479	href	#
+5480	href	#
+5481	href	#
+5482	href	#
+5483	href	#
+5487	href	#
+5492	href	#
+5496	href	#
+5496	href	#
+5496	href	#
+5505	href	#
+5506	href	#
+5523	url()	./adobestock_492737037-1-mu6qnz5d-73gu.jpg
+5528	url()	./adobestock_273992410-mu5xail7-6fxi.png
+5533	url()	./adobestock_1003230309-mu6iyxtp-l08b.jpg
+5561	href	#
+5566	src	./chatgpt-image-sep-18-2026-11_50_25-am-mu6phmwl-srck.png
+5597	src	./chatgpt-image-sep-18-2026-11_48_08-am-mu6phsg3-lay4.png
+5627	src	./296dcfbd-870e-4b69-b790-fa2555fab349-mu6hn54k-pbmq.png
+5657	src	./chatgpt-image-sep-18-2026-11_53_30-am-mu6pi71r-ip4a.png
+5690	src	uploads/story-video.mp4
+5693	src	./goodricke-wordmark-green.png
+5698	href	#
+5726	src	./chatgpt-image-sep-18-2026-11_51_51-am-mu6pt1qv-ey9o.png
+5742	src	./chatgpt-image-sep-18-2026-11_48_08-am-mu6pys2u-ikqg.png
+5758	src	./chatgpt-image-sep-18-2026-11_50_25-am-mu6q0s0i-1b90.png
+5774	src	./chatgpt-image-sep-18--2026--02_25_58-pm-mu6qf62a-albw.png
+5794	url()	./adobestock_459255987-mu5ip3ue-7947.jpeg
+5797	href	#
+5798	src	images/assam.png
+5803	href	#
+5804	src	images/darjeeling.png
+5809	href	#
+5810	src	images/dooars.png
+5822	href	#
+5826	src	./khaass-pack4.jpg
+5833	href	#
+5837	src	./khaass-pack2.jpg
+5844	href	#
+5848	src	./khaass-pack3.jpg
+5855	href	#
+5859	src	./team-portrait.png
+5866	href	#
+5870	src	./team-portrait.png
+5877	href	#
+5881	src	./team-portrait.png
+5888	href	#
+5892	src	./team-portrait.png
+5899	href	#
+5906	src	uploads/goodway-hero-video.mp4
+5976	src	uploads/goodway-hero-video.mp4
+5984	href	https://instagram.com/goodricketea
+5992	href	https://www.instagram.com/p/DcBJwVLzSPZ/
+5992	poster	./001.png
+5992	src	uploads/goodway-hero-video.mp4
+5997	href	https://www.instagram.com/p/DcBJwVLzSPZ/
+5997	poster	./002.png
+5997	src	uploads/story-video.mp4
+6002	href	https://www.instagram.com/p/DcBJwVLzSPZ/
+6002	poster	./003.png
+6002	src	uploads/goodway-hero-video.mp4
+6007	href	https://www.instagram.com/p/DcBJwVLzSPZ/
+6007	poster	./004.png
+6007	src	uploads/story-video.mp4
+6015	href	https://instagram.com/goodricketea
+6025	href	#
+6026	href	#
+6027	href	#
+6028	href	#
+6051	href	#
+6052	href	#
+6053	href	#
+6054	href	#
+6062	href	#
+6063	href	#
+6064	href	#
+6065	href	#
+6073	href	#
+6074	href	#
+6075	href	#
+6076	href	#
+6083	href	#
+6084	href	#
+6085	href	#
+6086	href	#
+
+## Goodricke Homepage Header.html
+12	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+17	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+22	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+27	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+32	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+37	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+42	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+47	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+52	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+57	url()	data:font/ttf;base64,AAEAAAAVA…(data URI)
+62	url()	data:font/ttf;base64,AAEAAAAVA…(data URI)
+110	url()	data:image/jpeg;base64,/9j/4AA…(data URI)
+289	url()	./hero-garden.png
+856	url()	images/region-bg.png
+1684	url()	./unbox-garden.jpeg
+3726	src	Goodricke%20Homepage%20Header_files/goodricke-icon-green_KHC2.png
+3728	href	#
+3729	href	#
+3730	href	#
+3731	href	#
+3732	href	#
+3734	href	#
+3744	url()	./hero-garden.png
+3745	url()	uploads/adobestock_1003230309-mu6iyxtp-l08b.jpg
+3746	url()	uploads/slide-3.jpg
+3747	url()	uploads/slide3.jpg
+3753	src	Goodricke%20Homepage%20Header_files/secondary-logo_white-mu5rs8bf-ngry_KHC2.png
+3772	href	#
+3773	href	#
+3774	href	#
+3775	href	#
+3776	href	#
+3780	href	#
+3784	href	#
+3795	href	#
+3796	href	#
+3811	url()	&quot;./adobestock_492737037-1-mu6qnz5d-73gu.jpg&quot;
+3815	url()	&quot;./adobestock_273992410-mu5xail7-6fxi.png&quot;
+3819	url()	&quot;./adobestock_1003230309-mu6iyxtp-l08b.jpg&quot;
+3843	href	#
+3852	src	Goodricke%20Homepage%20Header_files/chatgpt-image-sep-18-2026-11_50_25-am-mu6phmwl-srck_KHC2.png
+3876	src	Goodricke%20Homepage%20Header_files/chatgpt-image-sep-18-2026-11_48_08-am-mu6phsg3-lay4_KHC2.png
+3899	src	Goodricke%20Homepage%20Header_files/296dcfbd-870e-4b69-b790-fa2555fab349-mu6hn54k-pbmq_KHC2.png
+3922	src	Goodricke%20Homepage%20Header_files/chatgpt-image-sep-18-2026-11_53_30-am-mu6pi71r-ip4a_KHC2.png
+3945	url()	./story-cup.jpg
+3947	src	Goodricke%20Homepage%20Header_files/goodricke-icon_white-mu70ejz3-gx0y_KHC2.png
+3948	src	Goodricke%20Homepage%20Header_files/goodricke-wordmark-green_KHC2.png
+3953	href	#
+3979	src	Goodricke%20Homepage%20Header_files/chatgpt-image-sep-18-2026-11_51_51-am-mu6pt1qv-ey9o_KHC2.png
+3989	src	Goodricke%20Homepage%20Header_files/chatgpt-image-sep-18-2026-11_48_08-am-mu6pys2u-ikqg_KHC2.png
+4000	src	Goodricke%20Homepage%20Header_files/chatgpt-image-sep-18-2026-11_50_25-am-mu6q0s0i-1b90_KHC2.png
+4011	src	Goodricke%20Homepage%20Header_files/chatgpt-image-sep-18--2026--02_25_58-pm-mu6qf62a-albw_KHC2.png
+4021	href	#
+4024	url()	./adobestock_459255987-mu5ip3ue-7947.jpeg
+4027	href	#
+4028	src	Goodricke%20Homepage%20Header_files/assam_KHC2.png
+4033	href	#
+4034	src	Goodricke%20Homepage%20Header_files/darjeeling_KHC2.png
+4039	href	#
+4040	src	Goodricke%20Homepage%20Header_files/dooars_KHC2.png
+4052	href	#
+4056	src	Goodricke%20Homepage%20Header_files/khaass-pack4_KHC2.jpg
+4063	href	#
+4067	src	Goodricke%20Homepage%20Header_files/khaass-pack2_KHC2.jpg
+4074	href	#
+4078	src	Goodricke%20Homepage%20Header_files/khaass-pack3_KHC2.jpg
+4085	href	#
+4089	src	Goodricke%20Homepage%20Header_files/team-portrait_KHC2.png
+4096	href	#
+4100	src	Goodricke%20Homepage%20Header_files/team-portrait_KHC2.png
+4107	href	#
+4111	src	Goodricke%20Homepage%20Header_files/team-portrait_KHC2.png
+4118	href	#
+4122	src	Goodricke%20Homepage%20Header_files/team-portrait_KHC2.png
+4129	href	#
+4136	src	Goodricke%20Homepage%20Header_files/goodway-hero-video_KHC2.mp4
+4183	src	Goodricke%20Homepage%20Header_files/Tertiary%20Logo_Green-d3d24e6f_KHC2.png
+4190	src	Goodricke%20Homepage%20Header_files/Tertiary%20Logo_Green-d3d24e6f_KHC2.png
+4206	src	Goodricke%20Homepage%20Header_files/goodway-hero-video_KHC2.mp4
+4214	href	https://instagram.com/goodricketea
+4221	href	https://instagram.com/goodricketea
+4222	src	Goodricke%20Homepage%20Header_files/reel-1_KHC2.mp4
+4226	href	https://instagram.com/goodricketea
+4227	src	Goodricke%20Homepage%20Header_files/reel-2_KHC2.mp4
+4231	href	https://instagram.com/goodricketea
+4232	src	Goodricke%20Homepage%20Header_files/reel-3_KHC2.mp4
+4236	href	https://instagram.com/goodricketea
+4237	src	Goodricke%20Homepage%20Header_files/reel-4_KHC2.mp4
+4241	href	https://instagram.com/goodricketea
+4242	src	Goodricke%20Homepage%20Header_files/reel-5_KHC2.mp4
+4246	href	https://instagram.com/goodricketea
+4247	src	Goodricke%20Homepage%20Header_files/reel-6_KHC2.mp4
+4253	href	https://instagram.com/goodricketea
+4263	href	#
+4264	href	#
+4265	href	#
+4266	href	#
+4289	href	#
+4290	href	#
+4291	href	#
+4292	href	#
+4300	href	#
+4301	href	#
+4302	href	#
+4303	href	#
+4311	href	#
+4312	href	#
+4313	href	#
+4314	href	#
+4319	src	Goodricke%20Homepage%20Header_files/tertiary-logo_white-mu5smfso-frvh_KHC2.svg
+4322	href	#
+4323	href	#
+4324	href	#
+4325	href	#
+
+## Goodricke Homepage.html
+13	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+18	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+23	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+28	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+33	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+38	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+43	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+48	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+53	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+58	url()	data:font/ttf;base64,AAEAAAAVA…(data URI)
+63	url()	data:font/ttf;base64,AAEAAAAVA…(data URI)
+111	url()	data:image/jpeg;base64,/9j/4AA…(data URI)
+293	url()	./hero-garden.png
+872	url()	images/region-bg.png
+1721	url()	./unbox-garden.jpeg
+5782	href	#
+5782	data-img	./hero-tea-cup.jpeg
+5783	href	#
+5783	data-img	images/assam.png
+5784	href	#
+5784	data-img	images/darjeeling.png
+5785	href	#
+5785	data-img	images/dooars.png
+5786	href	#
+5786	data-img	./chatgpt-image-sep-18-2026-11_51_51-am-mu6pt1qv-ey9o.png
+5789	src	./hero-tea-cup.jpeg
+5790	src	./hero-tea-cup.jpeg
+5797	href	#
+5797	data-img	images/darjeeling.png
+5798	href	#
+5798	data-img	images/assam.png
+5799	href	#
+5799	data-img	images/dooars.png
+5800	href	#
+5800	data-img	hero-garden.png
+5801	href	#
+5801	data-img	unbox-garden.jpeg
+5804	src	images/darjeeling.png
+5805	src	images/darjeeling.png
+5812	href	#
+5812	src	./goodricke-icon-green.png
+5813	href	#
+5813	href	#
+5813	href	#
+5813	href	#
+5813	href	#
+5815	href	#
+5819	href	#
+5819	href	#
+5819	href	#
+5819	href	#
+5819	href	#
+5827	url()	./hero-garden.png
+5828	url()	uploads/adobestock_1003230309-mu6iyxtp-l08b.jpg
+5829	url()	uploads/slide-3.jpg
+5830	url()	uploads/slide3.jpg
+5836	src	./secondary-logo_white-mu5rs8bf-ngry.png
+5859	href	#
+5860	href	#
+5861	href	#
+5862	href	#
+5863	href	#
+5867	href	#
+5871	href	#
+5875	href	#
+5875	href	#
+5875	href	#
+5884	href	#
+5885	href	#
+5902	url()	./adobestock_492737037-1-mu6qnz5d-73gu.jpg
+5907	url()	./adobestock_273992410-mu5xail7-6fxi.png
+5912	url()	./adobestock_1003230309-mu6iyxtp-l08b.jpg
+5940	href	#
+5945	src	./chatgpt-image-sep-18-2026-11_50_25-am-mu6phmwl-srck.png
+5976	src	./chatgpt-image-sep-18-2026-11_48_08-am-mu6phsg3-lay4.png
+6006	src	./296dcfbd-870e-4b69-b790-fa2555fab349-mu6hn54k-pbmq.png
+6036	src	./chatgpt-image-sep-18-2026-11_53_30-am-mu6pi71r-ip4a.png
+6069	src	uploads/story-video.mp4
+6072	src	./goodricke-wordmark-green.png
+6077	href	#
+6104	src	./chatgpt-image-sep-18-2026-11_51_51-am-mu6pt1qv-ey9o.png
+6120	src	./chatgpt-image-sep-18-2026-11_48_08-am-mu6pys2u-ikqg.png
+6136	src	./chatgpt-image-sep-18-2026-11_50_25-am-mu6q0s0i-1b90.png
+6152	src	./chatgpt-image-sep-18--2026--02_25_58-pm-mu6qf62a-albw.png
+6172	url()	./adobestock_459255987-mu5ip3ue-7947.jpeg
+6175	href	#
+6176	src	images/assam.png
+6181	href	#
+6182	src	images/darjeeling.png
+6187	href	#
+6188	src	images/dooars.png
+6200	href	#
+6204	src	./khaass-pack4.jpg
+6211	href	#
+6215	src	./khaass-pack2.jpg
+6222	href	#
+6226	src	./khaass-pack3.jpg
+6233	href	#
+6237	src	./team-portrait.png
+6244	href	#
+6248	src	./team-portrait.png
+6255	href	#
+6259	src	./team-portrait.png
+6266	href	#
+6270	src	./team-portrait.png
+6277	href	#
+6284	src	uploads/goodway-hero-video.mp4
+6354	src	uploads/goodway-hero-video.mp4
+6362	href	https://instagram.com/goodricketea
+6370	href	https://www.instagram.com/p/DcBJwVLzSPZ/
+6370	poster	./001.png
+6370	src	Video-32674.mp4
+6375	href	https://www.instagram.com/p/DcBJwVLzSPZ/
+6375	poster	./002.png
+6375	src	Video-53785.mp4
+6380	href	https://www.instagram.com/p/DcBJwVLzSPZ/
+6380	poster	./003.png
+6380	src	Video-32674.mp4
+6385	href	https://www.instagram.com/p/DcBJwVLzSPZ/
+6385	poster	./004.png
+6385	src	Video-53785.mp4
+6393	href	https://instagram.com/goodricketea
+6403	href	#
+6404	href	#
+6405	href	#
+6406	href	#
+6429	href	#
+6430	href	#
+6431	href	#
+6432	href	#
+6440	href	#
+6441	href	#
+6442	href	#
+6443	href	#
+6451	href	#
+6452	href	#
+6453	href	#
+6454	href	#
+6461	href	#
+6462	href	#
+6463	href	#
+6464	href	#
+
+## Goodricke Homepage_old.html
+12	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+17	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+22	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+27	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+32	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+37	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+42	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+47	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+52	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+57	url()	data:font/ttf;base64,AAEAAAAVA…(data URI)
+62	url()	data:font/ttf;base64,AAEAAAAVA…(data URI)
+110	url()	data:image/jpeg;base64,/9j/4AA…(data URI)
+289	url()	./hero-garden.png
+856	url()	images/region-bg.png
+1684	url()	./unbox-garden.jpeg
+5084	src	./goodricke-icon-green.png
+5086	href	#
+5087	href	#
+5088	href	#
+5089	href	#
+5090	href	#
+5092	href	#
+5102	url()	./hero-garden.png
+5103	url()	uploads/adobestock_1003230309-mu6iyxtp-l08b.jpg
+5104	url()	uploads/slide-3.jpg
+5105	url()	uploads/slide3.jpg
+5111	src	./secondary-logo_white-mu5rs8bf-ngry.png
+5134	href	#
+5135	href	#
+5136	href	#
+5137	href	#
+5138	href	#
+5142	href	#
+5146	href	#
+5157	href	#
+5158	href	#
+5174	url()	./adobestock_492737037-1-mu6qnz5d-73gu.jpg
+5179	url()	./adobestock_273992410-mu5xail7-6fxi.png
+5184	url()	./adobestock_1003230309-mu6iyxtp-l08b.jpg
+5208	href	#
+5218	src	./chatgpt-image-sep-18-2026-11_50_25-am-mu6phmwl-srck.png
+5258	src	./chatgpt-image-sep-18-2026-11_48_08-am-mu6phsg3-lay4.png
+5297	src	./296dcfbd-870e-4b69-b790-fa2555fab349-mu6hn54k-pbmq.png
+5336	src	./chatgpt-image-sep-18-2026-11_53_30-am-mu6pi71r-ip4a.png
+5374	url()	./story-cup.jpg
+5377	src	./goodricke-wordmark-green.png
+5382	href	#
+5410	src	./chatgpt-image-sep-18-2026-11_51_51-am-mu6pt1qv-ey9o.png
+5428	src	./chatgpt-image-sep-18-2026-11_48_08-am-mu6pys2u-ikqg.png
+5446	src	./chatgpt-image-sep-18-2026-11_50_25-am-mu6q0s0i-1b90.png
+5464	src	./chatgpt-image-sep-18--2026--02_25_58-pm-mu6qf62a-albw.png
+5486	url()	./adobestock_459255987-mu5ip3ue-7947.jpeg
+5489	href	#
+5490	src	images/assam.png
+5495	href	#
+5496	src	images/darjeeling.png
+5501	href	#
+5502	src	images/dooars.png
+5514	href	#
+5518	src	./khaass-pack4.jpg
+5525	href	#
+5529	src	./khaass-pack2.jpg
+5536	href	#
+5540	src	./khaass-pack3.jpg
+5547	href	#
+5551	src	./team-portrait.png
+5558	href	#
+5562	src	./team-portrait.png
+5569	href	#
+5573	src	./team-portrait.png
+5580	href	#
+5584	src	./team-portrait.png
+5591	href	#
+5598	src	uploads/goodway-hero-video.mp4
+5645	src	uploads/Tertiary Logo_Green-d3d24e6f.png
+5652	src	uploads/Tertiary Logo_Green-d3d24e6f.png
+5668	src	uploads/goodway-hero-video.mp4
+5676	href	https://instagram.com/goodricketea
+5684	href	https://www.instagram.com/p/DcBJwVLzSPZ/
+5684	src	./001.png
+5689	href	https://www.instagram.com/p/DcBJwVLzSPZ/
+5689	src	./002.png
+5694	href	https://www.instagram.com/p/DcBJwVLzSPZ/
+5694	src	./003.png
+5699	href	https://www.instagram.com/p/DcBJwVLzSPZ/
+5699	src	./004.png
+5707	href	https://instagram.com/goodricketea
+5717	href	#
+5718	href	#
+5719	href	#
+5720	href	#
+5743	href	#
+5744	href	#
+5745	href	#
+5746	href	#
+5754	href	#
+5755	href	#
+5756	href	#
+5757	href	#
+5765	href	#
+5766	href	#
+5767	href	#
+5768	href	#
+5773	src	./tertiary-logo_white-mu5smfso-frvh.svg
+5776	href	#
+5777	href	#
+5778	href	#
+5779	href	#
+
+## designoverlap.html
+99	href	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/fonts/arpona-light.woff2
+101	href	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/fonts/aptos-light.woff2
+104	href	https://goodricke.wibe.works/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fgoodricke.wibe.works%2F
+105	href	https://goodricke.wibe.works/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fgoodricke.wibe.works%2F&#038;format=xml
+138	href	https://goodricke.wibe.works/wp-json/
+138	href	https://goodricke.wibe.works/wp-json/wp/v2/pages/20
+138	href	https://goodricke.wibe.works/xmlrpc.php?rsd
+140	href	https://goodricke.wibe.works/
+205	href	#main
+209	href	https://goodricke.wibe.works/
+215	url()	#clip0_0_1
+216	url()	#clip1_0_1
+267	href	/
+268	href	#our-teas
+269	href	#corporate
+270	href	#investors
+271	href	https://goodricke.wibe.works/the-good-way/
+284	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-plus.svg
+289	href	#contact
+290	href	#shop
+292	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-up-right.svg
+296	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-cart.svg
+302	href	https://goodricke.wibe.works/darjeeling-gardens/
+302	data-img	https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-darjeeling-768x1024.webp
+302	href	https://goodricke.wibe.works/assam-gardens/
+302	data-img	https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-darjeeling-768x1024.webp
+302	href	https://goodricke.wibe.works/dooars-gardens/
+302	data-img	https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-darjeeling-768x1024.webp
+302	href	#our-brands
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/gardens-darjeeling.jpg
+302	href	#production-packaging
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/gardens-darjeeling.jpg
+302	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/gardens-darjeeling.jpg
+302	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/gardens-darjeeling.jpg
+302	href	https://goodricke.wibe.works/corporate/overview/
+302	data-img	https://goodricke.wibe.works/wp-content/uploads/2026/09/co-overview-band-1024x805.webp
+302	href	#board-of-directors
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/co-overview-band.jpg
+302	href	#management-team
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/co-overview-band.jpg
+302	href	#our-history
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/co-overview-band.jpg
+302	href	#csr
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/co-overview-band.jpg
+302	href	#sustainability
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/co-overview-band.jpg
+302	href	#news-media
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/co-overview-band.jpg
+302	href	#careers
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/co-overview-band.jpg
+302	href	#identity-refresh
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/co-overview-band.jpg
+302	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/co-overview-band.jpg
+302	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/co-overview-band.jpg
+302	href	#investor-corner
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/co-believe-photo.jpg
+302	href	#financial-results
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/co-believe-photo.jpg
+302	href	#annual-reports
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/co-believe-photo.jpg
+302	href	#shareholding-pattern
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/co-believe-photo.jpg
+302	href	#corporate-governance
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/co-believe-photo.jpg
+302	href	#investor-corner
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/co-believe-photo.jpg
+302	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/co-believe-photo.jpg
+302	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/co-believe-photo.jpg
+302	href	/the-good-way/#philosophy
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/gw-planet-field.jpg
+302	href	/the-good-way/#gardens
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/gw-planet-field.jpg
+302	href	/the-good-way/#process
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/gw-planet-field.jpg
+302	href	/the-good-way/#people
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/gw-planet-field.jpg
+302	href	/the-good-way/#planet
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/gw-planet-field.jpg
+302	href	/the-good-way/#stories
+302	data-img	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/gw-planet-field.jpg
+302	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/gw-planet-field.jpg
+302	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/gw-planet-field.jpg
+306	href	/
+307	href	#our-teas
+309	href	https://goodricke.wibe.works/darjeeling-gardens/
+310	href	https://goodricke.wibe.works/assam-gardens/
+311	href	https://goodricke.wibe.works/dooars-gardens/
+312	href	#our-brands
+313	href	#production-packaging
+316	href	#corporate
+318	href	https://goodricke.wibe.works/corporate/overview/
+319	href	#board-of-directors
+320	href	#management-team
+321	href	#our-history
+322	href	#csr
+323	href	#sustainability
+324	href	#news-media
+325	href	#careers
+326	href	#identity-refresh
+329	href	#investors
+331	href	#investor-corner
+332	href	#financial-results
+333	href	#annual-reports
+334	href	#shareholding-pattern
+335	href	#corporate-governance
+336	href	#investor-corner
+339	href	https://goodricke.wibe.works/the-good-way/
+341	href	/the-good-way/#philosophy
+342	href	/the-good-way/#gardens
+343	href	/the-good-way/#process
+344	href	/the-good-way/#people
+345	href	/the-good-way/#planet
+346	href	/the-good-way/#stories
+351	href	#contact
+352	href	#shop
+365	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-goodway.webp
+365	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-goodway.webp 1920w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-goodway-300x169.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-goodway-1024x576.webp 1024w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-goodway-768x432.webp 768w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-goodway-1536x864.webp 1536w
+366	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/goodway-hero-video.mp4
+378	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-darjeeling.webp
+378	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-darjeeling.webp 1920w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-darjeeling-300x169.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-darjeeling-1024x576.webp 1024w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-darjeeling-768x432.webp 768w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-darjeeling-1536x864.webp 1536w
+379	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/darjeeling-hero-video.mp4
+391	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-assam.webp
+391	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-assam.webp 1920w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-assam-300x169.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-assam-1024x576.webp 1024w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-assam-768x432.webp 768w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-assam-1536x864.webp 1536w
+392	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/assam-hero-video.mp4
+404	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-dooars.webp
+404	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-dooars.webp 1920w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-dooars-300x169.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-dooars-1024x576.webp 1024w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-dooars-768x432.webp 768w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-dooars-1536x864.webp 1536w
+405	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/dooars-hero-video.mp4
+431	href	/darjeeling-gardens/
+443	href	/assam-gardens/
+455	href	/dooars-gardens/
+466	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/cert-utz.svg
+470	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/cert-usda-organic.svg
+474	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/cert-rainforest.svg
+481	url()	https://goodricke.wibe.works/wp-content/uploads/2026/08/cert-un-sdg-300x289.webp
+487	url()	https://goodricke.wibe.works/wp-content/uploads/2026/08/cert-trustea-300x300.webp
+493	url()	https://goodricke.wibe.works/wp-content/uploads/2026/08/cert-india-organic-300x271.webp
+499	url()	https://goodricke.wibe.works/wp-content/uploads/2026/08/cert-ethical-tea-300x99.webp
+505	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/cert-rainforest.svg
+512	url()	https://goodricke.wibe.works/wp-content/uploads/2026/08/cert-trustea-300x300.webp
+518	url()	https://goodricke.wibe.works/wp-content/uploads/2026/08/cert-un-sdg-300x289.webp
+524	url()	https://goodricke.wibe.works/wp-content/uploads/2026/08/cert-ethical-tea-300x99.webp
+533	url()	https://goodricke.wibe.works/wp-content/uploads/2026/08/cert-trustea-300x300.webp
+539	url()	https://goodricke.wibe.works/wp-content/uploads/2026/08/cert-india-organic-300x271.webp
+542	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/cert-usda-organic.svg
+546	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/cert-utz.svg
+553	url()	https://goodricke.wibe.works/wp-content/uploads/2026/08/cert-ethical-tea-300x99.webp
+589	href	/the-good-way/
+591	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right-green.svg
+597	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/icon-value-ownership.svg
+604	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/icon-value-right.svg
+611	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/icon-value-care.svg
+618	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/icon-value-one.svg
+639	href	/about/
+641	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right.svg
+648	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-revenue.webp
+648	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-revenue.webp 900w, https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-revenue-300x200.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-revenue-768x512.webp 768w
+658	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-production-683x1024.webp
+658	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-production-683x1024.webp 683w, https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-production-200x300.webp 200w, https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-production-768x1152.webp 768w, https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-production.webp 900w
+668	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-plantations.webp
+668	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-plantations.webp 900w, https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-plantations-300x200.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-plantations-768x512.webp 768w
+678	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-people-683x1024.webp
+678	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-people-683x1024.webp 683w, https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-people-200x300.webp 200w, https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-people-768x1152.webp 768w, https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-people.webp 900w
+706	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/icon-value-ownership.svg
+713	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/icon-value-ownership.svg
+716	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-people-683x1024.webp
+716	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-people-683x1024.webp 683w, https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-people-200x300.webp 200w, https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-people-768x1152.webp 768w, https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-people.webp 900w
+722	href	/stories/
+732	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/icon-value-education.svg
+739	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/icon-value-education.svg
+742	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-darjeeling-1024x576.webp
+742	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-darjeeling-1024x576.webp 1024w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-darjeeling-300x169.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-darjeeling-768x432.webp 768w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-darjeeling-1536x864.webp 1536w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-darjeeling.webp 1920w
+748	href	/stories/
+758	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/icon-value-one.svg
+765	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/icon-value-one.svg
+768	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-plantations.webp
+768	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-plantations.webp 900w, https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-plantations-300x200.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-plantations-768x512.webp 768w
+774	href	/stories/
+784	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/icon-value-health.svg
+791	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/icon-value-health.svg
+794	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-production-683x1024.webp
+794	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-production-683x1024.webp 683w, https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-production-200x300.webp 200w, https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-production-768x1152.webp 768w, https://goodricke.wibe.works/wp-content/uploads/2026/08/soil-production.webp 900w
+800	href	/stories/
+810	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/icon-value-care.svg
+817	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/icon-value-care.svg
+820	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-assam-1024x576.webp
+820	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-assam-1024x576.webp 1024w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-assam-300x169.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-assam-768x432.webp 768w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-assam-1536x864.webp 1536w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-assam.webp 1920w
+826	href	/stories/
+836	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/icon-value-right.svg
+843	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/icon-value-right.svg
+846	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-dooars-1024x576.webp
+846	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-dooars-1024x576.webp 1024w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-dooars-300x169.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-dooars-768x432.webp 768w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-dooars-1536x864.webp 1536w, https://goodricke.wibe.works/wp-content/uploads/2026/08/hero-dooars.webp 1920w
+852	href	/stories/
+861	href	/stories/
+940	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-assam-768x512.webp
+940	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-assam-768x512.webp 768w, https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-assam-300x200.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-assam-1024x683.webp 1024w, https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-assam.webp 1200w
+949	href	/assam-gardens/
+951	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right-green.svg
+960	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-dooars-768x511.webp
+960	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-dooars-768x511.webp 768w, https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-dooars-300x200.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-dooars-1024x681.webp 1024w, https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-dooars.webp 1100w
+969	href	/dooars-gardens/
+971	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right-green.svg
+980	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-darjeeling-768x1024.webp
+980	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-darjeeling-768x1024.webp 768w, https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-darjeeling-225x300.webp 225w, https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-darjeeling-1152x1536.webp 1152w, https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-darjeeling.webp 1200w
+989	href	/darjeeling-gardens/
+991	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right-green.svg
+1000	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-chevron.svg
+1003	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-chevron.svg
+1039	href	#
+1041	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right-green.svg
+1052	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-margarets-hope.webp
+1052	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-margarets-hope.webp 500w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-margarets-hope-259x300.webp 259w
+1053	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp
+1053	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp 700w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-300x300.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-150x150.webp 150w
+1062	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-badamtam.webp
+1062	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-badamtam.webp 500w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-badamtam-259x300.webp 259w
+1063	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp
+1063	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp 700w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-300x300.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-150x150.webp 150w
+1072	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-castleton.webp
+1072	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-castleton.webp 500w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-castleton-259x300.webp 259w
+1073	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp
+1073	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp 700w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-300x300.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-150x150.webp 150w
+1082	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-barnesbeg.svg
+1083	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp
+1083	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp 700w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-300x300.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-150x150.webp 150w
+1092	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-margarets-hope.webp
+1092	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-margarets-hope.webp 500w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-margarets-hope-259x300.webp 259w
+1093	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp
+1093	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp 700w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-300x300.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-150x150.webp 150w
+1102	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-badamtam.webp
+1102	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-badamtam.webp 500w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-badamtam-259x300.webp 259w
+1103	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp
+1103	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp 700w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-300x300.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-150x150.webp 150w
+1112	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-castleton.webp
+1112	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-castleton.webp 500w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-castleton-259x300.webp 259w
+1113	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp
+1113	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp 700w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-300x300.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-150x150.webp 150w
+1122	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-barnesbeg.svg
+1123	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp
+1123	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp 700w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-300x300.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-150x150.webp 150w
+1132	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-margarets-hope.webp
+1132	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-margarets-hope.webp 500w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-margarets-hope-259x300.webp 259w
+1133	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp
+1133	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp 700w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-300x300.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-150x150.webp 150w
+1142	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-badamtam.webp
+1142	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-badamtam.webp 500w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-badamtam-259x300.webp 259w
+1143	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp
+1143	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp 700w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-300x300.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-150x150.webp 150w
+1152	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-castleton.webp
+1152	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-castleton.webp 500w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-castleton-259x300.webp 259w
+1153	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp
+1153	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp 700w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-300x300.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-150x150.webp 150w
+1162	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-barnesbeg.svg
+1163	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp
+1163	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp 700w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-300x300.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-150x150.webp 150w
+1172	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-margarets-hope.webp
+1172	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-margarets-hope.webp 500w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-margarets-hope-259x300.webp 259w
+1173	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp
+1173	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp 700w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-300x300.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-150x150.webp 150w
+1182	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-badamtam.webp
+1182	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-badamtam.webp 500w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-badamtam-259x300.webp 259w
+1183	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp
+1183	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp 700w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-300x300.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-150x150.webp 150w
+1192	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-castleton.webp
+1192	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-castleton.webp 500w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-castleton-259x300.webp 259w
+1193	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp
+1193	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp 700w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-300x300.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-150x150.webp 150w
+1202	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-barnesbeg.svg
+1203	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp
+1203	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp 700w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-300x300.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-150x150.webp 150w
+1212	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-margarets-hope.webp
+1212	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-margarets-hope.webp 500w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-margarets-hope-259x300.webp 259w
+1213	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp
+1213	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp 700w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-300x300.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-150x150.webp 150w
+1222	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-badamtam.webp
+1222	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-badamtam.webp 500w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-badamtam-259x300.webp 259w
+1223	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp
+1223	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp 700w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-300x300.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-150x150.webp 150w
+1232	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-castleton.webp
+1232	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-castleton.webp 500w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-castleton-259x300.webp 259w
+1233	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp
+1233	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp 700w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-300x300.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-150x150.webp 150w
+1242	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-barnesbeg.svg
+1243	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp
+1243	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves.webp 700w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-300x300.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/brand-leaves-150x150.webp 150w
+1255	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right-green.svg
+1260	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right-green.svg
+1276	poster	https://goodricke.wibe.works/wp-content/uploads/2026/08/identity-plucking.webp
+1276	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/darjeeling-hero-video.mp4
+1279	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-assam.webp
+1279	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-assam.webp 1200w, https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-assam-300x200.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-assam-1024x683.webp 1024w, https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-assam-768x512.webp 768w
+1281	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-dooars.webp
+1281	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-dooars.webp 1100w, https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-dooars-300x200.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-dooars-1024x681.webp 1024w, https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-dooars-768x511.webp 768w
+1290	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-hide-text.svg
+1296	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right.svg
+1301	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right.svg
+1309	href	#
+1311	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right.svg
+1449	href	#
+1456	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/investor-photo-683x1024.webp
+1456	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/investor-photo-683x1024.webp 683w, https://goodricke.wibe.works/wp-content/uploads/2026/08/investor-photo-200x300.webp 200w, https://goodricke.wibe.works/wp-content/uploads/2026/08/investor-photo-768x1152.webp 768w, https://goodricke.wibe.works/wp-content/uploads/2026/08/investor-photo.webp 1000w
+1459	url()	#filter0_d_0_109
+1480	url()	#filter0_d_0_109
+1502	url()	#filter0_d_0_134
+1530	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right-green.svg
+1534	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right-green.svg
+1544	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/news-estate.webp
+1544	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/news-estate.webp 640w, https://goodricke.wibe.works/wp-content/uploads/2026/08/news-estate-300x172.webp 300w
+1549	href	https://goodricke.wibe.works/news/goodricke-group-sets-july-15-deadline-for-dividend-tds-documents/
+1555	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/news-estate.webp
+1555	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/news-estate.webp 640w, https://goodricke.wibe.works/wp-content/uploads/2026/08/news-estate-300x172.webp 300w
+1560	href	https://goodricke.wibe.works/news/annual-general-meeting-2026-record-date-and-e-voting-details-announced/
+1566	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/news-poster.webp
+1566	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/news-poster.webp 640w, https://goodricke.wibe.works/wp-content/uploads/2026/08/news-poster-200x300.webp 200w
+1571	href	https://goodricke.wibe.works/news/goodricke-group-brews-new-growth-plan-with-branded-dairy-products/
+1577	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/news-teapot.webp
+1577	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/news-teapot.webp 640w, https://goodricke.wibe.works/wp-content/uploads/2026/08/news-teapot-300x169.webp 300w
+1582	href	https://goodricke.wibe.works/news/darjeelings-most-storied-tea-estate-writes-a-new-chapter/
+1588	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/news-teapot.webp
+1588	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/news-teapot.webp 640w, https://goodricke.wibe.works/wp-content/uploads/2026/08/news-teapot-300x169.webp 300w
+1593	href	https://goodricke.wibe.works/news/goodricke-reports-strong-festive-quarter-demand-across-retail-brands/
+1599	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/news-speaker.webp
+1599	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/news-speaker.webp 640w, https://goodricke.wibe.works/wp-content/uploads/2026/08/news-speaker-300x200.webp 300w
+1604	href	https://goodricke.wibe.works/news/our-md-ceo-mr-shaibal-dutt-delivered-the-lead-presentation-during-the-session-rebalancing-the-price-equation-towards-fair-value-for-all/
+1622	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/awards-whitley.webp
+1622	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/awards-whitley.webp 810w, https://goodricke.wibe.works/wp-content/uploads/2026/08/awards-whitley-240x300.webp 240w, https://goodricke.wibe.works/wp-content/uploads/2026/08/awards-whitley-768x960.webp 768w
+1623	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/badge-wfn.webp
+1623	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/badge-wfn.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/badge-wfn-150x150.webp 150w
+1628	href	https://goodricke.wibe.works/awards/whitley-awards-2026/
+1630	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right.svg
+1632	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right-green.svg
+1636	href	https://goodricke.wibe.works/awards/whitley-awards-2026/
+1642	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/awards-honours.webp
+1642	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/awards-honours.webp 900w, https://goodricke.wibe.works/wp-content/uploads/2026/08/awards-honours-300x200.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/awards-honours-768x512.webp 768w
+1643	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/badge-medal-240x300.webp
+1643	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/badge-medal-240x300.webp 240w, https://goodricke.wibe.works/wp-content/uploads/2026/08/badge-medal.webp 300w
+1648	href	https://goodricke.wibe.works/awards/gold-and-silver-honours-2025/
+1650	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right.svg
+1652	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right-green.svg
+1656	href	https://goodricke.wibe.works/awards/gold-and-silver-honours-2025/
+1662	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/awards-winner.webp
+1662	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/awards-winner.webp 810w, https://goodricke.wibe.works/wp-content/uploads/2026/08/awards-winner-300x169.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/awards-winner-768x432.webp 768w
+1663	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/badge-medal-240x300.webp
+1663	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/badge-medal-240x300.webp 240w, https://goodricke.wibe.works/wp-content/uploads/2026/08/badge-medal.webp 300w
+1668	href	https://goodricke.wibe.works/awards/overall-winner-2024/
+1670	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right.svg
+1672	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right-green.svg
+1676	href	https://goodricke.wibe.works/awards/overall-winner-2024/
+1682	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/awards-medals.webp
+1682	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/awards-medals.webp 900w, https://goodricke.wibe.works/wp-content/uploads/2026/08/awards-medals-300x202.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/awards-medals-768x518.webp 768w
+1683	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/badge-six.webp
+1683	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/badge-six.webp 300w, https://goodricke.wibe.works/wp-content/uploads/2026/08/badge-six-150x150.webp 150w
+1688	href	https://goodricke.wibe.works/awards/4-gold-2-silver-medals-2020/
+1690	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right.svg
+1692	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-arrow-right-green.svg
+1696	href	https://goodricke.wibe.works/awards/4-gold-2-silver-medals-2020/
+1791	href	#
+1797	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/cta-team-768x1024.webp
+1797	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/cta-team-768x1024.webp 768w, https://goodricke.wibe.works/wp-content/uploads/2026/08/cta-team-225x300.webp 225w, https://goodricke.wibe.works/wp-content/uploads/2026/08/cta-team.webp 1100w
+1800	href	https://goodricke.wibe.works/darjeeling-gardens/
+1802	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-darjeeling.webp
+1802	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-darjeeling.webp 1200w, https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-darjeeling-225x300.webp 225w, https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-darjeeling-768x1024.webp 768w, https://goodricke.wibe.works/wp-content/uploads/2026/08/gardens-darjeeling-1152x1536.webp 1152w
+1899	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/logo-tagline-white.svg
+1908	href	tel:+913322873067
+1908	href	tel:+913322878737
+1908	href	tel:+913322871816
+1909	href	mailto:goodricke@goodricke.com
+1914	href	#
+1915	href	#
+1916	href	#
+1917	href	#
+1918	href	#
+1919	href	#
+1920	href	#
+1921	href	#
+1924	href	#
+1925	href	#
+1926	href	#
+1927	href	#
+1928	href	#
+1929	href	#
+1930	href	#
+1933	href	#
+1934	href	#
+1935	href	#
+1936	href	#
+1937	href	#
+1938	href	#
+1939	href	#
+1943	href	https://goodricke.wibe.works/#identity
+1945	src	https://goodricke.wibe.works/wp-content/uploads/2026/08/footer-video-thumb.webp
+1945	srcset	https://goodricke.wibe.works/wp-content/uploads/2026/08/footer-video-thumb.webp 500w, https://goodricke.wibe.works/wp-content/uploads/2026/08/footer-video-thumb-300x169.webp 300w
+1945	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-play-circle.svg
+1955	href	#
+1956	href	#
+1957	href	#
+1959	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/camellia-plc.png
+1962	href	https://www.facebook.com/goodricketea
+1964	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-facebook.svg
+1967	href	https://www.instagram.com/goodricketea
+1969	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-instagram.svg
+1972	href	https://x.com/goodricketea
+1974	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-x.svg
+1977	href	https://www.linkedin.com/company/goodricke-group-ltd
+1979	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-linkedin.svg
+1982	href	https://www.youtube.com/@goodricketea
+1984	src	https://goodricke.wibe.works/wp-content/themes/goodricke/assets/images/icon-youtube.svg
+1996	src	https://goodricke.wibe.works/wp-content/themes/goodricke/dist/assets/app-DlsgtMxM.js
+1997	src	https://goodricke.wibe.works/wp-content/themes/goodricke/dist/assets/home-wQpEhfAD.js
+
+## index.html
+5	content	0;url=Goodricke%20Homepage.html
+6	href	Goodricke%20Homepage.html
+
+## uploads/index.html
+11	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+16	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+21	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+26	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+31	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+36	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+41	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+46	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+51	url()	data:font/otf;base64,T1RUTwANA…(data URI)
+56	url()	data:font/ttf;base64,AAEAAAAVA…(data URI)
+61	url()	data:font/ttf;base64,AAEAAAAVA…(data URI)
+114	url()	data:image/jpeg;base64,/9j/4AA…(data URI)
+665	src	data:image/png;base64,iVBORw0K…(data URI)
+677	href	#
+678	href	#
+679	href	#
+680	href	#
+681	href	#
+685	href	#
+689	href	#
+705	src	data:image/png;base64,iVBORw0K…(data URI)
+713	src	data:image/jpeg;base64,/9j/4AA…(data URI)
+732	src	data:image/png;base64,iVBORw0K…(data URI)
+738	href	#
+757	href	#
+766	src	data:image/jpeg;base64,/9j/4AA…(data URI)

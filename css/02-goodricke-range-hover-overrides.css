@@ -1,0 +1,149 @@
+
+
+/* ---------- RANGE CARD HOVER EFFECT ---------- */
+.range-row{
+  margin-left:30px !important;
+  margin-right:30px !important;
+}
+.range-card{
+  overflow:visible;
+  transition:transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s ease;
+}
+.range-media{
+  position:relative;
+  overflow:hidden;
+}
+.range-media::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(255,255,255,0) 55%,rgba(20,28,16,.10) 100%);
+  pointer-events:none;
+  opacity:0;
+  z-index:2;
+  transition:opacity .45s ease;
+}
+.range-card:hover .range-media::after{
+  opacity:1;
+}
+.range-card:hover .range-media img{
+  transform:scale(1.035) !important;
+}
+.range-product-actions{
+  position:absolute;
+  top:14px;
+  right:14px;
+  z-index:8;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  opacity:0;
+  transform:translateX(14px);
+  pointer-events:none;
+  transition:opacity .42s ease, transform .55s cubic-bezier(.2,.7,.2,1);
+}
+.range-card:hover .range-product-actions,
+.range-card:focus-within .range-product-actions{
+  opacity:1;
+  transform:translateX(0);
+  pointer-events:auto;
+}
+.range-action-btn{
+  width:42px !important;
+  height:42px !important;
+  padding:0 !important;
+  display:grid !important;
+  place-items:center;
+  border:0 !important;
+  border-radius:50% !important;
+  background:rgba(255,255,255,.94) !important;
+  color:#101010 !important;
+  box-shadow:0 7px 20px rgba(10,26,2,.14);
+  cursor:pointer;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1),background .3s ease;
+}
+.range-action-btn:hover{
+  transform:scale(1.08);
+  background:#fff !important;
+}
+.range-action-btn svg{
+  width:20px !important;
+  height:20px !important;
+}
+.range-add-cart{
+  position:absolute;
+  left:9px;
+  right:9px;
+  bottom:9px;
+  z-index:8;
+  height:48px;
+  border:0;
+  border-radius:8px;
+  background:rgba(255,255,255,.96);
+  color:#111;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font:inherit;
+  font-size:14px;
+  cursor:pointer;
+  box-shadow:0 7px 22px rgba(10,26,2,.12);
+  opacity:0;
+  transform:translateY(14px);
+  pointer-events:none;
+  transition:opacity .4s ease, transform .55s cubic-bezier(.2,.7,.2,1), background .3s ease;
+}
+.range-card:hover .range-add-cart,
+.range-card:focus-within .range-add-cart{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
+.range-add-cart:hover{background:#fff;}
+.range-add-cart svg{width:19px;height:19px;}
+
+@media (max-width:900px){
+  .range-row{
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+  .range-product-actions{
+    top:9px;
+    right:9px;
+    gap:6px;
+  }
+  .range-action-btn{
+    width:38px !important;
+    height:38px !important;
+  }
+  .range-add-cart{
+    left:7px;
+    right:7px;
+    bottom:7px;
+    height:42px;
+    font-size:12px;
+  }
+}
+
+
+.range-card .range-variants,
+.range-card .range-sizes,
+.range-card .variants,
+.range-card .weight-options,
+.range-card .weights {
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.range-card:hover .range-variants,
+.range-card:hover .range-sizes,
+.range-card:hover .variants,
+.range-card:hover .weight-options,
+.range-card:hover .weights {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+

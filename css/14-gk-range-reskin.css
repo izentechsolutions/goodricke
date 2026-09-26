@@ -1,0 +1,97 @@
+
+.range .range-card,
+.range .range-card--hero{
+  background:#3B6230 !important;
+  border-radius:18px !important;
+  padding:14px 14px 22px !important;
+  align-items:stretch !important;
+  text-align:left !important;
+  box-shadow:0 14px 34px rgba(6,16,4,.16);
+}
+
+.range .range-media{
+  width:100% !important;
+  aspect-ratio:1/1.02 !important;
+  margin:0 0 18px !important;
+  border-radius:14px !important;
+  /* background:#2a4622 !important; */
+  position:relative;
+  overflow:hidden;
+}
+
+.range .range-badge{
+  top:12px !important;
+  left:12px !important;
+  z-index:5;
+  background:#e33a3a !important;
+  color:#fff !important;
+  font-weight:600 !important;
+  font-family:"Inter",system-ui,sans-serif;
+}
+.range .range-card--hero .range-badge{background:#e33a3a !important;}
+
+.range .range-product-actions{
+  display:flex !important;
+  flex-direction:column !important;
+}
+.range .range-product-actions .range-action:nth-child(1){order:2 !important;}
+.range .range-product-actions .range-action:nth-child(2){order:1 !important;}
+.range .range-product-actions .range-action:nth-child(3){order:3 !important;}
+
+
+.range .range-card h3{
+  font-family:"Inter",system-ui,sans-serif !important;
+  color:#fff !important;
+  font-size:16.5px !important;
+  font-weight:600 !important;
+  letter-spacing:0 !important;
+  margin:0 0 10px !important;
+  min-height:0 !important;
+  text-align:left !important;
+}
+
+.range .range-sizes{
+  justify-content:flex-start !important;
+  margin:0 0 10px !important;
+}
+.range .range-sizes span{
+  font-family: "Inter",system-ui,sans-serif;
+  font-size: 12px !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  padding: 4px 11px !important;
+  border-radius: 999px !important;
+}
+.range .range-sizes span.active{
+background: #fff !important;
+  color: #2a5026 !important;
+  border-color: #fff !important;
+}
+
+.range .range-price{
+  font-family:"Inter",system-ui,sans-serif !important;
+  color:#fff !important;
+  font-size:18px !important;
+  font-weight:400 !important;
+  margin:0 !important;
+}
+.range .range-price span.old-price{
+  font-size: 15px !important;
+}
+
+@media (min-width:769px) and (hover:hover) and (pointer:fine){
+  .range .range-card:hover .range-sizes,
+  .range .range-card:hover .range-price{
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+  }
+}
+@media (max-width:768px){
+  .range .range-card.gkr-active .range-sizes,
+  .range .range-card.gkr-active .range-price{
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+  }
+}

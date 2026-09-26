@@ -1,0 +1,121 @@
+
+/* =========================================================
+   FINAL FIX — ISOLATED GK PRODUCT CARDS ONLY
+
+   DESKTOP (769px+ + real mouse):
+     hover = show options
+
+   MOBILE (768px and below):
+     hover = NEVER show options
+     tap/click = show options
+
+   No other section/classes are touched.
+   ========================================================= */
+
+/* Base: hidden */
+.gk-product-card .gk-product-actions,
+.gk-product-card .gk-add-cart {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.gk-product-card .gk-product-actions {
+  transform: translateX(14px) !important;
+}
+
+.gk-product-card .gk-add-cart {
+  transform: translateY(14px) !important;
+}
+
+/* =========================================================
+   DESKTOP — MOUSE HOVER ONLY
+   ========================================================= */
+@media screen and (min-width: 769px) and (hover: hover) and (pointer: fine) {
+
+  .gk-product-card:hover .gk-product-actions {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateX(0) !important;
+  }
+
+  .gk-product-card:hover .gk-add-cart {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+
+  .gk-product-card:hover .gk-product-media > img,
+  .gk-product-card:hover .gk-product-media > div > img {
+    transform: scale(1.035) !important;
+  }
+
+  .gk-product-card:hover .gk-product-media::after {
+    opacity: 1 !important;
+  }
+
+  .gk-product-card:hover .size-chips,
+  .gk-product-card:hover .shop-price {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+/* =========================================================
+   MOBILE — CLICK/TAP ONLY
+   ========================================================= */
+@media screen and (max-width: 768px) {
+
+  /* Hover MUST NOT activate anything */
+  .gk-product-card:hover .gk-product-actions,
+  .gk-product-card:hover .gk-add-cart {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .gk-product-card:hover .gk-product-media > img,
+  .gk-product-card:hover .gk-product-media > div > img {
+    transform: none !important;
+  }
+
+  .gk-product-card:hover .gk-product-media::after {
+    opacity: 0 !important;
+  }
+
+  /* Tapped product */
+  .gk-product-card.gk-card-active .gk-product-actions {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateX(0) !important;
+    z-index: 50 !important;
+  }
+
+  .gk-product-card.gk-card-active .gk-add-cart {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+    z-index: 50 !important;
+  }
+
+  .gk-product-card.gk-card-active .size-chips,
+  .gk-product-card.gk-card-active .shop-price {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+/* Smooth animation */
+.gk-product-card .gk-product-actions,
+.gk-product-card .gk-add-cart {
+  transition:
+    opacity .8s cubic-bezier(.22,1,.36,1),
+    visibility .8s ease,
+    transform .9s cubic-bezier(.22,1,.36,1) !important;
+}

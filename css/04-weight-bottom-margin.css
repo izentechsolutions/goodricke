@@ -1,0 +1,88 @@
+
+/* Add space below the product weight/size options */
+.range-card .range-variants,
+.range-card .product-variants,
+.range-card .variants,
+.range-card .weight-options,
+.range-card .weights {
+  margin-bottom: 14px !important;
+}
+
+/* =========================
+   MOBILE PRODUCT CLICK STATE
+   ========================= */
+
+@media (max-width: 768px) {
+
+  .range-card {
+    position: relative;
+  }
+
+  /* Keep hover options hidden initially */
+  .range-card .range-product-actions,
+  .range-card .range-add-cart {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+      opacity 0.7s ease,
+      transform 0.8s cubic-bezier(.22, 1, .36, 1);
+  }
+
+  .range-card .range-product-actions {
+    transform: translateX(12px);
+  }
+
+  .range-card .range-add-cart {
+    transform: translateY(12px);
+  }
+
+  /* SHOW when product is clicked */
+  .range-card.mobile-active .range-product-actions {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
+  }
+
+  .range-card.mobile-active .range-add-cart {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  /* Hide weight on mobile click */
+  .range-card.mobile-active .range-variants,
+  .range-card.mobile-active .range-sizes,
+  .range-card.mobile-active .variants,
+  .range-card.mobile-active .weight-options,
+  .range-card.mobile-active .weights {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* Product image stays visible */
+  .range-card.mobile-active .range-media,
+  .range-card.mobile-active .range-media img {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Product title stays visible */
+  .range-card.mobile-active .range-title,
+  .range-card.mobile-active .range-product-title,
+  .range-card.mobile-active .product-title,
+  .range-card.mobile-active h3 {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Bestseller stays visible */
+  .range-card.mobile-active .range-badge {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}

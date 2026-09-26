@@ -1,0 +1,11 @@
+
+/* Keep Bestseller/New badge and product name visible on hover */
+.range-card:hover .range-badge,
+.range-card:hover .range-title,
+.range-card:hover .range-product-title,
+.range-card:hover .product-title,
+.range-card:hover h3,
+.range-card:hover h4{
+  opacity:1 !important;
+  visibility:visible !important;
+}

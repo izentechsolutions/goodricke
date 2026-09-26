@@ -1,0 +1,122 @@
+
+/* ==========================================================
+   DESKTOP = MOUSE HOVER
+   MOBILE = TAP/CLICK
+   ========================================================== */
+
+/* ---------- DESKTOP: hover activates product options ---------- */
+@media screen and (min-width: 901px) and (hover: hover) and (pointer: fine) {
+
+  /* Product cards */
+  .gk-product-card:hover .gk-product-actions,
+  .gk-product-card:hover .gk-add-cart {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  .gk-product-card:hover .gk-product-actions {
+    transform: translateX(0) !important;
+  }
+
+  .gk-product-card:hover .gk-add-cart {
+    transform: translateY(0) !important;
+  }
+
+  .gk-product-card:hover .gk-product-media > img,
+  .gk-product-card:hover .gk-product-media > div > img {
+    transform: scale(1.035) !important;
+  }
+
+  .gk-product-card:hover .gk-product-media::after {
+    opacity: 1 !important;
+  }
+
+  /* Range cards */
+  .range-card:hover .range-product-actions,
+  .range-card:hover .range-add-cart {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  .range-card:hover .range-product-actions {
+    transform: translateX(0) !important;
+  }
+
+  .range-card:hover .range-add-cart {
+    transform: translateY(0) !important;
+  }
+
+  .range-card:hover .range-media img {
+    transform: scale(1.035) !important;
+  }
+
+  .range-card:hover .range-media::after {
+    opacity: 1 !important;
+  }
+
+  /* Hide weight + price on desktop hover */
+  .range-card:hover .range-sizes,
+  .range-card:hover .range-variants,
+  .range-card:hover .variants,
+  .range-card:hover .weight-options,
+  .range-card:hover .weights,
+  .range-card:hover .range-price {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .gk-product-card:hover .size-chips,
+  .gk-product-card:hover .shop-price {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+/* ---------- MOBILE/TABLET: NO HOVER ---------- */
+@media screen and (max-width: 900px), (hover: none) {
+
+  /* Hover must never open the controls on touch devices */
+  .gk-product-card:hover .gk-product-actions,
+  .gk-product-card:hover .gk-add-cart,
+  .range-card:hover .range-product-actions,
+  .range-card:hover .range-add-cart {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .gk-product-card:hover .gk-product-media > img,
+  .gk-product-card:hover .gk-product-media > div > img,
+  .range-card:hover .range-media img {
+    transform: none !important;
+  }
+
+  .gk-product-card:hover .gk-product-media::after,
+  .range-card:hover .range-media::after {
+    opacity: 0 !important;
+  }
+
+  /* Keep the click/tap active state */
+  .gk-product-card.gk-card-active .gk-product-actions,
+  .gk-product-card.gk-card-active .gk-add-cart,
+  .range-card.range-card-active .range-product-actions,
+  .range-card.range-card-active .range-add-cart {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  .gk-product-card.gk-card-active .gk-product-actions,
+  .range-card.range-card-active .range-product-actions {
+    transform: translateX(0) !important;
+  }
+
+  .gk-product-card.gk-card-active .gk-add-cart,
+  .range-card.range-card-active .range-add-cart {
+    transform: translateY(0) !important;
+  }
+}

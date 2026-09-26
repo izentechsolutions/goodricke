@@ -1,0 +1,457 @@
+
+/* ==========================================================
+   HERO -> UNBOX CINEMATIC OVERLAP
+   The hero is pinned (sticky) inside .hero-scene; the Unbox section
+   slides over it like a curtain. Scope: only these two sections.
+   Stacking (inside .hero-scene, which is isolated):
+     hero 0  <  hero dimmer (hero::after)  <  unbox 2
+   Header (.stickybar, fixed, z 120) stays above everything.
+   ========================================================== */
+
+/* ROOT CAUSE FIX: body had overflow-x:hidden, which turns <body> into a
+   scroll container and silently kills position:sticky. `clip` hides
+   horizontal overflow WITHOUT creating a scroll container. html keeps its
+   own overflow-x:hidden, which propagates to the viewport. */
+body{ overflow-x:clip !important; }
+@supports not (overflow:clip){ body{ overflow-x:visible !important; } }
+
+html{ scroll-behavior:auto !important; }   /* one smooth-scroll system only (JS below) */
+
+.hero-scene{
+  position:relative;
+  isolation:isolate;              /* own stacking context: nothing leaks out */
+  --hero-p:0;                     /* 0..1, written by the scroll script */
+}
+.hero-scene > .hero{
+  position:sticky !important;     /* was position:relative (inline) */
+  top:0;
+  z-index:0;
+}
+/* scroll-linked cinematic treatment of the pinned hero */
+.hero-scene .hero-slider{
+  transform:translate3d(0,calc(var(--hero-p) * 5vh),0) scale(calc(1 + var(--hero-p) * .05));
+  transform-origin:50% 40%;
+  will-change:transform;
+}
+.hero-scene .hero-copy{
+  transform:translateY(calc(clamp(-150px,-12vh,-60px) + var(--hero-p) * -56px)) !important;
+  opacity:calc(1 - var(--hero-p) * 1.2);
+  will-change:transform,opacity;
+}
+.hero-scene .hero::after{         /* dimmer: hero darkens as Unbox covers it */
+  content:"";
+  position:absolute; inset:0;
+  z-index:4;
+  pointer-events:none;            /* can never block clicks */
+  background:#061406;
+  opacity:calc(var(--hero-p) * .78);
+}
+/* Unbox slides OVER the hero */
+.hero-scene > .unbox{
+  position:relative !important;
+  z-index:2;
+  box-shadow:0 -30px 70px rgba(4,16,4,.45);
+}
+@media (max-width:767px){         /* intentional mobile values: shorter travel */
+  .hero-scene .hero-slider{ transform:translate3d(0,calc(var(--hero-p) * 2vh),0) scale(calc(1 + var(--hero-p) * .03)); }
+  .hero-scene .hero-copy{ transform:translateY(calc(var(--hero-p) * -28px)) !important; }
+  .hero-scene .hero::after{ opacity:calc(var(--hero-p) * .6); }
+}
+@media (prefers-reduced-motion:reduce){   /* keep overlap layout, drop the motion */
+  .hero-scene .hero-slider,
+  .hero-scene .hero-copy{ transform:none !important; opacity:1; will-change:auto; }
+  .hero-scene .hero-slider{ transform:none; }
+  .hero-scene .hero::after{ opacity:0; }
+}
+
+/* ==========================================================
+   STICKY HEADER (#stickybar): the hero pill EXPANDS into it
+   Scroll-scrubbed (--hp: 0..1, written by the header script).
+   0  = exactly the hero pill (same position/size/glass) - hero pill is swapped out
+   1  = full-width white sticky bar with logo mark, links, cart, login
+   Scoped to #stickybar only.
+   ========================================================== */
+#stickybar{
+  --hp:0; --x0:50vw; --w0:600px; --t0:60px; --h0:58px; --w1:min(700px, calc(100vw - 32px));
+  position:fixed;
+  left:calc(var(--x0) + (50vw - var(--x0)) * var(--hp));
+  top:calc(var(--t0) + (14px - var(--t0)) * var(--hp));
+  width:calc(var(--w0) + (var(--w1) - var(--w0)) * var(--hp));
+  height:calc(var(--h0) + (58px - var(--h0)) * var(--hp));
+  max-width:none; padding:0; margin:0;
+  display:block;
+  transform:translateX(-50%);
+  border-radius:999px;
+  background:rgba(10,26,2,.4);
+  border:1px solid rgba(255,255,255,.14);
+  -webkit-backdrop-filter:blur(14px) saturate(140%); backdrop-filter:blur(14px) saturate(140%);
+  box-shadow:none;
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:none; animation:none; clip-path:none;
+  z-index:120;
+}
+#stickybar.show{
+  opacity:1 !important; visibility:visible !important; pointer-events:auto !important;
+  display:block !important;
+  transform:translateX(-50%) !important;
+  animation:none !important;
+}
+/* white expanding layer + shadow, faded in by scroll progress */
+#stickybar::before{ display:none; }   /* no white layer: keeps the hero pill's glass look */
+#stickybar .sticky-inner{ position:relative; width:100%; height:100%; display:block; }
+#stickybar .sticky-mark{
+  position:absolute; left:12px; top:50%; transform:translateY(-50%); display:inline-flex;
+  opacity:clamp(0, calc((var(--hp) - .82) * 5.5), 1);
+}
+#stickybar .sticky-icon{ width:34px; height:34px; filter:brightness(0) saturate(100%) invert(97%) sepia(12%) saturate(350%) hue-rotate(15deg) brightness(101%); transition:filter .25s ease; }
+#stickybar.is-light .sticky-icon{ filter:none; }
+#stickybar .sticky-links{
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  display:flex; align-items:center; gap:2px; flex-wrap:nowrap; white-space:nowrap;
+}
+#stickybar .sticky-links a{
+  display:inline-flex; align-items:center; padding:10px 18px; border-radius:999px;
+  font:400 13px/1.2 "Inter","Segoe UI",system-ui,sans-serif; letter-spacing:0; text-transform:none;
+  color:#f2eee0; opacity:1; transition:background .18s ease, color .25s ease;
+}
+#stickybar .sticky-links a:hover{ background:rgba(255,255,255,.14); }
+#stickybar .sticky-links a.is-active{ background:rgba(255,255,255,.14); color:#fff; }
+#stickybar.is-light .sticky-links a{ color:#1c2a11; }
+#stickybar.is-light .sticky-links a:hover{ background:rgba(42,81,38,.1); }
+#stickybar.is-light .sticky-links a.is-active{ background:rgba(42,81,38,.12); color:#1c2a11; }
+
+#stickybar .sticky-actions{
+  position:absolute; right:8px; top:50%; transform:translateY(-50%);
+  display:flex; align-items:center; gap:8px;
+  opacity:clamp(0, calc((var(--hp) - .82) * 5.5), 1);
+}
+#stickybar .sticky-cart{ width:38px; height:38px; background:#2a5126; color:#fffef5; }
+#stickybar .sticky-login{
+  display:inline-flex; align-items:center; gap:10px; padding:5px 5px 5px 16px; border-radius:999px;
+  background:#2a5126; color:#fffef5; font:400 13px/1 "Inter","Segoe UI",system-ui,sans-serif; white-space:nowrap;
+  transition:filter .2s ease, transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+#stickybar .sticky-login:hover{ filter:brightness(1.15); transform:scale(1.05); }
+#stickybar .sticky-login-arrow{ display:grid; place-items:center; width:28px; height:28px; border-radius:50%; background:#141f0c; }
+#stickybar .sticky-login-arrow svg{ width:13px; height:13px; }
+#stickybar .sticky-toggle,
+#stickybar .sticky-menu{ display:none; }
+
+/* tablet + mobile: compact white pill (mark + Menu/Close + cart); links in a dropdown */
+@media (max-width:900px){
+  #stickybar{
+    left:50%; top:14px; width:auto; height:auto; max-width:calc(100% - 24px);
+    opacity:0; transform:translateX(-50%) translateY(-14px) scale(.96);
+    transition:opacity .35s ease, transform .6s cubic-bezier(.22,1,.36,1), visibility 0s linear .6s;
+  }
+  #stickybar::before{ display:none; }
+  #stickybar.show{ opacity:1 !important; transform:translateX(-50%) translateY(0) scale(1) !important; transition-delay:0s; }
+  #stickybar .sticky-inner{ display:flex; align-items:center; gap:12px; padding:8px 8px 8px 12px; }
+  #stickybar .sticky-mark, #stickybar .sticky-actions{ position:static; transform:none; opacity:1; }
+  #stickybar .sticky-links, #stickybar .sticky-login{ display:none; }
+  #stickybar .sticky-toggle{
+    display:inline-flex; align-items:center; min-height:44px; padding:0 18px;
+    border:1px solid rgba(255,255,255,.18); border-radius:999px; background:rgba(255,255,255,.08);
+    color:#f2eee0; font:500 12.5px/1 "Inter","Segoe UI",system-ui,sans-serif; letter-spacing:.06em; text-transform:uppercase; cursor:pointer;
+    transition:transform .4s cubic-bezier(.34,1.56,.64,1),background .25s ease;
+  }
+  #stickybar .sticky-toggle:hover{ transform:scale(1.06); background:rgba(255,255,255,.16); }
+  #stickybar .sticky-toggle-mask{ display:block; height:1.25em; overflow:hidden; }
+  #stickybar .sticky-toggle-words{ display:flex; flex-direction:column; transition:transform .55s cubic-bezier(.22,1,.36,1); }
+  #stickybar .sticky-toggle-words span{ display:block; height:1.25em; line-height:1.25em; }
+  #stickybar.menu-open .sticky-toggle-words{ transform:translateY(-1.25em); }
+  #stickybar .sticky-menu{
+    display:flex; flex-direction:column; gap:2px;
+    position:absolute; top:calc(100% + 10px); left:0; right:0; min-width:220px;
+    padding:12px; border-radius:24px; background:rgba(10,26,2,.9); border:1px solid rgba(255,255,255,.14);
+    -webkit-backdrop-filter:blur(14px) saturate(140%); backdrop-filter:blur(14px) saturate(140%);
+    opacity:0; visibility:hidden; transform:translateY(-10px);
+    transition:opacity .35s ease, transform .6s cubic-bezier(.22,1,.36,1), visibility 0s linear .6s;
+  }
+  #stickybar.menu-open .sticky-menu{ opacity:1; visibility:visible; transform:none; transition-delay:0s; }
+  #stickybar .sticky-menu a{
+    display:flex; align-items:center; min-height:48px; padding:0 14px; overflow:hidden;
+    border-radius:14px; color:#f2eee0; text-decoration:none; font:500 15px/1 "Inter","Segoe UI",system-ui,sans-serif;
+  }
+  #stickybar .sticky-menu a:hover{ background:rgba(255,255,255,.14); }
+  #stickybar .sticky-menu a > span{
+    display:inline-block; transform:translateY(170%); opacity:0;
+    transition:transform .75s cubic-bezier(.22,1,.36,1) calc(120ms + var(--i,0) * 55ms), opacity .4s ease calc(120ms + var(--i,0) * 55ms);
+  }
+  #stickybar.menu-open .sticky-menu a > span{ transform:none; opacity:1; }
+}
+@media (prefers-reduced-motion:reduce){
+  #stickybar .sticky-menu a > span{ transform:none; opacity:1; transition:none; }
+}
+
+/* ==========================================================
+   MOUSE-TRACKING CURSOR (desktop mouse/trackpad only)
+   A small dot follows the pointer with soft smoothing; links enlarge it; elements carrying
+   data-cursor-label / data-cursor="drag" turn it into a labelled bubble.
+   Native cursor is hidden only after the first pointer move (failsafe: any
+   error removes the class). Never intercepts clicks (pointer-events:none).
+   ========================================================== */
+html.gk-cursor-on,
+html.gk-cursor-on *:not(input):not(textarea):not(select){ cursor:none !important; }
+.gk-cursor, .gk-cursor-label{
+  position:fixed; top:0; left:0; pointer-events:none; z-index:2147483000;
+  opacity:0; transition:opacity .25s ease;
+  will-change:transform;
+}
+.gk-cursor{ width:12px; height:12px; margin:-6px 0 0 -6px; }
+.gk-cursor i{ display:block; width:100%; height:100%; border-radius:50%; background:#fffff4; box-shadow:0 0 0 1px rgba(28,58,27,.85), 0 2px 8px rgba(0,0,0,.25); transition:transform .35s cubic-bezier(.22,1,.36,1); }
+.gk-cursor.is-on, .gk-cursor-label.is-on{ opacity:1; }
+.gk-cursor.is-link i{ transform:scale(3); background:rgba(255,255,244,.85); }
+.gk-cursor.is-down i{ transform:scale(.7); }
+.gk-cursor.has-label{ opacity:0; }
+.gk-cursor-label{
+  width:88px; height:88px; margin:-44px 0 0 -44px; border-radius:50%;
+  display:grid; place-items:center; text-align:center;
+  background:#2a5126; color:#fffff4;
+  font:500 12px/1.2 "Inter","Segoe UI",system-ui,sans-serif; letter-spacing:.06em; text-transform:uppercase;
+  transition:opacity .2s ease;
+}
+.gk-cursor-label > span{ transform:scale(.6); opacity:0; transition:transform .45s cubic-bezier(.22,1,.36,1), opacity .25s ease; }
+.gk-cursor-label.is-on.has-label{ opacity:1; }
+.gk-cursor-label.has-label > span{ transform:none; opacity:1; }
+.gk-cursor-label:not(.has-label){ opacity:0 !important; }
+@media (hover:none), (pointer:coarse), (prefers-reduced-motion:reduce){
+  .gk-cursor, .gk-cursor-label{ display:none !important; }
+}
+
+/* ==========================================================
+   SCROLL EXPAND  (React Bits <ScrollExpand/>, ported to vanilla JS)
+   Target: ONLY the "Unbox More Than Tea" section (.unbox).
+   The existing image card (.unbox-stage) opens up to full bleed as you
+   scroll, holds, then the page moves on. Rest state = current design.
+   Scoped: .unbox / .unbox-slot / .unbox-expand-hold only.
+   ========================================================== */
+.hero-scene > .unbox{
+  position:sticky !important;             /* was relative: pins while the card expands */
+  top:var(--unbox-top, 0px);
+  z-index:2;
+}
+.unbox-slot{ position:relative; display:flow-root; }       /* holds the card's place in the layout */
+.unbox-expand-hold{ height:0; pointer-events:none; }         /* scroll length of the expansion (set by JS) */
+.unbox-slot.is-expanding > .unbox-stage{ z-index:3; will-change:left,top,width,height,border-radius; }
+@media (prefers-reduced-motion:reduce){
+  .unbox-expand-hold{ height:0 !important; }
+}
+
+
+/* =========================================================
+   MACBOOK / DESKTOP HERO — VERTICAL CENTER
+   Does not affect mobile or tablet
+   ========================================================= */
+
+@media screen and (min-width: 1025px) {
+
+  .hero-scene > .hero {
+    height: 100vh !important;
+    min-height: 100vh !important;
+    max-height: 100vh !important;
+  }
+
+  .hero-scene .hero-copy {
+    position: relative !important;
+    top: 0 !important;
+
+    /* Cancel the existing -60px to -150px upward movement */
+    transform: none !important;
+
+    /* True vertical centering */
+    justify-content: center !important;
+
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .gk-product-carousel {
+    width: 100%;
+  }
+
+}
+
+
+.shop-card-media.gk-product-media.gks-media img{
+  width: 100%;
+  display: block;
+  margin: auto;
+  max-width: 72%;
+}
+
+.shop-price.gks-price .old-price {
+  color: #5c5c5d;
+  font-size: 15px;
+  margin-left: 4px;
+  padding-left: 6px;
+}
+
+/* Hide sticky menu ONLY on mobile */
+@media screen and (max-width: 767px) {
+  .stickybar,
+  #stickybar {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+.sticky-inner{
+  visibility: hidden !important;
+}
+#stickybar.show{
+  display: none !important;
+}
+
+}
+
+/* Show sticky menu on desktop */
+@media screen and (min-width: 768px) {
+  .stickybar,
+  #stickybar {
+    display: flex !important;
+    visibility: visible !important;
+  }
+}
+
+@media screen and (min-width: 901px) {
+
+  .insta-section {
+    width: 100% !important;
+    box-sizing: border-box !important;
+
+    background: #FFFEF5 !important;
+
+    padding: 200px 24px !important;
+
+    overflow: hidden !important;
+  }
+
+  .insta-head {
+    width: 100% !important;
+
+    margin: 0 0 28px !important;
+    padding: 0 !important;
+
+    text-align: center !important;
+  }
+
+  .insta-handle{
+    display: flex;
+  justify-content: center;
+  }
+
+  .insta-head h2 {
+    margin: 0 0 6px !important;
+
+    font-size: 28px !important;
+    line-height: 1.15 !important;
+  }
+
+  .insta-handle {
+    font-size: 14px !important;
+  }
+
+
+  /* REEL CONTAINER */
+
+  .insta-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+
+    width: 100% !important;
+    height: 675px !important;
+
+    gap: 10px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+
+    scrollbar-width: none !important;
+  }
+
+  .insta-grid::-webkit-scrollbar {
+    display: none !important;
+  }
+
+
+  /* FOUR EQUAL REELS */
+
+  .insta-grid > .insta-tile {
+    position: relative !important;
+
+    flex: 0 0 calc((100% - 30px) / 4) !important;
+
+    width: calc((100% - 30px) / 4) !important;
+    min-width: calc((100% - 30px) / 4) !important;
+    max-width: calc((100% - 30px) / 4) !important;
+
+    height: 675px !important;
+
+    aspect-ratio: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border-radius: 12px !important;
+
+    overflow: hidden !important;
+
+    display: block !important;
+
+    background: #111 !important;
+  }
+
+
+  /* VIDEO */
+
+  .insta-grid > .insta-tile > a {
+    display: block !important;
+
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .insta-grid > .insta-tile video,
+  .insta-grid > .insta-tile img {
+    display: block !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+
+
+  /* PLAY ICON */
+
+  .insta-grid > .insta-tile .reel-play {
+    position: absolute !important;
+
+    left: 50% !important;
+    top: 50% !important;
+
+    transform: translate(-50%, -50%) !important;
+
+    pointer-events: none !important;
+  }
+
+
+  /* FOLLOW BUTTON */
+
+  .insta-cta-wrap {
+    display: flex !important;
+
+    justify-content: center !important;
+
+    width: 100% !important;
+
+    margin-top: 32px !important;
+    padding: 0 !important;
+  }
+

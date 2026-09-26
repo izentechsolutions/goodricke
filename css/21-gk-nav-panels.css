@@ -1,0 +1,120 @@
+
+/* ==========================================================
+   NAV PANELS — full-width hover mega-menu (Shop / Our Gardens)
+   Structure ported from the reference: an index list of links on the
+   left, a single photo well on the right that crossfades to match
+   whichever link is hovered. Desktop hover-only; mobile/tablet keep
+   the existing hamburger drawer untouched (this never renders there).
+   ========================================================== */
+#gkNavPanels{
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:70;
+  pointer-events:none;
+}
+.nav-panel{
+  position:absolute;
+  top:0; left:0; right:0;
+  background:rgba(8,20,4,.97);
+  border-bottom:1px solid rgba(255,255,255,.12);
+  -webkit-backdrop-filter:blur(20px) saturate(140%);
+  backdrop-filter:blur(20px) saturate(140%);
+  box-shadow:0 30px 60px rgba(0,0,0,.35);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(-14px) scale(.98);
+  transform-origin:top center;
+  transition:opacity .3s cubic-bezier(.22,1,.36,1), transform .3s cubic-bezier(.22,1,.36,1), visibility 0s linear .3s;
+}
+.nav-panel.is-open{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0) scale(1);
+  transition-delay:0s;
+  pointer-events:auto;
+}
+/* --- rounded floating card style (Shop + Our Gardens) --- */
+.nav-panel--card{
+  left:auto; right:auto;
+  top:0;
+  width:min(660px, calc(100vw - 48px));
+  border:1px solid rgba(255,255,255,.16);
+  background:#2A5126;
+  border-radius:28px;
+  box-shadow:0 30px 70px rgba(0,0,0,.4);
+  transform-origin:top left;
+}
+.nav-panel--card .nav-panel__grid{
+  max-width:none;
+  padding:36px 40px;
+  grid-template-columns:1fr 260px;
+  gap:36px;
+}
+.nav-panel--card .nav-panel__well{
+  aspect-ratio:4/3;
+  border-radius:20px;
+}
+@media (max-width:900px){
+  .nav-panel--card .nav-panel__grid{ grid-template-columns:1fr 200px; gap:24px; padding:28px; }
+}
+.nav-panel__grid{
+  max-width:1180px;
+  margin:0 auto;
+  padding:44px clamp(24px,5vw,56px) 56px;
+  display:grid;
+  grid-template-columns:1fr 320px;
+  gap:56px;
+  align-items:start;
+}
+.nav-panel__index{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+}
+.nav-panel__link{
+  display:flex;
+  align-items:center;
+  padding:15px 2px;
+  border-top:1px solid rgba(255,255,255,.1);
+  color:#f2eee0;
+  text-decoration:none;
+  font-family:"Inter",system-ui,sans-serif;
+  font-weight:400;
+  font-size:18px;
+  letter-spacing:-0.01em;
+  transition:color .25s ease, padding-left .25s ease;
+}
+.nav-panel__index li:last-child .nav-panel__link{ border-bottom:1px solid rgba(255,255,255,.1); }
+.nav-panel__link:hover,
+.nav-panel__link.is-active{
+  color:#fff;
+  padding-left:16px;
+}
+.nav-panel__well{
+  position:relative;
+  aspect-ratio:4/5;
+  width:100%;
+  border-radius:18px;
+  overflow:hidden;
+  background:#0a1a02;
+}
+.nav-panel__well-img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity .5s ease;
+}
+.nav-panel__well-img.is-active{ opacity:1; }
+
+@media (max-width:767px){
+  #gkNavPanels{ display:none !important; }
+}
+@media (prefers-reduced-motion:reduce){
+  .nav-panel{ transition:none !important; }
+  .nav-panel__well-img{ transition:none !important; }
+}

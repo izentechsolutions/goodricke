@@ -1,0 +1,86 @@
+
+/* =========================================================
+   INSTAGRAM — MOBILE: ONE REEL PER VIEW
+   Desktop keeps the existing multi-card layout.
+   Mobile shows exactly one reel and the remaining reels
+   move horizontally with a swipe.
+   ========================================================= */
+
+@media screen and (max-width: 768px) {
+
+  .insta-section {
+    overflow: hidden !important;
+  }
+
+  .insta-grid {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    height: auto !important;
+    gap: 10px !important;
+
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+
+    scrollbar-width: none !important;
+    cursor: grab;
+    touch-action: pan-x;
+  }
+
+  .insta-grid:active {
+    cursor: grabbing;
+  }
+
+  .insta-grid::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .insta-tile {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    min-width: 100% !important;
+
+    aspect-ratio: 9 / 16 !important;
+    height: auto !important;
+
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    padding: 30px 0;
+    
+  }
+
+  .insta-tile img,
+  .insta-tile video {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    object-fit: cover !important;
+  }
+
+  /* Prevent the Instagram images from shrinking into columns */
+  .insta-grid > .insta-tile {
+    display: block !important;
+  }
+}
+
+/* Slightly wider phones: still one reel per swipe */
+@media screen and (min-width: 541px) and (max-width: 767px) {
+  .insta-grid {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory;
+  }
+
+  .insta-tile {
+    flex: 0 0 calc(50% - 5px) !important;
+    scroll-snap-align: start;
+  }
+}

@@ -1,0 +1,46 @@
+
+/* On hover: keep the product image + hover controls, hide all other card content. */
+.range-card{
+  position:relative;
+}
+.range-card:hover .range-info,
+.range-card:hover .range-content,
+.range-card:hover .range-details,
+.range-card:hover .range-title,
+.range-card:hover .range-price,
+.range-card:hover .range-variants,
+.range-card:hover .range-badge,
+.range-card:hover .range-tag,
+.range-card:hover .range-label{
+  opacity:0 !important;
+  visibility:hidden !important;
+  transition:opacity .2s ease, visibility .2s ease;
+}
+
+/* Cover common direct text/details elements if the card uses different wrappers. */
+.range-card:hover > .range-badge,
+.range-card:hover > .badge,
+.range-card:hover > .product-badge,
+.range-card:hover > h3,
+.range-card:hover > h4,
+.range-card:hover > p,
+.range-card:hover > .price,
+.range-card:hover > .variants{
+  opacity:0 !important;
+  visibility:hidden !important;
+}
+
+/* Keep hover controls clearly visible above everything. */
+.range-card:hover .range-product-actions,
+.range-card:hover .range-add-cart{
+  opacity:1 !important;
+  visibility:visible !important;
+  z-index:20;
+}
+
+/* Do not hide the product image. */
+.range-card:hover .range-media,
+.range-card:hover .range-media img{
+  opacity:1 !important;
+  visibility:visible !important;
+}
