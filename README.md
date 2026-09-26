@@ -6,7 +6,7 @@ Rebuilding the original single-file page from these files gives it back byte for
 differences are the asset paths (see [Verification](#8-verification-results)).
 
 - Open `index.html` through a local server (e.g. `python3 -m http.server`), not `file://`.
-- The untouched original is at git tag **`original-approved-version`** (commit "Original approved version").
+- The untouched original is in commit **`e0547c6` "Original approved version"** on this branch (same tree as `264afec`).
   A single-file copy is also kept at `_review/pages/goodricke-homepage-original-single-file.html`.
 
 ---
@@ -440,7 +440,7 @@ Also extracted: 11 base64 fonts → `assets/fonts/`, and one 339 KB base64 JPEG 
 
 **Deleted (33 files).** Only macOS junk, plus files that are byte-identical to a file that was kept **and** are
 referenced by nothing (not by the page, and not by any draft). Everything is still in git history
-(tag `original-approved-version`).
+(commit `e0547c6`).
 
 | Deleted | Reason |
 |---------|--------|
