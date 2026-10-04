@@ -464,41 +464,27 @@ try { (function(){
 })(); } catch (e) { console.error("Mega-menu panels", e); }
 
 // ==== Bag drawer ====
+/* "Added to Bag" tray (static HTML build): shows the product(s) just added, with subtotal,
+   discount and total for them. The coupon field is layout only. The Shopify theme replaces
+   this with the real cart (Cart API), so nothing is stored here. */
 try { (function(){
-(function(){
+  var FREE_SHIP = 999; /* matches "Free shipping over ₹999" in the top bar */
+
   function initGoodrickeBagDrawer(){
     var drawer = document.getElementById('gkBagDrawer');
-    var overlay = document.getElementById('gkBagOverlay');
-    var closeBtn = document.getElementById('gkBagClose');
-    var continueBtn = document.getElementById('gkBagContinue');
-    var countEl = document.getElementById('gkBagCount');
-    var imageEl = document.getElementById('gkBagProductImage');
-    var nameEl = document.getElementById('gkBagProductName');
-    var sizeEl = document.getElementById('gkBagProductSize');
-    var priceEl = document.getElementById('gkBagProductPrice');
-    var quantityEl = document.getElementById('gkBagQuantity');
-    var subtotalEl = document.getElementById('gkBagSubtotal');
-    var minusBtn = document.getElementById('gkBagMinus');
-    var plusBtn = document.getElementById('gkBagPlus');
-    var removeBtn = document.getElementById('gkBagRemove');
-    var currentPrice = 0;
-    var currentOld = 0;
-    var oldEl = document.getElementById('gkBagProductOld');
-    var savingRow = document.getElementById('gkBagSavingRow');
-    var savingEl = document.getElementById('gkBagSaving');
-    var quantity = 1;
-
     if(!drawer || drawer.dataset.initialized === 'true') return;
     drawer.dataset.initialized = 'true';
+    var $ = function(id){ return document.getElementById(id); };
+    var overlay = $('gkBagOverlay'), list = $('gkBagItems'), lines = [];
 
-    var bagCount = 0;
+    var inr = function(n){ return '₹' + Math.round(n).toLocaleString('en-IN'); };
+    var num = function(t){ var m = String(t || '').replace(/,/g,'').match(/[0-9]+(?:\.[0-9]+)?/); return m ? parseFloat(m[0]) : 0; };
+    var esc = function(t){ return String(t).replace(/[&<>"']/g, function(c){ return '&#' + c.charCodeAt(0) + ';'; }); };
+    var oldMoney = function(el){ return firstMoney(el); };
 
     function firstMoney(el){
       var m=(el?el.textContent:'').replace(/\s+/g,' ').match(/(?:₹|Rs\.?)\s?[\d,]+(?:\.\d+)?/i);
       return m?m[0].replace(/\s/g,''):'';
-    }
-    function oldMoney(el){
-      return firstMoney(el);
     }
     function getProductData(button){
       /* PDP main "Add to bag" button */
@@ -565,37 +551,50 @@ try { (function(){
       };
     }
 
-    function updateBagTotal(){
-      if(quantityEl) quantityEl.textContent = quantity;
-      if(subtotalEl) subtotalEl.textContent = '₹' + Math.round(currentPrice * quantity).toLocaleString('en-IN');
-      var save = currentOld > currentPrice ? (currentOld - currentPrice) * quantity : 0;
-      if(savingRow){
-        savingRow.hidden = !save;
-        if(savingEl) savingEl.textContent = '₹' + Math.round(save).toLocaleString('en-IN');
-      }
+    function render(){
+      var mrp = 0, sell = 0, qty = 0;
+      lines.forEach(function(it){ sell += it.price * it.qty; mrp += Math.max(it.mrp, it.price) * it.qty; qty += it.qty; });
+      $('gkBagCount').textContent = qty;
+      list.innerHTML = lines.map(function(it, i){
+        var save = it.mrp > it.price;
+        return '<li class="gk-bag-item is-new" data-i="' + i + '">' +
+          '<div class="gk-bag-item__img">' + (it.image ? '<img alt="" src="' + esc(it.image) + '"/>' : '') + '</div>' +
+          '<div class="gk-bag-item__body">' +
+            '<p class="gk-bag-item__name">' + esc(it.name) + '</p>' +
+            (it.size ? '<p class="gk-bag-item__meta">' + esc(it.size) + '</p>' : '') +
+            '<p class="gk-bag-item__price"><span>' + inr(it.price * it.qty) + '</span>' + (save ? '<s>' + inr(it.mrp * it.qty) + '</s><em>' + Math.round((it.mrp - it.price) / it.mrp * 100) + '% off</em>' : '') + '</p>' +
+            '<div class="gk-bag-item__row">' +
+              '<div class="gk-bag-qty"><button type="button" data-step="-1" aria-label="Decrease quantity">\u2212</button><span>' + it.qty + '</span><button type="button" data-step="1" aria-label="Increase quantity">+</button></div>' +
+              '<button type="button" class="gk-bag-item__remove" aria-label="Remove item"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/></svg></button>' +
+            '</div>' +
+          '</div></li>';
+      }).join('');
+      var left = FREE_SHIP - sell;
+      $('gkBagShipText').innerHTML = left > 0 ? 'You are <strong>' + inr(left) + '</strong> away from free shipping' : '<strong>You\u2019ve unlocked free shipping</strong>';
+      $('gkBagShipFill').style.width = Math.min(100, sell / FREE_SHIP * 100) + '%';
+      $('gkBagShip').classList.toggle('is-done', left <= 0);
+      $('gkBagMrp').textContent = inr(mrp);
+      $('gkBagDiscRow').hidden = !(mrp > sell); $('gkBagDisc').textContent = '\u2212' + inr(mrp - sell);
+      $('gkBagShipAmt').textContent = left <= 0 ? 'FREE' : 'Calculated at checkout';
+      $('gkBagShipAmt').classList.toggle('is-free', left <= 0);
+      $('gkBagTotal').textContent = inr(sell);
+      $('gkBagSaved').hidden = !(mrp > sell); $('gkBagSaved').textContent = 'You save ' + inr(mrp - sell) + ' on this order';
+      $('gkBagCheckout').textContent = 'Check out \u00b7 ' + inr(sell);
     }
-    function openDrawer(data){
-      if(!data) return;
 
-      bagCount += 1;
-      countEl.textContent = bagCount;
-      if (window.gkBag) window.gkBag.add(data.qty || 1);
+    list.addEventListener('click', function(e){
+      var li = e.target.closest('.gk-bag-item'); if(!li) return;
+      var it = lines[+li.dataset.i]; if(!it) return;
+      var step = e.target.closest('[data-step]');
+      if(step){ it.qty = Math.min(99, Math.max(1, it.qty + parseInt(step.dataset.step, 10))); render(); }
+      else if(e.target.closest('.gk-bag-item__remove')){ lines.splice(+li.dataset.i, 1); if(lines.length) render(); else closeDrawer(); }
+    });
 
-      imageEl.src = data.image || '';
-      imageEl.alt = data.alt || data.name;
-      nameEl.textContent = data.name;
-      sizeEl.textContent = data.size;
-      priceEl.textContent = data.price ? '·  ' + data.price : '';
-
-      quantity = data.qty || 1;
-      if(quantityEl) quantityEl.textContent = quantity;
-      var priceMatch = (data.price || '').replace(/,/g,'').match(/[0-9]+(?:\.[0-9]+)?/);
-      currentPrice = priceMatch ? parseFloat(priceMatch[0]) : 0;
-      var oldMatch = (data.oldPrice || '').replace(/,/g,'').match(/[0-9]+(?:\.[0-9]+)?/);
-      currentOld = oldMatch ? parseFloat(oldMatch[0]) : 0;
-      if(oldEl) oldEl.textContent = currentOld > currentPrice ? data.oldPrice : '';
-      updateBagTotal();
-
+    /* items: [{name, size, image, price, oldPrice, qty}] — the product(s) just added */
+    function openDrawer(items){
+      lines = items.map(function(d){ return { name: d.name, size: d.size || '', image: d.image || '', price: num(d.price), mrp: num(d.oldPrice), qty: d.qty || 1 }; });
+      if(window.gkBag) window.gkBag.add(lines.reduce(function(n, it){ return n + it.qty; }, 0));
+      render();
       drawer.classList.remove('is-open');
       void drawer.offsetWidth;
       drawer.classList.add('is-open');
@@ -603,14 +602,9 @@ try { (function(){
       drawer.setAttribute('aria-hidden','false');
       overlay.setAttribute('aria-hidden','false');
       document.body.classList.add('gk-bag-lock');
-
-      window.setTimeout(function(){
-        if(nameEl) nameEl.focus && nameEl.focus();
-      }, 120);
+      window.setTimeout(function(){ $('gkBagClose').focus(); }, 120);
     }
-
     function closeDrawer(){
-      if(sheet) setSheet(false);
       drawer.classList.remove('is-open');
       overlay.classList.remove('is-open');
       drawer.setAttribute('aria-hidden','true');
@@ -621,87 +615,43 @@ try { (function(){
     document.addEventListener('click', function(e){
       var button = e.target.closest('.product-add-to-bag, .pdp-cta, .gk-add-cart, .range-add-cart');
       if(!button) return;
-
       e.preventDefault();
       e.stopPropagation();
-
       var data = getProductData(button);
       if(!data) return;
-
       var label = button.classList.contains('product-add-to-bag') ? button.querySelector('span') : null;
-      if(label){
-        button.classList.add('is-added');
-        label.textContent = 'ADDED TO BAG';
-      }
-
-      openDrawer(data);
-
-      if(label){
-        window.setTimeout(function(){
-          button.classList.remove('is-added');
-          label.textContent = 'ADD TO BAG';
-        }, 1400);
-      }
+      if(label){ button.classList.add('is-added'); label.textContent = 'ADDED TO BAG'; }
+      openDrawer([data]);
+      if(label){ window.setTimeout(function(){ button.classList.remove('is-added'); label.textContent = 'ADD TO BAG'; }, 1400); }
     }, true);
 
-    /* other sections (e.g. Frequently Bought Together) can open the drawer */
+    /* other sections (e.g. Frequently Bought Together) can open the tray: detail = {items:[{name, price, mrp, img}]} */
     document.addEventListener('gk-cart-add', function(e){
-      var d = e.detail || {};
-      var m = String(d.price || '').match(/[\d,]+(?:\.\d+)?/);
-      openDrawer({
-        image: d.img || '',
-        alt: d.name || '',
-        name: d.name || 'Goodricke Product',
-        size: d.ref || '',
-        price: m ? '₹' + m[0] : '',
-        qty: 1
-      });
+      var d = e.detail || {}, items = d.items || [d];
+      openDrawer(items.map(function(x){ return { name: x.name || 'Goodricke Product', size: x.size || '', image: x.img || '', price: String(x.price || ''), oldPrice: String(x.mrp || ''), qty: x.qty || 1 }; }));
     });
 
-    /* coupon sheet slides up from the bottom of the tray */
-    var couponBtn = drawer.querySelector('.gk-bag-coupon');
-    var sheet = document.getElementById('gkBagCouponSheet');
-    var codeInput = document.getElementById('gkBagCouponInput');
-    function setSheet(on){
-      if(!sheet) return;
-      sheet.classList.toggle('is-open', on);
-      sheet.setAttribute('aria-hidden', on ? 'false' : 'true');
-      if(on) window.setTimeout(function(){ if(codeInput) codeInput.focus(); }, 300);
-    }
-    if(couponBtn && sheet){
-      couponBtn.addEventListener('click', function(){ setSheet(true); });
-      document.getElementById('gkBagCouponCancel').addEventListener('click', function(){ if(codeInput) codeInput.value = ''; setSheet(false); });
-      document.getElementById('gkBagCouponSave').addEventListener('click', function(){
-        var code = codeInput ? codeInput.value.trim() : '';
-        var label = couponBtn.querySelector('span');
-        if(label) label.textContent = code ? 'Coupon: ' + code.toUpperCase() : 'Coupon';
-        setSheet(false);
-      });
-      if(codeInput) codeInput.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); document.getElementById('gkBagCouponSave').click(); } });
-    }
-
-    minusBtn.addEventListener('click', function(){quantity=Math.max(1,quantity-1);updateBagTotal();});
-    plusBtn.addEventListener('click', function(){quantity+=1;updateBagTotal();});
-    removeBtn.addEventListener('click', function(){quantity=0;updateBagTotal();closeDrawer();});
-    closeBtn.addEventListener('click', closeDrawer);
-    continueBtn.addEventListener('click', closeDrawer);
+    /* "You may also like": + adds that product to the tray */
+    drawer.querySelector('.gk-bag-upsell') && drawer.querySelector('.gk-bag-upsell').addEventListener('click', function(e){
+      var b = e.target.closest('.gk-bag-upsell__add'); if(!b) return;
+      var c = b.closest('.gk-bag-upsell__card'), name = c.querySelector('.gk-bag-upsell__name').textContent;
+      var hit = lines.filter(function(it){ return it.name === name; })[0];
+      if(hit) hit.qty = Math.min(99, hit.qty + 1);
+      else lines.push({ name: name, size: '', image: c.querySelector('img').getAttribute('src'), price: num(c.querySelector('.gk-bag-upsell__price span').textContent), mrp: num(c.querySelector('.gk-bag-upsell__price s').textContent), qty: 1 });
+      if(window.gkBag) window.gkBag.add(1);
+      render();
+    });
+    $('gkBagClose').addEventListener('click', closeDrawer);
+    $('gkBagContinue').addEventListener('click', closeDrawer);
+    $('gkBagCouponForm').addEventListener('submit', function(e){ e.preventDefault(); }); /* wired up by the Shopify theme */
     overlay.addEventListener('click', closeDrawer);
-
     document.addEventListener('keydown', function(e){
-      if(e.key === 'Escape' && drawer.classList.contains('is-open')){
-        closeDrawer();
-      }
+      if(e.key === 'Escape' && drawer.classList.contains('is-open')) closeDrawer();
     });
   }
 
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', initGoodrickeBagDrawer);
-  }else{
-    initGoodrickeBagDrawer();
-  }
-})();
-
-
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initGoodrickeBagDrawer);
+  else initGoodrickeBagDrawer();
 })(); } catch (e) { console.error("Bag drawer", e); }
 
 // ==== Header search ====

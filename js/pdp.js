@@ -113,10 +113,20 @@ try { (function(){
   /* net weight: selects a size and updates the price */
   var opts=root.querySelectorAll('.pdp-weight__opt'),priceEl=root.querySelector('.pdp-price');
   var base=root.querySelector('.pdp-weight__opt.is-active').dataset.price,gift=document.getElementById('pdpGift');
+  var num=function(v){return parseFloat(String(v||'').replace(/[^\d.]/g,''))||0;};
+  var inr=function(n,d){return '₹'+n.toLocaleString('en-IN',{minimumFractionDigits:d,maximumFractionDigits:d});};
+  var pct=function(o){var m=num(o.dataset.mrp),p=num(o.dataset.price);return m>p?Math.round((m-p)/m*100):0;};
+  /* "SAVE x%" under each size, worked out from its price and MRP */
+  opts.forEach(function(o){var t=o.parentNode.querySelector('.pdp-weight__save'),v=pct(o);if(t){t.textContent=v?'SAVE '+v+'%':'';t.hidden=!v;}});
+  var saveEl=root.querySelector('.pdp-save'),stickyPrice=document.querySelector('.pdp-sticky__price');
   function showPrice(){
-    var n=parseFloat(base.replace(/[^\d.]/g,''))+(gift&&gift.checked?100:0);
-    priceEl.textContent='₹'+n.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
+    var n=num(base)+(gift&&gift.checked?100:0);
+    priceEl.textContent=inr(n,2);
+    if(stickyPrice) stickyPrice.textContent=priceEl.textContent;
+    var o=root.querySelector('.pdp-weight__opt.is-active');
+    if(saveEl&&o){var m=num(o.dataset.mrp),p=num(o.dataset.price);saveEl.textContent=m>p?'You save '+inr(m-p,0)+' ('+pct(o)+'%)':'';saveEl.hidden=!(m>p);}
   }
+  showPrice();
   if(gift) gift.addEventListener('change',showPrice);
   function pick(o){
     opts.forEach(function(x){var on=x===o;x.classList.toggle('is-active',on);x.setAttribute('aria-checked',on);});
@@ -132,13 +142,12 @@ try { (function(){
     var p=sv.play();if(p&&p.catch)p.catch(function(){});
   });
 
-  /* "Learn more" toggles the description open/closed */
-  var more=root.querySelector('.pdp-more'),learn=document.getElementById('pdp-learn');
-  if(more&&learn) more.addEventListener('click',function(){
-    var open=learn.classList.toggle('is-open');
-    more.setAttribute('aria-expanded',open);
-    more.querySelector('u').textContent=open?'Show less':'Learn more';
-  });
+  /* mobile buy bar: shows while the main "Add to bag" button is off screen */
+  var bar=document.getElementById('pdpSticky'),cta=root.querySelector('.pdp-cta');
+  if(bar&&cta&&'IntersectionObserver' in window){
+    new IntersectionObserver(function(en){var on=!en[0].isIntersecting;bar.classList.toggle('is-on',on);bar.setAttribute('aria-hidden',on?'false':'true');bar.querySelector('button').tabIndex=on?0:-1;}).observe(cta);
+    bar.querySelector('button').addEventListener('click',function(){cta.click();});
+  }
 })();
 
 
@@ -527,11 +536,9 @@ try { (function(){
   checks.forEach(function(c){c.addEventListener('change',update);});
   add.addEventListener('click',function(){
     var sel=on();if(!sel.length) return;
-    var total=sel.reduce(function(s,c){return s+ +c.dataset.price;},0);
-    document.dispatchEvent(new CustomEvent('gk-cart-add',{detail:{
-      name:sel.map(function(c){return c.dataset.name;}).join(' + '),
-      ref:sel.map(function(c){return c.dataset.ref;}).join(', '),
-      price:fmt(total),img:sel[0].dataset.img,qty:sel.length}}));
+    /* each selected product goes into the bag as its own line */
+    document.dispatchEvent(new CustomEvent('gk-cart-add',{detail:{items:sel.map(function(c){
+      return {name:c.dataset.name,price:c.dataset.price,mrp:c.dataset.mrp,img:c.dataset.img,qty:1};})}}));
   });
   update();
 })();

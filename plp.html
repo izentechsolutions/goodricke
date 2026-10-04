@@ -1140,54 +1140,76 @@
 </div>
 </footer>
 <p class="footer-disclaimer">Disclaimer - The displayed images of teas or liquor on the website is for representation purpose only. Their appearance is subject to variances.</p>
-<!-- GOODRICKE ADDED TO BAG DRAWER -->
+<!-- GOODRICKE BAG DRAWER -->
 <div aria-hidden="true" class="gk-bag-overlay" id="gkBagOverlay"></div>
-<aside aria-hidden="true" aria-label="Added to Bag" class="gk-bag-drawer" id="gkBagDrawer">
+<aside aria-hidden="true" aria-label="Added to bag" class="gk-bag-drawer" id="gkBagDrawer">
 <header class="gk-bag-head">
-<h2 class="gk-bag-title">
-      Added to Bag
-      <span class="gk-bag-count" id="gkBagCount">1</span>
-</h2>
-<button aria-label="Close bag" class="gk-bag-close" id="gkBagClose" type="button">
-<svg aria-hidden="true" viewbox="0 0 24 24">
-<path d="M5 5l14 14M19 5L5 19"></path>
-</svg>
-</button>
+<h2 class="gk-bag-title">Added to Bag <span class="gk-bag-count" id="gkBagCount">0</span></h2>
+<button aria-label="Close bag" class="gk-bag-close" id="gkBagClose" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
 </header>
+<!-- BLOCK: free-shipping progress (add "is-done" once the threshold is reached) -->
+<div class="gk-bag-ship" id="gkBagShip">
+<p class="gk-bag-ship__text" id="gkBagShipText"></p>
+<div class="gk-bag-ship__bar"><span id="gkBagShipFill"></span></div>
+</div>
 <div class="gk-bag-scroll">
-<section class="gk-bag-cart-item">
-  <div class="gk-bag-product-image"><img alt="" id="gkBagProductImage" src=""/></div>
-  <div class="gk-bag-cart-details">
-    <h3 class="gk-bag-product-name" id="gkBagProductName"></h3>
-    <p class="gk-bag-product-meta"><span id="gkBagProductSize"></span></p>
-    <div class="gk-bag-cart-actions">
-      <div class="gk-bag-quantity"><button type="button" id="gkBagMinus" aria-label="Decrease quantity">−</button><span id="gkBagQuantity">1</span><button type="button" id="gkBagPlus" aria-label="Increase quantity">+</button></div>
-      <span class="gk-bag-product-price" id="gkBagProductPrice"></span>
-      <s class="gk-bag-product-old" id="gkBagProductOld"></s>
-      <button type="button" class="gk-bag-remove" id="gkBagRemove" aria-label="Remove item">♧</button>
-    </div>
-  </div>
+<!-- STATE: line items (one <li class="gk-bag-item"> per cart line; filled by JS in this build) -->
+<ul aria-live="polite" class="gk-bag-items" id="gkBagItems"></ul>
+<!-- STATE: empty bag (show when the cart has no items; hide the shipping bar, coupon, note and footer) -->
+<div class="gk-bag-empty" id="gkBagEmpty" hidden>
+<p>Your bag is empty.</p>
+<a class="gk-bag-empty__cta" href="plp.html">Shop teas</a>
+</div>
+<!-- BLOCK: "You may also like" (product recommendations; placeholder products) -->
+<section class="gk-bag-upsell" aria-labelledby="gkBagUpsellTitle">
+<h3 class="gk-bag-upsell__title" id="gkBagUpsellTitle">You may also like</h3>
+<ul>
+<li class="gk-bag-upsell__card"><img alt="" loading="lazy" src="assets/images/product-09.webp"/><div><p class="gk-bag-upsell__name">Rose Black Tea</p><p class="gk-bag-upsell__price"><span>₹429</span><s>₹579</s></p></div><button aria-label="Add Rose Black Tea to bag" class="gk-bag-upsell__add" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7.500 8V6.200a4.500 4.500 0 0 1 9 0V8M5 8h14l-1 12H6z"/></svg></button></li>
+<li class="gk-bag-upsell__card"><img alt="" loading="lazy" src="assets/images/product-04.webp"/><div><p class="gk-bag-upsell__name">Cardamom Chai</p><p class="gk-bag-upsell__price"><span>₹349</span><s>₹449</s></p></div><button aria-label="Add Cardamom Chai to bag" class="gk-bag-upsell__add" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7.500 8V6.200a4.500 4.500 0 0 1 9 0V8M5 8h14l-1 12H6z"/></svg></button></li>
+</ul>
 </section>
-<section class="gk-bag-note">
-  <label for="gkBagNote">Note to Goodricke Team: (Optional)</label>
-  <textarea id="gkBagNote"></textarea>
+<section class="gk-bag-coupon" id="gkBagCoupon">
+<form class="gk-bag-coupon__form" id="gkBagCouponForm" novalidate>
+<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2.4"/></svg><input aria-label="Coupon code" autocomplete="off" autocapitalize="characters" id="gkBagCouponInput" placeholder="Have a coupon code?" spellcheck="false" type="text"/>
+<button type="submit">Apply</button>
+</form>
+<!-- STATE: coupon applied (replaces the form) -->
+<div class="gk-bag-coupon__applied" id="gkBagCouponApplied" hidden>
+<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2.4"/></svg><p><strong>GOODRICKE10</strong> applied<span> · you save ₹150</span></p>
+<button type="button">Remove</button>
+</div>
+<!-- STATE: coupon message. Success: class "gk-bag-coupon__msg". Error: add "is-error" -->
+<p class="gk-bag-coupon__msg is-error" id="gkBagCouponMsg" role="status" hidden>That code isn&rsquo;t valid. Check the spelling and try again.</p>
+<!-- BLOCK: available offers (tap to apply; placeholder codes) -->
+<div class="gk-bag-offers">
+<p class="gk-bag-offers__title">Available offers</p>
+<button class="gk-bag-offer" type="button"><strong>GOODRICKE10</strong><span>10% off your order</span><em>Apply</em></button>
+<button class="gk-bag-offer" type="button"><strong>WELCOME100</strong><span>₹100 off orders above ₹999</span><em>Apply</em></button>
+</div>
 </section>
-<section class="gk-bag-summary">
-  <button type="button" class="gk-bag-coupon"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2.4"/></svg><span>Coupon</span></button>
-  <div class="gk-bag-saving" id="gkBagSavingRow" hidden><span>You saved</span><strong id="gkBagSaving"></strong></div>
-  <div><strong>Subtotal</strong><strong id="gkBagSubtotal">₹0</strong></div>
-  <p>Tax included. <a href="/policies/shipping-policy">Shipping calculated at checkout.</a></p>
-</section>
+<!-- BLOCK: order note (Shopify cart note) -->
+<details class="gk-bag-note">
+<summary>Add a note for the Goodricke team</summary>
+<textarea aria-label="Note for the Goodricke team" id="gkBagNote" placeholder="Gift message, delivery instructions…"></textarea>
+</details>
 </div>
 <footer class="gk-bag-footer">
-<button class="gk-bag-continue" id="gkBagContinue" type="button">CONTINUE SHOPPING</button>
-<button class="gk-bag-checkout" type="button">CHECK OUT</button>
-</footer>
-<div aria-hidden="true" aria-label="Add a discount code" class="gk-bag-couponsheet" id="gkBagCouponSheet" role="dialog">
-<h3 class="gk-bag-couponsheet__title"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2.4"/></svg>Add a discount code</h3>
-<input aria-label="Discount code" autocomplete="off" class="gk-bag-couponsheet__input" id="gkBagCouponInput" placeholder="Enter discount code here" type="text"/>
-<div class="gk-bag-couponsheet__actions"><button class="gk-bag-couponsheet__cancel" id="gkBagCouponCancel" type="button">CANCEL</button><button class="gk-bag-couponsheet__save" id="gkBagCouponSave" type="button">SAVE</button></div>
+<!-- BLOCK: price summary -->
+<dl class="gk-bag-totals">
+<div><dt>Subtotal</dt><dd id="gkBagMrp">₹0</dd></div>
+<div class="is-save" id="gkBagDiscRow" hidden><dt>Product discount</dt><dd id="gkBagDisc"></dd></div>
+<!-- STATE: shown when a coupon is applied -->
+<div class="is-save" id="gkBagCouponRow" hidden><dt>Coupon (GOODRICKE10)</dt><dd>−₹150</dd></div>
+<div><dt>Shipping</dt><dd id="gkBagShipAmt">Calculated at checkout</dd></div>
+<div class="gk-bag-total"><dt>Total</dt><dd id="gkBagTotal">₹0</dd></div>
+</dl>
+<p class="gk-bag-saved" id="gkBagSaved" hidden></p>
+<p class="gk-bag-tax">Tax included. <a href="/policies/shipping-policy">Shipping policy</a></p>
+<div class="gk-bag-actions">
+<button class="gk-bag-continue" id="gkBagContinue" type="button">Continue shopping</button>
+<button class="gk-bag-checkout" id="gkBagCheckout" type="button">Check out</button>
 </div>
+</footer>
 </aside>
 
 <!-- =========================================================
