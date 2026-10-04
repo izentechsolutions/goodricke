@@ -1,0 +1,12 @@
+.git
+.github
+node_modules
+src
+build
+package.json
+package-lock.json
+*.md
+.gitignore
+.dockerignore
+.gcloudignore
+

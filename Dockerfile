@@ -3,7 +3,7 @@ FROM nginx:1.27-alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY . /usr/share/nginx/html
 
-# index.html is the homepage (no rename step needed after the reorganization)
+# index.html = home, plp.html = product listing, pdp.html = product detail
 
 EXPOSE 8080
 
