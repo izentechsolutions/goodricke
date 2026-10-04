@@ -113,7 +113,9 @@ try { (function(){
     root.classList.add('gk-smooth');
 
     var locked = function () {
-      return document.body.style.overflow === 'hidden' || root.classList.contains('gk-scroll-lock');
+      var b = document.body;
+      return b.style.overflow === 'hidden' || root.classList.contains('gk-scroll-lock') ||
+        b.classList.contains('gk-bag-lock') || b.classList.contains('gk-filter-lock');
     };
     var insideScroller = function (el, dy) {
       while (el && el !== document.body && el !== root) {
@@ -132,8 +134,10 @@ try { (function(){
 
     window.addEventListener('wheel', function (e) {
       try {
-        if (e.ctrlKey || e.defaultPrevented || locked()) return;      /* pinch-zoom, modals */
+        if (e.ctrlKey || e.defaultPrevented) return;                  /* pinch-zoom */
         var dy = e.deltaY, dx = e.deltaX;
+        /* a drawer/modal is open: only its own scroll area moves, never the page behind it */
+        if (locked()) { if (!insideScroller(e.target, dy)) e.preventDefault(); return; }
         if (Math.abs(dx) > Math.abs(dy)) return;                      /* horizontal stays native */
         if (insideScroller(e.target, dy)) return;                     /* nested scrollers stay native */
         if (e.deltaMode === 1) dy *= 32; else if (e.deltaMode === 2) dy *= window.innerHeight;
