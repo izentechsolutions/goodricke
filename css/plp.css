@@ -2173,9 +2173,8 @@ section.product-listing .product-grid > .product-item:hover .size-option{
   z-index:99999;
   display:flex;
   flex-direction:column;
-  background:#fffef9;
+  background:#FFFFF4;
   color:#042C05;
-  box-shadow:-18px 0 50px rgba(4,44,5,.16);
   transform:translateX(105%);
   transition:transform .48s cubic-bezier(.22,.8,.24,1);
   overflow:hidden;
@@ -2183,6 +2182,7 @@ section.product-listing .product-grid > .product-item:hover .size-option{
 }
 .gk-bag-drawer.is-open{
   transform:translateX(0);
+  box-shadow:-18px 0 50px rgba(4,44,5,.16);
 }
 
 .gk-bag-head{
@@ -2193,7 +2193,7 @@ section.product-listing .product-grid > .product-item:hover .size-option{
   justify-content:space-between;
   padding:0 24px;
   border-bottom:1px solid rgba(4,44,5,.13);
-  background:#fffef9;
+  background:#FFFFF4;
 }
 .gk-bag-title{
   display:flex;
@@ -2287,7 +2287,7 @@ section.product-listing .product-grid > .product-item:hover .size-option{
 
 .gk-bag-footer{
   flex:0 0 auto;
-  background:#fffef9;
+  background:#FFFFF4;
   border-top:1px solid rgba(4,44,5,.08);
 }
 .gk-bag-continue{
@@ -2393,9 +2393,9 @@ body.gk-bag-lock{
 /* ==== Filter and sort ==== */
 .gk-filter-overlay{position:fixed;inset:0;background:rgba(20,18,18,.28);z-index:99990;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
 .gk-filter-overlay.is-open{opacity:1;visibility:visible}
-.gk-filter-drawer{position:fixed;top:0;right:0;width:420px;max-width:100vw;height:100dvh;background:#fffefb;color:#042C05;z-index:99999;display:flex;flex-direction:column;transform:translateX(102%);transition:transform .42s cubic-bezier(.22,.8,.24,1);box-shadow:-12px 0 35px rgba(4,44,5,.12);font-family:"Inter",system-ui,sans-serif;overflow:hidden}
-.gk-filter-drawer.is-open{transform:translateX(0)}
-.gk-filter-head{height:76px;min-height:76px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #D0D0D0;background:#fffefb}
+.gk-filter-drawer{position:fixed;top:0;right:0;width:420px;max-width:100vw;height:100dvh;background:#FFFFF4;color:#042C05;z-index:99999;display:flex;flex-direction:column;transform:translateX(102%);transition:transform .42s cubic-bezier(.22,.8,.24,1);font-family:"Inter",system-ui,sans-serif;overflow:hidden}
+.gk-filter-drawer.is-open{transform:translateX(0);box-shadow:-12px 0 35px rgba(4,44,5,.12)}
+.gk-filter-head{height:76px;min-height:76px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #D0D0D0;background:#FFFFF4}
 .gk-filter-title{margin:0;font-family:"Arpona",Georgia,serif;font-style:italic;font-weight:400;font-size:25px;line-height:1;color:#205007}
 .gk-filter-close{width:32px;height:32px;padding:0;border:0;background:transparent;color:#205007;display:grid;place-items:center;cursor:pointer}
 .gk-filter-close svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.2}
@@ -2422,13 +2422,13 @@ body.gk-bag-lock{
   padding:0 0 18px;
   visibility:visible;
 }
-.gk-filter-option{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 14px;border:1px solid #7A7A7A;border-radius:4px;background:#fffdf9;color:#042C05;font-size:13px;line-height:1.15;text-align:center;cursor:pointer;transition:background .18s ease,color .18s ease,border-color .18s ease}
+.gk-filter-option{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 14px;border:1px solid #7A7A7A;border-radius:4px;background:#FFFFF4;color:#042C05;font-size:13px;line-height:1.15;text-align:center;cursor:pointer;transition:background .18s ease,color .18s ease,border-color .18s ease}
 .gk-filter-option input{position:absolute;opacity:0;pointer-events:none}
 .gk-filter-option:has(input:checked){background:#042C05;border-color:#042C05;color:#fff}
 .gk-filter-option:hover{border-color:#042C05}
 .gk-filter-section[data-filter-section="sort"] .gk-filter-options{padding-bottom:22px}
 .gk-filter-section[data-filter-section="sort"].is-open .gk-filter-options{padding-bottom:22px}
-.gk-filter-actions{flex:0 0 auto;padding:16px 18px 22px;background:#fffefb;border-top:1px solid #CDCDCD}
+.gk-filter-actions{flex:0 0 auto;padding:16px 18px 22px;background:#FFFFF4;border-top:1px solid #CDCDCD}
 .gk-filter-apply{display:block;width:100%;height:46px;border:0;border-radius:4px;background:#042C05;color:#fff;font-family:"Inter",system-ui,sans-serif;font-size:13px;cursor:pointer}
 .gk-filter-clear{display:block;margin:20px auto 0;padding:0;border:0;border-bottom:1px solid #042C05;background:transparent;color:#042C05;font-family:"Arpona",Georgia,serif;font-size:15px;line-height:1.3;cursor:pointer}
 body.gk-filter-lock{overflow:hidden!important}
@@ -4793,4 +4793,7 @@ body.plp-page section.product-listing{background:#fff !important}
 /* lower sections: centred uppercase Arpona titles, like the home page */
 
 /* ==== Reviews: per-review star ratings + "View all reviews" list (brand palette) ==== */
+/* gold badges (filled up to --rating, faded after), then the green leaf on top: same look as the home testimonials */
 /* full list */
+
+/* ==== PDP buy box: rating link, savings, quantity + button row, reassurance, accordion, mobile buy bar ==== */

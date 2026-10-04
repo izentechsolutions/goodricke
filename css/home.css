@@ -3983,7 +3983,8 @@ margin:0 auto 12px !important;
 
 .range .range-card,
 .range .range-card--hero{
-  background:#205007 !important;
+  background:rgba(255,255,244,0.10) !important;
+  border:1px solid rgba(255,255,244,0.14);
   border-radius:18px !important;
   padding:14px 14px 22px !important;
   align-items:stretch !important;
@@ -4505,9 +4506,8 @@ body.search-open .navactions .search-link{opacity:0;visibility:hidden}
   z-index:99999;
   display:flex;
   flex-direction:column;
-  background:#fffef9;
+  background:#FFFFF4;
   color:#042C05;
-  box-shadow:-18px 0 50px rgba(4,44,5,.16);
   transform:translateX(105%);
   transition:transform .48s cubic-bezier(.22,.8,.24,1);
   overflow:hidden;
@@ -4515,6 +4515,7 @@ body.search-open .navactions .search-link{opacity:0;visibility:hidden}
 }
 .gk-bag-drawer.is-open{
   transform:translateX(0);
+  box-shadow:-18px 0 50px rgba(4,44,5,.16);
 }
 
 .gk-bag-head{
@@ -4525,7 +4526,7 @@ body.search-open .navactions .search-link{opacity:0;visibility:hidden}
   justify-content:space-between;
   padding:0 24px;
   border-bottom:1px solid rgba(4,44,5,.13);
-  background:#fffef9;
+  background:#FFFFF4;
 }
 .gk-bag-title{
   display:flex;
@@ -4619,7 +4620,7 @@ body.search-open .navactions .search-link{opacity:0;visibility:hidden}
 
 .gk-bag-footer{
   flex:0 0 auto;
-  background:#fffef9;
+  background:#FFFFF4;
   border-top:1px solid rgba(4,44,5,.08);
 }
 .gk-bag-continue{
@@ -6219,4 +6220,7 @@ section h2,.footer-brand h2{font-family:"Arpona",Georgia,serif;font-weight:400;l
 /* lower sections: centred uppercase Arpona titles, like the home page */
 
 /* ==== Reviews: per-review star ratings + "View all reviews" list (brand palette) ==== */
+/* gold badges (filled up to --rating, faded after), then the green leaf on top: same look as the home testimonials */
 /* full list */
+
+/* ==== PDP buy box: rating link, savings, quantity + button row, reassurance, accordion, mobile buy bar ==== */
