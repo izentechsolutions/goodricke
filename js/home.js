@@ -1,6 +1,6 @@
-/* Goodricke — home.js: Home page only (the approved home modules). Each block is one original module, in the original order. */
+/* Goodricke — home.js: Home page only (the approved home modules). */
 
-// ==== js/01-goodricke-click-only-script.js ====
+// ==== Product cards: click to open ====
 try { (function(){
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -52,9 +52,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-})(); } catch (e) { console.error("js/01-goodricke-click-only-script.js", e); }
+})(); } catch (e) { console.error("Product cards: click to open", e); }
 
-// ==== js/02-goodricke-final-click-script.js ====
+// ==== Product cards: close on outside click ====
 try { (function(){
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -111,9 +111,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-})(); } catch (e) { console.error("js/02-goodricke-final-click-script.js", e); }
+})(); } catch (e) { console.error("Product cards: close on outside click", e); }
 
-// ==== js/03-mobile-product-tap-only.js ====
+// ==== Product cards: mobile tap ====
 try { (function(){
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -157,9 +157,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-})(); } catch (e) { console.error("js/03-mobile-product-tap-only.js", e); }
+})(); } catch (e) { console.error("Product cards: mobile tap", e); }
 
-// ==== js/04-gk-mobile-click-script.js ====
+// ==== Product cards: mobile toggle ====
 try { (function(){
 
 document.addEventListener('DOMContentLoaded', function(){
@@ -191,9 +191,9 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 
-})(); } catch (e) { console.error("js/04-gk-mobile-click-script.js", e); }
+})(); } catch (e) { console.error("Product cards: mobile toggle", e); }
 
-// ==== js/07-story-video-modal.js ====
+// ==== Story video modal ====
 try { (function(){
 
 (function(){
@@ -231,9 +231,9 @@ try { (function(){
 })();
 
 
-})(); } catch (e) { console.error("js/07-story-video-modal.js", e); }
+})(); } catch (e) { console.error("Story video modal", e); }
 
-// ==== js/08-unbox-slider.js ====
+// ==== Unbox slider ====
 try { (function(){
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -295,9 +295,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-})(); } catch (e) { console.error("js/08-unbox-slider.js", e); }
+})(); } catch (e) { console.error("Unbox slider", e); }
 
-// ==== js/09-team-row-autoscroll-a.js ====
+// ==== Product carousel: auto-scroll ====
 try { (function(){
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -376,9 +376,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-})(); } catch (e) { console.error("js/09-team-row-autoscroll-a.js", e); }
+})(); } catch (e) { console.error("Product carousel: auto-scroll", e); }
 
-// ==== js/10-team-row-autoscroll-b.js ====
+// ==== Product carousel: drag and hover pause ====
 try { (function(){
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -455,9 +455,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-})(); } catch (e) { console.error("js/10-team-row-autoscroll-b.js", e); }
+})(); } catch (e) { console.error("Product carousel: drag and hover pause", e); }
 
-// ==== js/11-instagram-reel-autoplay.js ====
+// ==== Instagram reels: autoplay ====
 try { (function(){
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -499,9 +499,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-})(); } catch (e) { console.error("js/11-instagram-reel-autoplay.js", e); }
+})(); } catch (e) { console.error("Instagram reels: autoplay", e); }
 
-// ==== js/12-gk-product-carousel-script.js ====
+// ==== Bestsellers carousel ====
 try { (function(){
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -552,9 +552,9 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 
-})(); } catch (e) { console.error("js/12-gk-product-carousel-script.js", e); }
+})(); } catch (e) { console.error("Bestsellers carousel", e); }
 
-// ==== js/13-gk-mobile-click-final.js ====
+// ==== Product cards: mobile open state ====
 try { (function(){
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -602,9 +602,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-})(); } catch (e) { console.error("js/13-gk-mobile-click-final.js", e); }
+})(); } catch (e) { console.error("Product cards: mobile open state", e); }
 
-// ==== js/14-isolated-both-product-sections-click.js ====
+// ==== Range and bestseller sections: mobile tap ====
 try { (function(){
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -678,9 +678,9 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 
-})(); } catch (e) { console.error("js/14-isolated-both-product-sections-click.js", e); }
+})(); } catch (e) { console.error("Range and bestseller sections: mobile tap", e); }
 
-// ==== js/19-gk-scroll-expand.js ====
+// ==== Unbox scroll-expand ====
 try { (function(){
 
 /* ScrollExpand (React Bits) - vanilla port for the existing static page.
@@ -802,9 +802,9 @@ try { (function(){
 })();
 
 
-})(); } catch (e) { console.error("js/19-gk-scroll-expand.js", e); }
+})(); } catch (e) { console.error("Unbox scroll-expand", e); }
 
-// ==== js/20-gk-unbox-range-overlap-driver.js ====
+// ==== Unbox / range overlap ====
 try { (function(){
 
 (function () {
@@ -834,5 +834,5 @@ try { (function(){
 })();
 
 
-})(); } catch (e) { console.error("js/20-gk-unbox-range-overlap-driver.js", e); }
+})(); } catch (e) { console.error("Unbox / range overlap", e); }
 

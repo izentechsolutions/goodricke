@@ -641,51 +641,15 @@ summary {
 .visible {
   visibility: visible !important;
 }
-/* ==== Fonts (self-hosted WOFF2; byte-identical glyphs to the approved fonts) ==== */
+/* ==== Fonts (self-hosted WOFF2) ====
+   Brand book 2026: headings = Arpona LIGHT, body = Inter REGULAR, no other weights.
+   Arpona is declared ONCE for every weight, so every heading renders in the single approved cut.
+   NOTE: assets/fonts/arpona-light.woff2 currently holds the Arpona Regular glyphs from the original site
+   (a Fontspring DEMO file). Replace it with the licensed Arpona Light file (same file name) - no other change needed. */
 @font-face{
   font-family:"Arpona";
-  src:url("../assets/fonts/arpona-regular.woff2") format("woff2");
-  font-weight:400;font-style:normal;font-display:swap;
-}
-@font-face{
-  font-family:"Arpona";
-  src:url("../assets/fonts/arpona-italic.woff2") format("woff2");
-  font-weight:400;font-style:italic;font-display:swap;
-}
-@font-face{
-  font-family:"Arpona";
-  src:url("../assets/fonts/arpona-medium.woff2") format("woff2");
-  font-weight:500;font-style:normal;font-display:swap;
-}
-@font-face{
-  font-family:"Arpona";
-  src:url("../assets/fonts/arpona-medium-italic.woff2") format("woff2");
-  font-weight:500;font-style:italic;font-display:swap;
-}
-@font-face{
-  font-family:"Arpona";
-  src:url("../assets/fonts/arpona-semibold.woff2") format("woff2");
-  font-weight:600;font-style:normal;font-display:swap;
-}
-@font-face{
-  font-family:"Arpona";
-  src:url("../assets/fonts/arpona-bold.woff2") format("woff2");
-  font-weight:700;font-style:normal;font-display:swap;
-}
-@font-face{
-  font-family:"Arpona";
-  src:url("../assets/fonts/arpona-bold-italic.woff2") format("woff2");
-  font-weight:700;font-style:italic;font-display:swap;
-}
-@font-face{
-  font-family:"Arpona";
-  src:url("../assets/fonts/arpona-extrabold.woff2") format("woff2");
-  font-weight:800;font-style:normal;font-display:swap;
-}
-@font-face{
-  font-family:"Arpona";
-  src:url("../assets/fonts/arpona-black.woff2") format("woff2");
-  font-weight:900;font-style:normal;font-display:swap;
+  src:url("../assets/fonts/arpona-light.woff2") format("woff2");
+  font-weight:100 900;font-style:normal;font-display:swap;
 }
 @font-face{
   font-family:"Inter";
@@ -697,8 +661,11 @@ summary {
   src:url("../assets/fonts/inter-variable-italic.woff2") format("woff2");
   font-weight:100 900;font-style:italic;font-display:swap;
 }
+/* Brand: form controls use the brand font (browsers default them to Arial); browser-default bold -> Regular */
+button,input,select,textarea{font-family:inherit;}
+h1,h2,h3,b,strong{font-weight:400;}
 
-/* ==== css/main 2.css ==== */
+/* ==== Base layout and sections (v2) ==== */
 
   /* ---------- HERO / HEADER ---------- */
 
@@ -723,9 +690,9 @@ summary {
   /* back-to-top */
 
 
-  /* ---------- WHOLE BODY / RANGE ---------- */
+  /* ---------- RANGE ---------- */
   .range{
-    background:#20400f;
+    background:#042C05;
     /* padding:80px clamp(24px,6vw,80px) 96px; */
   }
 
@@ -993,7 +960,7 @@ a {
 /* 
 MENU MOBILE */
 
-/* FINAL MOBILE MENU */
+/* Mobile menu */
 
 
   /* ---------- VIDEO MODAL ---------- */
@@ -1005,7 +972,7 @@ MENU MOBILE */
 
   /* Reel <video> fallback: only shown if the browser blocks autoplay */
 
-/* ==== css/product-box 2.css ==== */
+/* ==== Product box (v2) ==== */
 /* =========================================================
    PRODUCT BOX SYSTEM — Goodricke visual reference
    Product cards only. Existing page sections are untouched.
@@ -1029,7 +996,7 @@ MENU MOBILE */
 
 /* Keep product boxes consistent at tablet/mobile */
 
-/* ==== css/main.css ==== */.pillnav{
+/* ==== Base layout and sections ==== */.pillnav{
     -webkit-backdrop-filter:blur(14px) saturate(140%);
   }.pillnav a{
     text-decoration: none !important;
@@ -1144,7 +1111,7 @@ MENU MOBILE */
   -webkit-backdrop-filter:blur(14px) saturate(140%);
 }@media (max-width:900px){#stickybar .sticky-menu{
     -webkit-backdrop-filter:blur(14px) saturate(140%);
-  }}/* FIX — Restore normal mouse cursor */
+  }}/* Restore normal mouse cursor */
 html.gk-cursor-on,
 html.gk-cursor-on * {
   cursor: auto !important;
@@ -1247,7 +1214,7 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
 }
 
 
-/* ==== css/01-goodricke-product-section-overrides.css ==== */
+/* ==== Product sections ==== */
 
 /* ============================================================
    GOODRICKE BESTSELLERS — 1470px PRODUCT CAROUSEL
@@ -1255,13 +1222,13 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
    ============================================================ */
 
 
-/* ==== css/02-goodricke-range-hover-overrides.css ==== */
+/* ==== Range cards: hover ==== */
 
 
 /* ---------- RANGE CARD HOVER EFFECT ---------- */
 
 
-/* ==== css/03-hover-only-options.css ==== */
+/* ==== Product cards: hover options ==== */
 
 /* On hover: keep the product image + hover controls, hide all other card content. */
 
@@ -1272,7 +1239,7 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
 /* Do not hide the product image. */
 
 
-/* ==== css/04-weight-bottom-margin.css ==== */
+/* ==== Product cards: size options ==== */
 
 /* Add space below the product weight/size options */
 
@@ -1296,12 +1263,12 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
 }
 
 
-/* ==== css/05-keep-badge-and-product-name.css ==== */
+/* ==== Product cards: badge and name ==== */
 
 /* Keep Bestseller/New badge and product name visible on hover */
 
 
-/* ==== css/06-goodricke-click-only-interaction.css ==== */
+/* ==== Product cards: click interaction ==== */
 
 /* ============================================================
    CLICK-ONLY PRODUCT ACTIONS
@@ -1320,7 +1287,7 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
 /* Mobile: still hidden until product is tapped */
 
 
-/* ==== css/07-goodricke-final-click-only-products.css ==== */
+/* ==== Product cards: open state ==== */
 
 /* ==========================================================
    FINAL PRODUCT INTERACTION
@@ -1348,12 +1315,12 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
 
 /* Hide weight/size and price after click */
 
-/* No hover zoom/filter in the final interaction */
+/* No hover zoom/filter */
 
 /* ---------- MOBILE ---------- */
 
 
-/* ==== css/08-instagram-mobile-one-reel-slider.css ==== */
+/* ==== Instagram reels: mobile slider ==== */
 
 /* =========================================================
    INSTAGRAM — MOBILE: ONE REEL PER VIEW
@@ -1370,7 +1337,7 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
 /* Slightly wider phones: still one reel per swipe */
 
 
-/* ==== css/09-desktop-hover-mobile-click.css ==== */
+/* ==== Product cards: desktop hover / mobile tap ==== */
 
 /* ==========================================================
    DESKTOP = MOUSE HOVER
@@ -1396,7 +1363,7 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
 }
 
 
-/* ==== css/10-gk-final-interaction.css ==== */
+/* ==== Product cards: controls ==== */
 
 /* ==========================================================
    ISOLATED PRODUCT CARD INTERACTION
@@ -1418,7 +1385,7 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
 }
 
 
-/* ==== css/11-gk-hero-overlap.css ==== */
+/* ==== Hero and unbox overlap ==== */
 
 /* ==========================================================
    HERO -> UNBOX CINEMATIC OVERLAP
@@ -1429,7 +1396,7 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
    Header (.stickybar, fixed, z 120) stays above everything.
    ========================================================== */
 
-/* ROOT CAUSE FIX: body had overflow-x:hidden, which turns <body> into a
+/* body had overflow-x:hidden, which turns <body> into a
    scroll container and silently kills position:sticky. `clip` hides
    horizontal overflow WITHOUT creating a scroll container. html keeps its
    own overflow-x:hidden, which propagates to the viewport. */   /* one smooth-scroll system only (JS below) */
@@ -1468,7 +1435,7 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
   will-change:transform;
 }
 .gk-cursor{ width:12px; height:12px; margin:-6px 0 0 -6px; }
-.gk-cursor i{ display:block; width:100%; height:100%; border-radius:50%; background:#fffff4; box-shadow:0 0 0 1px rgba(28,58,27,.85), 0 2px 8px rgba(0,0,0,.25); transition:transform .35s cubic-bezier(.22,1,.36,1); }
+.gk-cursor i{ display:block; width:100%; height:100%; border-radius:50%; background:#fffff4; box-shadow:0 0 0 1px rgba(4,44,5,.85), 0 2px 8px rgba(0,0,0,.25); transition:transform .35s cubic-bezier(.22,1,.36,1); }
 .gk-cursor.is-on, .gk-cursor-label.is-on{ opacity:1; }
 .gk-cursor.is-link i{ transform:scale(3); background:rgba(255,255,244,.85); }
 .gk-cursor.is-down i{ transform:scale(.7); }
@@ -1476,8 +1443,8 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
 .gk-cursor-label{
   width:88px; height:88px; margin:-44px 0 0 -44px; border-radius:50%;
   display:grid; place-items:center; text-align:center;
-  background:#2a5126; color:#fffff4;
-  font:500 12px/1.2 "Inter","Segoe UI",system-ui,sans-serif; letter-spacing:.06em; text-transform:uppercase;
+  background:#205007; color:#fffff4;
+  font:400 12px/1.2 "Inter","Segoe UI",system-ui,sans-serif; letter-spacing:0; text-transform:uppercase;
   transition:opacity .2s ease;
 }
 .gk-cursor-label > span{ transform:scale(.6); opacity:0; transition:transform .45s cubic-bezier(.22,1,.36,1), opacity .25s ease; }
@@ -1526,7 +1493,7 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
 
 }
 
-/* ==== css/12-gk-final-fixed-interaction.css ==== */
+/* ==== Product cards: interaction states ==== */
 
 /* =========================================================
    FINAL FIX — ISOLATED GK PRODUCT CARDS ONLY
@@ -1560,12 +1527,12 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
 /* Smooth animation */
 
 
-/* ==== css/13-isolated-both-product-sections-final.css ==== */
+/* ==== Range and bestseller sections ==== */
 
 /* ==========================================================
    TWO COMPLETELY SEPARATE PRODUCT INTERACTIONS
 
-   SECTION A = .gkr-*  -> Whole Body / Range
+   SECTION A = .gkr-*  -> Range
    SECTION B = .gks-*  -> Bestsellers
 
    MOBILE: TAP/CLICK ONLY
@@ -1592,10 +1559,10 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
 /* Mobile B: NO hover, click only */
 
 
-/* ==== css/14-gk-range-reskin.css ==== */
+/* ==== Range section ==== */
 
 
-/* ==== css/15-gk-range-cart-reposition.css ==== */
+/* ==== Range section: add to bag ==== */
 
 /* Cart button moves off the photo and sits beside the price, always
    visible; the only hover effect left is its background/icon color. */
@@ -1604,7 +1571,7 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
    button — pin the visual order explicitly: price left, cart right. */
 
 
-/* ==== css/16-gk-shop-reskin.css ==== */
+/* ==== Bestsellers section ==== */
 
 /* Price + size chips must stay visible on hover (the legacy hover
    rules for this section fade them out) — these selectors are made
@@ -1615,21 +1582,21 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
    identical recipe to the one already shipped for .range. */
 
 
-/* ==== css/17-gk-shop-hide-arrows.css ==== */
+/* ==== Bestsellers section: arrows ==== */
 
 /* Remove the left/right slide (prev/next) arrow buttons from the
    Bestsellers/.shop product carousel only. The row still supports
    native swipe/drag scrolling, so nothing else about it changes. */
 
 
-/* ==== css/18-gk-voice-leaves.css ==== */
+/* ==== Testimonials: leaf rating ==== */
 
 /* 5-star rating replaced with 5 small leaf badges (same leaf glyph
    already used in the "Purchased: ..." line below), scoped to the
    testimonial cards only. */
 
 
-/* ==== css/19-gk-unbox-range-overlap.css ==== */
+/* ==== Unbox / range overlap ==== */
 
 /* ==========================================================
    UNBOX -> RANGE CINEMATIC OVERLAP (same treatment as HERO -> UNBOX)
@@ -1644,7 +1611,7 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
   z-index:3;
   /* margin-top:-100vh; */
   /* border-radius:32px 32px 0 0; */
-  box-shadow:0 -30px 70px rgba(4,16,4,.45);
+  box-shadow:0 -30px 70px rgba(4,44,5,.45);
   /* transform:translateY(calc((1 - var(--unbox-cover-p, 0)) * 32vh)); */
   will-change:transform;
 }
@@ -1656,7 +1623,7 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
 }
 
 
-/* ==== css/20-gk-header-dropdowns.css ==== */
+/* ==== Header dropdowns ==== */
 
 /* ==========================================================
    HEADER MENU — HOVER DROPDOWNS (Shop, Our Gardens, Login/Register)
@@ -1672,7 +1639,7 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
 }
 
 
-/* ==== css/21-gk-nav-panels.css ==== */
+/* ==== Mega-menu panels ==== */
 
 /* ==========================================================
    NAV PANELS — full-width hover mega-menu (Shop / Our Gardens)
@@ -1686,7 +1653,7 @@ section.product-listing .product-grid > .product-item.product-item--large-left-2
 }
 /* --- rounded floating card style (Shop + Our Gardens) --- */
 
-/* ==== css/product-box.css ==== */
+/* ==== Product box ==== */
 /* =========================================================
    PRODUCT BOX SYSTEM — Goodricke visual reference
    Product cards only. Existing page sections are untouched.
@@ -1702,7 +1669,7 @@ section.product-listing .product-grid > .product-item{
 
 section.product-listing .product-grid > .product-item:hover{
   transform:translateY(-5px) !important;
-  box-shadow:0 18px 36px rgba(24,52,15,.12) !important;
+  box-shadow:0 18px 36px rgba(4,44,5,.12) !important;
 }
 
 /* Product image area */
@@ -1758,13 +1725,13 @@ section.product-listing .product-item .product-tag{
   margin:0 !important;
   border:0 !important;
   border-radius:999px !important;
-  background:#ef3d3d !important;
+  background:#A35917 !important;
   color:#fff !important;
   font-family:"Inter","Segoe UI",system-ui,sans-serif !important;
   line-height:1 !important;
-  letter-spacing:-.01em !important;
+  letter-spacing:0 !important;
   white-space:nowrap !important;
-  box-shadow:0 3px 8px rgba(239,61,61,.12) !important;
+  box-shadow:0 3px 8px rgba(163,89,23,.12) !important;
 }
 
 /* Wishlist + quick view */
@@ -1793,7 +1760,7 @@ section.product-listing .product-action{
   padding:0 !important;
   border:0 !important;
   border-radius:50% !important;
-  color:#182d12 !important;
+  color:#042C05 !important;
   cursor:pointer !important;
   transition:transform .25s cubic-bezier(.34,1.56,.64,1),
              background .22s ease,color .22s ease !important;
@@ -1801,8 +1768,8 @@ section.product-listing .product-action{
 
 section.product-listing .product-action:hover{
   transform:scale(1.08) !important;
-  background:#193613 !important;
-  color:#fffef5 !important;
+  background:#042C05 !important;
+  color:#FFFFF4 !important;
 }
 
 section.product-listing .product-action svg{
@@ -1879,19 +1846,19 @@ section.product-listing .product-add-to-bag svg{
 
 section.product-listing .product-add-to-bag:hover{
   transform:translateY(-2px) scale(1.015) !important;
-  background:#193613 !important;
-  color:#fffef5 !important;
-  box-shadow:0 10px 20px rgba(25,54,19,.18) !important;
+  background:#042C05 !important;
+  color:#FFFFF4 !important;
+  box-shadow:0 10px 20px rgba(4,44,5,.18) !important;
 }
 
 section.product-listing .product-add-to-bag.is-added{
-  background:#193613 !important;
-  color:#fffef5 !important;
+  background:#042C05 !important;
+  color:#FFFFF4 !important;
 }
 
 /* Keyboard focus */
 section.product-listing .product-item :focus-visible{
-  outline:2px solid #2c681f !important;
+  outline:2px solid #205007 !important;
   outline-offset:3px !important;
 }
 
@@ -1979,13 +1946,13 @@ section.product-listing .product-item :focus-visible{
 }
 
 
-/* ==== css/inr-cut-price.css ==== */
+/* ==== Prices ==== */
 
 
-/* ==== css/tea-slider.css ==== */
+/* ==== Tea slider ==== */
 /* =========================================================
    GOODRICKE TEA SLIDER — FINAL COMPACT SIZING
-   Requested: max 450px cards, 30px Arpona headings,
+   Cards max 450px, 30px Arpona headings,
    Inter body copy, smaller typography and buttons.
 ========================================================= */
 
@@ -2053,15 +2020,15 @@ section.product-listing .product-item :focus-visible{
 }
 
 
-/* ==== css/hero-overrides.css ==== */
-/* Hero-only requested changes */
+/* ==== Hero ==== */
+/* Hero adjustments */
 
 /* Hero slider arrows: left/right edges, vertically centered, shown on hover */
 .hero .hero-arrow{position:absolute;top:50%;z-index:6;width:40px;height:40px;margin:0;padding:0;border:1px solid rgba(255,255,255,.35);border-radius:50%;background:rgba(0,0,0,.35);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(-50%);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:opacity 4s ease,background .2s ease}
 .hero .hero-arrow--prev{left:8px}
 .hero .hero-arrow--next{right:8px}
 .hero:hover .hero-arrow{opacity:1;pointer-events:auto}
-.hero .hero-arrow:hover{background:rgba(47,78,14,.85)}
+.hero .hero-arrow:hover{background:rgba(32,80,7,.85)}
 .hero .hero-arrow:focus-visible{opacity:1;pointer-events:auto;outline:2px solid #fff;outline-offset:2px}
 @media(hover:none){.hero .hero-arrow{opacity:1;pointer-events:auto;width:40px;height:40px}.hero .hero-arrow--prev{left:10px}.hero .hero-arrow--next{right:10px}}
 
@@ -2071,7 +2038,7 @@ section.product-listing .product-item :focus-visible{
 /* Header search: pill expands from the search icon */
 .hsearch{position:fixed;z-index:10000;width:48px;max-width:calc(100vw - 24px);font-family:inherit;color:#fff;pointer-events:none;visibility:hidden;transition:width .55s cubic-bezier(.22,.61,.36,1),visibility 0s linear .55s}
 .hsearch.is-open{width:var(--hs-w,460px);pointer-events:auto;visibility:visible;transition:width .55s cubic-bezier(.22,.61,.36,1),visibility 0s}
-.hsearch__bar{display:flex;align-items:center;gap:10px;height:48px;padding:0 8px 0 16px;border-radius:999px;background:rgba(25,54,19,.96);border:1px solid rgba(255,255,255,.25);box-shadow:0 10px 30px rgba(0,0,0,.28);overflow:hidden}
+.hsearch__bar{display:flex;align-items:center;gap:10px;height:48px;padding:0 8px 0 16px;border-radius:999px;background:rgba(4,44,5,.96);border:1px solid rgba(255,255,255,.25);box-shadow:0 10px 30px rgba(0,0,0,.28);overflow:hidden}
 .hsearch__icon{flex:none;width:20px;height:20px}
 .hsearch__input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:#fff;font:400 14px/1 "Inter","Segoe UI",system-ui,sans-serif;opacity:0;transition:opacity .3s ease}
 .hsearch.is-open .hsearch__input{opacity:1;transition-delay:.25s}
@@ -2080,19 +2047,19 @@ section.product-listing .product-item :focus-visible{
 .hsearch__close{flex:none;width:32px;height:32px;border:0;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;display:grid;place-items:center;padding:0}
 .hsearch__close svg{width:16px;height:16px}
 .hsearch__close:hover{background:rgba(255,255,255,.25)}
-.hsearch__results{list-style:none;margin:8px 0 0;padding:8px;border-radius:20px;background:#fff;color:#193613;box-shadow:0 14px 36px rgba(0,0,0,.25);max-height:60vh;overflow:auto;opacity:0;transform:translateY(-6px);transition:opacity .3s ease .2s,transform .3s ease .2s}
+.hsearch__results{list-style:none;margin:8px 0 0;padding:8px;border-radius:20px;background:#fff;color:#042C05;box-shadow:0 14px 36px rgba(0,0,0,.25);max-height:60vh;overflow:auto;opacity:0;transform:translateY(-6px);transition:opacity .3s ease .2s,transform .3s ease .2s}
 .hsearch.is-open .hsearch__results{opacity:1;transform:none}
-.hsearch__label{padding:8px 10px 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6b7a63}
-.hsearch__empty{padding:14px 10px;font-size:14px;color:#6b7a63}
-.hsearch__item{display:flex;align-items:center;gap:12px;width:100%;padding:8px 10px;border:0;border-radius:12px;background:transparent;color:inherit;font:500 14px/1.2 "Inter","Segoe UI",system-ui,sans-serif;text-align:left;cursor:pointer}
-.hsearch__item:hover,.hsearch__item:focus-visible{background:#f1f4ec;outline:0}
+.hsearch__label{padding:8px 10px 4px;font-size:11px;letter-spacing:0;text-transform:uppercase;color:#205007}
+.hsearch__empty{padding:14px 10px;font-size:14px;color:#205007}
+.hsearch__item{display:flex;align-items:center;gap:12px;width:100%;padding:8px 10px;border:0;border-radius:12px;background:transparent;color:inherit;font:400 14px/1.2 "Inter","Segoe UI",system-ui,sans-serif;text-align:left;cursor:pointer}
+.hsearch__item:hover,.hsearch__item:focus-visible{background:#FFFFF4;outline:0}
 .hsearch__item img{width:40px;height:40px;object-fit:contain;border-radius:8px;background:#f6f6f6}
 .hsearch__item span{flex:1}
-.hsearch__item em{font-style:normal;color:#2f4e0e;font-weight:600}
-.hsearch__chip{margin:4px 6px 6px 0;padding:7px 14px;border:1px solid rgba(25,54,19,.25);border-radius:999px;background:#fff;color:#193613;font:500 13px "Inter",system-ui,sans-serif;cursor:pointer}
-.hsearch__chip:hover{background:#193613;color:#fff}
+.hsearch__item em{font-style:normal;color:#205007;font-weight:400}
+.hsearch__chip{margin:4px 6px 6px 0;padding:7px 14px;border:1px solid rgba(4,44,5,.25);border-radius:999px;background:#fff;color:#042C05;font:400 13px "Inter",system-ui,sans-serif;cursor:pointer}
+.hsearch__chip:hover{background:#042C05;color:#fff}
 .hsearch__results li:has(.hsearch__chip){display:inline-block}
-.hsearch-hit{outline:3px solid #193613;outline-offset:4px;transition:outline-color .4s ease}
+.hsearch-hit{outline:3px solid #042C05;outline-offset:4px;transition:outline-color .4s ease}
 
 /* Hide the rest of the header while search is open */
 .pillnav,.navactions>*:not(.search-link){transition:opacity .35s ease,visibility 0s}
@@ -2101,7 +2068,7 @@ body.search-open .navactions>*:not(.search-link){opacity:0;visibility:hidden;poi
 body.search-open .navactions .search-link{opacity:0;visibility:hidden}
 
 
-/* ==== css/add-to-bag-label.css ==== */
+/* ==== Add to bag label ==== */
 /* Keep the Add to Bag label visible on every product card */
 .product-add-to-bag{
   display:inline-flex!important;
@@ -2121,13 +2088,13 @@ body.search-open .navactions .search-link{opacity:0;visibility:hidden}
 }
 
 
-/* ==== css/alternating-banner.css ==== */
+/* ==== Alternating banner ==== */
 /* Desktop: banner 1 right, banner 2 left, banner 3 right */
 
 
-/* ==== css/product-box-homepage.css ==== */
+/* ==== Product box: home ==== */
 /* Match the product listing cards to the homepage product-card proportions/styles.
-   Cosmetic sizing only — existing HTML, content and interactions remain unchanged. */
+   Visual sizing only — existing HTML, content and interactions remain unchanged. */
 
 /* Keep the same compact proportions on smaller screens too. */
 
@@ -2141,7 +2108,7 @@ section.product-listing .product-item{
 }
 section.product-listing .product-grid > .product-item{
   background-color:#fff !important;
-  background-image:linear-gradient(#193613,#193613) !important;
+  background-image:linear-gradient(#042C05,#042C05) !important;
   background-repeat:no-repeat !important;
   background-position:bottom left !important;
   background-size:100% 0% !important;
@@ -2178,7 +2145,7 @@ section.product-listing .product-grid > .product-item:hover .size-option{
 }
 
 
-/* ==== css/bag-drawer.css ==== */
+/* ==== Bag drawer ==== */
 /* ================================
    GOODRICKE — ADDED TO BAG DRAWER
    ================================ */
@@ -2207,8 +2174,8 @@ section.product-listing .product-grid > .product-item:hover .size-option{
   display:flex;
   flex-direction:column;
   background:#fffef9;
-  color:#24351d;
-  box-shadow:-18px 0 50px rgba(16,27,12,.16);
+  color:#042C05;
+  box-shadow:-18px 0 50px rgba(4,44,5,.16);
   transform:translateX(105%);
   transition:transform .48s cubic-bezier(.22,.8,.24,1);
   overflow:hidden;
@@ -2225,7 +2192,7 @@ section.product-listing .product-grid > .product-item:hover .size-option{
   align-items:center;
   justify-content:space-between;
   padding:0 24px;
-  border-bottom:1px solid rgba(32,51,24,.13);
+  border-bottom:1px solid rgba(4,44,5,.13);
   background:#fffef9;
 }
 .gk-bag-title{
@@ -2233,7 +2200,7 @@ section.product-listing .product-grid > .product-item:hover .size-option{
   align-items:center;
   gap:10px;
   margin:0;
-  color:#3b2a2c;
+  color:#042C05;
   font-family:"Arpona",Georgia,serif;
   font-size:28px;
   line-height:1;
@@ -2247,11 +2214,11 @@ section.product-listing .product-grid > .product-item:hover .size-option{
   align-items:center;
   justify-content:center;
   border-radius:50%;
-  background:#f3c400;
-  color:#18210f;
+  background:#CAAA2C;
+  color:#042C05;
   font-family:"Inter","Segoe UI",sans-serif;
   font-size:11px;
-  font-weight:600;
+  font-weight:400;
   line-height:1;
 }
 .gk-bag-close{
@@ -2260,7 +2227,7 @@ section.product-listing .product-grid > .product-item:hover .size-option{
   padding:0;
   border:0;
   background:transparent;
-  color:#4d403d;
+  color:#042C05;
   cursor:pointer;
   display:grid;
   place-items:center;
@@ -2290,7 +2257,7 @@ section.product-listing .product-grid > .product-item:hover .size-option{
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#f3f0ea;
+  background:#FFFFF4;
   overflow:hidden;
 }
 .gk-bag-product-image img{
@@ -2301,7 +2268,7 @@ section.product-listing .product-grid > .product-item:hover .size-option{
 .gk-bag-product-name{
   margin:0 auto 17px;
   max-width:360px;
-  color:#403335;
+  color:#042C05;
   font-family:"Arpona",Georgia,serif;
   font-size:20px;
   line-height:1.3;
@@ -2309,19 +2276,19 @@ section.product-listing .product-grid > .product-item:hover .size-option{
 }
 .gk-bag-product-meta{
   margin:0;
-  color:#51494a;
+  color:#4B4B4B;
   font-size:16px;
   line-height:1.4;
 }
 .gk-bag-product-price{
-  color:#51494a;
+  color:#4B4B4B;
   margin-left:9px;
 }
 
 .gk-bag-footer{
   flex:0 0 auto;
   background:#fffef9;
-  border-top:1px solid rgba(32,51,24,.08);
+  border-top:1px solid rgba(4,44,5,.08);
 }
 .gk-bag-continue{
   display:block;
@@ -2356,33 +2323,33 @@ body.gk-bag-lock{
   .gk-bag-product-name{font-size:18px}
 }
 
-/* Cart drawer layout matching the requested reference */
+/* Cart drawer layout */
 .gk-bag-scroll{padding:26px 24px 30px}
-.gk-bag-cart-item{display:flex;align-items:flex-start;gap:16px;padding:0 0 24px;border-bottom:1px solid #e5e1d9;text-align:left}
-.gk-bag-cart-item .gk-bag-product-image{flex:0 0 92px;width:92px;height:110px;margin:0;background:#f3f0ea}
+.gk-bag-cart-item{display:flex;align-items:flex-start;gap:16px;padding:0 0 24px;border-bottom:1px solid #E1E1E1;text-align:left}
+.gk-bag-cart-item .gk-bag-product-image{flex:0 0 92px;width:92px;height:110px;margin:0;background:#FFFFF4}
 .gk-bag-cart-details{min-width:0;flex:1}
 .gk-bag-cart-details .gk-bag-product-name{margin:5px 0 8px;text-align:left;font-size:18px}
 .gk-bag-cart-details .gk-bag-product-meta{font-size:14px}
 .gk-bag-cart-actions{display:flex;align-items:center;gap:10px;margin-top:12px}
-.gk-bag-quantity{height:40px;display:flex;align-items:center;border:1px solid #ddd8d2}
-.gk-bag-quantity button{width:32px;height:38px;border:0;background:#fff;color:#342d2d;font-size:20px;cursor:pointer}
+.gk-bag-quantity{height:40px;display:flex;align-items:center;border:1px solid #D9D9D9}
+.gk-bag-quantity button{width:32px;height:38px;border:0;background:#fff;color:#042C05;font-size:20px;cursor:pointer}
 .gk-bag-quantity span{min-width:25px;text-align:center;font-size:14px}
 .gk-bag-cart-actions .gk-bag-product-price{margin:0;white-space:nowrap}
 .gk-bag-remove{margin-left:auto;border:0;background:transparent;color:#777;font-size:18px;cursor:pointer}
 .gk-bag-note{margin-top:26px}
-.gk-bag-note label{display:block;margin-bottom:8px;color:#51494a;font-size:14px}
-.gk-bag-note textarea{display:block;width:100%;height:86px;resize:vertical;border:1px solid #8991ad;border-radius:4px;padding:10px;font:inherit;background:#fff}
-.gk-bag-summary{margin-top:20px;color:#403335}
+.gk-bag-note label{display:block;margin-bottom:8px;color:#4B4B4B;font-size:14px}
+.gk-bag-note textarea{display:block;width:100%;height:86px;resize:vertical;border:1px solid #929292;border-radius:4px;padding:10px;font:inherit;background:#fff}
+.gk-bag-summary{margin-top:20px;color:#042C05}
 .gk-bag-summary>div{display:flex;justify-content:space-between;font-size:16px}
-.gk-bag-summary p{margin-top:16px;font-size:12px;color:#51494a}
+.gk-bag-summary p{margin-top:16px;font-size:12px;color:#4B4B4B}
 .gk-bag-summary a{color:inherit}
 .gk-bag-footer{display:grid;gap:0;padding:27px 24px 24px}
-.gk-bag-footer button{width:100%;height:48px;border:0;border-radius:4px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer}
+.gk-bag-footer button{width:100%;height:48px;border:0;border-radius:4px;font-family:inherit;font-size:14px;font-weight:400;cursor:pointer}
 .gk-bag-continue{margin:0}
 @media(max-width:600px){.gk-bag-scroll{padding:26px 18px 24px}.gk-bag-footer{padding:27px 18px 24px}.gk-bag-cart-item .gk-bag-product-image{flex-basis:92px;width:92px;height:110px}}
 
 
-/* ==== css/two-product-slider.css ==== */
+/* ==== Two-product slider ==== */
 /* =========================================
    TWO PRODUCT CAROUSEL
 ========================================= */
@@ -2423,22 +2390,22 @@ body.gk-bag-lock{
 /* Arrow disabled state */
 
 
-/* ==== css/filter-sort.css ==== */
+/* ==== Filter and sort ==== */
 .gk-filter-overlay{position:fixed;inset:0;background:rgba(20,18,18,.28);z-index:99990;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
 .gk-filter-overlay.is-open{opacity:1;visibility:visible}
-.gk-filter-drawer{position:fixed;top:0;right:0;width:420px;max-width:100vw;height:100dvh;background:#fffefb;color:#3f292d;z-index:99999;display:flex;flex-direction:column;transform:translateX(102%);transition:transform .42s cubic-bezier(.22,.8,.24,1);box-shadow:-12px 0 35px rgba(30,20,20,.12);font-family:"Inter",system-ui,sans-serif;overflow:hidden}
+.gk-filter-drawer{position:fixed;top:0;right:0;width:420px;max-width:100vw;height:100dvh;background:#fffefb;color:#042C05;z-index:99999;display:flex;flex-direction:column;transform:translateX(102%);transition:transform .42s cubic-bezier(.22,.8,.24,1);box-shadow:-12px 0 35px rgba(4,44,5,.12);font-family:"Inter",system-ui,sans-serif;overflow:hidden}
 .gk-filter-drawer.is-open{transform:translateX(0)}
-.gk-filter-head{height:76px;min-height:76px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #d7ceca;background:#fffefb}
-.gk-filter-title{margin:0;font-family:"Arpona",Georgia,serif;font-style:italic;font-weight:400;font-size:25px;line-height:1;color:#2f4e0e}
-.gk-filter-close{width:32px;height:32px;padding:0;border:0;background:transparent;color:#2f4e0e;display:grid;place-items:center;cursor:pointer}
+.gk-filter-head{height:76px;min-height:76px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #D0D0D0;background:#fffefb}
+.gk-filter-title{margin:0;font-family:"Arpona",Georgia,serif;font-style:italic;font-weight:400;font-size:25px;line-height:1;color:#205007}
+.gk-filter-close{width:32px;height:32px;padding:0;border:0;background:transparent;color:#205007;display:grid;place-items:center;cursor:pointer}
 .gk-filter-close svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.2}
 .gk-filter-scroll{flex:1;min-height:0;padding:18px 18px 24px;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
 .gk-filter-scroll::-webkit-scrollbar{width:0;height:0}
-.gk-filter-section{border-bottom:1px solid #d4cbc7}
-.gk-filter-section:first-child{border-bottom:1px solid #d4cbc7}
-.gk-filter-section-head{width:100%;min-height:56px;padding:0 2px;display:flex;align-items:center;justify-content:space-between;border:0;background:transparent;color:#3f292d;font-family:"Inter",system-ui,sans-serif;font-size:12px;line-height:1;text-transform:uppercase;letter-spacing:.055em;text-align:left;cursor:pointer}
+.gk-filter-section{border-bottom:1px solid #CDCDCD}
+.gk-filter-section:first-child{border-bottom:1px solid #CDCDCD}
+.gk-filter-section-head{width:100%;min-height:56px;padding:0 2px;display:flex;align-items:center;justify-content:space-between;border:0;background:transparent;color:#042C05;font-family:"Inter",system-ui,sans-serif;font-size:12px;line-height:1;text-transform:uppercase;letter-spacing:0;text-align:left;cursor:pointer}
 .gk-filter-chevron{position:relative;width:18px;height:18px;flex:0 0 18px}
-.gk-filter-chevron:before,.gk-filter-chevron:after{content:"";position:absolute;background:#8a7979;left:2px;top:8px;width:14px;height:1px}
+.gk-filter-chevron:before,.gk-filter-chevron:after{content:"";position:absolute;background:#7D7D7D;left:2px;top:8px;width:14px;height:1px}
 .gk-filter-chevron:after{left:8px;top:2px;width:1px;height:14px}
 /* Smooth accordion animation */
 .gk-filter-section .gk-filter-options{
@@ -2455,15 +2422,15 @@ body.gk-bag-lock{
   padding:0 0 18px;
   visibility:visible;
 }
-.gk-filter-option{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 14px;border:1px solid #8d7477;border-radius:4px;background:#fffdf9;color:#4b393c;font-size:13px;line-height:1.15;text-align:center;cursor:pointer;transition:background .18s ease,color .18s ease,border-color .18s ease}
+.gk-filter-option{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 14px;border:1px solid #7A7A7A;border-radius:4px;background:#fffdf9;color:#042C05;font-size:13px;line-height:1.15;text-align:center;cursor:pointer;transition:background .18s ease,color .18s ease,border-color .18s ease}
 .gk-filter-option input{position:absolute;opacity:0;pointer-events:none}
-.gk-filter-option:has(input:checked){background:#1f2e17;border-color:#1f2e17;color:#fff}
-.gk-filter-option:hover{border-color:#1f2e17}
+.gk-filter-option:has(input:checked){background:#042C05;border-color:#042C05;color:#fff}
+.gk-filter-option:hover{border-color:#042C05}
 .gk-filter-section[data-filter-section="sort"] .gk-filter-options{padding-bottom:22px}
 .gk-filter-section[data-filter-section="sort"].is-open .gk-filter-options{padding-bottom:22px}
-.gk-filter-actions{flex:0 0 auto;padding:16px 18px 22px;background:#fffefb;border-top:1px solid #d4cbc7}
-.gk-filter-apply{display:block;width:100%;height:46px;border:0;border-radius:4px;background:#1f2e17;color:#fff;font-family:"Inter",system-ui,sans-serif;font-size:13px;cursor:pointer}
-.gk-filter-clear{display:block;margin:20px auto 0;padding:0;border:0;border-bottom:1px solid #1f2e17;background:transparent;color:#273d0f;font-family:"Arpona",Georgia,serif;font-size:15px;line-height:1.3;cursor:pointer}
+.gk-filter-actions{flex:0 0 auto;padding:16px 18px 22px;background:#fffefb;border-top:1px solid #CDCDCD}
+.gk-filter-apply{display:block;width:100%;height:46px;border:0;border-radius:4px;background:#042C05;color:#fff;font-family:"Inter",system-ui,sans-serif;font-size:13px;cursor:pointer}
+.gk-filter-clear{display:block;margin:20px auto 0;padding:0;border:0;border-bottom:1px solid #042C05;background:transparent;color:#042C05;font-family:"Arpona",Georgia,serif;font-size:15px;line-height:1.3;cursor:pointer}
 body.gk-filter-lock{overflow:hidden!important}
 @media(max-width:600px){
   .gk-filter-drawer{width:100%}
@@ -2474,12 +2441,12 @@ body.gk-filter-lock{overflow:hidden!important}
 }
 
 
-/* ==== css/editorial-options.css ==== */
+/* ==== Editorial options ==== */
 /* Larger editorial tile with the same visual interaction language as product cards. */
 /* Give the 2x2 editorial tile more visual presence while keeping the existing grid placement. */
 
 
-/* ==== css/large-product-card.css ==== */
+/* ==== Large product card ==== */
 /* Large cards use the exact same product-card design; only their grid footprint is larger. */
 section.product-listing .product-grid > .product-item.product-item--large,
 section.product-listing .product-grid > .product-item.product-item--large-left-1,
@@ -2535,7 +2502,7 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
 }
 
 
-/* ==== css/third-banner.css ==== */
+/* ==== Third banner ==== */
 /* Third featured banner: keep the existing layout and place this next large tile on the RIGHT. */
 @media (min-width: 1001px) {
   section.product-listing .product-grid > .product-item.product-item--large-left-2 {
@@ -2559,7 +2526,7 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
 }
 
 
-/* ==== css/product-grid-mobile.css ==== */
+/* ==== Product grid: mobile ==== */
 /* =========================================================
    PRODUCT GRID — MOBILE (max-width: 768px)
    Loaded last + extra specificity so it overrides every earlier
@@ -2712,7 +2679,7 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
     padding: 0 8px !important;
     gap: 6px !important;
     font-size: 11px !important;
-    letter-spacing: .02em !important;
+    letter-spacing: 0 !important;
   }
   html body section.product-listing .product-add-to-bag svg {
     width: 15px !important;
@@ -2763,25 +2730,25 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
   }
 }
 
-/* ==== css/base.css ==== */
+/* ==== Base (PLP / PDP) ==== */
 :root{
-    --page-bg:#f6f2e7;
-    --page-fg:#16240d;
+    --page-bg:#FFFFF4;
+    --page-fg:#042C05;
     --surface:#fffff4; /* Morning Mist — RAL 9003 / PANTONE 663 C */
-    --surface-border:#e6dfc9;
-    --muted:#6b6152;
+    --surface-border:#DFDFDF;
+    --muted:#626262;
     --brand-green:#205007;      /* Goodricke Green — PANTONE 350 C / RAL 6002 */
-    --brand-green-deep:#0a1a02; /* brand green, darkened for large surfaces */
-    --brand-ink:#12270a;        /* brand green, darkened for text/icons on gold */
-    --brand-gold:#c69a4a;
-    --card-tint:#e4ead8;        /* brand green tinted onto Morning Mist, for product cards */
+    --brand-green-deep:#042C05; /* brand green, darkened for large surfaces */
+    --brand-ink:#042C05;        /* brand green, darkened for text/icons on gold */
+    --brand-gold:#CAAA2C;
+    --card-tint:#E7E7E7;        /* brand green tinted onto Morning Mist, for product cards */
   }:root[data-theme="dark"]{
-    --page-bg:#0a1206;
-    --page-fg:#f0ead9;
-    --surface:#141f0c;
-    --surface-border:#26361a;
-    --muted:#a49b86;
-    --card-tint:#1c2a11;
+    --page-bg:#042C05;
+    --page-fg:#FFFFF4;
+    --surface:#042C05;
+    --surface-border:#042C05;
+    --muted:#CAAA2C;
+    --card-tint:#042C05;
   }*{box-sizing:border-box;}body{
     background:var(--page-bg);
     color:var(--page-fg);
@@ -2791,8 +2758,7 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
     position:relative;
     isolation:isolate;
     background:
-      radial-gradient(120% 90% at 15% -10%, rgba(198,154,74,0.22), transparent 55%),
-      linear-gradient(180deg, rgba(10,26,2,0.58) 0%, rgba(10,26,2,0.4) 34%, rgba(10,26,2,0.64) 78%, var(--brand-green-deep) 100%),
+            linear-gradient(180deg, rgba(0,0,0,0.58) 0%, rgba(0,0,0,0.4) 34%, rgba(0,0,0,0.64) 78%, rgba(0,0,0,0.72) 100%),
       url("../assets/images/plp-hero.webp");
     background-size:cover;
     background-position:center 38%;
@@ -2815,10 +2781,10 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
     gap:8px;
     padding:10px 24px;
     font-size:12.5px;
-    letter-spacing:.06em;
-    color:rgba(240,236,220,0.78);
+    letter-spacing:0;
+    color:rgba(255,255,244,0.78);
     border-bottom:1px solid rgba(255,255,255,0.08);
-  }.topline strong{color:#f0ecdc;font-weight:700;}.navwrap{
+  }.topline strong{color:#FFFFF4;font-weight:400;}.navwrap{
     position:relative;
     z-index:6;
     display:flex;
@@ -2842,7 +2808,7 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
     display:flex;
     align-items:center;
     gap:2px;
-    background:rgba(10,26,2,0.4);
+    background:rgba(0,0,0,0.4);
     border:1px solid rgba(255,255,255,0.14);
     backdrop-filter:blur(14px) saturate(140%);
     -webkit-backdrop-filter:blur(14px) saturate(140%);
@@ -2855,8 +2821,8 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
     padding:10px 18px;
     border-radius:999px;
     font-size:14px;
-    font-weight:600;
-    color:#f2eee0;
+    font-weight:400;
+    color:#FFFFF4;
     white-space:nowrap;
     transition:background .18s ease, color .18s ease;
   }.pillnav a:hover{background:rgba(255,255,255,0.14);}.pillnav a.active{background:var(--brand-gold);color:var(--brand-ink);}.navactions{
@@ -2869,21 +2835,21 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
     align-items:center;
     gap:8px;
     font-size:14px;
-    font-weight:600;
-    color:#f2eee0;
+    font-weight:400;
+    color:#FFFFF4;
   }.cart-link svg{width:19px;height:19px;transition:transform .4s cubic-bezier(.34,1.56,.64,1);}.cart-link:hover svg{transform:scale(1.18);}.login-btn{
     display:flex;
     align-items:center;
     gap:8px;
-    background:#485547d4;
+    background:#515151D4;
     color:var(--brand-ink);
-    font-weight:700;
+    font-weight:400;
     font-size:13.5px;
     padding:11px 12px 11px 20px;
     border-radius:999px;
-    letter-spacing:.01em;
+    letter-spacing:0;
     transition:filter .18s ease, transform .4s cubic-bezier(.34,1.56,.64,1);
-  }.login-btn:hover{background-color:#1c3a1b !important;filter:brightness(1.08);transform:scale(1.06);}.login-btn .arrow{
+  }.login-btn:hover{background-color:#042C05 !important;filter:brightness(1.08);transform:scale(1.06);}.login-btn .arrow{
     display:grid;place-items:center;
     width:26px;height:26px;
     border-radius:50%;
@@ -2898,7 +2864,7 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
     border-radius:50%;
     background:rgba(255,255,255,0.12);
     border:1px solid rgba(255,255,255,0.18);
-    color:#f2eee0;
+    color:#FFFFF4;
     transition:transform .4s cubic-bezier(.34,1.56,.64,1),background .25s ease;
   }.menu-toggle:hover{ transform:scale(1.1); background:rgba(255,255,255,0.2); }@keyframes heroDissolve{
     from{opacity:0;filter:blur(14px);transform:translateY(18px);}
@@ -2919,7 +2885,7 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
     position:absolute;
     inset:0;
     z-index:1;
-    background:linear-gradient(90deg,rgba(6,20,6,0.74) 0%,rgba(6,20,6,0.5) 46%,rgba(6,20,6,0.18) 74%,rgba(6,20,6,0.1) 100%);
+    background:linear-gradient(90deg,rgba(0,0,0,0.74) 0%,rgba(0,0,0,0.5) 46%,rgba(0,0,0,0.18) 74%,rgba(0,0,0,0.1) 100%);
   }.hero-copy{
     position:relative;
     z-index:3;
@@ -2941,7 +2907,7 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
     font-weight:400;
     font-size:clamp(34px,2.9vw,46px);
     line-height:1.14;
-    letter-spacing:-0.01em;
+    letter-spacing:0;
     color:#fff;
     max-width:19ch;
     text-wrap:pretty;
@@ -2954,18 +2920,18 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
     max-width:44ch;
     margin:0 0 30px;
   }:root{
-    --btn-bg:#2A5126;
+    --btn-bg:#205007;
     --btn-fg:#fff;
-    --btn-bg-hover:#1c3a1b;
+    --btn-bg-hover:#042C05;
     --btn-radius:999px;
-    --btn-font:500 14.5px/1 "Inter",system-ui,sans-serif;
+    --btn-font:400 14.5px/1 "Inter",system-ui,sans-serif;
     --btn-pad:15px 30px;
     --btn-gap:9px;
     --btn-transition:transform .4s cubic-bezier(.34,1.56,.64,1),background-color .25s ease,filter .25s ease,color .25s ease;
   }.site-footer{
     position:relative;
-    background:#16300b;
-    color:#e8f0dd;
+    background:#042C05;
+    color:#FFFFF4;
     padding:72px clamp(24px,6vw,80px) 0;
     overflow:hidden;
   }
@@ -3004,7 +2970,7 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
 
   border-radius: 42px;
 
-  background: #3d6337;
+  background: #205007;
   color: #ffffff;
 }
 
@@ -3195,20 +3161,20 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
   color: #fff;
   margin:0 !important;
   text-transform: uppercase !important;
-  }.footer-brand p{font-size:14.5px;line-height:1.7;color:rgba(232,240,221,0.72);margin:0 0 22px;max-width:36ch;}.footer-signup{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px;}.footer-signup input{
+  }.footer-brand p{font-size:14.5px;line-height:1.7;color:rgba(255,255,244,0.72);margin:0 0 22px;max-width:36ch;}.footer-signup{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px;}.footer-signup input{
     font:inherit;
     font-size:14.5px;
     flex:1 1 200px;
     min-width:0;
     padding:13px 16px;
     border-radius:8px;
-    border:1px solid rgba(232,240,221,0.32);
+    border:1px solid rgba(255,255,244,0.32);
     background:transparent;
     color:#fff;
-  }.footer-signup input::placeholder{color:rgba(232,240,221,0.6);}.footer-signup button{
+  }.footer-signup input::placeholder{color:rgba(255,255,244,0.6);}.footer-signup button{
     font:inherit;
     font-size:13.5px;
-    letter-spacing:.06em;
+    letter-spacing:0;
     text-transform:uppercase;
     padding:13px 24px;
     border:none;
@@ -3219,20 +3185,20 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
   }.footer-contact{display:flex;flex-direction:column;gap:12px; margin: 33px 0;}.footer-contact span{
     display:flex;align-items:center;gap:11px;
     font-size:14.5px;
-    color:#e8f0dd;
+    color:#FFFFF4;
   }.footer-contact i{
     display:grid;place-items:center;
     width:26px;height:26px;
     border-radius:999px;
     background:#fff;
-    color:#16300b;
+    color:#042C05;
     flex-shrink:0;
   }.footer-contact svg{width:13px;height:13px;}.footer-col h3{
     font-size:12.5px;
-    letter-spacing:.12em;
+    letter-spacing:0;
     text-transform:uppercase;
-    font-weight:600;
-    color:rgba(232,240,221,0.62);
+    font-weight:400;
+    color:rgba(255,255,244,0.62);
     margin:0 0 22px;
   }.footer-col a{
     display:flex;
@@ -3244,21 +3210,21 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
     text-decoration:none;
     padding:13px 0;
     
-  }.footer-col a svg{width:13px;height:13px;opacity:.8;flex-shrink:0;}.footer-col a:hover{color:#cfe8a0;}.footer-col-body{display:contents;}.footer-bottom{
+  }.footer-col a svg{width:13px;height:13px;opacity:.8;flex-shrink:0;}.footer-col a:hover{color:#CAAA2C;}.footer-col-body{display:contents;}.footer-bottom{
     display:flex;
     flex-wrap:wrap;
     align-items:center;
     justify-content:space-between;
     gap:14px;
-    border-top:1px solid rgba(232,240,221,0.18);
+    border-top:1px solid rgba(255,255,244,0.18);
     padding:22px 0 26px;
     font-size:13px;
-    color:rgba(232,240,221,0.72);
-  }.footer-bottom nav{display:flex;flex-wrap:wrap;gap:16px;}.footer-bottom a{color:rgba(232,240,221,0.72);text-decoration:none;}.footer-bottom a:hover{color:#fff;}.footer-disclaimer{
-    background:#fdf8ec;
+    color:rgba(255,255,244,0.72);
+  }.footer-bottom nav{display:flex;flex-wrap:wrap;gap:16px;}.footer-bottom a{color:rgba(255,255,244,0.72);text-decoration:none;}.footer-bottom a:hover{color:#fff;}.footer-disclaimer{
+    background:#FFFFF4;
     color:var(--page-fg);
     font-size:13.5px;
-    font-weight:600;
+    font-weight:400;
     padding:22px clamp(24px,6vw,80px);
     margin:0;
   }@keyframes unboxZoom {
@@ -3307,12 +3273,12 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
     z-index:120;
     width:calc(100% - 32px);
     max-width:695px;
-    background:rgba(10,26,2,0.55);
+    background:rgba(0,0,0,0.55);
     backdrop-filter:blur(18px) saturate(160%);
     -webkit-backdrop-filter:blur(18px) saturate(160%);
     border:1px solid rgba(255,255,255,0.13);
     border-radius:999px;
-    box-shadow:0 12px 34px rgba(12,30,8,0.22);
+    box-shadow:0 12px 34px rgba(4,44,5,0.22);
     padding:10px 10px;
     display:flex;
     align-items:center;
@@ -3342,11 +3308,11 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
     flex-wrap:nowrap;
     justify-content:center;
   }.sticky-links a{
-    color:#f2eee0;
+    color:#FFFFF4;
     font-family:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
     font-size:12.5px;
-    font-weight:500;
-    letter-spacing:.04em;
+    font-weight:400;
+    letter-spacing:0;
     text-transform:uppercase;
     text-decoration:none;
     white-space:nowrap;
@@ -3359,11 +3325,11 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
     justify-content:center;
     width:38px;height:38px;
     border-radius:999px;
-    background:#2a5126;
-    color:#fffef5;
+    background:#205007;
+    color:#FFFFF4;
     flex:0 0 auto;
     transition:transform .4s cubic-bezier(.34,1.56,.64,1),background .25s ease;
-  }.sticky-cart svg{width:21px;height:21px;color:#fff !important;}.sticky-cart:hover{transform:scale(1.12);background:#1c3a1b;}@media (max-width:640px){.sticky-links a{font-size:11.5px;letter-spacing:.02em;}.sticky-icon{width:30px;height:30px;}}section:not(.hero) h2{
+  }.sticky-cart svg{width:21px;height:21px;color:#fff !important;}.sticky-cart:hover{transform:scale(1.12);background:#042C05;}@media (max-width:640px){.sticky-links a{font-size:11.5px;letter-spacing:0;}.sticky-icon{width:30px;height:30px;}}section:not(.hero) h2{
     font-family:"Arpona","Georgia",serif !important;
     font-weight:400 !important;
     font-size:30px !important;
@@ -3401,7 +3367,7 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
     padding: 8px 16px !important;
     font-size: 10px !important;
     line-height: 1.25 !important;
-    letter-spacing: .035em !important;
+    letter-spacing: 0 !important;
     text-align: center !important;
   }.navwrap {
     width: 100% !important;
@@ -3470,7 +3436,7 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
     margin: 0 0 16px !important;
     font-size: clamp(31px, 8.6vw, 42px) !important;
     line-height: 1.08 !important;
-    letter-spacing: -.018em !important;
+    letter-spacing: 0 !important;
     text-wrap: balance !important;
   }.hero-lede {
     max-width: 36ch !important;
@@ -3480,7 +3446,7 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
   }section:not(.hero) h2 {
     font-size: clamp(27px, 7.8vw, 34px) !important;
     line-height: 1.12 !important;
-    letter-spacing: -.018em !important;
+    letter-spacing: 0 !important;
     text-wrap: balance !important;
   }}@media screen and (max-width: 767px){@keyframes regionZoomMobile {
     from { transform: scale(1); }
@@ -3646,7 +3612,7 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
 
         padding: 90px 24px 30px !important;
 
-        background: #fffef5 !important;
+        background: #FFFFF4 !important;
         border: 0 !important;
         border-radius: 0 !important;
 
@@ -3680,7 +3646,7 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
         color: #111 !important;
 
         font-size: 16px !important;
-        font-weight: 500 !important;
+        font-weight: 400 !important;
 
         border-radius: 0 !important;
     }}body{ overflow-x:clip !important; }@supports not (overflow:clip){body{ overflow-x:visible !important; }}html{ scroll-behavior:auto !important; }.hero-scene{
@@ -3704,7 +3670,7 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
   position:absolute; inset:0;
   z-index:4;
   pointer-events:none;            /* can never block clicks */
-  background:#061406;
+  background:#042C05;
   opacity:calc(var(--hero-p) * .78);
 }@media (max-width:767px){.hero-scene .hero-slider{ transform:translate3d(0,calc(var(--hero-p) * 2vh),0) scale(calc(1 + var(--hero-p) * .03)); }.hero-scene .hero-copy{ transform:translateY(calc(var(--hero-p) * -28px)) !important; }.hero-scene .hero::after{ opacity:calc(var(--hero-p) * .6); }}@media (prefers-reduced-motion:reduce){.hero-scene .hero-slider,
   .hero-scene .hero-copy{ transform:none !important; opacity:1; will-change:auto; }.hero-scene .hero-slider{ transform:none; }.hero-scene .hero::after{ opacity:0; }}#stickybar{
@@ -3718,7 +3684,7 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
   display:block;
   transform:translateX(-50%);
   border-radius:999px;
-  background:rgba(10,26,2,.4);
+  background:rgba(0,0,0,.4);
   border:1px solid rgba(255,255,255,.14);
   -webkit-backdrop-filter:blur(14px) saturate(140%); backdrop-filter:blur(14px) saturate(140%);
   box-shadow:none;
@@ -3739,12 +3705,12 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
 }#stickybar .sticky-links a{
   display:inline-flex; align-items:center; padding:10px 18px; border-radius:999px;
   font:400 13px/1.2 "Inter","Segoe UI",system-ui,sans-serif; letter-spacing:0; text-transform:none;
-  color:#f2eee0; opacity:1; transition:background .18s ease, color .25s ease;
-}#stickybar .sticky-links a:hover{ background:rgba(255,255,255,.14); }#stickybar .sticky-links a.is-active{ background:rgba(255,255,255,.14); color:#fff; }#stickybar.is-light .sticky-links a{ color:#1c2a11; }#stickybar.is-light .sticky-links a:hover{ background:rgba(42,81,38,.1); }#stickybar.is-light .sticky-links a.is-active{ background:rgba(42,81,38,.12); color:#1c2a11; }#stickybar .sticky-actions{
+  color:#FFFFF4; opacity:1; transition:background .18s ease, color .25s ease;
+}#stickybar .sticky-links a:hover{ background:rgba(255,255,255,.14); }#stickybar .sticky-links a.is-active{ background:rgba(255,255,255,.14); color:#fff; }#stickybar.is-light .sticky-links a{ color:#042C05; }#stickybar.is-light .sticky-links a:hover{ background:rgba(32,80,7,.1); }#stickybar.is-light .sticky-links a.is-active{ background:rgba(32,80,7,.12); color:#042C05; }#stickybar .sticky-actions{
   position:absolute; right:8px; top:50%; transform:translateY(-50%);
   display:flex; align-items:center; gap:8px;
   opacity:clamp(0, calc((var(--hp) - .82) * 5.5), 1);
-}#stickybar .sticky-cart{ width:38px; height:38px; background:#2a5126; color:#fffef5; }#stickybar .sticky-toggle,
+}#stickybar .sticky-cart{ width:38px; height:38px; background:#205007; color:#FFFFF4; }#stickybar .sticky-toggle,
 #stickybar .sticky-menu{ display:none; }@media (max-width:900px){#stickybar{
     left:50%; top:14px; width:auto; height:auto; max-width:calc(100% - 24px);
     opacity:0; transform:translateX(-50%) translateY(-14px) scale(.96);
@@ -3752,18 +3718,18 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
   }#stickybar::before{ display:none; }#stickybar.show{ opacity:1 !important; transform:translateX(-50%) translateY(0) scale(1) !important; transition-delay:0s; }#stickybar .sticky-inner{ display:flex; align-items:center; gap:12px; padding:8px 8px 8px 12px; }#stickybar .sticky-mark, #stickybar .sticky-actions{ position:static; transform:none; opacity:1; }#stickybar .sticky-links{ display:none; }#stickybar .sticky-toggle{
     display:inline-flex; align-items:center; min-height:44px; padding:0 18px;
     border:1px solid rgba(255,255,255,.18); border-radius:999px; background:rgba(255,255,255,.08);
-    color:#f2eee0; font:500 12.5px/1 "Inter","Segoe UI",system-ui,sans-serif; letter-spacing:.06em; text-transform:uppercase; cursor:pointer;
+    color:#FFFFF4; font:400 12.5px/1 "Inter","Segoe UI",system-ui,sans-serif; letter-spacing:0; text-transform:uppercase; cursor:pointer;
     transition:transform .4s cubic-bezier(.34,1.56,.64,1),background .25s ease;
   }#stickybar .sticky-toggle:hover{ transform:scale(1.06); background:rgba(255,255,255,.16); }#stickybar .sticky-toggle-mask{ display:block; height:1.25em; overflow:hidden; }#stickybar .sticky-toggle-words{ display:flex; flex-direction:column; transition:transform .55s cubic-bezier(.22,1,.36,1); }#stickybar .sticky-toggle-words span{ display:block; height:1.25em; line-height:1.25em; }#stickybar.menu-open .sticky-toggle-words{ transform:translateY(-1.25em); }#stickybar .sticky-menu{
     display:flex; flex-direction:column; gap:2px;
     position:absolute; top:calc(100% + 10px); left:0; right:0; min-width:220px;
-    padding:12px; border-radius:24px; background:rgba(10,26,2,.9); border:1px solid rgba(255,255,255,.14);
+    padding:12px; border-radius:24px; background:rgba(0,0,0,.9); border:1px solid rgba(255,255,255,.14);
     -webkit-backdrop-filter:blur(14px) saturate(140%); backdrop-filter:blur(14px) saturate(140%);
     opacity:0; visibility:hidden; transform:translateY(-10px);
     transition:opacity .35s ease, transform .6s cubic-bezier(.22,1,.36,1), visibility 0s linear .6s;
   }#stickybar.menu-open .sticky-menu{ opacity:1; visibility:visible; transform:none; transition-delay:0s; }#stickybar .sticky-menu a{
     display:flex; align-items:center; min-height:48px; padding:0 14px; overflow:hidden;
-    border-radius:14px; color:#f2eee0; text-decoration:none; font:500 15px/1 "Inter","Segoe UI",system-ui,sans-serif;
+    border-radius:14px; color:#FFFFF4; text-decoration:none; font:400 15px/1 "Inter","Segoe UI",system-ui,sans-serif;
   }#stickybar .sticky-menu a:hover{ background:rgba(255,255,255,.14); }#stickybar .sticky-menu a > span{
     display:inline-block; transform:translateY(170%); opacity:0;
     transition:transform .75s cubic-bezier(.22,1,.36,1) calc(120ms + var(--i,0) * 55ms), opacity .4s ease calc(120ms + var(--i,0) * 55ms);
@@ -3820,7 +3786,7 @@ html.gk-cursor-on *:not(input):not(textarea):not(select){ cursor:none !important
     display:flex;
     flex-direction:column;
     gap:2px;
-    background:rgba(10,26,2,.92);
+    background:rgba(0,0,0,.92);
     border:1px solid rgba(255,255,255,.14);
     border-radius:16px;
     -webkit-backdrop-filter:blur(14px) saturate(140%);
@@ -3830,8 +3796,8 @@ html.gk-cursor-on *:not(input):not(textarea):not(select){ cursor:none !important
     display:block;
     padding:10px 14px;
     border-radius:10px;
-    font:500 13px/1.2 "Inter","Segoe UI",system-ui,sans-serif;
-    color:#f2eee0;
+    font:400 13px/1.2 "Inter","Segoe UI",system-ui,sans-serif;
+    color:#FFFFF4;
     white-space:nowrap;
     transition:background .18s ease;
   }.pillnav-dropdown-inner a:hover{ background:rgba(255,255,255,.14); }#stickybar .pillnav-dropdown-inner a{ font-size:13px; }}@media (prefers-reduced-motion:reduce){.pillnav-dropdown{ transition:none !important; }}#gkNavPanels{
@@ -3842,7 +3808,7 @@ html.gk-cursor-on *:not(input):not(textarea):not(select){ cursor:none !important
 }.nav-panel{
   position:absolute;
   top:0; left:0; right:0;
-  background:rgba(8,20,4,.97);
+  background:rgba(4,44,5,.97);
   border-bottom:1px solid rgba(255,255,255,.12);
   -webkit-backdrop-filter:blur(20px) saturate(140%);
   backdrop-filter:blur(20px) saturate(140%);
@@ -3863,7 +3829,7 @@ html.gk-cursor-on *:not(input):not(textarea):not(select){ cursor:none !important
   top:0;
   width:min(660px, calc(100vw - 48px));
   border:1px solid rgba(255,255,255,.16);
-  background:#2A5126;
+  background:#205007;
   border-radius:28px;
   box-shadow:0 30px 70px rgba(0,0,0,.4);
   transform-origin:top left;
@@ -3894,12 +3860,12 @@ html.gk-cursor-on *:not(input):not(textarea):not(select){ cursor:none !important
   align-items:center;
   padding:15px 2px;
   border-top:1px solid rgba(255,255,255,.1);
-  color:#f2eee0;
+  color:#FFFFF4;
   text-decoration:none;
   font-family:"Inter",system-ui,sans-serif;
   font-weight:400;
   font-size:18px;
-  letter-spacing:-0.01em;
+  letter-spacing:0;
   transition:color .25s ease, padding-left .25s ease;
 }.nav-panel__index li:last-child .nav-panel__link{ border-bottom:1px solid rgba(255,255,255,.1); }.nav-panel__link:hover,
 .nav-panel__link.is-active{
@@ -3911,7 +3877,7 @@ html.gk-cursor-on *:not(input):not(textarea):not(select){ cursor:none !important
   width:100%;
   border-radius:18px;
   overflow:hidden;
-  background:#0a1a02;
+  background:#042C05;
 }.nav-panel__well-img{
   position:absolute;
   inset:0;
@@ -3945,8 +3911,8 @@ section.product-listing {
   max-width: none !important;
   margin: 0 !important;
   padding: 56px 30px 80px !important;
-  background: #f7f4ec !important;
-  color: #1b3214 !important;
+  background: #FFFFF4 !important;
+  color: #042C05 !important;
   overflow: hidden !important;
 }
 
@@ -3970,19 +3936,19 @@ section.product-listing .product-listing-title {
 section.product-listing .product-listing-title h1 {
   margin: 0 0 18px !important;
   padding: 0 !important;
-  color: #19320f !important;
-  font-family: inherit !important;
-  font-size: clamp(42px, 4.5vw, 70px) !important;
+  color: #042C05 !important;
+  font-family: "Arpona", Georgia, serif !important;
+  font-size: clamp(32px, 3vw, 44px) !important;
   line-height: .98 !important;
-  font-weight: 500 !important;
-  letter-spacing: -.045em !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
 }
 
 section.product-listing .product-listing-title p {
   max-width: 1050px !important;
   margin: 0 !important;
   padding: 0 !important;
-  color: #19320f !important;
+  color: #042C05 !important;
   font-family: inherit !important;
   font-size: 17px !important;
   line-height: 1.45 !important;
@@ -3999,10 +3965,10 @@ section.product-listing .product-listing-tools {
 
 section.product-listing .filter-button {
   appearance: none !important;
-  border: 1px solid #5c514c !important;
+  border: 1px solid #535353 !important;
   border-radius: 999px !important;
   background: transparent !important;
-  color: #403732 !important;
+  color: #042C05 !important;
   padding: 10px 18px !important;
   margin: 0 !important;
   font: inherit !important;
@@ -4029,7 +3995,7 @@ section.product-listing .product-item {
   margin: 0 !important;
   padding: 0 !important;
   overflow: hidden !important;
-  background: #f1eee7 !important;
+  background: #FFFFF4 !important;
 }
 
 /* Products */
@@ -4046,7 +4012,7 @@ section.product-listing .product-image {
   margin: 0 !important;
   padding: 0 !important;
   overflow: hidden !important;
-  background: #f1eee7 !important;
+  background: #FFFFF4 !important;
   text-decoration: none !important;
 }
 
@@ -4076,7 +4042,7 @@ section.product-listing .product-tag {
   margin: 0 !important;
   padding: 8px 12px !important;
   background: #fff !important;
-  color: #4b403c !important;
+  color: #042C05 !important;
   font-size: 12px !important;
   line-height: 1 !important;
   font-weight: 400 !important;
@@ -4089,13 +4055,13 @@ section.product-listing .product-details {
   flex-direction: column !important;
   margin: 0 !important;
   padding: 22px 14px 28px !important;
-  background: #f1eee7 !important;
+  background: #FFFFF4 !important;
 }
 
 section.product-listing .product-details h2 {
   margin: 0 0 34px !important;
   padding: 0 !important;
-  color: #493d38 !important;
+  color: #042C05 !important;
   font-family: inherit !important;
   font-size: 21px !important;
   line-height: 1.16 !important;
@@ -4111,7 +4077,7 @@ section.product-listing .product-details h2 a {
 section.product-listing .product-price {
   margin: auto 0 0 !important;
   padding: 0 !important;
-  color: #493d38 !important;
+  color: #042C05 !important;
   font-size: 18px !important;
   line-height: 1.2 !important;
 }
@@ -4196,10 +4162,10 @@ section.product-listing .product-load-more {
 section.product-listing .product-load-more button {
   margin: 0 !important;
   padding: 13px 32px !important;
-  border: 1px solid #493d38 !important;
+  border: 1px solid #042C05 !important;
   border-radius: 999px !important;
   background: transparent !important;
-  color: #493d38 !important;
+  color: #042C05 !important;
   font: inherit !important;
   font-size: 14px !important;
   cursor: pointer !important;
@@ -4301,12 +4267,12 @@ section.product-listing .product-load-more button {
 }
 
 
-/* ==== css/product-card.css ==== */
-/* Product card design — taken from Goodricke-mobile-menu-fixed.html */
+/* ==== Product card ==== */
+/* Product card design */
 section.product-listing .product-price{display:flex !important;align-items:baseline !important;gap:8px !important;}
 section.product-listing .product-cut-price{color:#8b8b8b !important;text-decoration:line-through !important;font-size:.72em !important;font-weight:400 !important;white-space:nowrap !important;}
 
-/* Hero-only requested changes */
+/* Hero adjustments */
 .hero{height:400px!important;min-height:400px!important;overflow:hidden!important}
 .hero .hero-slider{position:absolute;inset:0;width:100%;height:100%;overflow:hidden}
 .hero .hero-slide{position:absolute;inset:0;width:100%;height:100%;background-size:cover;background-position:center;opacity:0;transition:opacity .8s ease}
@@ -4315,7 +4281,7 @@ section.product-listing .product-cut-price{color:#8b8b8b !important;text-decorat
 @media(prefers-reduced-motion:reduce){.hero .hero-slide{transition:none}}
 
 /* Match the product listing cards to the homepage product-card proportions/styles.
-   Cosmetic sizing only — existing HTML, content and interactions remain unchanged. */
+   Visual sizing only — existing HTML, content and interactions remain unchanged. */
 section.product-listing .product-grid > .product-item{
   background:#f6f6f6 !important;
   border-radius:18px !important;
@@ -4339,7 +4305,7 @@ section.product-listing .product-item .product-tag{
   min-height:0 !important;
   padding:6px 13px !important;
   font-size:12.5px !important;
-  font-weight:600 !important;
+  font-weight:400 !important;
 }
 
 section.product-listing .product-hover-actions{
@@ -4352,7 +4318,7 @@ section.product-listing .product-action{
   width:42px !important;
   height:42px !important;
   background:rgba(255,255,255,.92) !important;
-  box-shadow:0 7px 20px rgba(10,26,2,.12) !important;
+  box-shadow:0 7px 20px rgba(0,0,0,.12) !important;
 }
 
 section.product-listing .product-action svg{
@@ -4369,11 +4335,11 @@ section.product-listing .product-item .product-details{
 section.product-listing .product-item .product-details h2{
   min-height:0 !important;
   margin:0 0 10px !important;
-  color:#16240d !important;
+  color:#042C05 !important;
   font-family:"Inter",system-ui,sans-serif !important;
   font-size:16.5px !important;
   line-height:1.35 !important;
-  font-weight:600 !important;
+  font-weight:400 !important;
   letter-spacing:0 !important;
   text-align:left !important;
   display:block !important;
@@ -4390,10 +4356,10 @@ section.product-listing .size-option{
   min-width:0 !important;
   height:auto !important;
   padding:4px 11px !important;
-  border:1px solid rgba(22,36,13,.22) !important;
+  border:1px solid rgba(4,44,5,.22) !important;
   border-radius:999px !important;
   background:transparent !important;
-  color:#16240d !important;
+  color:#042C05 !important;
   font-family:"Inter",system-ui,sans-serif !important;
   font-size:12px !important;
   line-height:1 !important;
@@ -4402,9 +4368,9 @@ section.product-listing .size-option{
 
 section.product-listing .size-option:hover,
 section.product-listing .size-option.is-active{
-  border-color:#16240d !important;
+  border-color:#042C05 !important;
   background:transparent !important;
-  color:#16240d !important;
+  color:#042C05 !important;
 }
 
 section.product-listing .product-item .product-bottom{
@@ -4420,7 +4386,7 @@ section.product-listing .product-item .product-bottom{
 section.product-listing .product-item .product-price{
   flex:0 0 auto !important;
   margin:0 !important;
-  color:var(--brand-green,#486730) !important;
+  color:var(--brand-green,#205007) !important;
   font-family:"Inter",system-ui,sans-serif !important;
   font-size:18px !important;
   line-height:1 !important;
@@ -4443,11 +4409,11 @@ section.product-listing .product-add-to-bag{
   font-family:"Inter",system-ui,sans-serif !important;
   font-size:12.5px !important;
   line-height:1 !important;
-  font-weight:600 !important;
-  letter-spacing:.03em !important;
+  font-weight:400 !important;
+  letter-spacing:0 !important;
   background:#ffffff !important;
-  border:1px solid rgba(22,36,13,.16) !important;
-  color:#12270a !important;
+  border:1px solid rgba(4,44,5,.16) !important;
+  color:#042C05 !important;
   box-shadow:none !important;
   transform:none !important;
 }
@@ -4459,8 +4425,8 @@ section.product-listing .product-add-to-bag svg{
 
 section.product-listing .product-add-to-bag:hover,
 section.product-listing .product-add-to-bag.is-added{
-  background:var(--brand-green,#486730) !important;
-  border-color:var(--brand-green,#486730) !important;
+  background:var(--brand-green,#205007) !important;
+  border-color:var(--brand-green,#205007) !important;
   color:#fff !important;
   transform:none !important;
   box-shadow:none !important;
@@ -4512,12 +4478,12 @@ section.product-listing .product-add-to-bag.is-added{
 }
 
 
-/* ==== css/pdp.css ==== */
+/* ==== PDP ==== */
 /* PDP hero block: breadcrumb, gallery, buy box. Uses brand tokens from base.css */
 /* gallery */
 /* buy box */
-.pdp-cta{display:block;width:100%;border:0;border-radius:3px;background:var(--brand-green);color:#fff;font:500 13px/1 "Inter",sans-serif;letter-spacing:.04em;text-transform:uppercase;padding:18px;cursor:pointer;transition:background .25s}
-.pdp-cta:hover{background:#2a6a0a}
+.pdp-cta{display:block;width:100%;border:0;border-radius:3px;background:var(--brand-green);color:#fff;font:400 13px/1 "Inter",sans-serif;letter-spacing:0;text-transform:uppercase;padding:18px;cursor:pointer;transition:background .25s}
+.pdp-cta:hover{background:#205007}
 @media (max-width:575.98px){
   .pdp-cta{padding:16px}
 }
@@ -4533,30 +4499,30 @@ section.product-listing .product-add-to-bag.is-added{
 /* Gift wrap checkbox */
 
 
-/* ==== css/pdp-info.css ==== */
+/* ==== PDP: product info ==== */
 /* Details / How To Brew tabs */
 @keyframes pdpFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
 
-/* ==== css/fbt.css ==== */
+/* ==== Frequently bought together ==== */
 /* Frequently Bought Together: rounded panel, selectable product cards, dark summary card */
 
 
-/* ==== css/cart-drawer.css ==== */
+/* ==== Cart drawer ==== */
 /* "Added to cart" drawer: success message, item summary, CTAs, shipping pills, "Our Selection" slider */
 
 
-/* ==== css/reviews.css ==== */
+/* ==== Reviews ==== */
 /* Reviews: rating pill, rotating quote, reviewer pills (active one in brand green) */
 @keyframes rvIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
 
-/* ==== css/story-modal.css ==== */
+/* ==== Story viewer ==== */
 /* Story viewer: tall video card with progress bars, pause and sound controls */
 
 /* ==== Product card hover: dark green fills bottom → top (slow, smooth) ==== */
 section.product-listing .product-grid > .product-item{
-  background-image:linear-gradient(#193613,#193613) !important;
+  background-image:linear-gradient(#042C05,#042C05) !important;
   background-repeat:no-repeat !important;
   background-position:bottom left !important;
   background-size:100% 0% !important;
@@ -4714,10 +4680,10 @@ section.product-listing .product-grid > .product-item:hover .product-details,
 /* brand green for primary buttons (footer sign-up, bag drawer) */
 .footer-signup button{background:#205007 !important}
 .gk-bag-continue{background:#205007 !important;color:#fff !important}
-.gk-bag-checkout{background:#cfe59a !important;color:#16240d !important}
+.gk-bag-checkout{background:#CAAA2C !important;color:#042C05 !important}
 
 /* section titles: same font, weight and letter-spacing (sizes and colors stay as designed per section) */
-section h2,.footer-brand h2{font-family:"Arpona",Georgia,serif;font-weight:400;letter-spacing:-.02em}
+section h2,.footer-brand h2{font-family:"Arpona",Georgia,serif;font-weight:400;letter-spacing:0}
 
 /* home bestseller cards: same look as the PLP / PDP product cards */
 
@@ -4784,34 +4750,47 @@ body.plp-page section.product-listing{background:#fff !important}
 /* Added to Bag tray: discount price, savings line, coupon button (no PayPal) */
 .gk-bag-product-old{font-size:14px;font-weight:400;color:#8b8b8b;text-decoration:line-through;white-space:nowrap}
 .gk-bag-cart-actions .gk-bag-product-old{margin-left:-4px}
-.gk-bag-coupon{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:46px;margin:0 0 18px;border:0;border-radius:6px;background:#f3f3f3;color:#16240d;font:600 14px/1 "Inter",system-ui,sans-serif;cursor:pointer;transition:background .2s ease}
+.gk-bag-coupon{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:46px;margin:0 0 18px;border:0;border-radius:6px;background:#f3f3f3;color:#042C05;font:400 14px/1 "Inter",system-ui,sans-serif;cursor:pointer;transition:background .2s ease}
 .gk-bag-coupon:hover{background:#ebebeb}
 .gk-bag-coupon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .gk-bag-summary>.gk-bag-saving{margin-bottom:8px;font-size:14px;color:#205007}
 .gk-bag-summary>.gk-bag-saving[hidden]{display:none}
 
 /* Coupon sheet: slides up inside the Added to Bag tray */
-.gk-bag-couponsheet{position:absolute;left:0;right:0;bottom:0;z-index:5;padding:26px 24px 24px;background:#fff;box-shadow:0 -14px 30px rgba(22,36,13,.12);transform:translateY(105%);visibility:hidden;transition:transform .45s cubic-bezier(.22,.8,.24,1),visibility 0s linear .45s}
+.gk-bag-couponsheet{position:absolute;left:0;right:0;bottom:0;z-index:5;padding:26px 24px 24px;background:#fff;box-shadow:0 -14px 30px rgba(4,44,5,.12);transform:translateY(105%);visibility:hidden;transition:transform .45s cubic-bezier(.22,.8,.24,1),visibility 0s linear .45s}
 .gk-bag-couponsheet.is-open{transform:none;visibility:visible;transition:transform .45s cubic-bezier(.22,.8,.24,1),visibility 0s}
-.gk-bag-couponsheet__title{display:flex;align-items:center;gap:10px;margin:0 0 18px;font:600 17px/1.2 "Inter",system-ui,sans-serif;color:#16240d}
+.gk-bag-couponsheet__title{display:flex;align-items:center;gap:10px;margin:0 0 18px;font:400 17px/1.2 "Inter",system-ui,sans-serif;color:#042C05}
 .gk-bag-couponsheet__title svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.gk-bag-couponsheet__input{display:block;width:100%;height:48px;margin:0 0 18px;padding:0 14px;border:1px solid #ececec;border-radius:4px;background:#fff;color:#16240d;font:600 14px/1 "Inter",system-ui,sans-serif;outline:0}
-.gk-bag-couponsheet__input::placeholder{color:#555;font-weight:600}
+.gk-bag-couponsheet__input{display:block;width:100%;height:48px;margin:0 0 18px;padding:0 14px;border:1px solid #ececec;border-radius:4px;background:#fff;color:#042C05;font:400 14px/1 "Inter",system-ui,sans-serif;outline:0}
+.gk-bag-couponsheet__input::placeholder{color:#555;font-weight:400}
 .gk-bag-couponsheet__input:focus{border-color:#205007}
 .gk-bag-couponsheet__actions{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.gk-bag-couponsheet__actions button{height:48px;border-radius:4px;font:600 15px/1 "Inter",system-ui,sans-serif;letter-spacing:.01em;cursor:pointer;transition:background .2s ease,color .2s ease}
-.gk-bag-couponsheet__cancel{border:1.5px solid #16240d;background:#fff;color:#16240d}
+.gk-bag-couponsheet__actions button{height:48px;border-radius:4px;font:400 15px/1 "Inter",system-ui,sans-serif;letter-spacing:0;cursor:pointer;transition:background .2s ease,color .2s ease}
+.gk-bag-couponsheet__cancel{border:1.5px solid #042C05;background:#fff;color:#042C05}
 .gk-bag-couponsheet__cancel:hover{background:#f3f3f3}
-.gk-bag-couponsheet__save{border:0;background:#3e6f2e;color:#fff}
+.gk-bag-couponsheet__save{border:0;background:#205007;color:#fff}
 .gk-bag-couponsheet__save:hover{background:#205007}
 
 /* ==== Mobile image variants (≤767px): same photos at 900px wide, so phones don't download 2600px backgrounds ==== */
 @media (max-width:767px){
-  .hero-slide[style*="hero-garden.webp"]{background-image:url("../assets/images/hero-garden-m.webp") !important;}
   .hero-slide[style*="bg1.webp"]{background-image:url("../assets/images/bg1-m.webp") !important;}
   .hero-slide[style*="bg2.webp"]{background-image:url("../assets/images/bg2-m.webp") !important;}
   .hero{background-image:
-      radial-gradient(120% 90% at 15% -10%, rgba(198,154,74,0.22), transparent 55%),
-      linear-gradient(180deg, rgba(10,26,2,0.58) 0%, rgba(10,26,2,0.4) 34%, rgba(10,26,2,0.64) 78%, var(--brand-green-deep) 100%),
+            linear-gradient(180deg, rgba(0,0,0,0.58) 0%, rgba(0,0,0,0.4) 34%, rgba(0,0,0,0.64) 78%, rgba(0,0,0,0.72) 100%),
       url("../assets/images/plp-hero-m.webp");}
 }
+
+/* ==== PDP design layer (brand book 2026): Arpona titles, Inter text, brand palette only,
+        no gradients, 0 letter-spacing; rounded cards & pill controls as on the home page ==== */
+/* breadcrumb */
+/* gallery */
+/* title, price, quantity */
+/* net weight */
+/* gift wrapping */
+/* add to bag */
+/* story circles */
+/* description */
+/* lower sections: centred uppercase Arpona titles, like the home page */
+
+/* ==== Reviews: per-review star ratings + "View all reviews" list (brand palette) ==== */
+/* full list */
