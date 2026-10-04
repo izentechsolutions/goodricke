@@ -1,6 +1,6 @@
-/* Goodricke — plp.js: Product listing page only (incl. the Shop hero slider). Each block is one original module, in the original order. */
+/* Goodricke — plp.js: Product listing page only (incl. the Shop hero slider). */
 
-// ==== js/product-box-interactions.js ====
+// ==== Product boxes ====
 try { (function(){
 (function(){
   'use strict';
@@ -77,9 +77,9 @@ try { (function(){
 })();
 
 
-})(); } catch (e) { console.error("js/product-box-interactions.js", e); }
+})(); } catch (e) { console.error("Product boxes", e); }
 
-// ==== js/filter-sort.js ====
+// ==== Filter and sort ====
 try { (function(){
 (function(){
   'use strict';
@@ -152,10 +152,10 @@ try { (function(){
 })();
 
 
-})(); } catch (e) { console.error("js/filter-sort.js", e); }
+})(); } catch (e) { console.error("Filter and sort", e); }
 
 
-// ==== js/hero-slider.js ====
+// ==== Shop hero slider ====
 try { (function(){
 (function(){
   function startShopHeroSlider(){
@@ -183,5 +183,5 @@ try { (function(){
   }else{startShopHeroSlider();}
 })();
 
-})(); } catch (e) { console.error("js/hero-slider.js", e); }
+})(); } catch (e) { console.error("Shop hero slider", e); }
 

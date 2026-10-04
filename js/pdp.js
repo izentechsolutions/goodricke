@@ -1,6 +1,6 @@
-/* Goodricke — pdp.js: Product detail page only. Each block is one original module, in the original order. */
+/* Goodricke — pdp.js: Product detail page only. */
 
-// ==== js/product-box-interactions.js ====
+// ==== Product boxes ====
 try { (function(){
 (function(){
   'use strict';
@@ -77,9 +77,9 @@ try { (function(){
 })();
 
 
-})(); } catch (e) { console.error("js/product-box-interactions.js", e); }
+})(); } catch (e) { console.error("Product boxes", e); }
 
-// ==== js/pdp.js ====
+// ==== PDP: gallery, weights, gift wrap ====
 try { (function(){
 (function(){
   'use strict';
@@ -142,9 +142,9 @@ try { (function(){
 })();
 
 
-})(); } catch (e) { console.error("js/pdp.js", e); }
+})(); } catch (e) { console.error("PDP: gallery, weights, gift wrap", e); }
 
-// ==== js/cart-drawer.js ====
+// ==== Cart drawer ====
 try { (function(){
 (function(){
   'use strict';
@@ -237,9 +237,9 @@ try { (function(){
 })();
 
 
-})(); } catch (e) { console.error("js/cart-drawer.js", e); }
+})(); } catch (e) { console.error("Cart drawer", e); }
 
-// ==== js/story-modal.js ====
+// ==== Story viewer ====
 try { (function(){
 (function(){
   'use strict';
@@ -312,9 +312,9 @@ try { (function(){
 })();
 
 
-})(); } catch (e) { console.error("js/story-modal.js", e); }
+})(); } catch (e) { console.error("Story viewer", e); }
 
-// ==== js/pdp-tabs.js ====
+// ==== PDP tabs ====
 try { (function(){
 (function(){
   'use strict';
@@ -338,9 +338,9 @@ try { (function(){
 })();
 
 
-})(); } catch (e) { console.error("js/pdp-tabs.js", e); }
+})(); } catch (e) { console.error("PDP tabs", e); }
 
-// ==== js/reviews.js ====
+// ==== Reviews: featured quote ====
 try { (function(){
 (function(){
   'use strict';
@@ -491,7 +491,7 @@ try { (function(){
   }
   if(allBtn){
     allBtn.setAttribute('aria-expanded','false');
-    allBtn.addEventListener('click',function(e){e.preventDefault();setExpanded(!expanded);});
+    /* "View all" opens the full review list (see "Reviews: full list") */
   }
 
   measure();
@@ -501,9 +501,9 @@ try { (function(){
 })();
 
 
-})(); } catch (e) { console.error("js/reviews.js", e); }
+})(); } catch (e) { console.error("Reviews: featured quote", e); }
 
-// ==== js/fbt.js ====
+// ==== Frequently bought together ====
 try { (function(){
 (function(){
   'use strict';
@@ -536,4 +536,61 @@ try { (function(){
   update();
 })();
 
-})(); } catch (e) { console.error("js/fbt.js", e); }
+})(); } catch (e) { console.error("Frequently bought together", e); }
+
+
+// ==== Reviews: full list ====
+/* "View all reviews" opens a list of every review (avatar, name, city, star rating, text)
+   built from the reviewer pills + quotes above, with a rating filter, sorting and paging.
+   Ratings come from data-rating on each .rv__who button (placeholder data: replace with real reviews). */
+try { (function(){
+  var btn=document.querySelector('.rv__all'), list=document.getElementById('rvList');
+  var tabs=[].slice.call(document.querySelectorAll('.rv__track .rv__who[aria-controls]'));
+  if(!btn||!list||!tabs.length) return;
+  var grid=list.querySelector('.rv__grid'), more=list.querySelector('.rv__more'), sortSel=list.querySelector('.rv__sort');
+  var filtersBox=list.querySelector('.rv__filters'), countEl=list.querySelector('.rv__list-count');
+  var PAGE=6, shown=PAGE, filter=0, sort='featured';
+  var reviews=tabs.map(function(t,i){
+    var q=document.getElementById(t.getAttribute('aria-controls'));
+    var text=q?[].slice.call(q.childNodes).filter(function(n){return n.nodeType===3;}).map(function(n){return n.textContent;}).join('').trim():'';
+    return {i:i, rating:+t.getAttribute('data-rating')||5, name:(t.querySelector('.rv__meta strong')||{}).textContent||'',
+            city:(t.querySelector('.rv__meta > span:not(.rv__stars)')||{}).textContent||'', avatar:(t.querySelector('.rv__avatar')||{}).outerHTML||'', text:text};
+  });
+  function stars(n){return '<span class="rv__stars" role="img" aria-label="Rated '+n+' out of 5" style="--rating:'+n+'"></span>';}
+  /* filter chips with counts */
+  var levels=[0,5,4,3];
+  filtersBox.innerHTML=levels.map(function(l){
+    var c=l?reviews.filter(function(r){return l===3?r.rating<=3:r.rating===l;}).length:reviews.length;
+    if(l&&!c) return '';
+    return '<button type="button" class="rv__chip'+(l===0?' is-active':'')+'" data-level="'+l+'" aria-pressed="'+(l===0)+'">'+(l?(l===3?'3 & below':l+' stars'):'All')+' <span>('+c+')</span></button>';
+  }).join('');
+  function current(){
+    var r=reviews.filter(function(x){return !filter||(filter===3?x.rating<=3:x.rating===filter);});
+    if(sort==='high') r=r.slice().sort(function(a,b){return b.rating-a.rating||a.i-b.i;});
+    if(sort==='low') r=r.slice().sort(function(a,b){return a.rating-b.rating||a.i-b.i;});
+    return r;
+  }
+  function render(){
+    var r=current();
+    countEl.textContent='('+r.length+')';
+    grid.innerHTML=r.slice(0,shown).map(function(x){
+      return '<article class="rv__card"><header class="rv__card-head">'+x.avatar+'<div class="rv__card-who"><strong>'+x.name+'</strong><span>'+x.city+'</span></div>'+stars(x.rating)+'</header><p class="rv__card-text">'+x.text+'</p></article>';
+    }).join('');
+    more.hidden=shown>=r.length;
+  }
+  filtersBox.addEventListener('click',function(e){
+    var c=e.target.closest('.rv__chip'); if(!c) return;
+    filter=+c.getAttribute('data-level'); shown=PAGE;
+    [].forEach.call(filtersBox.children,function(b){var on=b===c;b.classList.toggle('is-active',on);b.setAttribute('aria-pressed',on);});
+    render();
+  });
+  sortSel.addEventListener('change',function(){sort=sortSel.value;shown=PAGE;render();});
+  more.addEventListener('click',function(){shown+=PAGE;render();});
+  function setOpen(on){
+    list.hidden=!on; btn.setAttribute('aria-expanded',on?'true':'false');
+    var tn=[].slice.call(btn.childNodes).filter(function(n){return n.nodeType===3;})[0];
+    if(tn) tn.textContent=on?'Hide reviews ':'View all reviews ('+reviews.length+') ';
+    if(on){render(); list.scrollIntoView({behavior:'smooth',block:'start'});}
+  }
+  btn.addEventListener('click',function(e){e.preventDefault();setOpen(list.hidden);});
+})(); } catch (e) { console.error("Reviews: full list", e); }

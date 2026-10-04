@@ -1,6 +1,6 @@
-/* Goodricke — common.js: Shared on every page: header, menus, smooth scroll, cursor, mega-menu, search, bag drawer, lazy videos. Each block is one original module, in the original order. */
+/* Goodricke — common.js: Shared on every page: header, menus, smooth scroll, cursor, mega-menu, search, bag drawer, lazy videos. */
 
-// ==== shared: header bag count ====
+// ==== Header bag count ====
 /* Keeps every "Bag (n)" label in the header in sync, for the session. */
 window.gkBag = (function () {
   var KEY = 'gkBagCount', n = 0;
@@ -16,7 +16,7 @@ window.gkBag = (function () {
 })();
 
 
-// ==== js/06-mobile-menu-toggle.js ====
+// ==== Mobile menu ====
 try { (function(){
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -41,9 +41,9 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-})(); } catch (e) { console.error("js/06-mobile-menu-toggle.js", e); }
+})(); } catch (e) { console.error("Mobile menu", e); }
 
-// ==== js/15-gk-smooth-scroll.js ====
+// ==== Smooth scroll ====
 try { (function(){
 
 /* ==========================================================
@@ -175,9 +175,9 @@ try { (function(){
 })();
 
 
-})(); } catch (e) { console.error("js/15-gk-smooth-scroll.js", e); }
+})(); } catch (e) { console.error("Smooth scroll", e); }
 
-// ==== js/16-gk-header-expand.js ====
+// ==== Sticky header ====
 try { (function(){
 
 /* Hero pill -> white sticky header. One scroll-driven driver, subscribed to the
@@ -246,9 +246,9 @@ try { (function(){
 })();
 
 
-})(); } catch (e) { console.error("js/16-gk-header-expand.js", e); }
+})(); } catch (e) { console.error("Sticky header", e); }
 
-// ==== js/17-gk-sticky-menu.js ====
+// ==== Sticky header menu ====
 try { (function(){
 
 (function () {
@@ -268,10 +268,10 @@ try { (function(){
 })();
 
 
-})(); } catch (e) { console.error("js/17-gk-sticky-menu.js", e); }
+})(); } catch (e) { console.error("Sticky header menu", e); }
 
 
-// ==== js/18-gk-cursor.js ====
+// ==== Custom cursor ====
 try { (function(){
 
 (function () {
@@ -290,8 +290,7 @@ try { (function(){
     var labelText = label.firstChild;
     document.body.appendChild(mark); document.body.appendChild(label);
 
-    /* Text-label cursor bubbles ("Drag", "Play") intentionally removed per request —
-       only the plain dot cursor remains, with no mouse-instruction labels. */
+    /* Plain dot cursor (no text labels). */
 
     var tx = -100, ty = -100, x = tx, y = ty, raf = 0, last = 0, moveT = 0, seen = false, down = false;
     var TAU = 55;                              /* ms: follow smoothing (lower = tighter) */
@@ -352,10 +351,10 @@ try { (function(){
   }
 })();
 
-})(); } catch (e) { console.error("js/18-gk-cursor.js", e); }
+})(); } catch (e) { console.error("Custom cursor", e); }
 
 
-// ==== js/21-gk-nav-panels-driver.js ====
+// ==== Mega-menu panels ====
 try { (function(){
 
 (function () {
@@ -462,9 +461,9 @@ try { (function(){
   });
 })();
 
-})(); } catch (e) { console.error("js/21-gk-nav-panels-driver.js", e); }
+})(); } catch (e) { console.error("Mega-menu panels", e); }
 
-// ==== js/bag-drawer.js ====
+// ==== Bag drawer ====
 try { (function(){
 (function(){
   function initGoodrickeBagDrawer(){
@@ -703,9 +702,9 @@ try { (function(){
 })();
 
 
-})(); } catch (e) { console.error("js/bag-drawer.js", e); }
+})(); } catch (e) { console.error("Bag drawer", e); }
 
-// ==== js/header-search.js ====
+// ==== Header search ====
 try { (function(){
 (function(){
   var trigger=document.getElementById('headerSearch');
@@ -811,9 +810,9 @@ try { (function(){
 })();
 
 
-})(); } catch (e) { console.error("js/header-search.js", e); }
+})(); } catch (e) { console.error("Header search", e); }
 
-// ==== shared: lazy background videos ====
+// ==== Lazy background videos ====
 /* Videos marked .gk-lazy-video don't download on page load; they start when
    scrolled near and pause when off-screen. The poster shows the first frame. */
 try { (function () {

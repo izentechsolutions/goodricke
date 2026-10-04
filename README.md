@@ -66,19 +66,31 @@ Every block in these files is one of the original modules, unchanged and in its 
 | `js/common.js` | Header "Bag (n)" count (kept for the session), mobile menu, smooth scroll, sticky header expand, sticky menu, custom cursor, Shop/Our Gardens mega-menu, header search, bag drawer, lazy background videos |
 | `js/home.js` | The approved home modules: product-card click/tap, story video modal, unbox slider, team-row auto-scroll (two original versions; both run, as approved), Instagram reel autoplay, product carousel, scroll-expand, unbox/range overlap |
 | `js/plp.js` | Product boxes (sizes, wishlist, add to bag), filter & sort drawer, Shop hero slider |
-| `js/pdp.js` | Product boxes, PDP gallery, weights and price, gift wrap, "Learn more", cart drawer, story viewer, tabs, reviews, frequently bought together |
+| `js/pdp.js` | Product boxes, PDP gallery, weights and price, gift wrap, "Learn more", cart drawer, story viewer, tabs, reviews (featured quote + full list with filter, sort and paging), frequently bought together |
 
 Every page loads `common.js` first, then its own file, at the end of `<body>`.
 
-## 4. Fonts
+## 4. Fonts (Goodricke Brand Book 2026)
 
-| Family | Weights / styles | Files |
-|--------|------------------|-------|
-| Arpona | 400, 400 italic, 500, 500 italic, 600, 700, 700 italic, 800, 900 | `assets/fonts/arpona-*.woff2` (7–8 KB each) |
-| Inter (variable) | 100–900, normal and italic | `inter-variable.woff2`, `inter-variable-italic.woff2` (340 / 375 KB) |
+The brand book allows **Arpona Light for headings and Inter Regular for body text**, with no other fonts or weights, and kerning at 0%.
 
-These were converted losslessly from the approved fonts. Glyphs and character maps are verified identical.
-`font-display: swap`, as before. The browser only downloads the faces a page actually uses.
+| Family | Use | File |
+|--------|-----|------|
+| Arpona | all headings, one cut for every weight | `assets/fonts/arpona-light.woff2` |
+| Inter (variable) | all other text, set to Regular (400) everywhere | `inter-variable.woff2` (+ `inter-variable-italic.woff2`) |
+
+- Every `font-weight` is 400, including browser-default bold on headings, `<b>` and `<strong>`.
+- Every `letter-spacing` is 0.
+- Buttons and inputs inherit the brand font (browsers default them to Arial).
+
+**⚠️ Arpona licence: action needed before launch.**
+- The Arpona file is the **Fontspring DEMO** version that came with the design. It is **not licensed for a live website**.
+- It is **not Light**: it's Regular, used as a placeholder.
+- Buy the Arpona Light webfont licence, then replace `assets/fonts/arpona-light.woff2` with the licensed file under the same name. No CSS change is needed.
+- Until then:
+  - the demo file contains only basic letters, and stamps a **"DEMO" mark** on these characters: `' ! & - ( ) / @ # % $ " +` and the digit `4`;
+  - headings currently avoid those characters (verified on every page, including hidden menus and drawers);
+  - **don't put them in Arpona text until the licensed font is in place.**
 
 ## 5. Images and video
 
@@ -111,11 +123,56 @@ These were converted losslessly from the approved fonts. Glyphs and character ma
   - The `file:///Users/...` link is gone, and PLP/PDP highlight "Shop" as the active menu item.
 - **PLP filters** now work: each product has `data-tags`. The "Benefits" group is renamed "Product Lines", "Textures" is renamed "Tea Type", and Clear counts the real number of products.
 - **Header bag count** updates when items are added, and persists while browsing during the session.
-- **PLP copy and meta:** the beauty-brand placeholder copy on PLP is replaced with existing Goodricke copy. Page titles, meta descriptions, a favicon and Open Graph link-preview tags are added.
+- **PLP copy and meta:** the off-topic template copy on PLP is replaced with existing Goodricke copy. Page titles, meta descriptions, a favicon and Open Graph link-preview tags are added.
 - **Mega-menu images:** broken paths on PLP are fixed.
 - **Cleanup:** 142 unused or duplicate asset files (about 230 MB) were removed. These include 3 images that were only named in CSS rules that are always overridden, so they never showed. Also removed: the PSD, four copies of a 13.8 MB photo, 54 unused static Inter fonts and `.DS_Store` files. The old duplicate copy of the site is removed too; it's still in git history.
 
 **Known and accepted:** unbox slide 3 points to `./adobestock_1003230309-mu6iyxtp-l08b.jpg`, which has never existed. It's left as in the approved design and listed as an accepted exception in `build/check-links.py`.
+
+## 6b. Brand-book compliance (fonts, colours, gradients)
+
+Checked against *Goodricke Brand Book 2026* (pages 55–65). The brand book is not stored in this repository.
+
+- **Colours:** every colour on the three pages is now one of the following:
+  - a brand colour: Goodricke Green `#205007`, Morning Mist `#FFFFF4`, Golden Harvest `#CAAA2C`, Dark Garden `#042C05`, Earthy Brown `#A35917` or Accent Blue `#BADBFA`;
+  - a brand colour with transparency;
+  - a neutral (white, black, grey).
+
+  374 colour values (163 distinct) were mapped:
+
+  | Old colour type | Mapped to |
+  |---|---|
+  | Greens | Goodricke Green or Dark Garden |
+  | Creams and pale tints | Morning Mist |
+  | Golds and lime accents | Golden Harvest |
+  | Reds (sale badges) | Earthy Brown |
+  | Light blue | Accent Blue |
+  | Muted tints | a neutral grey of the same lightness, so contrast is kept |
+
+  Measured in the browser: 0 off-brand colours.
+- **Gradients:** the gold glow on the hero was removed, and the green-tinted image overlays became neutral (black) overlays. That's the only kind of gradient the brand book allows.
+- **Type:** see §4.
+- **Copy:** off-topic template text was replaced:
+  - the home range section had health-supplement copy ("Whole body health starts in the gut…"); it now reads "Teas from our own estates, made the good way.";
+  - the PLP intro had beauty-brand copy, already replaced earlier.
+- **Code hygiene:** design-tool leftovers (`__bundler_thumbnail`, `data-om-label`), commented-out dead markup, and change-log or "requested" style comments were removed. Section labels in the CSS and JS now describe what the code does.
+
+## 6c. PDP design and reviews
+
+- **PDP restyled in the home-page theme:**
+  - rounded gallery card with round arrows and pill indicators;
+  - gold "Limited Edition" pill;
+  - outlined weight chips (green when selected) with "Save x%" in Earthy Brown;
+  - carded gift-wrap option (the off-brand emoji is removed);
+  - pill "Add to bag" button;
+  - gold story rings with poster images;
+  - "Learn more →";
+  - centred uppercase Arpona section titles and a rounded "About this tea" panel.
+- **Reviews:**
+  - every review shows its own star rating: on the reviewer pill, above the quote, and in the list;
+  - a 5-star row sits under the score;
+  - **"View all reviews (20)"** opens a list of every review, with a filter by rating (All / 5 / 4 stars), sorting (featured, highest, lowest) and "Show more" (6 at a time).
+- ⚠️ **Placeholder ratings.** The review texts had no ratings, so each reviewer pill has a placeholder `data-rating` in `pdp.html`: 18 × 5 stars and 2 × 4 stars, averaging 4.9 to match the score shown. Replace them with real review data; on Shopify, use a reviews app.
 
 ## 7. Performance (measured in Chromium)
 
@@ -187,6 +244,8 @@ These were converted losslessly from the approved fonts. Glyphs and character ma
 
 ## 10. Open items (content / brand)
 
+- **Arpona licence** (see §4): buy Arpona Light before launch; the current file is a Fontspring demo.
+- **Review ratings** in `pdp.html` are placeholders (see §6c).
 - PLP product names are placeholders and don't match their images (for example "Earl Grey Classic" shows a Khaass pack). 3 names appear twice.
 - Many links are still `#` (Our Gardens, Journal, Contact, footer links, account) until those pages exist.
 - The custom cursor now appears on PLP and PDP too, for a consistent theme. Remove `18-gk-cursor` from `common.js` to limit it to home.
