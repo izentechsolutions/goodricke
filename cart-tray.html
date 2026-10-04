@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Cart Tray States — Goodricke</title>
+<meta content="noindex" name="robots"/>
+<link href="assets/images/favicon.png" rel="icon" type="image/png"/>
+<link href="css/home.css" rel="stylesheet"/>
+<style>
+body{margin:0;background:rgba(32,80,7,.08);color:#042C05;font-family:"Inter",sans-serif;}
+.tray-ref{max-width:1880px;margin:0 auto;padding:40px 24px 60px;}
+.tray-ref h1{margin:0 0 8px;font-family:"Arpona",Georgia,serif;font-size:36px;font-weight:400;}
+.tray-ref>p{margin:0 0 28px;max-width:760px;line-height:1.6;color:rgba(4,44,5,.78);}
+.tray-ref__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:28px;align-items:start;}
+.tray-ref__state>h2{margin:0 0 4px !important;font-family:"Inter",sans-serif !important;font-size:16px !important;font-weight:400;text-transform:none !important;color:#042C05 !important;}
+.tray-ref__state>p{margin:0 0 12px;font-size:13px;color:rgba(4,44,5,.7);}
+.tray-ref .gk-bag-drawer{position:relative;inset:auto;width:100%;height:900px;transform:none;z-index:auto;border-radius:16px;box-shadow:0 18px 40px rgba(4,44,5,.12);}
+@media (max-width:600px){.tray-ref__grid{grid-template-columns:1fr;}.tray-ref .gk-bag-drawer{height:820px;}}
+</style>
+</head>
+<body>
+<main class="tray-ref">
+<h1>Cart Tray States</h1>
+<p>Design reference for the Shopify team: every state and block of the &ldquo;Added to Bag&rdquo; tray, as static HTML using the live classes in <code>css/*.css</code>. On the site, the tray opens when someone clicks Add to bag. Products, coupon codes and amounts here are placeholders.</p>
+<div class="tray-ref__grid">
+<section class="tray-ref__state"><h2>Product added</h2><p>Below the free-shipping amount; no coupon.</p>
+<aside aria-label="Added to bag" class="gk-bag-drawer">
+<header class="gk-bag-head">
+<h2 class="gk-bag-title">Added to Bag <span class="gk-bag-count">1</span></h2>
+<button aria-label="Close bag" class="gk-bag-close" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+</header>
+<div class="gk-bag-ship">
+<p class="gk-bag-ship__text">You are <strong>₹650</strong> away from free shipping</p>
+<div class="gk-bag-ship__bar"><span style="width:35%"></span></div>
+</div>
+<div class="gk-bag-scroll">
+<ul class="gk-bag-items"><li class="gk-bag-item"><div class="gk-bag-item__img"><img alt="" src="assets/images/product-04.webp"/></div><div class="gk-bag-item__body"><p class="gk-bag-item__name">Cardamom Chai</p><p class="gk-bag-item__meta">250g</p><p class="gk-bag-item__price"><span>₹349</span><s>₹449</s><em>22% off</em></p><div class="gk-bag-item__row"><div class="gk-bag-qty"><button aria-label="Decrease quantity" type="button">−</button><span>1</span><button aria-label="Increase quantity" type="button">+</button></div><button aria-label="Remove item" class="gk-bag-item__remove" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/></svg></button></div></div></li></ul>
+<div class="gk-bag-empty" hidden>
+<p>Your bag is empty.</p>
+<a class="gk-bag-empty__cta" href="plp.html">Shop teas</a>
+</div>
+<section class="gk-bag-upsell" aria-labelledby="gkBagUpsellTitle">
+<h3 class="gk-bag-upsell__title">You may also like</h3>
+<ul>
+<li class="gk-bag-upsell__card"><img alt="" loading="lazy" src="assets/images/product-09.webp"/><div><p class="gk-bag-upsell__name">Rose Black Tea</p><p class="gk-bag-upsell__price"><span>₹429</span><s>₹579</s></p></div><button aria-label="Add Rose Black Tea to bag" class="gk-bag-upsell__add" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7.500 8V6.200a4.500 4.500 0 0 1 9 0V8M5 8h14l-1 12H6z"/></svg></button></li>
+<li class="gk-bag-upsell__card"><img alt="" loading="lazy" src="assets/images/product-04.webp"/><div><p class="gk-bag-upsell__name">Cardamom Chai</p><p class="gk-bag-upsell__price"><span>₹349</span><s>₹449</s></p></div><button aria-label="Add Cardamom Chai to bag" class="gk-bag-upsell__add" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7.500 8V6.200a4.500 4.500 0 0 1 9 0V8M5 8h14l-1 12H6z"/></svg></button></li>
+</ul>
+</section>
+<section class="gk-bag-coupon">
+<form class="gk-bag-coupon__form" novalidate>
+<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2.4"/></svg><input aria-label="Coupon code" autocomplete="off" autocapitalize="characters" placeholder="Have a coupon code?" spellcheck="false" type="text"/>
+<button type="submit">Apply</button>
+</form>
+<div class="gk-bag-coupon__applied" hidden>
+<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2.4"/></svg><p><strong>GOODRICKE10</strong> applied<span> · you save ₹150</span></p>
+<button type="button">Remove</button>
+</div>
+<p class="gk-bag-coupon__msg is-error" role="status" hidden>That code isn&rsquo;t valid. Check the spelling and try again.</p>
+<div class="gk-bag-offers">
+<p class="gk-bag-offers__title">Available offers</p>
+<button class="gk-bag-offer" type="button"><strong>GOODRICKE10</strong><span>10% off your order</span><em>Apply</em></button>
+<button class="gk-bag-offer" type="button"><strong>WELCOME100</strong><span>₹100 off orders above ₹999</span><em>Apply</em></button>
+</div>
+</section>
+<details class="gk-bag-note">
+<summary>Add a note for the Goodricke team</summary>
+<textarea aria-label="Note for the Goodricke team" placeholder="Gift message, delivery instructions…"></textarea>
+</details>
+</div>
+<footer class="gk-bag-footer">
+<dl class="gk-bag-totals">
+<div><dt>Subtotal</dt><dd>₹449</dd></div>
+<div class="is-save"><dt>Product discount</dt><dd>−₹100</dd></div>
+<div class="is-save" hidden><dt>Coupon (GOODRICKE10)</dt><dd>−₹150</dd></div>
+<div><dt>Shipping</dt><dd>Calculated at checkout</dd></div>
+<div class="gk-bag-total"><dt>Total</dt><dd>₹349</dd></div>
+</dl>
+<p class="gk-bag-saved">You save ₹100 on this order</p>
+<p class="gk-bag-tax">Tax included. <a href="/policies/shipping-policy">Shipping policy</a></p>
+<div class="gk-bag-actions">
+<button class="gk-bag-continue" type="button">Continue shopping</button>
+<button class="gk-bag-checkout" type="button">Check out · ₹349</button>
+</div>
+</footer>
+</aside>
+</section>
+<section class="tray-ref__state"><h2>Coupon applied</h2><p>Free shipping unlocked, coupon row and applied coupon chip shown.</p>
+<aside aria-label="Added to bag" class="gk-bag-drawer">
+<header class="gk-bag-head">
+<h2 class="gk-bag-title">Added to Bag <span class="gk-bag-count">2</span></h2>
+<button aria-label="Close bag" class="gk-bag-close" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+</header>
+<div class="gk-bag-ship is-done">
+<p class="gk-bag-ship__text"><strong>You&rsquo;ve unlocked free shipping</strong></p>
+<div class="gk-bag-ship__bar"><span style="width:100%"></span></div>
+</div>
+<div class="gk-bag-scroll">
+<ul class="gk-bag-items"><li class="gk-bag-item"><div class="gk-bag-item__img"><img alt="" src="assets/images/product-09.webp"/></div><div class="gk-bag-item__body"><p class="gk-bag-item__name">Goodricke Estate Gift Set</p><p class="gk-bag-item__meta">100g</p><p class="gk-bag-item__price"><span>₹1,499</span><s>₹1,799</s><em>17% off</em></p><div class="gk-bag-item__row"><div class="gk-bag-qty"><button aria-label="Decrease quantity" type="button">−</button><span>1</span><button aria-label="Increase quantity" type="button">+</button></div><button aria-label="Remove item" class="gk-bag-item__remove" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/></svg></button></div></div></li><li class="gk-bag-item"><div class="gk-bag-item__img"><img alt="" src="assets/images/product-04.webp"/></div><div class="gk-bag-item__body"><p class="gk-bag-item__name">Cardamom Chai</p><p class="gk-bag-item__meta">250g</p><p class="gk-bag-item__price"><span>₹349</span><s>₹449</s><em>22% off</em></p><div class="gk-bag-item__row"><div class="gk-bag-qty"><button aria-label="Decrease quantity" type="button">−</button><span>1</span><button aria-label="Increase quantity" type="button">+</button></div><button aria-label="Remove item" class="gk-bag-item__remove" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/></svg></button></div></div></li></ul>
+<div class="gk-bag-empty" hidden>
+<p>Your bag is empty.</p>
+<a class="gk-bag-empty__cta" href="plp.html">Shop teas</a>
+</div>
+<section class="gk-bag-upsell" aria-labelledby="gkBagUpsellTitle">
+<h3 class="gk-bag-upsell__title">You may also like</h3>
+<ul>
+<li class="gk-bag-upsell__card"><img alt="" loading="lazy" src="assets/images/product-09.webp"/><div><p class="gk-bag-upsell__name">Rose Black Tea</p><p class="gk-bag-upsell__price"><span>₹429</span><s>₹579</s></p></div><button aria-label="Add Rose Black Tea to bag" class="gk-bag-upsell__add" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7.500 8V6.200a4.500 4.500 0 0 1 9 0V8M5 8h14l-1 12H6z"/></svg></button></li>
+<li class="gk-bag-upsell__card"><img alt="" loading="lazy" src="assets/images/product-04.webp"/><div><p class="gk-bag-upsell__name">Cardamom Chai</p><p class="gk-bag-upsell__price"><span>₹349</span><s>₹449</s></p></div><button aria-label="Add Cardamom Chai to bag" class="gk-bag-upsell__add" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7.500 8V6.200a4.500 4.500 0 0 1 9 0V8M5 8h14l-1 12H6z"/></svg></button></li>
+</ul>
+</section>
+<section class="gk-bag-coupon">
+<form class="gk-bag-coupon__form" hidden novalidate>
+<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2.4"/></svg><input aria-label="Coupon code" autocomplete="off" autocapitalize="characters" placeholder="Have a coupon code?" spellcheck="false" type="text"/>
+<button type="submit">Apply</button>
+</form>
+<div class="gk-bag-coupon__applied">
+<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2.4"/></svg><p><strong>GOODRICKE10</strong> applied<span> · you save ₹150</span></p>
+<button type="button">Remove</button>
+</div>
+<p class="gk-bag-coupon__msg is-error" role="status" hidden>That code isn&rsquo;t valid. Check the spelling and try again.</p>
+<div class="gk-bag-offers">
+<p class="gk-bag-offers__title">Available offers</p>
+<button class="gk-bag-offer" type="button"><strong>GOODRICKE10</strong><span>10% off your order</span><em>Apply</em></button>
+<button class="gk-bag-offer" type="button"><strong>WELCOME100</strong><span>₹100 off orders above ₹999</span><em>Apply</em></button>
+</div>
+</section>
+<details class="gk-bag-note">
+<summary>Add a note for the Goodricke team</summary>
+<textarea aria-label="Note for the Goodricke team" placeholder="Gift message, delivery instructions…"></textarea>
+</details>
+</div>
+<footer class="gk-bag-footer">
+<dl class="gk-bag-totals">
+<div><dt>Subtotal</dt><dd>₹2,248</dd></div>
+<div class="is-save"><dt>Product discount</dt><dd>−₹400</dd></div>
+<div class="is-save"><dt>Coupon (GOODRICKE10)</dt><dd>−₹150</dd></div>
+<div><dt>Shipping</dt><dd class="is-free">FREE</dd></div>
+<div class="gk-bag-total"><dt>Total</dt><dd>₹1,698</dd></div>
+</dl>
+<p class="gk-bag-saved">You save ₹550 on this order</p>
+<p class="gk-bag-tax">Tax included. <a href="/policies/shipping-policy">Shipping policy</a></p>
+<div class="gk-bag-actions">
+<button class="gk-bag-continue" type="button">Continue shopping</button>
+<button class="gk-bag-checkout" type="button">Check out · ₹1,698</button>
+</div>
+</footer>
+</aside>
+</section>
+<section class="tray-ref__state"><h2>Coupon error</h2><p>Invalid code: message in Earthy Brown under the field.</p>
+<aside aria-label="Added to bag" class="gk-bag-drawer">
+<header class="gk-bag-head">
+<h2 class="gk-bag-title">Added to Bag <span class="gk-bag-count">1</span></h2>
+<button aria-label="Close bag" class="gk-bag-close" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+</header>
+<div class="gk-bag-ship is-done">
+<p class="gk-bag-ship__text"><strong>You&rsquo;ve unlocked free shipping</strong></p>
+<div class="gk-bag-ship__bar"><span style="width:100%"></span></div>
+</div>
+<div class="gk-bag-scroll">
+<ul class="gk-bag-items"><li class="gk-bag-item"><div class="gk-bag-item__img"><img alt="" src="assets/images/product-09.webp"/></div><div class="gk-bag-item__body"><p class="gk-bag-item__name">Goodricke Estate Gift Set</p><p class="gk-bag-item__meta">100g</p><p class="gk-bag-item__price"><span>₹1,499</span><s>₹1,799</s><em>17% off</em></p><div class="gk-bag-item__row"><div class="gk-bag-qty"><button aria-label="Decrease quantity" type="button">−</button><span>1</span><button aria-label="Increase quantity" type="button">+</button></div><button aria-label="Remove item" class="gk-bag-item__remove" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/></svg></button></div></div></li></ul>
+<div class="gk-bag-empty" hidden>
+<p>Your bag is empty.</p>
+<a class="gk-bag-empty__cta" href="plp.html">Shop teas</a>
+</div>
+<section class="gk-bag-upsell" aria-labelledby="gkBagUpsellTitle">
+<h3 class="gk-bag-upsell__title">You may also like</h3>
+<ul>
+<li class="gk-bag-upsell__card"><img alt="" loading="lazy" src="assets/images/product-09.webp"/><div><p class="gk-bag-upsell__name">Rose Black Tea</p><p class="gk-bag-upsell__price"><span>₹429</span><s>₹579</s></p></div><button aria-label="Add Rose Black Tea to bag" class="gk-bag-upsell__add" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7.500 8V6.200a4.500 4.500 0 0 1 9 0V8M5 8h14l-1 12H6z"/></svg></button></li>
+<li class="gk-bag-upsell__card"><img alt="" loading="lazy" src="assets/images/product-04.webp"/><div><p class="gk-bag-upsell__name">Cardamom Chai</p><p class="gk-bag-upsell__price"><span>₹349</span><s>₹449</s></p></div><button aria-label="Add Cardamom Chai to bag" class="gk-bag-upsell__add" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7.500 8V6.200a4.500 4.500 0 0 1 9 0V8M5 8h14l-1 12H6z"/></svg></button></li>
+</ul>
+</section>
+<section class="gk-bag-coupon">
+<form class="gk-bag-coupon__form" novalidate>
+<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2.4"/></svg><input aria-label="Coupon code" autocomplete="off" value="GOODRIKE10" aria-invalid="true" autocapitalize="characters" placeholder="Have a coupon code?" spellcheck="false" type="text"/>
+<button type="submit">Apply</button>
+</form>
+<div class="gk-bag-coupon__applied" hidden>
+<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2.4"/></svg><p><strong>GOODRICKE10</strong> applied<span> · you save ₹150</span></p>
+<button type="button">Remove</button>
+</div>
+<p class="gk-bag-coupon__msg is-error" role="status">That code isn&rsquo;t valid. Check the spelling and try again.</p>
+<div class="gk-bag-offers">
+<p class="gk-bag-offers__title">Available offers</p>
+<button class="gk-bag-offer" type="button"><strong>GOODRICKE10</strong><span>10% off your order</span><em>Apply</em></button>
+<button class="gk-bag-offer" type="button"><strong>WELCOME100</strong><span>₹100 off orders above ₹999</span><em>Apply</em></button>
+</div>
+</section>
+<details class="gk-bag-note">
+<summary>Add a note for the Goodricke team</summary>
+<textarea aria-label="Note for the Goodricke team" placeholder="Gift message, delivery instructions…"></textarea>
+</details>
+</div>
+<footer class="gk-bag-footer">
+<dl class="gk-bag-totals">
+<div><dt>Subtotal</dt><dd>₹1,799</dd></div>
+<div class="is-save"><dt>Product discount</dt><dd>−₹300</dd></div>
+<div class="is-save" hidden><dt>Coupon (GOODRICKE10)</dt><dd>−₹150</dd></div>
+<div><dt>Shipping</dt><dd class="is-free">FREE</dd></div>
+<div class="gk-bag-total"><dt>Total</dt><dd>₹1,499</dd></div>
+</dl>
+<p class="gk-bag-saved">You save ₹300 on this order</p>
+<p class="gk-bag-tax">Tax included. <a href="/policies/shipping-policy">Shipping policy</a></p>
+<div class="gk-bag-actions">
+<button class="gk-bag-continue" type="button">Continue shopping</button>
+<button class="gk-bag-checkout" type="button">Check out · ₹1,499</button>
+</div>
+</footer>
+</aside>
+</section>
+<section class="tray-ref__state"><h2>Empty bag</h2><p>No items: only the message, the recommendations and a link to shop.</p>
+<aside aria-label="Added to bag" class="gk-bag-drawer">
+<header class="gk-bag-head">
+<h2 class="gk-bag-title">Added to Bag <span class="gk-bag-count">0</span></h2>
+<button aria-label="Close bag" class="gk-bag-close" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+</header>
+<div class="gk-bag-ship" hidden>
+<p class="gk-bag-ship__text"></p>
+<div class="gk-bag-ship__bar"><span style="width:0%"></span></div>
+</div>
+<div class="gk-bag-scroll">
+<ul class="gk-bag-items"></ul>
+<div class="gk-bag-empty">
+<p>Your bag is empty.</p>
+<a class="gk-bag-empty__cta" href="plp.html">Shop teas</a>
+</div>
+<section class="gk-bag-upsell" aria-labelledby="gkBagUpsellTitle">
+<h3 class="gk-bag-upsell__title">You may also like</h3>
+<ul>
+<li class="gk-bag-upsell__card"><img alt="" loading="lazy" src="assets/images/product-09.webp"/><div><p class="gk-bag-upsell__name">Rose Black Tea</p><p class="gk-bag-upsell__price"><span>₹429</span><s>₹579</s></p></div><button aria-label="Add Rose Black Tea to bag" class="gk-bag-upsell__add" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7.500 8V6.200a4.500 4.500 0 0 1 9 0V8M5 8h14l-1 12H6z"/></svg></button></li>
+<li class="gk-bag-upsell__card"><img alt="" loading="lazy" src="assets/images/product-04.webp"/><div><p class="gk-bag-upsell__name">Cardamom Chai</p><p class="gk-bag-upsell__price"><span>₹349</span><s>₹449</s></p></div><button aria-label="Add Cardamom Chai to bag" class="gk-bag-upsell__add" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7.500 8V6.200a4.500 4.500 0 0 1 9 0V8M5 8h14l-1 12H6z"/></svg></button></li>
+</ul>
+</section>
+<section class="gk-bag-coupon" hidden>
+<form class="gk-bag-coupon__form" novalidate>
+<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2.4"/></svg><input aria-label="Coupon code" autocomplete="off" autocapitalize="characters" placeholder="Have a coupon code?" spellcheck="false" type="text"/>
+<button type="submit">Apply</button>
+</form>
+<div class="gk-bag-coupon__applied" hidden>
+<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2.4"/></svg><p><strong>GOODRICKE10</strong> applied<span> · you save ₹150</span></p>
+<button type="button">Remove</button>
+</div>
+<p class="gk-bag-coupon__msg is-error" role="status" hidden>That code isn&rsquo;t valid. Check the spelling and try again.</p>
+<div class="gk-bag-offers">
+<p class="gk-bag-offers__title">Available offers</p>
+<button class="gk-bag-offer" type="button"><strong>GOODRICKE10</strong><span>10% off your order</span><em>Apply</em></button>
+<button class="gk-bag-offer" type="button"><strong>WELCOME100</strong><span>₹100 off orders above ₹999</span><em>Apply</em></button>
+</div>
+</section>
+<details class="gk-bag-note" hidden>
+<summary>Add a note for the Goodricke team</summary>
+<textarea aria-label="Note for the Goodricke team" placeholder="Gift message, delivery instructions…"></textarea>
+</details>
+</div>
+<footer class="gk-bag-footer" hidden>
+<dl class="gk-bag-totals">
+<div><dt>Subtotal</dt><dd>₹0</dd></div>
+<div class="is-save"><dt>Product discount</dt><dd></dd></div>
+<div class="is-save" hidden><dt>Coupon (GOODRICKE10)</dt><dd>−₹150</dd></div>
+<div><dt>Shipping</dt><dd>Calculated at checkout</dd></div>
+<div class="gk-bag-total"><dt>Total</dt><dd>₹0</dd></div>
+</dl>
+<p class="gk-bag-saved">You save ₹0 on this order</p>
+<p class="gk-bag-tax">Tax included. <a href="/policies/shipping-policy">Shipping policy</a></p>
+<div class="gk-bag-actions">
+<button class="gk-bag-continue" type="button">Continue shopping</button>
+<button class="gk-bag-checkout" type="button">Check out · ₹0</button>
+</div>
+</footer>
+</aside>
+</section>
+</div>
+</main>
+</body>
+</html>

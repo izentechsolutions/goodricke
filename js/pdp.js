@@ -536,11 +536,9 @@ try { (function(){
   checks.forEach(function(c){c.addEventListener('change',update);});
   add.addEventListener('click',function(){
     var sel=on();if(!sel.length) return;
-    var total=sel.reduce(function(s,c){return s+ +c.dataset.price;},0);
-    document.dispatchEvent(new CustomEvent('gk-cart-add',{detail:{
-      name:sel.map(function(c){return c.dataset.name;}).join(' + '),
-      ref:sel.map(function(c){return c.dataset.ref;}).join(', '),
-      price:fmt(total),img:sel[0].dataset.img,qty:sel.length}}));
+    /* each selected product goes into the bag as its own line */
+    document.dispatchEvent(new CustomEvent('gk-cart-add',{detail:{items:sel.map(function(c){
+      return {name:c.dataset.name,price:c.dataset.price,mrp:c.dataset.mrp,img:c.dataset.img,qty:1};})}}));
   });
   update();
 })();
