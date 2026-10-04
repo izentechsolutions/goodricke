@@ -30,6 +30,7 @@ assets/
 src/style.css                      the editable source for all CSS
 build/build-css.js                 builds css/*.css from src/style.css   (npm run build:css)
 build/check-links.py               verifies every file reference exists  (python3 build/check-links.py)
+build/dedupe-css.js                one-off cleanup: removes overridden duplicate CSS (see §2)
 package.json                       build tooling only (not needed to run the site)
 Dockerfile, nginx.conf, .github/   demo hosting (Cloud Run / GitHub Pages)
 ```
@@ -49,6 +50,10 @@ Shopify and nginx compress files when they serve them, so minifying would gain l
   It runs PurgeCSS; class names toggled by JS are found as strings in the page's JS.
   PLP and PDP also get the few Bootstrap 5.3.8 rules they use (reboot, `container`, `row`, `col-*`, `visually-hidden`).
   That removes the Bootstrap CDN entirely; no page loads any external file.
+- **Duplicate rules removed:** `Goodricke_Website` had merged two versions of the main stylesheet, so many rules existed twice and the later one always won.
+  `build/dedupe-css.js` removed 3,281 such overridden declarations, 16 duplicate `@keyframes` and 820 rules left empty, taking `src/style.css` from 440 KB to 316 KB.
+  It only removes a declaration when a later rule with the identical selector, in the identical `@media`/`@supports` context and at equal or higher importance, sets the same property to a browser-valid value. By the cascade, the removed declaration could never apply.
+  Verified: the computed styles of all 145,038 element/pseudo-element styles across 3 pages × 3 widths × up to 10 states match the version before the cleanup.
 - **Edit `src/style.css`, then run the build.** Never edit `css/*.css` directly. To install the build tools once: `npm install`.
 - Each page loads exactly one stylesheet: `css/home.css`, `css/plp.css` or `css/pdp.css`.
 
@@ -108,7 +113,7 @@ These were converted losslessly from the approved fonts. Glyphs and character ma
 - **Header bag count** updates when items are added, and persists while browsing during the session.
 - **PLP copy and meta:** the beauty-brand placeholder copy on PLP is replaced with existing Goodricke copy. Page titles, meta descriptions, a favicon and Open Graph link-preview tags are added.
 - **Mega-menu images:** broken paths on PLP are fixed.
-- **Cleanup:** 139 unused or duplicate asset files (about 230 MB) were removed, including the PSD, four copies of a 13.8 MB photo, 54 unused static Inter fonts and `.DS_Store` files. The old duplicate copy of the site is removed too; it's still in git history.
+- **Cleanup:** 142 unused or duplicate asset files (about 230 MB) were removed. These include 3 images that were only named in CSS rules that are always overridden, so they never showed. Also removed: the PSD, four copies of a 13.8 MB photo, 54 unused static Inter fonts and `.DS_Store` files. The old duplicate copy of the site is removed too; it's still in git history.
 
 **Known and accepted:** unbox slide 3 points to `./adobestock_1003230309-mu6iyxtp-l08b.jpg`, which has never existed. It's left as in the approved design and listed as an accepted exception in `build/check-links.py`.
 
@@ -122,13 +127,14 @@ These were converted losslessly from the approved fonts. Glyphs and character ma
 | PDP | 2.3 MB | **1.2 MB** | 1.2 MB |
 
 - Before, the videos (about 33 MB) also started downloading on page load; now they load only when needed.
-- Assets went from 280 MB to 30 MB: 22 MB of video, 6.8 MB of images and 0.8 MB of fonts.
+- Assets went from 280 MB to 30 MB: 22 MB of video, 6.7 MB of images and 0.8 MB of fonts.
+- Per-page CSS went from 431 KB plus the Bootstrap CDN to 145–173 KB of readable CSS (about 30 KB gzipped).
 - Fonts per page went from 874 KB of TTF (plus 6 failed requests) to 340 KB of WOFF2.
 - No page loads anything from another domain any more (Bootstrap was the only external dependency).
 
 ## 8. Verification
 
-- `python3 build/check-links.py`: 517 local references checked, 0 broken (plus the accepted slide-3 exception above).
+- `python3 build/check-links.py`: 503 local references checked, 0 broken (plus the accepted slide-3 exception above).
 - **No JavaScript errors** on any page at 1440 px or 390 px.
   - The only console messages are the accepted slide-3 404, and, in headless Chromium only, the story video, because that browser build has no H.264 codec.
   - Real Chrome, Safari, Edge and Firefox play these files.
@@ -142,7 +148,7 @@ These were converted losslessly from the approved fonts. Glyphs and character ma
 
 ## 9. Notes for the Shopify developer
 
-- **Flat assets folder:** everything in `css/`, `js/`, `assets/fonts/`, `assets/images/` and `assets/media/` (88 files) can go into the theme's single `assets/` folder. **No file-name collisions.**
+- **Flat assets folder:** everything in `css/`, `js/`, `assets/fonts/`, `assets/images/` and `assets/media/` (85 files) can go into the theme's single `assets/` folder. **No file-name collisions.**
   - In Liquid use `{{ 'home.css' | asset_url | stylesheet_tag }}` and `{{ 'common.js' | asset_url | script_tag }}`.
   - In CSS, `../assets/images/x.webp` and `../assets/fonts/x.woff2` become `x.webp` / `x.woff2` (same folder), or use a `.css.liquid` file with `asset_url`.
   - Product and collection images should come from Shopify (`image_url`), not theme assets. Upload the videos to *Content → Files*.
