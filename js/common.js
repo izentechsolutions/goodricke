@@ -258,6 +258,26 @@ try { (function(){
 
 })(); } catch (e) { console.error("Sticky header", e); }
 
+// ==== Scrolled header on phones: hide while scrolling down ====
+try { (function(){
+  var bar = document.getElementById('stickybar');
+  if (!bar) return;
+  var mq = matchMedia('(max-width:767px)'), lastY = window.pageYOffset, ticking = false;
+  function busy() {
+    var t = document.getElementById('stickyToggle');
+    return (t && t.getAttribute('aria-expanded') === 'true') || document.body.classList.contains('search-open');
+  }
+  function check() {
+    ticking = false;
+    var y = window.pageYOffset, d = y - lastY;
+    if (!mq.matches || y < 200 || busy()) bar.classList.remove('is-tucked');
+    else if (d > 6) bar.classList.add('is-tucked');        /* reading down: get out of the way */
+    else if (d < -6) bar.classList.remove('is-tucked');    /* any scroll up: bring it back */
+    if (Math.abs(d) > 6 || y < 200) lastY = y;
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(check); } }, { passive: true });
+})(); } catch (e) { console.error("Scrolled header on phones", e); }
+
 // ==== Sticky header menu ====
 try { (function(){
 
@@ -674,9 +694,12 @@ try { (function(){
   if(!trigger||!box||!input||!list) return;
   var closeBtn=box.querySelector('.hsearch__close');
   var pages=['Home','Shop','Our Gardens','Journal','Contact'];
+  /* other buttons can open search too (e.g. the scrolled header's search icon) */
+  var active=trigger;
+  var isTrigger=function(el){return trigger.contains(el)||!!(el.closest&&el.closest('[data-search-trigger]'));};
 
   function position(){
-    var r=trigger.getBoundingClientRect();
+    var r=active.getBoundingClientRect();
     var pill=document.querySelector('.pillnav');
     var acts=document.querySelector('.navactions');
     var wide=window.innerWidth>900&&pill&&acts;
@@ -747,7 +770,11 @@ try { (function(){
     p.el.classList.add('hsearch-hit');
     setTimeout(function(){p.el.classList.remove('hsearch-hit');},2200);
   }
-  trigger.addEventListener('click',function(e){e.preventDefault();box.classList.contains('is-open')?close():open();});
+  trigger.addEventListener('click',function(e){e.preventDefault();active=trigger;box.classList.contains('is-open')?close():open();});
+  document.addEventListener('click',function(e){
+    var t=e.target.closest&&e.target.closest('[data-search-trigger]');if(!t) return;
+    e.preventDefault();active=t;box.classList.contains('is-open')?close():open();
+  });
   closeBtn.addEventListener('click',close);
   input.addEventListener('input',function(){
     render();
@@ -765,7 +792,7 @@ try { (function(){
   });
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&box.classList.contains('is-open'))close();});
   document.addEventListener('click',function(e){
-    if(box.classList.contains('is-open')&&!box.contains(e.target)&&!trigger.contains(e.target))close();
+    if(box.classList.contains('is-open')&&!box.contains(e.target)&&!isTrigger(e.target))close();
   });
   window.addEventListener('resize',function(){if(box.classList.contains('is-open'))position();});
   window.addEventListener('scroll',function(){if(box.classList.contains('is-open'))position();},{passive:true});

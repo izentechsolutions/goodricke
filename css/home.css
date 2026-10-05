@@ -5209,7 +5209,6 @@ body.gk-filter-lock{overflow:hidden!important}
   visibility: visible !important;
   display: flex !important;
   transform: translateX(-50%) !important;
-  opacity: -0.1 !important;
 }.hero-slide {
     background-position: 55% center !important;
     background-size: cover !important;
@@ -5619,17 +5618,7 @@ html.gk-cursor-on *:not(input):not(textarea):not(select){ cursor:none !important
 
     margin-top: 0 !important;
     margin-bottom: 0 !important;
-  }}@media screen and (max-width: 767px){.stickybar,
-  #stickybar {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }.sticky-inner{
-  visibility: hidden !important;
-}#stickybar.show{
-  display: none !important;
-}}@media screen and (min-width: 768px){.stickybar,
+  }}@media screen and (min-width: 768px){.stickybar,
   #stickybar {
     display: flex !important;
     visibility: visible !important;
@@ -6134,4 +6123,15 @@ html:has(body.gk-menu-lock){overflow:hidden;}
   html body .pillnav .pillnav__login{display:flex !important;justify-content:center !important;width:auto !important;min-height:50px !important;margin:28px 24px 0 !important;border:0 !important;border-radius:999px !important;background:#205007 !important;color:#FFFFF4 !important;font-size:15px !important;}
   html body .pillnav .pillnav__login::after{display:none;}
   html body .menu-toggle.active{color:#042C05 !important;}
+}
+
+/* ==== Scrolled header on phones (≤767px): the tablet pill, also shown on phones; hides while scrolling down ==== */
+#stickybar .sticky-search{display:none;}
+@media (max-width:900px){
+  #stickybar .sticky-search{display:inline-grid;place-items:center;width:38px;height:38px;padding:0;border:0;border-radius:50%;background:rgba(255,255,244,.10);color:#FFFFF4;cursor:pointer;transition:background .2s ease;}
+  #stickybar .sticky-search:hover{background:rgba(255,255,244,.18);}
+  #stickybar .sticky-search svg{width:18px;height:18px;}
+}
+@media (max-width:767px){
+  html body #stickybar.show.is-tucked{opacity:0 !important;transform:translateX(-50%) translateY(-140%) !important;pointer-events:none !important;}
 }
