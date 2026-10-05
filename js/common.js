@@ -20,24 +20,30 @@ window.gkBag = (function () {
 try { (function(){
 
 document.addEventListener('DOMContentLoaded', function () {
-
     const menuToggle = document.querySelector('.menu-toggle');
     const menu = document.querySelector('.pillnav');
-
     if (!menuToggle || !menu) return;
 
-    menuToggle.addEventListener('click', function () {
-        menu.classList.toggle('open');
-        menuToggle.classList.toggle('active');
-    });
-
+    function setOpen(on) {
+        menu.classList.toggle('open', on);
+        menuToggle.classList.toggle('active', on);
+        menuToggle.setAttribute('aria-expanded', on ? 'true' : 'false');
+        menuToggle.setAttribute('aria-label', on ? 'Close menu' : 'Open menu');
+        document.body.classList.toggle('gk-menu-lock', on);   /* page stays put behind the menu */
+    }
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.addEventListener('click', function () { setOpen(!menu.classList.contains('open')); });
     menu.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', function () {
-            menu.classList.remove('open');
-            menuToggle.classList.remove('active');
-        });
+        link.addEventListener('click', function () { setOpen(false); });
     });
-
+    /* tap on the dimmed page or press Escape to close */
+    document.addEventListener('click', function (e) {
+        if (menu.classList.contains('open') && !menu.contains(e.target) && !menuToggle.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && menu.classList.contains('open')) { setOpen(false); menuToggle.focus(); }
+    });
+    window.addEventListener('resize', function () { if (window.innerWidth > 767 && menu.classList.contains('open')) setOpen(false); });
 });
 
 
@@ -115,7 +121,7 @@ try { (function(){
     var locked = function () {
       var b = document.body;
       return b.style.overflow === 'hidden' || root.classList.contains('gk-scroll-lock') ||
-        b.classList.contains('gk-bag-lock') || b.classList.contains('gk-filter-lock');
+        b.classList.contains('gk-bag-lock') || b.classList.contains('gk-filter-lock') || b.classList.contains('gk-menu-lock');
     };
     var insideScroller = function (el, dy) {
       while (el && el !== document.body && el !== root) {
@@ -682,6 +688,8 @@ try { (function(){
     }else{
       width=Math.min(460,window.innerWidth-24);
       right=Math.max(12,window.innerWidth-r.right-8);
+      /* keep the whole panel on screen: never let it start left of the 12px margin */
+      if(window.innerWidth-right-width<12) right=Math.max(12,window.innerWidth-12-width);
     }
     box.style.top=Math.max(8,r.top+r.height/2-24)+'px';
     box.style.right=right+'px';

@@ -14,7 +14,7 @@
 <meta property="og:image" content="assets/images/og-image.jpg">
 <meta name="theme-color" content="#205007">
 
-<link rel="stylesheet" href="css/plp.css?v=20261005">
+<link rel="stylesheet" href="css/plp.css?v=20261005b">
 </head>
 <body class="plp-page">
 <div aria-hidden="true" class="nav-panels" data-theme="dark" id="gkNavPanels">
@@ -45,13 +45,13 @@
 <header class="stickybar" id="stickybar">
 <div class="sticky-inner">
 <a aria-label="Goodricke home" class="sticky-mark" href="index.html"><img alt="Goodricke" class="sticky-icon" src="assets/images/goodricke-icon-green.webp"/></a>
-<nav aria-label="Primary" class="sticky-links"><a href="index.html"><span>Home</span></a><a aria-controls="gk-nav-panel-shop" aria-expanded="false" class="is-active" data-panel-trigger="shop" href="plp.html"><span>Shop</span></a><a aria-controls="gk-nav-panel-gardens" aria-expanded="false" data-panel-trigger="gardens" href="#"><span>Our Gardens</span></a><a href="#"><span>Journal</span></a><a href="#"><span>Contact</span></a></nav>
+<nav aria-label="Primary" class="sticky-links"><a href="index.html"><span>Home</span></a><a aria-controls="gk-nav-panel-shop" aria-expanded="false" class="is-active" data-panel-trigger="shop" href="plp.html"><span>Shop</span></a><a aria-controls="gk-nav-panel-gardens" aria-expanded="false" data-panel-trigger="gardens" href="index.html#our-gardens"><span>Our Gardens</span></a><a href="#"><span>Journal</span></a><a href="#contact"><span>Contact</span></a></nav>
 <div class="sticky-actions">
 <a aria-label="Cart" class="sticky-cart" href="#"><svg class="" fill-rule="evenodd" height="512" style="enable-background:new 0 0 512 512" version="1.1" viewbox="0 0 48 48" width="512" x="0" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" y="0"><g><path class="" d="M14.519 13.5h-2.657a3.5 3.5 0 0 0-3.491 3.251l-1.714 24a3.5 3.5 0 0 0 3.491 3.749h27.704a3.5 3.5 0 0 0 3.491-3.749l-1.714-24a3.5 3.5 0 0 0-3.491-3.251H33.5V13A9.5 9.5 0 0 0 24 3.5c-5.055 0-9.727 4.026-9.5 9.5zm18.981 3V24a1.5 1.5 0 0 1-3 0v-7.5h-13V24a1.5 1.5 0 0 1-3 0s.13-3.505.087-7.5h-2.725a.5.5 0 0 0-.498.464l-1.715 24a.5.5 0 0 0 .499.536h27.704a.5.5 0 0 0 .499-.536l-1.715-24a.5.5 0 0 0-.498-.464zm-3-3V13a6.5 6.5 0 1 0-13 0v.5z" data-original="#fff" fill="#fff" opacity="1"></path></g></svg></a>
 </div>
 <button aria-controls="stickyMenu" aria-expanded="false" aria-label="Menu" class="sticky-toggle" id="stickyToggle" type="button"><span class="sticky-toggle-mask"><span class="sticky-toggle-words"><span>Menu</span><span>Close</span></span></span></button>
 </div>
-<nav aria-label="Mobile navigation" class="sticky-menu" id="stickyMenu"><a href="index.html" style="--i:0"><span>Home</span></a><a href="plp.html" style="--i:1"><span>Shop</span></a><a href="#" style="--i:2"><span>Our Gardens</span></a><a href="#" style="--i:3"><span>Journal</span></a><a href="#" style="--i:4"><span>Contact</span></a></nav>
+<nav aria-label="Mobile navigation" class="sticky-menu" id="stickyMenu"><a href="index.html" style="--i:0"><span>Home</span></a><a href="plp.html" style="--i:1"><span>Shop</span></a><a href="index.html#our-gardens" style="--i:2"><span>Our Gardens</span></a><a href="#" style="--i:3"><span>Journal</span></a><a href="#contact" style="--i:4"><span>Contact</span></a></nav>
 </header>
 <div class="hero-scene" id="heroScene">
 <section class="hero" style="position:relative;width:100%;display:flex;flex-direction:column;height:400px;min-height:400px;overflow:hidden;">
@@ -82,9 +82,10 @@
 <div class="pillnav" style="background-color:#0000003B;">
 <a href="index.html" style="font-weight:400;font-size:13px;">Home</a>
 <a aria-controls="gk-nav-panel-shop" aria-expanded="false" class="active" data-panel-trigger="shop" href="plp.html" style="background-color:#2050072A;color:#FFFFFF;font-weight:400;font-size:13px;">Shop</a>
-<a aria-controls="gk-nav-panel-gardens" aria-expanded="false" data-panel-trigger="gardens" href="#" style="font-weight:400;font-size:13px;">Our Gardens</a>
+<a aria-controls="gk-nav-panel-gardens" aria-expanded="false" data-panel-trigger="gardens" href="index.html#our-gardens" style="font-weight:400;font-size:13px;">Our Gardens</a>
 <a href="#" style="font-weight:400;font-size:13px;">Journal</a>
-<a href="#" style="font-weight:400;font-size:13px;">Contact</a>
+<a href="#contact" style="font-weight:400;font-size:13px;">Contact</a>
+<a class="pillnav__login" href="#">Login / Register</a>
 </div>
 <div class="navactions">
 <a aria-controls="hsearch" aria-expanded="false" aria-label="Search" class="cart-link search-link" href="#" id="headerSearch"><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg></a>
@@ -1080,7 +1081,7 @@
 </div>
 </div>
 </section>
-<footer class="site-footer" style="padding-bottom:10px;padding-top:150px;">
+<footer class="site-footer" id="contact" style="padding-bottom:10px;padding-top:150px;">
 <div class="footer-grid">
 <div class="footer-brand">
 <h2>Be the first to know</h2>
@@ -1122,7 +1123,7 @@
 <div class="footer-col-body">
 <div>
 <a href="#">Our Story</a>
-<a href="#">Our Gardens</a>
+<a href="index.html#our-gardens">Our Gardens</a>
 <a href="#">Track Orders</a>
 <a href="#">Contact Us</a>
 </div>
@@ -1336,7 +1337,7 @@
 </div>
 <ul class="hsearch__results" id="hsearchResults"></ul>
 </div>
-<script src="js/common.js?v=20261005"></script>
-<script src="js/plp.js?v=20261005"></script>
+<script src="js/common.js?v=20261005b"></script>
+<script src="js/plp.js?v=20261005b"></script>
 </body>
 </html>
