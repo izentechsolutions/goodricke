@@ -2097,6 +2097,7 @@ section.product-listing .product-item :focus-visible{
 .hsearch__item em{font-style:normal;color:#205007;font-weight:400}
 .hsearch__chip{margin:4px 6px 6px 0;padding:7px 14px;border:1px solid rgba(4,44,5,.25);border-radius:999px;background:#fff;color:#042C05;font:400 13px "Inter",system-ui,sans-serif;cursor:pointer}
 .hsearch__chip:hover{background:#042C05;color:#fff}
+@media (max-width:900px){.hsearch__bar{background:#042C05}}
 .hsearch__results li:has(.hsearch__chip){display:inline-block}
 .hsearch-hit{outline:3px solid #042C05;outline-offset:4px;transition:outline-color .4s ease}
 
@@ -3316,7 +3317,6 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
   visibility: visible !important;
   display: flex !important;
   transform: translateX(-50%) !important;
-  opacity: -0.1 !important;
 }.hero-slide {
     background-position: 55% center !important;
     background-size: cover !important;
@@ -3708,17 +3708,7 @@ html.gk-cursor-on *:not(input):not(textarea):not(select){ cursor:none !important
 
     margin-top: 0 !important;
     margin-bottom: 0 !important;
-  }}@media screen and (max-width: 767px){.stickybar,
-  #stickybar {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }.sticky-inner{
-  visibility: hidden !important;
-}#stickybar.show{
-  display: none !important;
-}}@media screen and (min-width: 768px){.stickybar,
+  }}@media screen and (min-width: 768px){.stickybar,
   #stickybar {
     display: flex !important;
     visibility: visible !important;
@@ -4730,3 +4720,30 @@ body.plp-page section.product-listing{background:#fff !important}
 /* full list */
 
 /* ==== PDP buy box: rating link, savings, quantity + button row, reassurance, accordion, mobile buy bar ==== */
+
+/* ==== Mobile menu (≤767px): wider panel, dimmed page behind, divided rows, Login / Register ==== */
+.pillnav .pillnav__login{display:none !important;}
+html:has(body.gk-menu-lock){overflow:hidden;}
+@media (max-width:767px){
+  html body .pillnav{width:min(86vw,360px) !important;padding:96px 0 28px !important;gap:0 !important;background:#FFFFF4 !important;}
+  html body .pillnav.open{box-shadow:0 0 0 100vmax rgba(4,44,5,.45),12px 0 40px rgba(4,44,5,.18) !important;}
+  html body .pillnav a{position:relative;justify-content:space-between !important;min-height:56px !important;padding:0 24px !important;border-bottom:1px solid rgba(4,44,5,.10) !important;color:#042C05 !important;font-family:"Inter",system-ui,sans-serif !important;font-size:17px !important;}
+  html body .pillnav a:first-child{border-top:1px solid rgba(4,44,5,.10) !important;}
+  html body .pillnav a::after{content:"";flex:0 0 auto;width:8px;height:8px;margin-right:4px;border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;transform:rotate(45deg);opacity:.45;}
+  html body .pillnav a.active{color:#205007 !important;background:rgba(32,80,7,.06) !important;}
+  html body .pillnav a.active::before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:3px;border-radius:0 3px 3px 0;background:#205007;}
+  html body .pillnav .pillnav__login{display:flex !important;justify-content:center !important;width:auto !important;min-height:50px !important;margin:28px 24px 0 !important;border:0 !important;border-radius:999px !important;background:#205007 !important;color:#FFFFF4 !important;font-size:15px !important;}
+  html body .pillnav .pillnav__login::after{display:none;}
+  html body .menu-toggle.active{color:#042C05 !important;}
+}
+
+/* ==== Scrolled header on phones (≤767px): the tablet pill, also shown on phones; hides while scrolling down ==== */
+#stickybar .sticky-search{display:none;}
+@media (max-width:900px){
+  #stickybar .sticky-search{display:inline-grid;place-items:center;width:38px;height:38px;padding:0;border:0;border-radius:50%;background:rgba(255,255,244,.10);color:#FFFFF4;cursor:pointer;transition:background .2s ease;}
+  #stickybar .sticky-search:hover{background:rgba(255,255,244,.18);}
+  #stickybar .sticky-search svg{width:18px;height:18px;}
+}
+@media (max-width:767px){
+  html body #stickybar.show.is-tucked{opacity:0 !important;transform:translateX(-50%) translateY(-140%) !important;pointer-events:none !important;}
+}
