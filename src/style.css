@@ -9656,6 +9656,7 @@ body.plp-page section.product-listing{background:#fff !important}
   .hero-slide[style*="bg2.webp"]{background-image:url("../assets/images/bg2-m.webp") !important;}
   .unbox-slide[style*="unbox-slide-1.webp"]{background-image:url("../assets/images/unbox-slide-1-m.webp") !important;}
   .unbox-slide[style*="unbox-slide-2.webp"]{background-image:url("../assets/images/unbox-slide-2-m.webp") !important;}
+  .unbox-slide[style*="unbox-slide-3.webp"]{background-image:url("../assets/images/unbox-slide-3-m.webp") !important;}
   .region[style*="region-section-bg.webp"]{background-image:url("../assets/images/region-section-bg-m.webp") !important;}
   .unbox-stage{background-image:linear-gradient(90deg,rgba(0,0,0,0.62),rgba(0,0,0,0.3)),url("../assets/images/unbox-garden-m.webp");}
   .hero{background-image:

@@ -13,9 +13,8 @@ STR = re.compile(r'''['"`]((?:\.{0,2}/)?assets/[^'"`\s]+)['"`]''')
 def local(v):
     return v and not re.match(r'^(?:[a-z]+:|//|#|/)', v, re.I) and re.search(r'\.(?:html|css|js|webp|avif|png|jpe?g|gif|svg|ico|woff2?|ttf|otf|mp4|webm|json)$', v, re.I)
 
-# Known and accepted: unbox slide 3 has pointed at this missing file since the approved
-# design; it is intentionally left as is (see README).
-KNOWN = {'./adobestock_1003230309-mu6iyxtp-l08b.jpg'}
+# Known and accepted missing files (none at the moment).
+KNOWN = set()
 checked, broken = 0, []
 def check(v, base, where):
     global checked
