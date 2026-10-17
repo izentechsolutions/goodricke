@@ -250,7 +250,12 @@ document.addEventListener("DOMContentLoaded", function () {
   text.classList.add("animate");
 
 
+  /* phones show one photo with the full story under it: no rotation */
+  const phone = window.matchMedia("(max-width:767px)");
+
   function changeSlide() {
+
+    if (phone.matches) return;
 
     const previous = current;
 
@@ -313,7 +318,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* Smooth automatic movement */
   function autoSlide() {
-    if (!isDragging) {
+    if (!isDragging && slider.dataset.paused !== "1") {
       const maxScroll = slider.scrollWidth - slider.clientWidth;
 
       slider.scrollLeft += 0.35 * direction;
@@ -394,7 +399,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const speed = 0.3;
 
   function animate() {
-    if (!isDragging && !isHovering) {
+    if (!isDragging && !isHovering && slider.dataset.paused !== "1") {
       const maxScroll = slider.scrollWidth - slider.clientWidth;
 
       slider.scrollLeft += speed * direction;
@@ -720,6 +725,9 @@ try { (function(){
   }
 
   function measure() {
+    if (mobile.matches) {                     /* phones: plain block, no expand */
+      clearInline(); hold.style.height = '0px'; sec.style.removeProperty('--unbox-top'); g = null; return;
+    }
     var wasExp = expanding;
     if (wasExp) clearInline();               /* measure the resting layout */
     var c = cfg();
@@ -825,7 +833,7 @@ try { (function(){
     p = Math.round(p * 1000) / 1000;
     if (p === lastP) return;
     lastP = p;
-    unbox.style.setProperty('--unbox-cover-p', p);
+    unbox.style.setProperty('--unbox-cover-p', window.innerWidth <= 767 ? 0 : p);
   }
   if (window.gkScroll) window.gkScroll.subscribe(update);
   else { addEventListener('scroll', update, { passive: true }); update(); }
@@ -836,3 +844,38 @@ try { (function(){
 
 })(); } catch (e) { console.error("Unbox / range overlap", e); }
 
+
+// ==== Carousel arrows (Bestsellers, Products For You) ====
+/* One pair of arrows under each product row; shown only when the row has more to scroll to.
+   Bestsellers re-uses its existing (already wired) buttons; Products For You gets new ones and
+   pauses its auto-scroll for a few seconds after each press. */
+try { (function(){
+  var ARROW = function(d){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="'+(d<0?'M15 5l-7 7 7 7':'M9 5l7 7-7 7')+'"/></svg>'; };
+  function wrap(row, prev, next){
+    var box = document.createElement('div'); box.className = 'gk-arrows';
+    box.appendChild(prev); box.appendChild(next);
+    row.parentNode.insertBefore(box, row.nextSibling);
+    function sync(){
+      var max = row.scrollWidth - row.clientWidth;
+      box.hidden = max <= 2;
+      prev.disabled = row.scrollLeft <= 2; next.disabled = row.scrollLeft >= max - 2;
+    }
+    row.addEventListener('scroll', sync, { passive: true }); addEventListener('resize', sync); addEventListener('load', sync); sync();
+  }
+  function init(){
+    var shop = document.querySelector('[data-gk-slider] .gk-product-row');
+    var sp = document.querySelector('[data-gk-slider] .shop-nav--prev'), sn = document.querySelector('[data-gk-slider] .shop-nav--next');
+    if (shop && sp && sn) wrap(shop, sp, sn);
+    var team = document.querySelector('.team-row');
+    if (team){
+      var mk = function(d, label){ var b = document.createElement('button'); b.type = 'button'; b.className = 'gk-arrow'; b.setAttribute('aria-label', label); b.innerHTML = ARROW(d);
+        b.addEventListener('click', function(){
+          var card = team.firstElementChild, gap = parseFloat(getComputedStyle(team).gap) || 0;
+          team.dataset.paused = '1'; clearTimeout(team._resume); team._resume = setTimeout(function(){ team.dataset.paused = ''; }, 5000);
+          team.scrollBy({ left: d * ((card ? card.getBoundingClientRect().width : team.clientWidth) + gap), behavior: 'smooth' });
+        }); return b; };
+      wrap(team, mk(-1, 'Previous products'), mk(1, 'Next products'));
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})(); } catch (e) { console.error("Carousel arrows", e); }

@@ -79,7 +79,7 @@ try { (function(){
 
 })(); } catch (e) { console.error("Product boxes", e); }
 
-// ==== PDP: gallery, weights, gift wrap ====
+// ==== PDP: gallery, weights, pincode ====
 try { (function(){
 (function(){
   'use strict';
@@ -112,7 +112,7 @@ try { (function(){
 
   /* net weight: selects a size and updates the price */
   var opts=root.querySelectorAll('.pdp-weight__opt'),priceEl=root.querySelector('.pdp-price');
-  var base=root.querySelector('.pdp-weight__opt.is-active').dataset.price,gift=document.getElementById('pdpGift');
+  var base=root.querySelector('.pdp-weight__opt.is-active').dataset.price;
   var num=function(v){return parseFloat(String(v||'').replace(/[^\d.]/g,''))||0;};
   var inr=function(n,d){return '₹'+n.toLocaleString('en-IN',{minimumFractionDigits:d,maximumFractionDigits:d});};
   var pct=function(o){var m=num(o.dataset.mrp),p=num(o.dataset.price);return m>p?Math.round((m-p)/m*100):0;};
@@ -120,21 +120,43 @@ try { (function(){
   opts.forEach(function(o){var t=o.parentNode.querySelector('.pdp-weight__save'),v=pct(o);if(t){t.textContent=v?'SAVE '+v+'%':'';t.hidden=!v;}});
   var saveEl=root.querySelector('.pdp-save'),stickyPrice=document.querySelector('.pdp-sticky__price');
   function showPrice(){
-    var n=num(base)+(gift&&gift.checked?100:0);
+    var n=num(base);
     priceEl.textContent=inr(n,2);
     if(stickyPrice) stickyPrice.textContent=priceEl.textContent;
     var o=root.querySelector('.pdp-weight__opt.is-active');
     if(saveEl&&o){var m=num(o.dataset.mrp),p=num(o.dataset.price);saveEl.textContent=m>p?'You save '+inr(m-p,0)+' ('+pct(o)+'%)':'';saveEl.hidden=!(m>p);}
   }
   showPrice();
-  if(gift) gift.addEventListener('change',showPrice);
   function pick(o){
     opts.forEach(function(x){var on=x===o;x.classList.toggle('is-active',on);x.setAttribute('aria-checked',on);});
     base=o.dataset.price;showPrice();
+    /* variant photo: a weight/pack option with data-img swaps the main gallery image
+       (on Shopify, each variant's featured image does the same) */
+    var vImg=o.dataset.img,first=root.querySelector('.pdp-gallery__slide img');
+    if(first){if(!first.dataset.defaultSrc) first.dataset.defaultSrc=first.getAttribute('src');first.setAttribute('src',vImg||first.dataset.defaultSrc);go(0);}
     var cut=root.querySelector('.pdp-price-cut');if(cut) cut.textContent=o.dataset.mrp;
   }
   opts.forEach(function(o){o.addEventListener('click',function(){pick(o);});});
   var clearBtn=root.querySelector('.pdp-weight__clear');if(clearBtn) clearBtn.addEventListener('click',function(){pick(opts[0]);});
+
+  /* pincode checker: validates a 6-digit Indian pincode. Static build only: the delivery
+     estimate below is a placeholder (data-eta-min/max days); on Shopify a delivery-date app
+     or the store's shipping API answers serviceability and dates. */
+  var pin=document.getElementById('pdpPin');
+  if(pin){
+    var pinIn=pin.querySelector('input'),pinMsg=document.getElementById('pdpPinMsg');
+    var fmtDay=function(d){return d.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'});};
+    pinIn.addEventListener('input',function(){pinIn.value=pinIn.value.replace(/\D/g,'').slice(0,6);pin.classList.remove('is-error');});
+    pin.addEventListener('submit',function(e){
+      e.preventDefault();
+      var v=pinIn.value.trim();
+      if(!/^[1-9][0-9]{5}$/.test(v)){pin.classList.add('is-error');pin.classList.remove('is-ok');pinMsg.textContent='Please enter a valid 6-digit pincode.';pinIn.focus();return;}
+      var lo=+(pin.dataset.etaMin||3),hi=+(pin.dataset.etaMax||5),a=new Date(),b=new Date();
+      a.setDate(a.getDate()+lo);b.setDate(b.getDate()+hi);
+      pin.classList.remove('is-error');pin.classList.add('is-ok');
+      pinMsg.innerHTML='Delivery to <strong>'+v+'</strong> by '+fmtDay(a)+' \u2013 '+fmtDay(b)+'. Free shipping over \u20b9999.';
+    });
+  }
 
   /* story circles: autoplay the preview muted; stay still for reduced-motion users */
   root.querySelectorAll('.pdp-story__video').forEach(function(sv){
@@ -151,7 +173,7 @@ try { (function(){
 })();
 
 
-})(); } catch (e) { console.error("PDP: gallery, weights, gift wrap", e); }
+})(); } catch (e) { console.error("PDP: gallery, weights, pincode", e); }
 
 // ==== Cart drawer ====
 try { (function(){
