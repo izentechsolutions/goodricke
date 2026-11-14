@@ -229,10 +229,25 @@ strong {
   font-weight: bolder;
 }
 
+small, .small {
+  font-size: 0.875em;
+}
+
 mark, .mark {
   padding: 0.1875em;
   color: var(--bs-highlight-color);
   background-color: var(--bs-highlight-bg);
+}
+
+sub {
+  position: relative;
+  font-size: 0.75em;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
 }
 
 a {
@@ -441,6 +456,24 @@ progress {
   --bs-breakpoint-lg: 992px;
   --bs-breakpoint-xl: 1200px;
   --bs-breakpoint-xxl: 1400px;
+}
+
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+}
+.row > * {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-top: var(--bs-gutter-y);
 }
 
 .btn {
@@ -1120,24 +1153,6 @@ MENU MOBILE */
   /* Actions */
 
   /* Controls */
-  .product-item.product-item--large.product-item--large-left-1 .product-image{
-    height: 423px !important;
-    width: 100% !important;
-  }
-
-  .product-item.product-item--large .product-image{
-    height: 423px !important;
-    width: 100% !important;
-  }
-
-.product-item.product-item--large.product-item--large-left-1 .product-image img{
-
-  max-height: 503px !important;
-}
-
-.product-item.product-item--large .product-image img{
-  max-height: 503px !important;
-}
 
 }
 
@@ -1212,16 +1227,10 @@ section.product-listing .product-listing-title h1 {
 ========================================================= */
 
 /* Second large product card on the LEFT */
-section.product-listing .product-grid > .product-item.product-item--large-left-1 {
-  grid-column: 1 / 3 !important; grid-row: 3 / 5 !important;
-}
 
 /* Products immediately after the second banner */
 
 /* Third large product card on the LEFT */
-section.product-listing .product-grid > .product-item.product-item--large-left-2 {
-  grid-column: 1 / 3 !important; grid-row: 6 / 8 !important;
-}
 
 /* Tablet */
 
@@ -2407,74 +2416,18 @@ body.gk-filter-lock{overflow:hidden!important}
 
 /* ==== Large product card ==== */
 /* Large cards use the exact same product-card design; only their grid footprint is larger. */
-section.product-listing .product-grid > .product-item.product-item--large,
-section.product-listing .product-grid > .product-item.product-item--large-left-1,
-section.product-listing .product-grid > .product-item.product-item--large-left-2{
-  display:flex !important;
-  flex-direction:column !important;
-  min-height:0 !important;
-}
-
-section.product-listing .product-grid > .product-item.product-item--large .product-image,
-section.product-listing .product-grid > .product-item.product-item--large-left-1 .product-image,
-section.product-listing .product-grid > .product-item.product-item--large-left-2 .product-image{
-  flex:1 1 auto !important;
-  width:100% !important;
-  min-height:0 !important;
-  aspect-ratio:auto !important;
-  margin:0 !important;
-  padding:0 !important;
-  border-radius:0 !important;
-}
-
-section.product-listing .product-grid > .product-item.product-item--large .product-image img,
-section.product-listing .product-grid > .product-item.product-item--large-left-1 .product-image img,
-section.product-listing .product-grid > .product-item.product-item--large-left-2 .product-image img{
-  width:100% !important;
-  height:100% !important;
-  object-fit:contain !important;
-}
-
-section.product-listing .product-grid > .product-item.product-item--large .product-details,
-section.product-listing .product-grid > .product-item.product-item--large-left-1 .product-details,
-section.product-listing .product-grid > .product-item.product-item--large-left-2 .product-details{
-  flex:0 0 auto !important;
-}
-
-section.product-listing .product-grid > .product-item.product-item--large:nth-child(3){
-  grid-column:3 / 5 !important;
-  grid-row:1 / 3 !important;
-}
-
-@media (max-width:700px){
-  section.product-listing .product-grid > .product-item.product-item--large,
-  section.product-listing .product-grid > .product-item.product-item--large-left-1,
-  section.product-listing .product-grid > .product-item.product-item--large-left-2{
-    grid-column:auto !important;
-    grid-row:auto !important;
-  }
-  section.product-listing .product-grid > .product-item.product-item--large .product-image,
-  section.product-listing .product-grid > .product-item.product-item--large-left-1 .product-image,
-  section.product-listing .product-grid > .product-item.product-item--large-left-2 .product-image{
-    aspect-ratio:.86 / 1 !important;
-  }
-}
 
 
 /* ==== Third banner ==== */
 /* Third featured banner: keep the existing layout and place this next large tile on the RIGHT. */
 @media (min-width: 1001px) {
-  section.product-listing .product-grid > .product-item.product-item--large-left-2 {
-    grid-column: 3 / 5 !important;
-    grid-row: 6 / 8 !important;
-  }
   section.product-listing .product-grid > .product-item:nth-child(16) { grid-column: 1 !important; grid-row: 6 !important; }
   section.product-listing .product-grid > .product-item:nth-child(17) { grid-column: 2 !important; grid-row: 6 !important; }
   section.product-listing .product-grid > .product-item:nth-child(18) { grid-column: 1 !important; grid-row: 7 !important; }
   section.product-listing .product-grid > .product-item:nth-child(19) { grid-column: 2 !important; grid-row: 7 !important; }
 }
 @media (max-width: 1000px) {
-  section.product-listing .product-grid > .product-item.product-item--large-left-2,
+  
   section.product-listing .product-grid > .product-item:nth-child(16),
   section.product-listing .product-grid > .product-item:nth-child(17),
   section.product-listing .product-grid > .product-item:nth-child(18),
@@ -2548,11 +2501,6 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
   }
 
   /* Large feature cards + banners span the full width */
-  html body section.product-listing .product-grid > .product-item.product-item--large:nth-child(n),
-  html body section.product-listing .product-grid > .product-item.product-item--large-left-1:nth-child(n),
-  html body section.product-listing .product-grid > .product-item.product-item--large-left-2:nth-child(n) {
-    grid-column: 1 / -1 !important;
-  }
 
   /* Card */
   html body section.product-listing .product-grid > .product-item {
@@ -2566,13 +2514,6 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
     margin: 0 0 10px !important;
     padding: 8px !important;
     aspect-ratio: 1 / 1 !important;
-    border-radius: 10px !important;
-  }
-  html body section.product-listing .product-grid > .product-item.product-item--large .product-image,
-  html body section.product-listing .product-grid > .product-item.product-item--large-left-1 .product-image,
-  html body section.product-listing .product-grid > .product-item.product-item--large-left-2 .product-image {
-    flex: 0 0 auto !important;
-    aspect-ratio: 4 / 3 !important;
     border-radius: 10px !important;
   }
 
@@ -2646,24 +2587,6 @@ section.product-listing .product-grid > .product-item.product-item--large:nth-ch
   }
 
   /* Large cards: a bit roomier since they're full width */
-  html body section.product-listing .product-grid > .product-item.product-item--large .product-details h2,
-  html body section.product-listing .product-grid > .product-item.product-item--large-left-1 .product-details h2,
-  html body section.product-listing .product-grid > .product-item.product-item--large-left-2 .product-details h2 {
-    font-size: 17px !important;
-  }
-  html body section.product-listing .product-grid > .product-item.product-item--large .product-bottom,
-  html body section.product-listing .product-grid > .product-item.product-item--large-left-1 .product-bottom,
-  html body section.product-listing .product-grid > .product-item.product-item--large-left-2 .product-bottom {
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-  }
-  html body section.product-listing .product-grid > .product-item.product-item--large .product-add-to-bag,
-  html body section.product-listing .product-grid > .product-item.product-item--large-left-1 .product-add-to-bag,
-  html body section.product-listing .product-grid > .product-item.product-item--large-left-2 .product-add-to-bag {
-    width: auto !important;
-    padding: 0 18px !important;
-  }
 
   /* Editorial banners (if used) */
 
@@ -4640,14 +4563,13 @@ body.plp-page section.product-listing{background:#fff !important}
 /* PLP grid: the third large card (right) and the four small cards beside it must not overlap.
    (pdp base.css placements in the merged file were overriding the PLP third-banner rules) */
 @media (min-width:1001px){
-  body.plp-page section.product-listing .product-grid > .product-item.product-item--large-left-2{grid-column:3 / 5 !important;grid-row:6 / 8 !important}
   body.plp-page section.product-listing .product-grid > .product-item:nth-child(16){grid-column:1 !important;grid-row:6 !important}
   body.plp-page section.product-listing .product-grid > .product-item:nth-child(17){grid-column:2 !important;grid-row:6 !important}
   body.plp-page section.product-listing .product-grid > .product-item:nth-child(18){grid-column:1 !important;grid-row:7 !important}
   body.plp-page section.product-listing .product-grid > .product-item:nth-child(19){grid-column:2 !important;grid-row:7 !important}
 }
 @media (max-width:1000px){
-  body.plp-page section.product-listing .product-grid > .product-item.product-item--large-left-2,
+  
   body.plp-page section.product-listing .product-grid > .product-item:nth-child(16),
   body.plp-page section.product-listing .product-grid > .product-item:nth-child(17),
   body.plp-page section.product-listing .product-grid > .product-item:nth-child(18),
@@ -4754,6 +4676,12 @@ html:has(body.gk-menu-lock){overflow:hidden;}
 /* ==== Home "Unbox More Than Tea" on phones: one photo + the whole story, no expanding card or slider ==== */
 
 /* ==== Carousel arrows under product rows (home) ==== */
+.gk-arrows{display:flex;justify-content:center;gap:12px;margin:22px auto 0;}
+.gk-arrows[hidden]{display:none !important;}
+.gk-arrows .gk-arrow{position:static !important;top:auto !important;left:auto !important;right:auto !important;display:grid !important;place-items:center;width:44px !important;height:44px !important;padding:0 !important;border-radius:50% !important;border:1px solid #205007 !important;background:#FFFFF4 !important;color:#205007 !important;box-shadow:none !important;cursor:pointer;opacity:1;visibility:visible !important;transition:background .2s ease,color .2s ease !important;transform:none !important;}
+.gk-arrows .gk-arrow:hover:not(:disabled){background:#205007 !important;color:#FFFFF4 !important;}
+.gk-arrows button:disabled{opacity:.35 !important;cursor:default;}
+.gk-arrows svg{width:18px !important;height:18px !important;}
 
 /* ==== One add-to-bag icon everywhere (line bag, stroke = currentColor) ==== */
 .navactions .cart-link:not(.search-link){color:#FFFFF4;}
@@ -4780,3 +4708,99 @@ html body .site-footer .footer-bottom{margin-top:28px !important;padding:16px 0 
   html body .site-footer .footer-col-body a{padding:6px 0 !important;}
   html body .site-footer .footer-bottom{margin-top:0 !important;border-top:1px solid rgba(255,255,244,.14) !important;}
 }
+
+
+/* =====================================================================
+   CLIENT FEEDBACK v02 (Goodricke_Website_Feedback_v02, Nov 2026)
+   Everything below overrides the approved v1 styles; slide numbers refer to the client deck.
+   ===================================================================== */
+
+/* ---- Slides 2 + 8: hero photos were too dark (home and shop). The home photos are very dark
+   (mean brightness ~15%), so lift the photo itself and keep only a soft shade behind the text. ---- */
+.hero-scene .hero-slide{filter:brightness(1.75) saturate(1.08) contrast(1.04);}   /* home: very dark source photos */
+.plp-page .hero .hero-slide{filter:brightness(1.12) saturate(.96);}   /* shop: photos are fine, the shade was the problem */
+.hero .hero-scrim{
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.38) 0%,rgba(0,0,0,0) 22%),
+    linear-gradient(90deg,rgba(0,0,0,.52) 0%,rgba(0,0,0,.30) 38%,rgba(0,0,0,0) 66%) !important;
+}
+.hero::before{background:radial-gradient(120% 80% at 50% 0%,rgba(0,0,0,0) 0%,rgba(0,0,0,.18) 100%) !important;}
+.hero .hero-copy h1,.hero .hero-copy .hero-lede{text-shadow:0 1px 18px rgba(0,0,0,.35);}
+.hero .hero-copy .hero-lede{color:#FFFFF4 !important;opacity:.95;}
+/* home hero fills the first screen exactly (was a fixed 1189px), so the first scroll lands on products */
+.hero-scene > .hero{height:100vh !important;height:100svh !important;min-height:620px !important;max-height:1000px;}
+.hero-scene .hero::after{opacity:calc(var(--hero-p) * .45) !important;}
+@media (max-width:767px){
+  .hero .hero-scrim{
+    background:
+      linear-gradient(180deg,rgba(0,0,0,.40) 0%,rgba(0,0,0,0) 26%),
+      linear-gradient(0deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.22) 45%,rgba(0,0,0,0) 70%) !important;
+  }
+  .hero-scene > .hero{height:min(86svh,720px) !important;min-height:540px !important;}
+  .hero-scene > .hero .hero-copy{justify-content:flex-end !important;padding-bottom:48px !important;transform:none !important;}
+  .hero .hero-copy h1{font-size:clamp(32px,9vw,40px) !important;line-height:1.1 !important;margin-bottom:12px !important;}
+  .hero .hero-copy .hero-lede{font-size:15px !important;margin-bottom:22px !important;}
+}
+
+/* ---- Slide 4: one consistent vertical rhythm between home sections (was 200px + 200px, and 0 on Bestsellers) ---- */
+:root{--gk-sec:clamp(64px,7vw,104px);}
+body:not(.plp-page):not(.pdp-page) .range,
+body:not(.plp-page):not(.pdp-page) .shop,
+body:not(.plp-page):not(.pdp-page) .team{padding-top:var(--gk-sec) !important;padding-bottom:var(--gk-sec) !important;margin-top:0 !important;margin-bottom:0 !important;}
+@media (max-width:767px){:root{--gk-sec:56px;}}
+
+/* ---- Slide 5: Certifications / awards / accolades (replaces the "High Quality Goodricke Tea" banner) ---- */
+
+/* ---- Slide 6: side-scroll cue. Arrows under every horizontal row (added by common.js) plus a one-time nudge
+   and a soft fade on the right edge while there is more content (a left fade would clip the first card). ---- */
+.gk-hint-row.gk-more-right{-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 56px),transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 56px),transparent 100%);}
+.gk-arrows.gk-arrows--auto{margin-top:18px;}
+.range .gk-arrows .gk-arrow{background:transparent !important;border-color:rgba(255,255,244,.7) !important;color:#FFFFF4 !important;}
+.range .gk-arrows .gk-arrow:hover:not(:disabled){background:#FFFFF4 !important;color:#205007 !important;}
+@keyframes gkNudge{0%,100%{transform:translateX(0)}30%{transform:translateX(-26px)}60%{transform:translateX(6px)}}
+.gk-hint-row.gk-nudge > *{animation:gkNudge 1.1s cubic-bezier(.4,0,.2,1) 2;}
+@media (prefers-reduced-motion:reduce){.gk-hint-row.gk-nudge > *{animation:none;}}
+
+/* ---- Slide 7: social icons live in the footer now; footer bottom is one compact row ---- */
+html body .site-footer .footer-bottom{display:grid !important;grid-template-columns:auto 1fr auto;align-items:center !important;gap:12px 28px !important;flex-direction:row !important;}
+.footer-social{display:flex;align-items:center;gap:8px;}
+.footer-social span{font-size:12px;color:rgba(255,255,244,.72);margin-right:4px;}
+.footer-social a{display:grid !important;place-items:center;width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,244,.35);color:#FFFFF4 !important;transition:background .2s ease,color .2s ease;}
+.footer-social a:hover{background:#FFFFF4;color:#205007 !important;}
+.footer-social svg{width:15px;height:15px;}
+html body .site-footer .footer-bottom nav{justify-content:center;}
+html body .site-footer .footer-bottom .footer-copy{font-size:12.5px;white-space:nowrap;}
+html body .site-footer .footer-bottom .footer-disclaimer{grid-column:1 / -1;background:none !important;color:rgba(255,255,244,.55) !important;padding:10px 0 0 !important;margin:0 !important;font-size:11.5px !important;line-height:1.5 !important;border-top:1px solid rgba(255,255,244,.10);}
+html body .site-footer{padding-bottom:6px !important;}
+@media (max-width:900px){
+  html body .site-footer .footer-bottom{grid-template-columns:1fr !important;justify-items:start;gap:14px !important;padding:16px 0 12px !important;}
+  html body .site-footer .footer-bottom nav{justify-content:flex-start;gap:8px 16px !important;}
+  html body .site-footer .footer-bottom .footer-copy{font-size:11.5px;}
+}
+
+/* ---- Slide 9: card photo gallery (hover on desktop, automatic on phones; js/common.js) ---- */
+.gk-gal-frame{position:relative !important;overflow:hidden !important;}
+.gk-gal{position:absolute;inset:0;z-index:1;background-size:cover;background-position:center;border-radius:inherit;opacity:0;transform:scale(1.06);transition:opacity .6s ease,transform 1.4s cubic-bezier(.22,.61,.36,1);pointer-events:none;}
+.gk-gal.is-on{opacity:1;transform:scale(1);}
+.gk-gal-frame .product-tag,.gk-gal-frame .product-hover-actions{z-index:3 !important;}
+.gk-gal-dots{position:absolute;left:50%;bottom:10px;z-index:3;display:flex;gap:5px;transform:translateX(-50%);padding:4px 6px;border-radius:99px;background:rgba(255,255,244,.75);pointer-events:none;}
+.gk-gal-dots i{display:block;width:6px;height:6px;border-radius:50%;background:rgba(32,80,7,.3);transition:background .3s ease,width .3s ease;}
+.gk-gal-dots i.is-on{width:14px;border-radius:3px;background:#205007;}
+
+/* ---- Slide 13: product photos the same size on every card, web and mobile (no more 2x2 "large" cards) ---- */
+html body section.product-listing .product-grid > .product-item > .product-image{aspect-ratio:1 / 1 !important;height:auto !important;min-height:0 !important;max-height:none !important;flex:0 0 auto !important;}
+html body section.product-listing .product-grid > .product-item > .product-image > img{width:100% !important;height:100% !important;max-width:100% !important;max-height:100% !important;object-fit:contain !important;}
+html body section.product-listing .product-grid > .product-item{grid-column:auto !important;grid-row:auto !important;}
+
+/* =================== PRODUCT PAGE (slides 10, 11, 12, 14) =================== */
+/* Slide 11: caffeine as a Low / Medium / High scale */
+
+/* Slide 11: Subscribe & save */
+
+/* Slide 11: Frequently bought together, right under "Add to bag" */
+
+/* Slide 10: details behind dropdowns */
+
+/* Slide 14: FAQ right after the product, in two columns, first answer open */
+
+/* Slide 12: compact reviews (summary + card strip) */

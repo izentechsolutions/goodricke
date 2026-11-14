@@ -119,13 +119,24 @@ try { (function(){
   /* "SAVE x%" under each size, worked out from its price and MRP */
   opts.forEach(function(o){var t=o.parentNode.querySelector('.pdp-weight__save'),v=pct(o);if(t){t.textContent=v?'SAVE '+v+'%':'';t.hidden=!v;}});
   var saveEl=root.querySelector('.pdp-save'),stickyPrice=document.querySelector('.pdp-sticky__price');
+  /* purchase option (client feedback v02): "Subscribe & save" takes data-sub-discount % off the selected size.
+     On Shopify these become selling plans (subscription app); the static build only shows the price. */
+  var planBox=root.querySelector('.pdp-plan'),subPct=planBox?(+planBox.dataset.subDiscount||0):0;
+  function isSub(){var r=root.querySelector('input[name="pdpPlan"]:checked');return !!r&&r.value==='sub';}
   function showPrice(){
-    var n=num(base);
+    var once=num(base),n=isSub()?Math.round(once*(100-subPct)/100):once;
     priceEl.textContent=inr(n,2);
     if(stickyPrice) stickyPrice.textContent=priceEl.textContent;
     var o=root.querySelector('.pdp-weight__opt.is-active');
-    if(saveEl&&o){var m=num(o.dataset.mrp),p=num(o.dataset.price);saveEl.textContent=m>p?'You save '+inr(m-p,0)+' ('+pct(o)+'%)':'';saveEl.hidden=!(m>p);}
+    if(saveEl&&o){var m=num(o.dataset.mrp);saveEl.textContent=m>n?'You save '+inr(m-n,0)+' ('+Math.round((m-n)/m*100)+'%)'+(isSub()?' with Subscribe & save':''):'';saveEl.hidden=!(m>n);}
+    if(planBox){
+      var a=planBox.querySelector('[data-plan-price="once"]'),b=planBox.querySelector('[data-plan-price="sub"]');
+      if(a) a.textContent=inr(once,0); if(b) b.textContent=inr(Math.round(once*(100-subPct)/100),0);
+      planBox.querySelectorAll('.pdp-plan__opt').forEach(function(l){l.classList.toggle('is-on',l.querySelector('input').checked);});
+    }
+    document.dispatchEvent(new CustomEvent('gk-pdp-change',{detail:{size:o?o.dataset.size:'',price:n,mrp:o?num(o.dataset.mrp):n,sub:isSub()}}));
   }
+  if(planBox) planBox.addEventListener('change',function(e){if(e.target.name==='pdpPlan') showPrice();});
   showPrice();
   function pick(o){
     opts.forEach(function(x){var on=x===o;x.classList.toggle('is-active',on);x.setAttribute('aria-checked',on);});
@@ -375,6 +386,7 @@ try { (function(){
 try { (function(){
 (function(){
   'use strict';
+  if(document.querySelector('.rv--compact')) return;   /* replaced by "Reviews: compact cards" */
   var viewport=document.querySelector('.rv__tabs');
   var track=viewport&&viewport.querySelector('.rv__track');
   var tabs=track?[].slice.call(track.querySelectorAll('.rv__who')):[];
@@ -534,38 +546,81 @@ try { (function(){
 
 })(); } catch (e) { console.error("Reviews: featured quote", e); }
 
-// ==== Frequently bought together ====
+// ==== Frequently bought together (under Add to bag) ====
+/* Client feedback v02: sits right under "Add to bag" and follows the shopper's choices:
+   - "This item" shows the selected size, price and purchase option;
+   - the suggestions change with the size (data-show = sizes that row is shown for:
+     small packs suggest small packs, 500g/1kg suggest bulk packs);
+   - the total updates as boxes are ticked. On Shopify, use the product recommendations API. */
 try { (function(){
-(function(){
-  'use strict';
   var root=document.getElementById('pdp-fbt');
   if(!root) return;
-  var checks=[].slice.call(root.querySelectorAll('.pdp-fbt__check'));
   var mrpEl=document.getElementById('pdpFbtMrp'),saleEl=document.getElementById('pdpFbtSale');
   var saveEl=document.getElementById('pdpFbtSave'),countEl=document.getElementById('pdpFbtCount'),add=document.getElementById('pdpFbtAdd');
-  function fmt(n){return '₹'+n.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});}
-  function on(){return checks.filter(function(c){return c.checked;});}
+  var self=root.querySelector('.pdp-fbt2__row--this .pdp-fbt__check');
+  var rows=[].slice.call(root.querySelectorAll('.pdp-fbt2__row[data-show]'));
+  var title=(document.querySelector('.pdp-info__title')||{}).textContent||'';
+  function fmt(n){return '₹'+Math.round(n).toLocaleString('en-IN');}
+  function on(){return [self].concat(rows.filter(function(r){return !r.hidden;}).map(function(r){return r.querySelector('input');}).filter(function(c){return c.checked;}));}
   function update(){
     var sel=on(),mrp=0,sale=0;
     sel.forEach(function(c){mrp+=+c.dataset.mrp;sale+=+c.dataset.price;});
     saleEl.textContent=fmt(sale);
-    mrpEl.textContent=sel.length?fmt(mrp):'';
-    saveEl.textContent=sel.length&&mrp>sale?'You save '+fmt(mrp-sale):'';
+    mrpEl.textContent=mrp>sale?fmt(mrp):'';
+    saveEl.textContent=mrp>sale?'Save '+fmt(mrp-sale):'';
     countEl.textContent=sel.length;
-    add.disabled=!sel.length;
-    checks.forEach(function(c){c.closest('.pdp-fbt__card').classList.toggle('is-on',c.checked);});
+    add.textContent=sel.length>1?'Add all '+sel.length+' to bag':'Add to bag';
+    rows.forEach(function(r){r.classList.toggle('is-on',r.querySelector('input').checked);});
   }
-  checks.forEach(function(c){c.addEventListener('change',update);});
+  function follow(d){
+    if(!d) return;
+    self.dataset.price=d.price; self.dataset.mrp=d.mrp;
+    self.dataset.name=title.trim()+(d.size?' - '+d.size:'')+(d.sub?' (Subscribe & save)':'');
+    var q=function(a){return root.querySelector('['+a+']');};
+    q('data-fbt-size').textContent=(d.size||'')+(d.sub?' · Subscribe & save':'');
+    q('data-fbt-price').textContent=fmt(d.price); q('data-fbt-mrp').textContent=d.mrp>d.price?fmt(d.mrp):'';
+    rows.forEach(function(r){r.hidden=r.dataset.show.split(',').indexOf(d.size)<0;});
+    update();
+  }
+  rows.forEach(function(r){r.querySelector('input').addEventListener('change',update);});
+  document.addEventListener('gk-pdp-change',function(e){follow(e.detail);});
+  var o=document.querySelector('.pdp-weight__opt.is-active'),p=document.querySelector('.pdp-price');
+  if(o&&p) follow({size:o.dataset.size,price:parseFloat(p.textContent.replace(/[^\d.]/g,''))||+self.dataset.price,mrp:parseFloat((o.dataset.mrp||'').replace(/[^\d.]/g,''))||+self.dataset.mrp,sub:false});
   add.addEventListener('click',function(){
-    var sel=on();if(!sel.length) return;
-    /* each selected product goes into the bag as its own line */
+    var sel=on();
     document.dispatchEvent(new CustomEvent('gk-cart-add',{detail:{items:sel.map(function(c){
       return {name:c.dataset.name,price:c.dataset.price,mrp:c.dataset.mrp,img:c.dataset.img,qty:1};})}}));
   });
-  update();
-})();
-
 })(); } catch (e) { console.error("Frequently bought together", e); }
+
+
+// ==== Reviews: compact cards ====
+/* Client feedback v02 (slide 12): instead of one big quote + photo, a rating summary with a
+   breakdown, and a row of short review cards (swipe / arrows). Built from the same reviewer
+   data (.rv__who + quote) that "View all reviews" uses. */
+try { (function(){
+  var sec=document.querySelector('.rv--compact'); if(!sec) return;
+  var strip=sec.querySelector('.rv__strip'), bars=sec.querySelector('.rv__bars');
+  var tabs=[].slice.call(sec.querySelectorAll('.rv__track .rv__who[aria-controls]'));
+  if(!strip||!tabs.length) return;
+  var data=tabs.map(function(t){
+    var q=document.getElementById(t.getAttribute('aria-controls'));
+    var text=q?[].slice.call(q.childNodes).filter(function(n){return n.nodeType===3;}).map(function(n){return n.textContent;}).join('').trim():'';
+    return {r:+t.getAttribute('data-rating')||5, name:(t.querySelector('.rv__meta strong')||{}).textContent||'',
+      city:(t.querySelector('.rv__meta > span:not(.rv__stars)')||{}).textContent||'', avatar:(t.querySelector('.rv__avatar')||{}).outerHTML||'', text:text};
+  });
+  var star=function(n){return '<span class="rv__stars" role="img" aria-label="Rated '+n+' out of 5" style="--rating:'+n+'"></span>';};
+  strip.innerHTML=data.slice(0,8).map(function(x){
+    return '<article class="rv__mini"><header>'+x.avatar+'<div><strong>'+x.name+'</strong><span>'+x.city+' · Verified buyer</span></div></header>'+star(x.r)+'<p>'+x.text+'</p></article>';
+  }).join('');
+  if(bars){
+    bars.innerHTML=[5,4,3,2,1].map(function(l){
+      var c=data.filter(function(x){return x.r===l;}).length, w=Math.round(c/data.length*100);
+      return '<li><span>'+l+'★</span><i><b style="width:'+w+'%"></b></i><span>'+w+'%</span></li>';
+    }).join('');
+  }
+  if(window.gkScrollHint) window.gkScrollHint.refresh();
+})(); } catch (e) { console.error("Reviews: compact cards", e); }
 
 
 // ==== Reviews: full list ====

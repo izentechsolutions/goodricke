@@ -527,7 +527,7 @@ try { (function(){
           image: gimg ? gimg.getAttribute('src') : '',
           alt: ttl ? ttl.textContent.trim() : '',
           name: ttl ? ttl.textContent.trim() : 'Goodricke Product',
-          size: wt ? (wt.dataset.size || wt.dataset.pack || wt.textContent.trim().replace(/\s+/g,' ')) : '',
+          size: (wt ? (wt.dataset.size || wt.dataset.pack || wt.textContent.trim().replace(/\s+/g,' ')) : '') + (document.querySelector('.pdp-plan input[value="sub"]:checked') ? ' \u00b7 Subscribe & save, every ' + ((document.querySelector('.pdp-plan__freq')||{}).value||30) + ' days' : ''),
           price: firstMoney(document.querySelector('.pdp-price')),
           oldPrice: oldMoney(document.querySelector('.pdp-price-cut')),
           qty: qtyIn ? parseInt(qtyIn.value,10) || 1 : 1
@@ -817,3 +817,112 @@ try { (function () {
   }, { rootMargin: '300px 0px' });
   vids.forEach(function (v) { io.observe(v); });
 })(); } catch (e) { console.error('lazy-video', e); }
+
+// ==== Side-scroll cue (client feedback v02, slide 6) ====
+/* Every horizontally scrolling row tells people there is more to see:
+   - prev/next arrows under the row (rows that already have arrows keep theirs),
+   - a soft fade on the edge that still has content (classes gk-hint-row / gk-more-left / gk-more-right),
+   - one small "wobble" the first time the row comes into view on a touch screen (class gk-nudge).
+   Arrows and fades only appear while the row can actually scroll. */
+try { (function () {
+  var ROWS = '.range-row, .gk-product-row, .team-row, .region-row, .voices-row, .insta-grid, .gk-certs__row, .pdp-related .product-grid, .rv__strip';
+  var touch = matchMedia('(hover: none), (pointer: coarse)').matches;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ARROW = function (d) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="' + (d < 0 ? 'M15 5l-7 7 7 7' : 'M9 5l7 7-7 7') + '"/></svg>'; };
+
+  function step(row) {
+    var kids = [].filter.call(row.children, function (c) { return c.offsetWidth; });
+    var gap = parseFloat(getComputedStyle(row).columnGap) || 0;
+    return kids.length ? kids[0].getBoundingClientRect().width + gap : row.clientWidth * 0.8;
+  }
+  function setup(row) {
+    if (row.dataset.gkHint) return;
+    row.dataset.gkHint = '1';
+    row.classList.add('gk-hint-row');
+    var sib = row.nextElementSibling, box = null, prev, next;
+    if (!(sib && sib.classList.contains('gk-arrows'))) {
+      box = document.createElement('div'); box.className = 'gk-arrows gk-arrows--auto';
+      [-1, 1].forEach(function (d) {
+        var b = document.createElement('button'); b.type = 'button'; b.className = 'gk-arrow';
+        b.setAttribute('aria-label', d < 0 ? 'Scroll left' : 'Scroll right'); b.innerHTML = ARROW(d);
+        b.addEventListener('click', function () { row.dataset.paused = '1'; clearTimeout(row._gkResume); row._gkResume = setTimeout(function () { row.dataset.paused = ''; }, 5000); row.scrollBy({ left: d * step(row), behavior: 'smooth' }); });
+        box.appendChild(b); if (d < 0) prev = b; else next = b;
+      });
+      row.parentNode.insertBefore(box, row.nextSibling);
+    }
+    function sync() {
+      var max = row.scrollWidth - row.clientWidth, x = row.scrollLeft;
+      var can = max > 4;
+      row.classList.toggle('gk-more-left', can && x > 4);
+      row.classList.toggle('gk-more-right', can && x < max - 4);
+      if (box) { box.hidden = !can; prev.disabled = x <= 2; next.disabled = x >= max - 2; }
+    }
+    row.addEventListener('scroll', sync, { passive: true });
+    addEventListener('resize', sync); sync();
+    if (touch && !reduce && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (en) {
+        if (!en[0].isIntersecting || row.scrollWidth - row.clientWidth <= 4 || row.scrollLeft > 4) return;
+        io.disconnect();
+        setTimeout(function () { row.classList.add('gk-nudge'); setTimeout(function () { row.classList.remove('gk-nudge'); }, 2400); }, 350);
+      }, { threshold: 0.6 });
+      io.observe(row);
+    }
+  }
+  function init() { document.querySelectorAll(ROWS).forEach(setup); }
+  if (document.readyState === 'complete') init(); else addEventListener('load', init);
+  window.gkScrollHint = { refresh: init };
+})(); } catch (e) { console.error('Side-scroll cue', e); }
+
+// ==== Product photo gallery on cards (client feedback v02, slide 9) ====
+/* Any card image frame with a data-images list (pack shot, then 2nd and 3rd photo, comma-separated) shows its other photos:
+   - mouse: on hover the 2nd photo fades in, then the 3rd, and back to the pack shot on leave;
+   - touch screens: the photos rotate by themselves while the card is on screen.
+   Extra photos load only when first needed. On Shopify, fill data-images from product.images. */
+try { (function () {
+  var frames = document.querySelectorAll('[data-images]');
+  if (!frames.length) return;
+  var hover = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var STEP = hover ? 1300 : 2600;
+
+  frames.forEach(function (frame, n) {
+    var urls = frame.getAttribute('data-images').split(',').map(function (u) { return u.trim(); }).filter(Boolean);
+    if (urls.length < 2) return;
+    var layers = null, dots = null, idx = 0, timer = 0;
+    frame.classList.add('gk-gal-frame');
+    dots = document.createElement('span'); dots.className = 'gk-gal-dots'; dots.setAttribute('aria-hidden', 'true');
+    urls.forEach(function (u, i) { var d = document.createElement('i'); if (!i) d.className = 'is-on'; dots.appendChild(d); });
+    frame.appendChild(dots);
+
+    function build() {
+      if (layers) return;
+      layers = urls.slice(1).map(function (u) {
+        var l = document.createElement('span'); l.className = 'gk-gal'; l.setAttribute('aria-hidden', 'true');
+        l.style.backgroundImage = 'url("' + u + '")'; frame.appendChild(l); return l;
+      });
+      frame.appendChild(dots);   /* keep the dots on top */
+    }
+    function show(i) {
+      idx = i;
+      layers.forEach(function (l, k) { l.classList.toggle('is-on', k === i - 1); });
+      [].forEach.call(dots.children, function (d, k) { d.classList.toggle('is-on', k === i); });
+    }
+    function start(delay) {
+      build(); clearInterval(timer);
+      var go = function () { show((idx + 1) % urls.length); };
+      if (hover) { show(1); timer = setInterval(go, STEP); }
+      else timer = setTimeout(function () { go(); timer = setInterval(go, STEP); }, delay || 0);
+    }
+    function stop() { clearInterval(timer); clearTimeout(timer); if (layers) show(0); }
+
+    if (hover) {
+      var card = frame.closest('.product-item, .gk-product-card, .range-card') || frame;
+      card.addEventListener('mouseenter', function () { start(); });
+      card.addEventListener('mouseleave', stop);
+    } else if (!reduce && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) {
+        if (en[0].isIntersecting) start(900 + (n % 4) * 650); else stop();
+      }, { threshold: 0.6 }).observe(frame);
+    }
+  });
+})(); } catch (e) { console.error('Product photo gallery', e); }

@@ -30,7 +30,8 @@ for f in PAGES + glob.glob('css/*.css') + glob.glob('js/*.js'):
     base = 'css' if f.startswith('css/') else '.'
     for rx in (ATTR, URL, STR):
         for m in rx.finditer(s):
-            check(m.group(1), base, f'{f}:{s.count(chr(10), 0, m.start()) + 1}')
+            for v in m.group(1).split(','):          # data-images holds a comma-separated list
+                check(v.strip(), base, f'{f}:{s.count(chr(10), 0, m.start()) + 1}')
 
 print(f'{checked} local references checked, {len(broken)} broken')
 for b in broken:
