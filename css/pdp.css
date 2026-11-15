@@ -4821,7 +4821,10 @@ html body.pdp-page .pdp-assure{display:flex;flex-wrap:wrap;justify-content:cente
 html body.pdp-page .pdp-assure li{display:flex;align-items:center;gap:6px;}
 html body.pdp-page .pdp-assure svg{width:18px;height:18px;fill:none;stroke:var(--gk-green);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
 html body.pdp-page .pdp-desc{margin:0 0 22px !important;}
+html body.pdp-page .pdp-sticky{display:none;}
 @media (max-width:767px){
+  html body.pdp-page .pdp-sticky{position:fixed;left:0;right:0;bottom:0;z-index:900;display:flex;align-items:center;gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:var(--gk-mist);border-top:1px solid var(--gk-line);box-shadow:0 -8px 24px rgba(4,44,5,0.10);transform:translateY(110%);transition:transform .3s ease;}
+  html body.pdp-page .pdp-sticky.is-on{transform:none;}
   html body.pdp-page .pdp-sticky__info{display:flex;flex-direction:column;min-width:0;flex:1 1 auto;}
   html body.pdp-page .pdp-sticky__name{font-size:13px;color:var(--gk-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   html body.pdp-page .pdp-sticky__price{font-size:17px;color:var(--gk-dark);}
@@ -4830,6 +4833,7 @@ html body.pdp-page .pdp-desc{margin:0 0 22px !important;}
   html body.pdp-page .pdp-actions .pdp-cta{height:52px !important;}
   html body.pdp-page{padding-bottom:72px;}
 }
+@media (prefers-reduced-motion:reduce){html body.pdp-page .pdp-sticky{transition:none;}}
 
 /* ==== Mobile menu (≤767px): wider panel, dimmed page behind, divided rows, Login / Register ==== */
 .pillnav .pillnav__login{display:none !important;}
