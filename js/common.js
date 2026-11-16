@@ -526,7 +526,7 @@ try { (function(){
   /* INR -> this market's list price */
   function price(inr){
     inr = +inr || 0;
-    var m = market(); if (!m.rate) return inr;
+    var m = market(); if (!m.rate || inr <= 0) return inr; /* zero stays zero */
     var x = inr / m.rate;
     return m.dec ? Math.max(1, Math.round(x)) - 0.01 : Math.max(1, Math.round(x));
   }
