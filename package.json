@@ -1,9 +1,9 @@
 {
   "name": "goodricke-website",
   "private": true,
-  "description": "Goodricke static site (home, PLP, PDP). Edit src/style.css, then run `npm run build:css`.",
+  "description": "Goodricke static site (home, PLP, PDP). Edit src/style.css, then run `npm run build:css` (rebuilds the CSS and re-stamps the ?v= cache-busting versions). After editing any JS file, run it too.",
   "scripts": {
-    "build:css": "node build/build-css.js"
+    "build:css": "node build/build-css.js && node build/stamp-versions.js"
   },
   "devDependencies": {
     "bootstrap": "5.3.8",
