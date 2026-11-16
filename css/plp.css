@@ -4829,3 +4829,34 @@ html body section.product-listing .product-grid > .product-item{grid-column:auto
 /* Small text links: at least 24px tall to tap */
 /* Shop hero: keep the title clear of the slider arrows on tablets / small laptops */
 @media (min-width:768px) and (max-width:1279px){.plp-page .hero .hero-copy{padding-left:72px !important;padding-right:72px !important;}}
+
+/* =================== Round 3: menu icon and side-scroll peek =================== */
+/* Scrolled header: a standard three-line menu icon (turns into an X when open) instead of the word "Menu" */
+#stickybar .sticky-toggle{width:44px !important;min-width:44px !important;height:44px !important;min-height:44px !important;padding:0 !important;justify-content:center !important;align-items:center !important;border-radius:50% !important;}
+#stickybar .sticky-toggle .sticky-toggle-mask{display:none !important;}
+.gk-burger{position:relative;display:block;width:20px;height:14px;}
+.gk-burger i{position:absolute;left:0;width:100%;height:2px;border-radius:2px;background:currentColor;transition:transform .3s ease,opacity .2s ease,top .3s ease;}
+.gk-burger i:nth-child(1){top:0;}
+.gk-burger i:nth-child(2){top:6px;}
+.gk-burger i:nth-child(3){top:12px;}
+#stickybar .sticky-toggle[aria-expanded="true"] .gk-burger i:nth-child(1){top:6px;transform:rotate(45deg);}
+#stickybar .sticky-toggle[aria-expanded="true"] .gk-burger i:nth-child(2){opacity:0;}
+#stickybar .sticky-toggle[aria-expanded="true"] .gk-burger i:nth-child(3){top:6px;transform:rotate(-45deg);}
+
+/* Phones: rows that showed one full-width item now let the next one peek in, so it is clear there is more */
+/* Every horizontal row shows a clear slice of the next item (at least ~50px) at every width */
+/* Scrolled-header menu: solid panel so the page behind does not show through the links */
+#stickybar .sticky-menu{background:#205007 !important;-webkit-backdrop-filter:none !important;backdrop-filter:none !important;}
+/* narrower bestseller cards on phones: each price stays on one line */
+/* Instagram reels 769-900px: an older rule made the row a block, so the reels stacked as squares down the left
+   side. Keep the swipeable row (same as phones and 768px), with the next reel peeking in. */
+/* Instagram section had no side margin at 768-900px (phones 16px, laptops 24px) */
+/* Product page on small phones: "Add to bag" stays on one line; all four sizes fit in one row */
+/* Instagram reels on phones / tablets: the video (and its poster) fills the whole tile, no empty band below */
+/* Shop grid, 769–1279px (4 narrow columns): price on top, full-width ADD TO BAG below, so the button never clips */
+@media (min-width:769px) and (max-width:1279px){
+  html body section.product-listing .product-item .product-bottom{flex-direction:column !important;align-items:stretch !important;gap:8px !important;margin-top:auto !important;}
+  html body section.product-listing .product-item .product-price{flex-wrap:wrap !important;gap:6px !important;}
+  html body section.product-listing .product-item .product-add-to-bag{width:100% !important;min-width:0 !important;justify-content:center !important;}
+}
+/* Product page jump links (FAQs / Reviews): comfortable 32px tap height */

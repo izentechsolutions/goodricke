@@ -6078,3 +6078,62 @@ html body .site-footer{padding-bottom:6px !important;}
 /* Small text links: at least 24px tall to tap */
 .insta-handle{display:inline-flex !important;align-items:center;min-height:32px;}
 /* Shop hero: keep the title clear of the slider arrows on tablets / small laptops */
+
+/* =================== Round 3: menu icon and side-scroll peek =================== */
+/* Scrolled header: a standard three-line menu icon (turns into an X when open) instead of the word "Menu" */
+#stickybar .sticky-toggle{width:44px !important;min-width:44px !important;height:44px !important;min-height:44px !important;padding:0 !important;justify-content:center !important;align-items:center !important;border-radius:50% !important;}
+#stickybar .sticky-toggle .sticky-toggle-mask{display:none !important;}
+.gk-burger{position:relative;display:block;width:20px;height:14px;}
+.gk-burger i{position:absolute;left:0;width:100%;height:2px;border-radius:2px;background:currentColor;transition:transform .3s ease,opacity .2s ease,top .3s ease;}
+.gk-burger i:nth-child(1){top:0;}
+.gk-burger i:nth-child(2){top:6px;}
+.gk-burger i:nth-child(3){top:12px;}
+#stickybar .sticky-toggle[aria-expanded="true"] .gk-burger i:nth-child(1){top:6px;transform:rotate(45deg);}
+#stickybar .sticky-toggle[aria-expanded="true"] .gk-burger i:nth-child(2){opacity:0;}
+#stickybar .sticky-toggle[aria-expanded="true"] .gk-burger i:nth-child(3){top:6px;transform:rotate(-45deg);}
+
+/* Phones: rows that showed one full-width item now let the next one peek in, so it is clear there is more */
+@media (max-width:767px){
+  .range-row > .range-card{flex:0 0 82% !important;width:82% !important;min-width:82% !important;max-width:82% !important;scroll-snap-align:start;}
+  .voices-row > .voice-card{flex:0 0 86% !important;width:86% !important;min-width:86% !important;max-width:86% !important;scroll-snap-align:start;}
+  .insta-grid > .insta-tile{flex:0 0 72% !important;width:72% !important;min-width:72% !important;max-width:72% !important;scroll-snap-align:start;}
+}
+/* Every horizontal row shows a clear slice of the next item (at least ~50px) at every width */
+@media (max-width:767px){
+  .gk-product-row > .gk-product-card{flex:0 0 76% !important;width:76% !important;min-width:76% !important;max-width:76% !important;}
+  .team-row > .team-card{flex:0 0 76% !important;width:76% !important;min-width:76% !important;max-width:76% !important;}
+  .voices-row > .voice-card{flex-basis:80% !important;width:80% !important;min-width:80% !important;max-width:80% !important;}
+  .gk-certs__item{flex:0 0 40% !important;}
+}
+@media (min-width:600px) and (max-width:900px){
+  .insta-grid > .insta-tile{flex:0 0 42% !important;width:42% !important;min-width:42% !important;}
+}
+@media (min-width:901px) and (max-width:1199px){
+  .team-row > .team-card{flex:0 0 28% !important;width:28% !important;min-width:28% !important;max-width:28% !important;}
+}
+/* Scrolled-header menu: solid panel so the page behind does not show through the links */
+#stickybar .sticky-menu{background:#205007 !important;-webkit-backdrop-filter:none !important;backdrop-filter:none !important;}
+/* narrower bestseller cards on phones: each price stays on one line */
+.gks-price .glc-money,.gks-price .old-price,.range-price .old-price{white-space:nowrap;}
+@media (max-width:767px){
+  .gks-price-row .gks-price{display:flex !important;flex-direction:column !important;align-items:flex-start !important;gap:0 !important;line-height:1.15 !important;}
+  .gks-price-row .gks-price .old-price{font-size:12px !important;margin:2px 0 0 !important;}
+  .gks-price-row{gap:10px !important;align-items:center !important;}
+}
+/* Instagram reels 769-900px: an older rule made the row a block, so the reels stacked as squares down the left
+   side. Keep the swipeable row (same as phones and 768px), with the next reel peeking in. */
+@media (min-width:769px) and (max-width:900px){
+  .insta-grid{display:flex !important;flex-wrap:nowrap !important;overflow-x:auto !important;gap:10px !important;scroll-snap-type:x mandatory;scrollbar-width:none;}
+  .insta-grid > .insta-tile{flex:0 0 42% !important;width:42% !important;min-width:42% !important;aspect-ratio:9 / 16 !important;height:auto !important;scroll-snap-align:start;}
+}
+/* Instagram section had no side margin at 768-900px (phones 16px, laptops 24px) */
+@media (min-width:768px) and (max-width:900px){.insta-section{padding-left:24px !important;padding-right:24px !important;}}
+/* Product page on small phones: "Add to bag" stays on one line; all four sizes fit in one row */
+/* Instagram reels on phones / tablets: the video (and its poster) fills the whole tile, no empty band below */
+@media (max-width:900px){
+  .insta-grid > .insta-tile{position:relative;overflow:hidden;}
+  .insta-grid > .insta-tile > a{position:absolute;inset:0;display:block;}
+  .insta-grid > .insta-tile video{width:100% !important;height:100% !important;object-fit:cover !important;}
+}
+/* Shop grid, 769–1279px (4 narrow columns): price on top, full-width ADD TO BAG below, so the button never clips */
+/* Product page jump links (FAQs / Reviews): comfortable 32px tap height */

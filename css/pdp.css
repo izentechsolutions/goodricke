@@ -5173,3 +5173,52 @@ html body.pdp-page .rv--compact .rv__actions .rv__all{margin:0 !important;}
 /* Small text links: at least 24px tall to tap */
 .pdp-rating{min-height:28px;align-items:center;}
 /* Shop hero: keep the title clear of the slider arrows on tablets / small laptops */
+
+/* =================== Round 3: menu icon and side-scroll peek =================== */
+/* Scrolled header: a standard three-line menu icon (turns into an X when open) instead of the word "Menu" */
+#stickybar .sticky-toggle{width:44px !important;min-width:44px !important;height:44px !important;min-height:44px !important;padding:0 !important;justify-content:center !important;align-items:center !important;border-radius:50% !important;}
+#stickybar .sticky-toggle .sticky-toggle-mask{display:none !important;}
+.gk-burger{position:relative;display:block;width:20px;height:14px;}
+.gk-burger i{position:absolute;left:0;width:100%;height:2px;border-radius:2px;background:currentColor;transition:transform .3s ease,opacity .2s ease,top .3s ease;}
+.gk-burger i:nth-child(1){top:0;}
+.gk-burger i:nth-child(2){top:6px;}
+.gk-burger i:nth-child(3){top:12px;}
+#stickybar .sticky-toggle[aria-expanded="true"] .gk-burger i:nth-child(1){top:6px;transform:rotate(45deg);}
+#stickybar .sticky-toggle[aria-expanded="true"] .gk-burger i:nth-child(2){opacity:0;}
+#stickybar .sticky-toggle[aria-expanded="true"] .gk-burger i:nth-child(3){top:6px;transform:rotate(-45deg);}
+
+/* Phones: rows that showed one full-width item now let the next one peek in, so it is clear there is more */
+/* Every horizontal row shows a clear slice of the next item (at least ~50px) at every width */
+@media (max-width:767px){
+  .rv__mini{flex-basis:78% !important;}
+}
+@media (min-width:901px){
+  .rv--compact .rv__mini{flex:0 0 calc((100% - 28px) / 3.3) !important;}
+}
+/* Scrolled-header menu: solid panel so the page behind does not show through the links */
+#stickybar .sticky-menu{background:#205007 !important;-webkit-backdrop-filter:none !important;backdrop-filter:none !important;}
+@media (min-width:901px) and (max-width:1199px){.rv--compact .rv__mini{flex:0 0 calc((100% - 14px) / 2.4) !important;}}
+/* narrower bestseller cards on phones: each price stays on one line */
+/* Instagram reels 769-900px: an older rule made the row a block, so the reels stacked as squares down the left
+   side. Keep the swipeable row (same as phones and 768px), with the next reel peeking in. */
+/* Instagram section had no side margin at 768-900px (phones 16px, laptops 24px) */
+/* Product page on small phones: "Add to bag" stays on one line; all four sizes fit in one row */
+.pdp-actions .pdp-cta{white-space:nowrap;}
+@media (max-width:430px){
+  .pdp-actions{gap:10px !important;}
+  .pdp-actions .pdp-qty{flex:0 0 auto !important;}
+  .pdp-actions .pdp-cta{flex:1 1 auto !important;min-width:0 !important;padding-left:14px !important;padding-right:14px !important;font-size:14px !important;}
+  .pdp-weight__row{display:grid !important;grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:8px !important;}
+  .pdp-weight__item{min-width:0 !important;}
+  .pdp-weight__opt{width:100% !important;min-width:0 !important;padding-left:4px !important;padding-right:4px !important;}
+  .pdp-weight__save{font-size:10.5px !important;white-space:nowrap;}
+}
+/* Instagram reels on phones / tablets: the video (and its poster) fills the whole tile, no empty band below */
+/* Shop grid, 769–1279px (4 narrow columns): price on top, full-width ADD TO BAG below, so the button never clips */
+@media (min-width:769px) and (max-width:1279px){
+  html body section.product-listing .product-item .product-bottom{flex-direction:column !important;align-items:stretch !important;gap:8px !important;margin-top:auto !important;}
+  html body section.product-listing .product-item .product-price{flex-wrap:wrap !important;gap:6px !important;}
+  html body section.product-listing .product-item .product-add-to-bag{width:100% !important;min-width:0 !important;justify-content:center !important;}
+}
+/* Product page jump links (FAQs / Reviews): comfortable 32px tap height */
+.pdp-more__links a{display:inline-flex;align-items:center;min-height:32px;}
