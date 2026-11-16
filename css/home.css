@@ -6053,3 +6053,7 @@ html body .site-footer{padding-bottom:6px !important;}
 /* Slide 14: FAQ right after the product, in two columns, first answer open */
 
 /* Slide 12: compact reviews (summary + card strip) */
+
+/* Slide 12 (round 2): reviews in less space. Heading, "View all" and arrows share one line; the rating
+   summary is a short two-column card the same height as the review cards. */
+/* "View all" + arrows are moved into the heading line by pdp.js ("Reviews: compact cards") */

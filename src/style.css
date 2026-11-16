@@ -10157,3 +10157,30 @@ html body.pdp-page .rv--compact .rv__all{margin:20px 0 0 !important;}
   .rv--compact .rv__summary .rv__bars{grid-column:1 / -1;}
   .rv__mini{flex-basis:82%;}
 }
+
+/* Slide 12 (round 2): reviews in less space. Heading, "View all" and arrows share one line; the rating
+   summary is a short two-column card the same height as the review cards. */
+html body.pdp-page .rv.rv--compact{padding:clamp(48px,5vw,72px) 0 !important;}
+.rv--compact .rv__head{display:flex;align-items:center;min-height:44px;margin-bottom:20px;}
+.rv--compact .rv__layout{grid-template-columns:340px minmax(0,1fr);gap:20px;align-items:stretch;}
+.rv--compact .rv__summary{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto 1fr;column-gap:22px;align-content:center;padding:20px 22px;}
+html body.pdp-page .rv--compact .rv__score{grid-column:1;grid-row:1;}
+html body.pdp-page .rv--compact .rv__num{font-size:44px !important;}
+html body.pdp-page .rv--compact .rv__stars--score{grid-column:1;grid-row:2;margin:4px 0 6px !important;font-size:14px !important;}
+html body.pdp-page .rv--compact .rv__based{grid-column:1;grid-row:3;margin:0 !important;max-width:110px;font-size:11.5px !important;line-height:1.4 !important;}
+.rv--compact .rv__summary .rv__bars{grid-column:2;grid-row:1 / 4;align-self:center;gap:5px;}
+.rv--compact .rv__bars li{grid-template-columns:22px 1fr 30px;font-size:11.5px;}
+.rv--compact .rv__mini{min-height:0;padding:16px 18px;}
+.rv--compact .rv__mini p{-webkit-line-clamp:3;}
+/* "View all" + arrows are moved into the heading line by pdp.js ("Reviews: compact cards") */
+.rv--compact .rv__head{justify-content:space-between;gap:16px;flex-wrap:wrap;padding-right:0;}
+.rv__actions{display:flex;align-items:center;gap:12px;}
+.rv__actions .gk-arrows{margin:0 !important;}
+html body.pdp-page .rv--compact .rv__actions .rv__all{margin:0 !important;}
+.rv--compact .rv__list{margin-top:24px;}
+@media (max-width:900px){
+  .rv--compact .rv__head{margin-bottom:14px;}
+  .rv__actions{width:100%;justify-content:space-between;}
+  .rv--compact .rv__layout{grid-template-columns:1fr;gap:14px;}
+  .rv--compact .rv__summary{padding:16px 18px;}
+}

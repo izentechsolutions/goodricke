@@ -620,6 +620,12 @@ try { (function(){
     }).join('');
   }
   if(window.gkScrollHint) window.gkScrollHint.refresh();
+  /* "View all reviews" and the prev/next arrows sit on the heading line, to save space */
+  var head=sec.querySelector('.rv__head'), all=sec.querySelector('.rv__all'), arrows=strip.nextElementSibling;
+  if(head&&all){
+    var act=document.createElement('div'); act.className='rv__actions'; head.appendChild(act); act.appendChild(all);
+    if(arrows&&arrows.classList.contains('gk-arrows')) act.appendChild(arrows);
+  }
 })(); } catch (e) { console.error("Reviews: compact cards", e); }
 
 
