@@ -6057,3 +6057,24 @@ html body .site-footer{padding-bottom:6px !important;}
 /* Slide 12 (round 2): reviews in less space. Heading, "View all" and arrows share one line; the rating
    summary is a short two-column card the same height as the review cards. */
 /* "View all" + arrows are moved into the heading line by pdp.js ("Reviews: compact cards") */
+
+/* =================== HYGIENE PASS (v02 QA) =================== */
+/* Tablet header (768-900px): the menu button showed both icons next to the full pill nav, and search /
+   bag / login were pushed off the right edge. Here the pill nav fits, so the menu button is not needed. */
+@media (min-width:768px) and (max-width:900px){
+  .hero .navwrap > .menu-toggle{display:none !important;}
+  .hero .navwrap > img{max-width:150px !important;}
+  .hero .navwrap .pillnav a{padding-left:12px !important;padding-right:12px !important;}
+  .hero .navwrap .pillnav{margin-left:auto !important;}
+  .hero .navwrap .navactions{margin-left:12px !important;}
+}
+/* Shop hero: the "Shop" title was pulled up over the logo and nav (fixed -108px shift) at 1024px and below */
+/* Instagram reels: two per row on tablets (was one 768 x 1365 px reel per screen) */
+@media (min-width:600px) and (max-width:900px){
+  .insta-grid > .insta-tile{flex:0 0 calc(50% - 5px) !important;width:calc(50% - 5px) !important;min-width:calc(50% - 5px) !important;max-width:none !important;}
+}
+/* Tap targets: give the tiny gallery dots, wishlist heart and bag icon a 32px+ touch area */
+@media (max-width:900px){.hero .navactions .cart-link{min-width:32px;min-height:32px;display:inline-flex !important;align-items:center;justify-content:center;}}
+/* Small text links: at least 24px tall to tap */
+.insta-handle{display:inline-flex !important;align-items:center;min-height:32px;}
+/* Shop hero: keep the title clear of the slider arrows on tablets / small laptops */

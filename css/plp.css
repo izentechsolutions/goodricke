@@ -1203,7 +1203,7 @@ textarea {
    Fully scoped so it cannot conflict with existing Goodricke CSS
 ========================================================= */
 
-section.product-listing .product-listing-title h1 {
+section.product-listing .product-listing-title h1, section.product-listing .product-listing-title h2 {
   text-transform: uppercase;
 }
 
@@ -2457,7 +2457,7 @@ body.gk-filter-lock{overflow:hidden!important}
     gap: 16px !important;
     margin-bottom: 20px !important;
   }
-  html body section.product-listing .product-listing-title h1 {
+  html body section.product-listing .product-listing-title h1, html body section.product-listing .product-listing-title h2 {
     font-size: 26px !important;
     line-height: 1.05 !important;
     margin-bottom: 10px !important;
@@ -3804,7 +3804,7 @@ section.product-listing .product-listing-title {
   padding: 0 !important;
 }
 
-section.product-listing .product-listing-title h1 {
+section.product-listing .product-listing-title h1, section.product-listing .product-listing-title h2 {
   margin: 0 0 18px !important;
   padding: 0 !important;
   color: #042C05 !important;
@@ -4072,7 +4072,7 @@ section.product-listing .product-load-more button {
     margin-bottom: 20px !important;
   }
 
-  section.product-listing .product-listing-title h1 {
+  section.product-listing .product-listing-title h1, section.product-listing .product-listing-title h2 {
     font-size: 38px !important;
   }
 
@@ -4808,3 +4808,24 @@ html body section.product-listing .product-grid > .product-item{grid-column:auto
 /* Slide 12 (round 2): reviews in less space. Heading, "View all" and arrows share one line; the rating
    summary is a short two-column card the same height as the review cards. */
 /* "View all" + arrows are moved into the heading line by pdp.js ("Reviews: compact cards") */
+
+/* =================== HYGIENE PASS (v02 QA) =================== */
+/* Tablet header (768-900px): the menu button showed both icons next to the full pill nav, and search /
+   bag / login were pushed off the right edge. Here the pill nav fits, so the menu button is not needed. */
+@media (min-width:768px) and (max-width:900px){
+  .hero .navwrap > .menu-toggle{display:none !important;}
+  .hero .navwrap > img{max-width:150px !important;}
+  .hero .navwrap .pillnav a{padding-left:12px !important;padding-right:12px !important;}
+  .hero .navwrap .pillnav{margin-left:auto !important;}
+  .hero .navwrap .navactions{margin-left:12px !important;}
+}
+/* Shop hero: the "Shop" title was pulled up over the logo and nav (fixed -108px shift) at 1024px and below */
+.plp-page .hero .hero-copy{transform:none !important;}
+.plp-page .hero{height:auto !important;min-height:400px !important;}
+.plp-page .hero .hero-copy{padding-top:12px !important;padding-bottom:48px !important;}
+/* Instagram reels: two per row on tablets (was one 768 x 1365 px reel per screen) */
+/* Tap targets: give the tiny gallery dots, wishlist heart and bag icon a 32px+ touch area */
+@media (max-width:900px){.hero .navactions .cart-link{min-width:32px;min-height:32px;display:inline-flex !important;align-items:center;justify-content:center;}}
+/* Small text links: at least 24px tall to tap */
+/* Shop hero: keep the title clear of the slider arrows on tablets / small laptops */
+@media (min-width:768px) and (max-width:1279px){.plp-page .hero .hero-copy{padding-left:72px !important;padding-right:72px !important;}}
