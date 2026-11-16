@@ -517,10 +517,32 @@ try { (function(){
   var INDIA_ONLY = [/supercup/i, /kahwa/i, /roasted darjeeling/i];
   var NOT_SOLD = { IN: [], US: INDIA_ONLY, GB: INDIA_ONLY, AE: INDIA_ONLY };
 
-  var code = 'IN';
-  try { var saved = localStorage.getItem('gk-country'); if (MARKETS[saved]) code = saved; } catch (e) {}
+  /* Where the visitor is. A static site cannot see the visitor's country (that needs the
+     server: Shopify geolocation, or a geo header from the load balancer), so the browser's
+     time zone is used, then the region of its language. Countries we do not sell to: India. */
+  function detect(){
+    var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    if (/^Asia\/(Kolkata|Calcutta)$/.test(tz)) return 'IN';
+    if (/^(Europe\/London|Europe\/Belfast|GB)$/.test(tz)) return 'GB';
+    if (/^Asia\/Dubai$/.test(tz)) return 'AE';
+    if (/^(US\/|America\/(New_York|Chicago|Denver|Phoenix|Los_Angeles|Anchorage|Detroit|Boise|Indiana|Kentucky|Juneau|Sitka|Adak|Nome|Menominee|North_Dakota)|Pacific\/Honolulu)/.test(tz)) return 'US';
+    var langs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || '']);
+    for (var i = 0; i < langs.length; i++){
+      var r = (String(langs[i]).split('-')[1] || '').toUpperCase();
+      if (r === 'IN' || r === 'GB' || r === 'US' || r === 'AE') return r;
+    }
+    return null;
+  }
+  /* chosen: picked by the visitor, a link (?country=) or an earlier visit; auto: set from location on this visit */
+  var code = 'IN', chosen = false, auto = false;
+  try { var saved = localStorage.getItem('gk-country'); if (MARKETS[saved]){ code = saved; chosen = true; } } catch (e) {}
   var q = (location.search.match(/[?&]country=([a-z]{2})/i) || [])[1];
-  if (q && MARKETS[q.toUpperCase()]) code = q.toUpperCase();
+  if (q && MARKETS[q.toUpperCase()]){ code = q.toUpperCase(); chosen = true; try { localStorage.setItem('gk-country', code); } catch (e) {} }
+  if (!chosen){
+    var d = detect();
+    if (d && MARKETS[d]){ code = d; auto = true; }
+    try { localStorage.setItem('gk-country', code); } catch (e) {} /* keep it on every page */
+  }
 
   function market(){ return MARKETS[code]; }
   /* INR -> this market's list price */
@@ -608,14 +630,14 @@ try { (function(){
   }
   function set(c){
     if (!MARKETS[c] || c === code) return;
-    code = c;
+    code = c; chosen = true;
     try { localStorage.setItem('gk-country', c); } catch (e) {}
     render();
     document.dispatchEvent(new CustomEvent('gk-market-change', { detail:{ code:c, market:market() } }));
   }
 
   window.gkMarket = {
-    get code(){ return code; }, market:market, price:price, fmt:fmt, money:money, span:span,
+    get code(){ return code; }, get chosen(){ return chosen; }, get auto(){ return auto; }, market:market, price:price, fmt:fmt, money:money, span:span,
     inrOf:inrOf, isSold:isSold, wrap:function(el){ wrap(el); render(); }, set:set, refresh:render
   };
 
@@ -626,6 +648,182 @@ try { (function(){
     if (sel) set(sel.value);
   });
 })(); } catch (e) { console.error("Country / currency", e); }
+
+// ==== Country selector (branded) + first-visit suggestion ====
+/* Turns each <select data-gk-country> into a branded control: a flag + currency button that
+   opens a list of countries (a panel on larger screens, a bottom sheet on phones).
+   Keyboard: Enter / Space / Arrow keys open it; Arrow keys, Home and End move; Enter or Space
+   chooses; Esc closes and returns focus to the button. The <select> stays in the page as the
+   fallback when this script does not run.
+   First visit: the country is set from the visitor's location (gkMarket above) and a notice
+   says so, with "Change country". Shown once; the choice is kept after that.
+   On Shopify: the localization form posts the chosen country; Shopify geolocation sets
+   the market on the first visit. */
+try { (function(){
+  var M = window.gkMarket; if (!M) return;
+  var ORDER = ['IN','US','GB','AE'];
+  var LABEL = { IN:'India', US:'United States', GB:'United Kingdom', AE:'United Arab Emirates' };
+  var CUR = { IN:'INR ₹', US:'USD $', GB:'GBP £', AE:'AED' };
+  var SHORT = { IN:'₹ INR', US:'$ USD', GB:'£ GBP', AE:'AED' };
+
+  /* flags: one inline SVG sprite (emoji flags do not show on Windows) */
+  var SPRITE = '<svg aria-hidden="true" width="0" height="0" style="position:absolute" xmlns="http://www.w3.org/2000/svg"><defs>' +
+    '<clipPath id="gkFlagGbClip"><rect width="60" height="40"/></clipPath>' +
+    '<clipPath id="gkFlagGbDiag"><path d="M30 20h30v20zv20H0zH0V0zV0h30z"/></clipPath>' +
+    '<symbol id="gk-flag-IN" viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"/><rect width="30" height="6.67" fill="#FF9933"/><rect y="13.33" width="30" height="6.67" fill="#138808"/><circle cx="15" cy="10" r="2.6" fill="none" stroke="#000080" stroke-width=".7"/><circle cx="15" cy="10" r=".6" fill="#000080"/></symbol>' +
+    '<symbol id="gk-flag-US" viewBox="0 0 30 20"><rect width="30" height="20" fill="#B22234"/>' +
+      [1,3,5,7,9,11].map(function(i){ return '<rect y="' + (i * 20 / 13).toFixed(2) + '" width="30" height="' + (20 / 13).toFixed(2) + '" fill="#fff"/>'; }).join('') +
+      '<rect width="13" height="10.77" fill="#3C3B6E"/>' +
+      [[2,2],[5,2],[8,2],[11,2],[3.5,4.4],[6.5,4.4],[9.5,4.4],[2,6.8],[5,6.8],[8,6.8],[11,6.8],[3.5,9.1],[6.5,9.1],[9.5,9.1]].map(function(p){ return '<circle cx="' + p[0] + '" cy="' + p[1] + '" r=".55" fill="#fff"/>'; }).join('') +
+    '</symbol>' +
+    '<symbol id="gk-flag-GB" viewBox="0 0 60 40"><g clip-path="url(#gkFlagGbClip)"><rect width="60" height="40" fill="#012169"/>' +
+      '<path d="M0 0l60 40M60 0L0 40" stroke="#fff" stroke-width="8"/><path d="M0 0l60 40M60 0L0 40" clip-path="url(#gkFlagGbDiag)" stroke="#C8102E" stroke-width="5"/>' +
+      '<path d="M30 0v40M0 20h60" stroke="#fff" stroke-width="12"/><path d="M30 0v40M0 20h60" stroke="#C8102E" stroke-width="7"/></g></symbol>' +
+    '<symbol id="gk-flag-AE" viewBox="0 0 30 20"><rect width="30" height="6.67" fill="#00732F"/><rect y="6.67" width="30" height="6.67" fill="#fff"/><rect y="13.33" width="30" height="6.67" fill="#000"/><rect width="8" height="20" fill="#EF3340"/></symbol>' +
+    '</defs></svg>';
+  document.body.insertAdjacentHTML('afterbegin', SPRITE);
+  var flag = function(c){ return '<span class="gk-cc__flag" aria-hidden="true"><svg viewBox="0 0 30 20" preserveAspectRatio="xMidYMid slice"><use href="#gk-flag-' + c + '"/></svg></span>'; };
+  var CHEV = '<svg class="gk-cc__chev" aria-hidden="true" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>';
+  var TICK = '<svg class="gk-cc__tick" aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+
+  /* one shared panel, placed next to whichever button opened it */
+  var backdrop = document.createElement('div'); backdrop.className = 'gk-cc-backdrop'; backdrop.hidden = true;
+  var panel = document.createElement('div');
+  panel.className = 'gk-cc-panel'; panel.id = 'gkCountryPanel'; panel.hidden = true;
+  panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-labelledby', 'gkCountryTitle');
+  panel.innerHTML = '<div class="gk-cc-panel__head"><p class="gk-cc-panel__title" id="gkCountryTitle">Choose your country or region</p>' +
+    '<button type="button" class="gk-cc-panel__close" aria-label="Close"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>' +
+    '<ul class="gk-cc-panel__list" role="listbox" aria-labelledby="gkCountryTitle">' +
+    ORDER.map(function(c){
+      return '<li class="gk-cc-opt" role="option" id="gkCountryOpt' + c + '" data-code="' + c + '" tabindex="-1" aria-selected="false">' +
+        flag(c) + '<span class="gk-cc-opt__name">' + LABEL[c] + '</span><span class="gk-cc-opt__cur">' + CUR[c] + '</span>' + TICK + '</li>';
+    }).join('') + '</ul>' +
+    '<p class="gk-cc-panel__note">Prices, available teas and shipping are shown for the country you choose.</p>';
+  document.body.appendChild(backdrop); document.body.appendChild(panel);
+  var opts = [].slice.call(panel.querySelectorAll('.gk-cc-opt'));
+
+  var toast = document.createElement('div');
+  toast.className = 'gk-cc-toast'; toast.setAttribute('role', 'status'); toast.setAttribute('aria-live', 'polite');
+  document.body.appendChild(toast);
+  var toastTimer;
+  function say(msg){
+    toast.textContent = msg; toast.classList.add('is-on');
+    clearTimeout(toastTimer); toastTimer = setTimeout(function(){ toast.classList.remove('is-on'); }, 3200);
+  }
+
+  /* buttons */
+  var buttons = [];
+  document.querySelectorAll('select[data-gk-country]').forEach(function(sel, i){
+    var wrap = sel.closest('.gk-country'); if (!wrap) return;
+    var up = wrap.classList.contains('gk-country--footer');
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'gk-cc__btn' + (up ? ' gk-cc__btn--footer' : '');
+    b.setAttribute('aria-haspopup', 'dialog'); b.setAttribute('aria-expanded', 'false'); b.setAttribute('aria-controls', 'gkCountryPanel');
+    b.dataset.up = up ? '1' : '';
+    sel.hidden = true; sel.tabIndex = -1;
+    var icon = wrap.querySelector(':scope > svg'); if (icon) icon.remove();
+    wrap.classList.add('is-enhanced');
+    wrap.appendChild(b);
+    buttons.push(b);
+  });
+  function paint(){
+    var c = M.code;
+    buttons.forEach(function(b){
+      b.innerHTML = flag(c) + '<span class="gk-cc__cur">' + SHORT[c] + '</span>' + CHEV;
+      b.setAttribute('aria-label', 'Country or region: ' + LABEL[c] + ', ' + CUR[c].replace(/ .*/, '') + '. Change');
+    });
+    opts.forEach(function(o){ var on = o.dataset.code === c; o.setAttribute('aria-selected', on ? 'true' : 'false'); o.classList.toggle('is-current', on); });
+  }
+  paint();
+
+  /* open / close */
+  var opener = null;
+  var phone = window.matchMedia('(max-width:599px)');
+  function place(){
+    if (!opener || phone.matches){ panel.style.top = panel.style.bottom = panel.style.left = panel.style.right = ''; return; }
+    var r = opener.getBoundingClientRect(), w = panel.offsetWidth || 300;
+    var left = Math.min(Math.max(12, r.right - w), window.innerWidth - w - 12);
+    panel.style.left = left + 'px'; panel.style.right = 'auto';
+    if (opener.dataset.up){ panel.style.top = 'auto'; panel.style.bottom = (window.innerHeight - r.top + 8) + 'px'; }
+    else { panel.style.bottom = 'auto'; panel.style.top = (r.bottom + 8) + 'px'; }
+  }
+  function open(b, focusWhich){
+    opener = b;
+    panel.hidden = false; backdrop.hidden = !phone.matches;
+    panel.classList.toggle('is-sheet', phone.matches); panel.classList.toggle('is-up', !!b.dataset.up);
+    place();
+    requestAnimationFrame(function(){ panel.classList.add('is-open'); backdrop.classList.add('is-open'); });
+    buttons.forEach(function(x){ x.setAttribute('aria-expanded', x === b ? 'true' : 'false'); });
+    var cur = opts.filter(function(o){ return o.dataset.code === M.code; })[0];
+    var target = focusWhich === 'last' ? opts[opts.length - 1] : focusWhich === 'first' ? opts[0] : cur;
+    (target || opts[0]).focus();
+  }
+  function close(returnFocus){
+    if (panel.hidden) return;
+    panel.classList.remove('is-open'); backdrop.classList.remove('is-open');
+    panel.hidden = true; backdrop.hidden = true;
+    buttons.forEach(function(x){ x.setAttribute('aria-expanded', 'false'); });
+    if (returnFocus && opener) opener.focus();
+    opener = null;
+  }
+  function choose(c){
+    var changed = c !== M.code;
+    close(true);
+    if (changed){
+      M.set(c);
+      hideSuggest();
+      say('Now shopping in ' + LABEL[c] + ' · prices in ' + CUR[c]);
+    }
+  }
+  buttons.forEach(function(b){
+    b.addEventListener('click', function(){ if (opener === b) close(true); else open(b); });
+    b.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp'){ e.preventDefault(); open(b, e.key === 'ArrowUp' ? 'last' : null); }
+    });
+  });
+  panel.addEventListener('click', function(e){
+    var o = e.target.closest('.gk-cc-opt'); if (o){ choose(o.dataset.code); return; }
+    if (e.target.closest('.gk-cc-panel__close')) close(true);
+  });
+  panel.addEventListener('keydown', function(e){
+    var i = opts.indexOf(document.activeElement);
+    if (e.key === 'Escape'){ e.preventDefault(); close(true); }
+    else if (e.key === 'ArrowDown'){ e.preventDefault(); opts[Math.min(opts.length - 1, i + 1)].focus(); }
+    else if (e.key === 'ArrowUp'){ e.preventDefault(); opts[Math.max(0, i - 1)].focus(); }
+    else if (e.key === 'Home'){ e.preventDefault(); opts[0].focus(); }
+    else if (e.key === 'End'){ e.preventDefault(); opts[opts.length - 1].focus(); }
+    else if ((e.key === 'Enter' || e.key === ' ') && i > -1){ e.preventDefault(); choose(opts[i].dataset.code); }
+    else if (e.key === 'Tab'){ close(true); } /* focus goes back to the button, then Tab moves on from there */
+  });
+  backdrop.addEventListener('click', function(){ close(true); });
+  document.addEventListener('mousedown', function(e){
+    if (!panel.hidden && !panel.contains(e.target) && !(opener && opener.contains(e.target))) close(false);
+  });
+  window.addEventListener('resize', function(){ close(false); });
+  window.addEventListener('scroll', place, { passive:true });
+  document.addEventListener('gk-market-change', paint);
+
+  /* ---- first visit: the country was set from the visitor's location; say so, offer to change ---- */
+  var sug = null;
+  function hideSuggest(){ if (sug){ sug.classList.remove('is-on'); var s = sug; setTimeout(function(){ s.remove(); }, 250); sug = null; } }
+  if (M.auto && M.code !== 'IN'){
+    var c0 = M.code;
+    sug = document.createElement('div');
+    sug.className = 'gk-cc-suggest'; sug.setAttribute('role', 'region'); sug.setAttribute('aria-label', 'Your country');
+    sug.innerHTML = flag(c0) + '<p class="gk-cc-suggest__text"><strong>Shopping from ' + (M.market().inName || LABEL[c0]) + '</strong>Prices are in ' + CUR[c0] + ' and you see the teas we ship there.</p>' +
+      '<div class="gk-cc-suggest__actions"><button type="button" class="gk-cc-suggest__yes">Continue</button>' +
+      '<button type="button" class="gk-cc-suggest__no">Change country</button></div>' +
+      '<button type="button" class="gk-cc-suggest__x" aria-label="Dismiss"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+    document.body.appendChild(sug);
+    setTimeout(function(){ if (sug) sug.classList.add('is-on'); }, 700);
+    sug.querySelector('.gk-cc-suggest__yes').addEventListener('click', hideSuggest);
+    sug.querySelector('.gk-cc-suggest__x').addEventListener('click', hideSuggest);
+    sug.querySelector('.gk-cc-suggest__no').addEventListener('click', function(){
+      hideSuggest();
+      var b = buttons[0]; if (b){ window.scrollTo({ top:0 }); setTimeout(function(){ open(b); }, 60); }
+    });
+  }
+})(); } catch (e) { console.error("Country selector", e); }
 
 // ==== Bag drawer ====
 /* "Added to Bag" tray (static HTML build): shows the product(s) just added, with subtotal,
