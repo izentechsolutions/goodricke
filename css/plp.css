@@ -4860,3 +4860,4 @@ html body section.product-listing .product-grid > .product-item{grid-column:auto
   html body section.product-listing .product-item .product-add-to-bag{width:100% !important;min-width:0 !important;justify-content:center !important;}
 }
 /* Product page jump links (FAQs / Reviews): comfortable 32px tap height */
+/* Subscribe & save is switched off with the [hidden] attribute on .pdp-plan (pending client approval) */

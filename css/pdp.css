@@ -5222,3 +5222,5 @@ html body.pdp-page .rv--compact .rv__actions .rv__all{margin:0 !important;}
 }
 /* Product page jump links (FAQs / Reviews): comfortable 32px tap height */
 .pdp-more__links a{display:inline-flex;align-items:center;min-height:32px;}
+/* Subscribe & save is switched off with the [hidden] attribute on .pdp-plan (pending client approval) */
+.pdp-plan[hidden]{display:none !important;}

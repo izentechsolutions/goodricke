@@ -6137,3 +6137,4 @@ html body .site-footer{padding-bottom:6px !important;}
 }
 /* Shop grid, 769–1279px (4 narrow columns): price on top, full-width ADD TO BAG below, so the button never clips */
 /* Product page jump links (FAQs / Reviews): comfortable 32px tap height */
+/* Subscribe & save is switched off with the [hidden] attribute on .pdp-plan (pending client approval) */
