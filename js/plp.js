@@ -108,7 +108,7 @@ try { (function(){
     });
 
     function selected(name){return Array.from(drawer.querySelectorAll('input[name="'+name+'"]:checked')).map(function(i){return i.value})}
-    function price(card){var el=card.querySelector('.product-price');if(!el)return 0;var m=(el.textContent||'').replace(/[^0-9.]/g,'');return parseFloat(m)||0}
+    function price(card){var el=card.querySelector('.product-price');if(!el)return 0;if(window.gkMarket)return window.gkMarket.price(window.gkMarket.inrOf(el));var m=(el.textContent||'').replace(/[^0-9.]/g,'');return parseFloat(m)||0} /* in the shopper's currency; the bands below are set per country */
     function productText(card){return ((card.getAttribute('data-tags')||'')+' '+(card.textContent||'')).toLowerCase()}
     function applyFilters(){
       var cards=Array.from(document.querySelectorAll('section.product-listing .product-grid > .product-item'));
@@ -119,9 +119,9 @@ try { (function(){
         if(cols.length)ok=ok&&cols.some(function(v){return text.indexOf(v.toLowerCase())>-1});
         if(benefits.length)ok=ok&&benefits.some(function(v){return text.indexOf(v.toLowerCase())>-1});
         if(textures.length)ok=ok&&textures.some(function(v){return text.indexOf(v.toLowerCase())>-1});
-        if(prices.length)ok=ok&&prices.some(function(v){return v==='under500'?p<500:v==='500to1000'?p>=500&&p<=1000:p>1000});
+        if(prices.length){var B={IN:[500,1000],US:[7,14],GB:[6,12],AE:[25,50]}[window.gkMarket?window.gkMarket.code:'IN'];ok=ok&&prices.some(function(v){return v==='under500'?p<B[0]:v==='500to1000'?p>=B[0]&&p<=B[1]:p>B[1]});}
         if(availability.length){var inStock=text.indexOf('out of stock')===-1;ok=ok&&availability.some(function(v){return v==='in-stock'?inStock:!inStock})}
-        card.style.display=ok?'':'none';
+        card.style.display=ok?'':'none'; card.classList.toggle('gk-filter-hide',!ok); /* class: the grid's card rule uses !important, so the inline style alone was ignored */
       });
       var count=document.querySelector('.product-listing .product-count');
       if(count){var visible=cards.filter(function(c){return c.style.display!=='none'}).length;count.textContent=visible+' Products'}
@@ -143,7 +143,7 @@ try { (function(){
     clear.addEventListener('click',function(){
       drawer.querySelectorAll('input[type="checkbox"]').forEach(function(i){i.checked=false});
       var newest=drawer.querySelector('input[name="gkSort"][value="new"]');if(newest)newest.checked=true;
-      var grid=document.querySelector('section.product-listing .product-grid');if(grid)Array.from(grid.querySelectorAll(':scope > .product-item')).forEach(function(c){c.style.display=''});
+      var grid=document.querySelector('section.product-listing .product-grid');if(grid)Array.from(grid.querySelectorAll(':scope > .product-item')).forEach(function(c){c.style.display='';c.classList.remove('gk-filter-hide')});
       var count=document.querySelector('.product-listing .product-count');if(count&&grid)count.textContent=grid.querySelectorAll(':scope > .product-item').length+' Products';
     });
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&drawer.classList.contains('is-open'))closeDrawer()});

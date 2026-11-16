@@ -697,6 +697,10 @@ progress {
 
 /* rtl:end:remove */
 
+.rounded {
+  border-radius: var(--bs-border-radius) !important;
+}
+
 .visible {
   visibility: visible !important;
 }
@@ -764,6 +768,31 @@ h1,h2,h3,b,strong{font-weight:400;}
 
 
   /* ---------- SHOP BY REGION ---------- */
+  .region{
+    position:relative;
+    isolation:isolate;
+    padding:200px 0;
+    background:#042C05;
+    overflow:hidden;
+  }
+  .region::before{
+    content:"";
+    position:absolute;inset:0;
+    background:linear-gradient(90deg,rgba(0,0,0,0.94) 0%,rgba(0,0,0,0.82) 42%,rgba(0,0,0,0.28) 78%,rgba(0,0,0,0.1) 100%);
+    z-index:-1;
+  }
+  .region h2{
+    margin-left:auto;
+    margin-right:auto;
+    font-family:"Arpona","Georgia",serif;
+    font-weight:400;
+    font-size:clamp(38px,5.2vw,68px);
+    line-height:1.04;
+    letter-spacing:0;
+    color:#fff;
+    max-width:14ch;
+  }
+  .region h2 em{font-style:italic;color:var(--brand-gold);}
 
 
   /* ---------- TEAM ---------- */
@@ -884,6 +913,8 @@ h1,h2,h3,b,strong{font-weight:400;}
   /* ---------- responsive ---------- */
   @media (max-width:900px){
     .shop{padding:64px clamp(20px,6vw,40px) 56px;}
+
+    .region{padding:72px clamp(20px,6vw,40px);}
   }
 
 img {
@@ -982,6 +1013,16 @@ a {
   }
 
   /* ---------- REGION ---------- */
+  .region {
+    padding: 72px 16px !important;
+    background-position: center !important;
+  }
+
+  .region h2 {
+    margin-bottom: 30px !important;
+    font-size: clamp(30px, 8.8vw, 40px) !important;
+    line-height: 1.05 !important;
+  }
 
   /* Do not run desktop hover transforms on touch screens. */
 
@@ -1333,6 +1374,9 @@ section.product-listing .product-listing-title h1, section.product-listing .prod
 /* Smooth click-only transition */
 
 /* Mobile: still hidden until product is tapped */
+.region h2{
+margin:0 auto 28px !important;
+}
 
 
 /* ==== Product cards: open state ==== */
@@ -4746,6 +4790,7 @@ html body .site-footer .footer-bottom{margin-top:28px !important;padding:16px 0 
 :root{--gk-sec:clamp(64px,7vw,104px);}
 body:not(.plp-page):not(.pdp-page) .range,
 body:not(.plp-page):not(.pdp-page) .shop,
+body:not(.plp-page):not(.pdp-page) .region,
 body:not(.plp-page):not(.pdp-page) .team{padding-top:var(--gk-sec) !important;padding-bottom:var(--gk-sec) !important;margin-top:0 !important;margin-bottom:0 !important;}
 @media (max-width:767px){:root{--gk-sec:56px;}}
 
@@ -4861,3 +4906,59 @@ html body section.product-listing .product-grid > .product-item{grid-column:auto
 }
 /* Product page jump links (FAQs / Reviews): comfortable 32px tap height */
 /* Subscribe & save is switched off with the [hidden] attribute on .pdp-plan (pending client approval) */
+
+/* =====================================================================
+   MULTI-COUNTRY: country / currency selector, per-country catalog
+   ===================================================================== */
+.gk-not-sold{display:none !important;}
+.gk-country{display:inline-flex;align-items:center;gap:6px;margin:0;color:inherit;font:inherit;white-space:nowrap;}
+.gk-country svg{width:14px;height:14px;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.6;}
+.gk-country__select{
+  -webkit-appearance:none;appearance:none;margin:0;cursor:pointer;
+  font:inherit;font-size:12px;line-height:1.2;letter-spacing:0;color:#FFFFF4;
+  min-height:26px;padding:4px 26px 4px 10px;border-radius:999px;
+  border:1px solid rgba(255,255,244,.38);
+  background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFFFF4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 9px center / 11px 11px;
+  transition:background-color .2s ease,border-color .2s ease;
+}
+.gk-country__select:hover{background-color:rgba(255,255,244,.10);border-color:rgba(255,255,244,.6);}
+.gk-country__select:focus-visible{outline:2px solid #CAAA2C;outline-offset:2px;}
+.gk-country__select option{color:#042C05;background:#FFFFF4;}
+/* top bar: message centred, selector on the right */
+html body .topline{position:relative;}
+.topline__msg{display:inline;}
+.gk-country--top{position:absolute;right:24px;top:50%;transform:translateY(-50%);color:#FFFFF4;}
+@media (max-width:1024px){ .gk-country--top{right:16px;} }
+/* tablets: message on the left, selector on the right, so they never overlap */
+@media (max-width:1023px){
+  html body .topline{justify-content:space-between !important;text-align:left !important;gap:12px !important;}
+  .gk-country--top{position:static;transform:none;}
+}
+/* phones: keep the shipping message, selector on the right, no overlap */
+@media (max-width:767px){
+  html body .topline{justify-content:space-between !important;text-align:left !important;gap:10px !important;}
+  .topline__lead{display:none;}
+  .gk-country--top{position:static;transform:none;}
+  .gk-country--top svg{display:none;}
+  .gk-country__select{font-size:11px;padding:4px 24px 4px 9px;}
+}
+/* footer */
+.gk-country--footer{gap:10px;}
+.gk-country__label{font-size:12px;color:rgba(255,255,244,.72);}
+@media (min-width:1280px){
+  html body .site-footer .footer-bottom{grid-template-columns:auto 1fr auto auto !important;}
+}
+@media (min-width:901px) and (max-width:1279px){
+  html body .site-footer .footer-bottom .gk-country--footer{grid-row:2;grid-column:1;}
+  html body .site-footer .footer-bottom .footer-copy{grid-row:2;grid-column:3;}
+}
+
+/* ---- Product page: group products ("Explore the range") ---- */
+/* about 3.4 tiles in view, so the next tile always peeks in */
+/* sizes a product does not come in, hidden blocks */
+/* swap animation */
+/* product not sold in the chosen country */
+html body .pdp-cta:disabled{opacity:.45;cursor:not-allowed;box-shadow:none;}
+html body .gk-not-sold,html body section.product-listing .product-grid > .product-item.gk-not-sold,html body section.product-listing .product-item.gk-not-sold{display:none !important;}
+/* Shop filters: cards that do not match the chosen filters */
+html body section.product-listing .product-grid > .product-item.gk-filter-hide{display:none !important;}

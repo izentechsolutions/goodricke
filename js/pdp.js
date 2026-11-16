@@ -114,10 +114,15 @@ try { (function(){
   var opts=root.querySelectorAll('.pdp-weight__opt'),priceEl=root.querySelector('.pdp-price');
   var base=root.querySelector('.pdp-weight__opt.is-active').dataset.price;
   var num=function(v){return parseFloat(String(v||'').replace(/[^\d.]/g,''))||0;};
-  var inr=function(n,d){return '₹'+n.toLocaleString('en-IN',{minimumFractionDigits:d,maximumFractionDigits:d});};
-  var pct=function(o){var m=num(o.dataset.mrp),p=num(o.dataset.price);return m>p?Math.round((m-p)/m*100):0;};
+  /* prices in the HTML are INR; gkMarket (common.js) shows them in the shopper's currency */
+  var M=window.gkMarket;
+  var cv=function(n){return M?M.price(n):n;};
+  var inr=function(n,d){return M?M.fmt(cv(n),d):'₹'+n.toLocaleString('en-IN',{minimumFractionDigits:d,maximumFractionDigits:d});};
+  var moneyHTML=function(n,d){return M?M.span(n,d):inr(n,d);};
+  var pct=function(o){var m=cv(num(o.dataset.mrp)),p=cv(num(o.dataset.price));return m>p?Math.round((m-p)/m*100):0;};
   /* "SAVE x%" under each size, worked out from its price and MRP */
-  opts.forEach(function(o){var t=o.parentNode.querySelector('.pdp-weight__save'),v=pct(o);if(t){t.textContent=v?'SAVE '+v+'%':'';t.hidden=!v;}});
+  function labels(){opts.forEach(function(o){var t=o.parentNode.querySelector('.pdp-weight__save'),v=pct(o);if(t){t.textContent=v?'SAVE '+v+'%':'';t.hidden=!v;}});}
+  labels();
   var saveEl=root.querySelector('.pdp-save'),stickyPrice=document.querySelector('.pdp-sticky__price');
   /* purchase option (client feedback v02): "Subscribe & save" takes data-sub-discount % off the selected size.
      On Shopify these become selling plans (subscription app); the static build only shows the price. */
@@ -125,10 +130,10 @@ try { (function(){
   function isSub(){var r=root.querySelector('input[name="pdpPlan"]:checked');return !!r&&r.value==='sub';}
   function showPrice(){
     var once=num(base),n=isSub()?Math.round(once*(100-subPct)/100):once;
-    priceEl.textContent=inr(n,2);
-    if(stickyPrice) stickyPrice.textContent=priceEl.textContent;
+    priceEl.innerHTML=moneyHTML(n,2);
+    if(stickyPrice) stickyPrice.innerHTML=priceEl.innerHTML;
     var o=root.querySelector('.pdp-weight__opt.is-active');
-    if(saveEl&&o){var m=num(o.dataset.mrp);saveEl.textContent=m>n?'You save '+inr(m-n,0)+' ('+Math.round((m-n)/m*100)+'%)'+(isSub()?' with Subscribe & save':''):'';saveEl.hidden=!(m>n);}
+    if(saveEl&&o){var m=num(o.dataset.mrp),mc=cv(m),nc=cv(n);saveEl.textContent=mc>nc?'You save '+(M?M.fmt(mc-nc,0):inr(m-n,0))+' ('+Math.round((mc-nc)/mc*100)+'%)'+(isSub()?' with Subscribe & save':''):'';saveEl.hidden=!(mc>nc);}
     if(planBox){
       var a=planBox.querySelector('[data-plan-price="once"]'),b=planBox.querySelector('[data-plan-price="sub"]');
       if(a) a.textContent=inr(once,0); if(b) b.textContent=inr(Math.round(once*(100-subPct)/100),0);
@@ -145,9 +150,19 @@ try { (function(){
        (on Shopify, each variant's featured image does the same) */
     var vImg=o.dataset.img,first=root.querySelector('.pdp-gallery__slide img');
     if(first){if(!first.dataset.defaultSrc) first.dataset.defaultSrc=first.getAttribute('src');first.setAttribute('src',vImg||first.dataset.defaultSrc);go(0);}
-    var cut=root.querySelector('.pdp-price-cut');if(cut) cut.textContent=o.dataset.mrp;
+    var cut=root.querySelector('.pdp-price-cut');if(cut) cut.innerHTML=moneyHTML(num(o.dataset.mrp),2);
   }
   opts.forEach(function(o){o.addEventListener('click',function(){pick(o);});});
+  /* country changed: new currency for the price, savings and size labels */
+  document.addEventListener('gk-market-change',function(){labels();showPrice();});
+  /* another product of the group was opened (group module below): sizes were refilled, select the first */
+  document.addEventListener('gk-pdp-product',function(){
+    labels();
+    var first=[].filter.call(opts,function(o){return !o.closest('.pdp-weight__item').hidden;})[0];
+    var img=root.querySelector('.pdp-gallery__slide img');if(img) img.dataset.defaultSrc=img.getAttribute('src');
+    if(first) pick(first);
+    input.value=1; wish.setAttribute('aria-pressed','false'); go(0);
+  });
   var clearBtn=root.querySelector('.pdp-weight__clear');if(clearBtn) clearBtn.addEventListener('click',function(){pick(opts[0]);});
 
   /* pincode checker: validates a 6-digit Indian pincode. Static build only: the delivery
@@ -559,33 +574,41 @@ try { (function(){
   var saveEl=document.getElementById('pdpFbtSave'),countEl=document.getElementById('pdpFbtCount'),add=document.getElementById('pdpFbtAdd');
   var self=root.querySelector('.pdp-fbt2__row--this .pdp-fbt__check');
   var rows=[].slice.call(root.querySelectorAll('.pdp-fbt2__row[data-show]'));
-  var title=(document.querySelector('.pdp-info__title')||{}).textContent||'';
-  function fmt(n){return '₹'+Math.round(n).toLocaleString('en-IN');}
-  function on(){return [self].concat(rows.filter(function(r){return !r.hidden;}).map(function(r){return r.querySelector('input');}).filter(function(c){return c.checked;}));}
+  var M=window.gkMarket;
+  /* amounts below are already in the shopper's currency (each item converted, then added up) */
+  function fmt(n){return M?M.fmt(n,0):'₹'+Math.round(n).toLocaleString('en-IN');}
+  function cv(n){return M?M.price(n):+n;}
+  function on(){return [self].concat(rows.filter(function(r){return !r.hidden&&!r.classList.contains('gk-not-sold');}).map(function(r){return r.querySelector('input');}).filter(function(c){return c.checked;}));}
   function update(){
     var sel=on(),mrp=0,sale=0;
-    sel.forEach(function(c){mrp+=+c.dataset.mrp;sale+=+c.dataset.price;});
+    sel.forEach(function(c){mrp+=cv(+c.dataset.mrp);sale+=cv(+c.dataset.price);});
     saleEl.textContent=fmt(sale);
     mrpEl.textContent=mrp>sale?fmt(mrp):'';
     saveEl.textContent=mrp>sale?'Save '+fmt(mrp-sale):'';
     countEl.textContent=sel.length;
+    if(countEl.nextSibling&&countEl.nextSibling.nodeType===3) countEl.nextSibling.nodeValue=(sel.length===1?' item':' items')+' \u00b7 ';
     add.textContent=sel.length>1?'Add all '+sel.length+' to bag':'Add to bag';
+    /* no suggestion left for this size / country: hide the block */
+    root.classList.toggle('is-empty',!rows.some(function(r){return !r.hidden&&!r.classList.contains('gk-not-sold');}));
     rows.forEach(function(r){r.classList.toggle('is-on',r.querySelector('input').checked);});
   }
   function follow(d){
     if(!d) return;
     self.dataset.price=d.price; self.dataset.mrp=d.mrp;
-    self.dataset.name=title.trim()+(d.size?' - '+d.size:'')+(d.sub?' (Subscribe & save)':'');
+    var title=((document.querySelector('.pdp-info__title')||{}).textContent||'').trim();
+    self.dataset.name=title+(d.size?' - '+d.size:'')+(d.sub?' (Subscribe & save)':'');
     var q=function(a){return root.querySelector('['+a+']');};
     q('data-fbt-size').textContent=(d.size||'')+(d.sub?' · Subscribe & save':'');
-    q('data-fbt-price').textContent=fmt(d.price); q('data-fbt-mrp').textContent=d.mrp>d.price?fmt(d.mrp):'';
-    rows.forEach(function(r){r.hidden=r.dataset.show.split(',').indexOf(d.size)<0;});
+    q('data-fbt-price').textContent=fmt(cv(d.price)); q('data-fbt-mrp').textContent=cv(d.mrp)>cv(d.price)?fmt(cv(d.mrp)):'';
+    /* never suggest the product being viewed (any size of it) */
+    rows.forEach(function(r){var nm=r.querySelector('input').dataset.name||'';r.hidden=r.dataset.show.split(',').indexOf(d.size)<0||nm.indexOf(title)===0;});
     update();
   }
   rows.forEach(function(r){r.querySelector('input').addEventListener('change',update);});
   document.addEventListener('gk-pdp-change',function(e){follow(e.detail);});
+  document.addEventListener('gk-market-change',update);
   var o=document.querySelector('.pdp-weight__opt.is-active'),p=document.querySelector('.pdp-price');
-  if(o&&p) follow({size:o.dataset.size,price:parseFloat(p.textContent.replace(/[^\d.]/g,''))||+self.dataset.price,mrp:parseFloat((o.dataset.mrp||'').replace(/[^\d.]/g,''))||+self.dataset.mrp,sub:false});
+  if(o&&p) follow({size:o.dataset.size,price:(M?M.inrOf(p):parseFloat(p.textContent.replace(/[^\d.]/g,'')))||+self.dataset.price,mrp:parseFloat((o.dataset.mrp||'').replace(/[^\d.]/g,''))||+self.dataset.mrp,sub:false});
   add.addEventListener('click',function(){
     var sel=on();
     document.dispatchEvent(new CustomEvent('gk-cart-add',{detail:{items:sel.map(function(c){
@@ -684,3 +707,207 @@ try { (function(){
   }
   btn.addEventListener('click',function(e){e.preventDefault();setOpen(list.hidden);});
 })(); } catch (e) { console.error("Reviews: full list", e); }
+
+// ==== Group products ====
+/* "Explore the range" on the product page: the other teas of this product's group.
+   Clicking one swaps the whole page in place (photos, name, rating, caffeine, price, sizes,
+   description, details, brewing, Frequently Bought Together, buy bar) and updates the
+   address (?product=...), so the link can be shared and Back returns to the previous tea.
+   Each tile is a real link, so it also works without JavaScript.
+   Products not sold in the shopper's country are hidden; if the open product is not sold
+   there, the page says so and "Add to bag" is switched off.
+   On Shopify: a product metafield lists the group's products (or "combined listings");
+   the swap fetches the other product's section HTML (Section Rendering API). */
+try { (function(){
+  var root = document.querySelector('.pdp'), box = document.getElementById('pdpGroup');
+  if (!root || !box) return;
+  var M = window.gkMarket;
+  var g = 'assets/images/';
+  /* demo data: content to be confirmed by the client */
+  var GROUP = [
+    { id:'estate-gift-set', short:'Estate Gift Set', name:'Goodricke Estate Gift Set', badge:'Limited Edition',
+      sub:'Assorted Darjeeling, Assam &amp; Dooars teas &ndash; 40 tea bags', crumb:['Tea Boxes &amp; Gifts','All Boxes'],
+      rating:4.9, reviews:20, caffeine:3, mg:'~40&ndash;60 mg / cup',
+      images:[[g+'product-09.webp','Goodricke Estate Gift Set'],[g+'product-04.webp','Gift set open, showing tea bags'],[g+'product-03.webp','Gift set details'],[g+'product-01.webp','Gift set packaging']],
+      sizes:[['100g',1499,1799],['250g',3373,4498],['500g',6746,8995],['1kg',10493,17990]],
+      desc:'A varied assortment of estate-fresh teas to discover Goodricke’s finest gardens: single-estate Darjeeling, robust Assam and bright Dooars teas, packed for gifting.',
+      long:'The <a href="#">Goodricke</a> Estate Gift Set brings together estate-fresh teas from our own gardens in Darjeeling, Assam and the Dooars, packed in a box made for gifting. Each tea bag is sealed to keep its flavour and aroma fresh, so every cup tastes as if it had just been plucked. It is a thoughtful way to share the best of Goodricke with family, friends and colleagues.',
+      flavour:'Floral Darjeeling, malty Assam and brisk Dooars, in one box',
+      facts:['Darjeeling, Assam &amp; Dooars <a href="#">Black Tea</a>','Assorted','Tea bags','Assorted <a href="#">Darjeeling Tea</a>, Assam tea and Dooars tea; sourced from Goodricke’s own Tea Estates'],
+      about:['Darjeeling, Assam &amp; Dooars','Own Tea Estates','Assorted','Assorted','24 months','With or without milk','Black tea','Tea bags'],
+      brew:'Add one tea bag per cup in the tea pot (or one teaspoon, about 1.2 g, of loose leaf)' },
+    { id:'castleton-muscatel', short:'Castleton Muscatel', name:'Castleton Premium Muscatel', badge:'Single Estate',
+      sub:'Second flush Darjeeling from Castleton estate &ndash; loose leaf tin', crumb:['Darjeeling Tea','Loose Leaf'],
+      rating:4.8, reviews:32, caffeine:2, mg:'~30&ndash;40 mg / cup',
+      images:[[g+'range-product-4.webp','Castleton Premium Muscatel tin'],[g+'darjeeling.webp','Tea leaves in a Darjeeling garden'],[g+'hero-tea-cup.webp','A cup of Darjeeling tea'],[g+'region-section-bg.webp','Darjeeling tea gardens']],
+      sizes:[['100g',788,875],['250g',1899,2199],['500g',3599,4375]],
+      desc:'A second flush Darjeeling from the Castleton estate, known for its muscatel character: bright, fruity and smooth.',
+      long:'Castleton Premium Muscatel is plucked in the second flush, when the Darjeeling bushes give the full, grape-like muscatel note the estate is known for. The whole leaves are gently rolled and packed in a tin to keep them fresh. Best enjoyed without milk.',
+      flavour:'Muscatel grape, ripe fruit and a smooth, lingering finish',
+      facts:['Darjeeling <a href="#">Black Tea</a>','Second flush','Whole leaf','Single-estate <a href="#">Darjeeling Tea</a> from Castleton, one of Goodricke’s own Tea Estates'],
+      about:['Darjeeling','Castleton','Muscatel','Second flush','24 months','Without milk','Black tea','Loose leaf'],
+      brew:'Add one teaspoon (about 2.5 g) of leaves per cup in the tea pot' },
+    { id:'roasted-darjeeling', short:'Roasted Darjeeling', name:'Goodricke Roasted Darjeeling Tea Jar', badge:'Bestseller',
+      sub:'Roasted Darjeeling, golden orange pekoe &ndash; jar', crumb:['Darjeeling Tea','Loose Leaf'],
+      rating:4.7, reviews:45, caffeine:3, mg:'~40&ndash;60 mg / cup',
+      images:[[g+'shop-roasted-darjeeling.webp','Goodricke Roasted Darjeeling Tea jar'],[g+'range-product-1.webp','Roasted Darjeeling Tea jar, side view'],[g+'darjeeling.webp','Tea leaves in a Darjeeling garden'],[g+'hero-tea-cup.webp','A cup of roasted Darjeeling tea']],
+      sizes:[['250g',285,335],['500g',549,670]],
+      desc:'Darjeeling leaves given a gentle roast for a warm, toasty cup with the garden’s floral notes, in a resealable jar.',
+      long:'Goodricke Roasted Darjeeling takes golden orange pekoe leaves from our Darjeeling gardens and gives them a slow, gentle roast. The result is a rounder, toasty cup that keeps the floral lift of Darjeeling. The jar reseals to keep every spoonful fresh.',
+      flavour:'Toasty, warm and rounded, with a floral finish',
+      facts:['Darjeeling <a href="#">Black Tea</a>','Assorted','Golden orange pekoe','Roasted <a href="#">Darjeeling Tea</a> from Goodricke’s own Tea Estates'],
+      about:['Darjeeling','Own Tea Estates','Roasted','Assorted','24 months','With or without milk','Black tea','Loose leaf'],
+      brew:'Add one teaspoon (about 2.5 g) of leaves per cup in the tea pot' },
+    { id:'thurbo-whole-leaf', short:'Thurbo Whole Leaf', name:'Goodricke Thurbo Darjeeling Whole Leaf', badge:'New',
+      sub:'Single estate Darjeeling, whole leaf &ndash; carton', crumb:['Darjeeling Tea','Loose Leaf'],
+      rating:4.8, reviews:18, caffeine:2, mg:'~30&ndash;40 mg / cup',
+      images:[[g+'shop-thurbo-whole-leaf.webp','Goodricke Thurbo Darjeeling Whole Leaf carton'],[g+'khaass-pack-3.webp','Thurbo Whole Leaf carton in the garden'],[g+'darjeeling.webp','Tea leaves in a Darjeeling garden'],[g+'hero-tea-cup.webp','A cup of Darjeeling tea']],
+      sizes:[['100g',502,602],['250g',1149,1399],['500g',2199,2699]],
+      desc:'Whole Darjeeling leaves from the Thurbo estate for a light, floral and aromatic cup.',
+      long:'Thurbo sits high in the Mirik valley of Darjeeling. Its whole leaves are hand plucked and carefully withered to give a light, floral and aromatic cup with a clean finish. Packed in a carton that keeps out light and moisture.',
+      flavour:'Light, floral and aromatic, with a clean finish',
+      facts:['Darjeeling <a href="#">Black Tea</a>','Assorted','Whole leaf','Single-estate <a href="#">Darjeeling Tea</a> from Thurbo, one of Goodricke’s own Tea Estates'],
+      about:['Darjeeling','Thurbo','Floral','Assorted','24 months','Without milk','Black tea','Loose leaf'],
+      brew:'Add one teaspoon (about 2.5 g) of leaves per cup in the tea pot' },
+    { id:'khaass-assam', short:'Khaass Assam', name:'Khaass Exclusive Assam Tea', badge:'Bestseller',
+      sub:'Strong, malty Assam CTC &ndash; pouch', crumb:['Assam Tea','CTC'],
+      rating:4.6, reviews:64, caffeine:3, mg:'~50&ndash;70 mg / cup',
+      images:[[g+'range-product-3.webp','Khaass Exclusive Assam Tea pouch'],[g+'product-01.webp','Khaass Exclusive Assam Tea, large pouch'],[g+'product-07.webp','Khaass Exclusive Assam Tea carton'],[g+'assam.webp','Assam tea gardens']],
+      sizes:[['250g',149,189],['500g',279,360],['1kg',533,710]],
+      desc:'A strong, malty Assam CTC for a rich everyday cup that stands up to milk and sugar.',
+      long:'Khaass Exclusive brings together CTC teas from the Brahmaputra valley in Assam for a strong, malty and full-bodied cup. It brews quickly to a deep colour and is made for milk tea and chai.',
+      flavour:'Strong, malty and full-bodied',
+      facts:['Assam <a href="#">Black Tea</a>','Assorted','CTC','Assam CTC tea from Goodricke’s own Tea Estates'],
+      about:['Assam','Own Tea Estates','Malty','Assorted','18 months','With milk','Black tea','CTC'],
+      brew:'Add one teaspoon (about 2.5 g) of tea per cup, or simmer with milk for chai' }
+  ];
+  var byId = {}; GROUP.forEach(function(p){ byId[p.id] = p; });
+  var ABOUT = ['Region','Garden','Tea Style','Flush Type','Shelf Life','Ideal For','Tea Type','Format'];
+  var LEVELS = ['Low','Medium','High'];
+  var $ = function(s){ return root.querySelector(s); };
+  var esc = function(t){ var d = document.createElement('div'); d.innerHTML = t; return d.textContent; };
+  var money = function(inr){ return M ? M.span(inr, 0) : '₹' + inr.toLocaleString('en-IN'); };
+  var current = byId['estate-gift-set'];
+
+  /* tiles */
+  var row = box.querySelector('.pdp-group__row');
+  row.innerHTML = GROUP.map(function(p){
+    return '<a class="pdp-group__item" data-product="' + p.id + '" data-gk-product="' + esc(p.name) + '" href="pdp.html?product=' + p.id + '">' +
+      '<span class="pdp-group__img"><img alt="" loading="lazy" src="' + p.images[0][0] + '"/></span>' +
+      '<span class="pdp-group__name">' + p.short + '</span>' +
+      '<span class="pdp-group__price">from ' + money(p.sizes[0][1]) + '</span></a>';
+  }).join('');
+  if (M) M.refresh();
+
+  function mark(p){
+    box.querySelectorAll('.pdp-group__item').forEach(function(a){
+      var on = a.dataset.product === p.id;
+      a.classList.toggle('is-active', on);
+      if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+      /* keep the active tile in view inside the row (row only, never the page) */
+      if (on){ var l = a.offsetLeft - row.offsetLeft, r = l + a.offsetWidth;
+        if (l < row.scrollLeft || r > row.scrollLeft + row.clientWidth) row.scrollLeft = Math.max(0, l - 12); }
+    });
+  }
+  function inrText(n){ return '₹' + n.toLocaleString('en-IN', { minimumFractionDigits:2, maximumFractionDigits:2 }); }
+
+  function fill(p){
+    document.title = esc(p.name) + ' — Goodricke';
+    var crumbs = root.querySelectorAll('.pdp-breadcrumb li');
+    if (crumbs.length >= 4){ crumbs[1].firstChild.innerHTML = p.crumb[0]; crumbs[2].firstChild.innerHTML = p.crumb[1]; crumbs[3].textContent = esc(p.name); }
+    var badge = $('.pdp-badge'); if (badge){ badge.textContent = p.badge || ''; badge.hidden = !p.badge; }
+    /* gallery */
+    root.querySelectorAll('.pdp-gallery__slide img').forEach(function(img, i){
+      var im = p.images[i] || p.images[0]; img.src = im[0]; img.alt = im[1];
+    });
+    /* heading, rating, caffeine */
+    $('.pdp-info__title').innerHTML = p.name;
+    $('.pdp-info__sub').innerHTML = p.sub;
+    var stars = $('.pdp-rating .rv__stars');
+    if (stars){ stars.style.setProperty('--rating', p.rating); stars.setAttribute('aria-label', 'Rated ' + p.rating + ' out of 5'); }
+    var rt = $('.pdp-rating__text'); if (rt) rt.textContent = p.rating + ' · Read ' + p.reviews + ' reviews';
+    var caf = $('.pdp-caffeine');
+    if (caf){
+      caf.dataset.level = p.caffeine;
+      caf.setAttribute('aria-label', 'Caffeine level: ' + LEVELS[p.caffeine - 1] + ', about ' + esc(p.mg).replace('~', '').replace('–', ' to ').replace(' / cup', ' per cup'));
+      caf.querySelectorAll('.pdp-caffeine__steps i').forEach(function(s, i){ s.classList.toggle('is-on', i === p.caffeine - 1); });
+      var note = caf.querySelector('.pdp-caffeine__note'); if (note) note.innerHTML = p.mg;
+    }
+    /* sizes: refill the size buttons (prices kept in INR, shown in the shopper's currency) */
+    root.querySelectorAll('.pdp-weight__item').forEach(function(item, i){
+      var sz = p.sizes[i], btn = item.querySelector('.pdp-weight__opt');
+      item.hidden = !sz;
+      if (!sz) return;
+      btn.dataset.size = sz[0]; btn.dataset.price = inrText(sz[1]); btn.dataset.mrp = inrText(sz[2]);
+      btn.querySelector('strong').textContent = sz[0];
+    });
+    /* description, details, brewing */
+    var d = $('.pdp-desc'); if (d) d.textContent = p.desc;
+    var bodies = root.querySelectorAll('.pdp-more__body');
+    if (bodies[0]){
+      var ps = bodies[0].querySelectorAll(':scope > p');
+      if (ps[0]) ps[0].innerHTML = p.long;
+      if (ps[1]) ps[1].innerHTML = '<strong>Flavour:</strong> ' + p.flavour;
+      bodies[0].querySelectorAll('.pdp-facts dd').forEach(function(dd, i){ if (p.facts[i] != null) dd.innerHTML = p.facts[i]; });
+    }
+    if (bodies[1]) bodies[1].querySelectorAll('.pdp-about__item').forEach(function(li, i){
+      var h = li.querySelector('h3'), v = li.querySelector('p'); if (h) h.textContent = ABOUT[i]; if (v && p.about[i] != null) v.innerHTML = p.about[i];
+    });
+    var step2 = root.querySelectorAll('.pdp-brew__step p')[1]; if (step2) step2.textContent = p.brew;
+    var revLink = root.querySelector('.pdp-more__links a[href="#rv"]'); if (revLink) revLink.textContent = 'Reviews (' + p.reviews + ')';
+    /* "This item" in Frequently Bought Together, buy bar */
+    var self = root.querySelector('.pdp-fbt2__row--this');
+    if (self){
+      var chk = self.querySelector('input'); chk.dataset.img = p.images[0][0]; chk.dataset.ref = 'GK-' + p.id.toUpperCase();
+      var im = self.querySelector('img'); if (im) im.src = p.images[0][0];
+      var nm = self.querySelector('.pdp-fbt2__name'); if (nm && nm.childNodes[1]) nm.childNodes[1].nodeValue = esc(p.name);
+    }
+    var sn = document.querySelector('.pdp-sticky__name'); if (sn) sn.textContent = esc(p.name);
+    mark(p);
+    current = p;
+    document.dispatchEvent(new CustomEvent('gk-pdp-product', { detail:{ id:p.id } }));
+    availability();
+  }
+
+  /* country: hide the pincode check outside India; switch off buying if this tea is not sold there */
+  var notice = document.createElement('p');
+  notice.className = 'pdp-unavail'; notice.setAttribute('role', 'status'); notice.hidden = true;
+  var actions = $('.pdp-actions'); if (actions) actions.parentNode.insertBefore(notice, actions.nextSibling);
+  function availability(){
+    var sold = !M || M.isSold(esc(current.name)), cname = M ? (M.market().inName || M.market().name) : '';
+    notice.hidden = sold;
+    notice.textContent = sold ? '' : 'This tea is not sold in ' + cname + '. Choose another tea from the range above, or change your country.';
+    root.classList.toggle('is-not-sold', !sold);
+    [$('.pdp-cta'), document.querySelector('.pdp-sticky__btn')].forEach(function(b){ if (b){ b.disabled = !sold; b.setAttribute('aria-disabled', String(!sold)); } });
+    var fbt = document.getElementById('pdp-fbt'); if (fbt) fbt.hidden = !sold;
+    var pin = document.getElementById('pdpPin'); if (pin) pin.hidden = !!M && M.code !== 'IN';
+  }
+  document.addEventListener('gk-market-change', availability);
+
+  /* open another product of the group */
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function open(id, push){
+    var p = byId[id]; if (!p || p === current) return;
+    var grid = root.querySelector('.pdp__grid');
+    if (reduce || !grid){ fill(p); }
+    else { grid.classList.add('is-swapping'); setTimeout(function(){ fill(p); grid.classList.remove('is-swapping'); }, 160); }
+    if (push){
+      var url = new URL(location.href); url.searchParams.set('product', id);
+      history.pushState({ product:id }, '', url.pathname + url.search);
+    }
+  }
+  box.addEventListener('click', function(e){
+    var a = e.target.closest('.pdp-group__item'); if (!a) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return; /* open in new tab still works */
+    e.preventDefault();
+    open(a.dataset.product, true);
+  });
+  window.addEventListener('popstate', function(){
+    var id = new URLSearchParams(location.search).get('product') || 'estate-gift-set';
+    if (byId[id]) open(id, false);
+  });
+  /* opened from a shared link */
+  var start = new URLSearchParams(location.search).get('product');
+  if (start && byId[start] && byId[start] !== current) fill(byId[start]);
+  else { mark(current); availability(); }
+})(); } catch (e) { console.error("Group products", e); }

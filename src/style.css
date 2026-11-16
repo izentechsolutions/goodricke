@@ -10295,3 +10295,83 @@ html body.pdp-page .rv--compact .rv__actions .rv__all{margin:0 !important;}
 .pdp-more__links a{display:inline-flex;align-items:center;min-height:32px;}
 /* Subscribe & save is switched off with the [hidden] attribute on .pdp-plan (pending client approval) */
 .pdp-plan[hidden]{display:none !important;}
+
+/* =====================================================================
+   MULTI-COUNTRY: country / currency selector, per-country catalog
+   ===================================================================== */
+.gk-not-sold{display:none !important;}
+.gk-country{display:inline-flex;align-items:center;gap:6px;margin:0;color:inherit;font:inherit;white-space:nowrap;}
+.gk-country svg{width:14px;height:14px;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.6;}
+.gk-country__select{
+  -webkit-appearance:none;appearance:none;margin:0;cursor:pointer;
+  font:inherit;font-size:12px;line-height:1.2;letter-spacing:0;color:#FFFFF4;
+  min-height:26px;padding:4px 26px 4px 10px;border-radius:999px;
+  border:1px solid rgba(255,255,244,.38);
+  background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFFFF4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 9px center / 11px 11px;
+  transition:background-color .2s ease,border-color .2s ease;
+}
+.gk-country__select:hover{background-color:rgba(255,255,244,.10);border-color:rgba(255,255,244,.6);}
+.gk-country__select:focus-visible{outline:2px solid #CAAA2C;outline-offset:2px;}
+.gk-country__select option{color:#042C05;background:#FFFFF4;}
+/* top bar: message centred, selector on the right */
+html body .topline{position:relative;}
+.topline__msg{display:inline;}
+.gk-country--top{position:absolute;right:24px;top:50%;transform:translateY(-50%);color:#FFFFF4;}
+@media (max-width:1024px){ .gk-country--top{right:16px;} }
+/* tablets: message on the left, selector on the right, so they never overlap */
+@media (max-width:1023px){
+  html body .topline{justify-content:space-between !important;text-align:left !important;gap:12px !important;}
+  .gk-country--top{position:static;transform:none;}
+}
+/* phones: keep the shipping message, selector on the right, no overlap */
+@media (max-width:767px){
+  html body .topline{justify-content:space-between !important;text-align:left !important;gap:10px !important;}
+  .topline__lead{display:none;}
+  .gk-country--top{position:static;transform:none;}
+  .gk-country--top svg{display:none;}
+  .gk-country__select{font-size:11px;padding:4px 24px 4px 9px;}
+}
+/* footer */
+.gk-country--footer{gap:10px;}
+.gk-country__label{font-size:12px;color:rgba(255,255,244,.72);}
+@media (min-width:1280px){
+  html body .site-footer .footer-bottom{grid-template-columns:auto 1fr auto auto !important;}
+}
+@media (min-width:901px) and (max-width:1279px){
+  html body .site-footer .footer-bottom .gk-country--footer{grid-row:2;grid-column:1;}
+  html body .site-footer .footer-bottom .footer-copy{grid-row:2;grid-column:3;}
+}
+
+/* ---- Product page: group products ("Explore the range") ---- */
+.pdp-group{margin:20px 0 4px;}
+html body .pdp .pdp-group__title{font-family:Inter,system-ui,sans-serif !important;font-size:13px !important;font-weight:400 !important;line-height:1.3 !important;letter-spacing:normal !important;text-transform:uppercase !important;color:rgba(4,44,5,.78) !important;margin:0 0 12px !important;}
+.pdp-group__row{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:3px 2px 6px;margin:-3px -2px 0;}
+.pdp-group__row::-webkit-scrollbar{display:none;}
+/* about 3.4 tiles in view, so the next tile always peeks in */
+.pdp-group__item{flex:0 0 calc((100% - 30px) / 3.4);min-width:0;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 8px 11px;border:1px solid rgba(4,44,5,.14);border-radius:14px;background:#fff;color:#042C05 !important;text-decoration:none !important;text-align:center;transition:border-color .2s ease,box-shadow .2s ease,background-color .2s ease;}
+.pdp-group__item:hover{border-color:rgba(32,80,7,.5);}
+.pdp-group__item:focus-visible{outline:2px solid #205007;outline-offset:2px;}
+.pdp-group__item.is-active{border-color:#205007;box-shadow:inset 0 0 0 1px #205007;background:rgba(32,80,7,.06);}
+.pdp-group__img{display:grid;place-items:center;width:100%;height:68px;}
+.pdp-group__img img{max-width:100%;max-height:100%;object-fit:contain;}
+.pdp-group__name{font-size:12.5px;line-height:1.25;font-weight:500;}
+.pdp-group__price{font-size:11.5px;line-height:1.2;color:rgba(4,44,5,.72);white-space:nowrap;}
+@media (min-width:1200px){ .pdp-group__item{flex-basis:calc((100% - 40px) / 4.4);} }
+/* sizes a product does not come in, hidden blocks */
+html body .pdp .pdp-weight__item[hidden],html body .pdp .pdp-badge[hidden],html body .pdp .pdp-fbt2[hidden],html body .pdp .pdp-pin[hidden],html body .pdp .pdp-save[hidden]{display:none !important;}
+/* swap animation */
+.pdp__grid{transition:opacity .16s ease;}
+.pdp__grid.is-swapping{opacity:.3;}
+@media (prefers-reduced-motion:reduce){ .pdp__grid{transition:none;} }
+/* product not sold in the chosen country */
+.pdp-unavail{margin:12px 0 0;padding:11px 14px;border-radius:12px;background:rgba(163,89,23,.08);color:#7A4210;font-size:13.5px;line-height:1.45;}
+.pdp-unavail[hidden]{display:none !important;}
+html body .pdp-cta:disabled,html body .pdp-sticky__btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none;}
+html body .pdp .pdp-fbt2.is-empty{display:none !important;}
+@media (max-width:599px){ .pdp-group__item{flex-basis:calc((100% - 20px) / 2.6);} .pdp-group__img{height:74px;} }
+.pdp-group__name{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.5em;}
+html body .pdp .pdp-group__img{overflow:hidden;}
+html body .pdp .pdp-group__img img{width:auto !important;height:100% !important;max-width:100% !important;max-height:100% !important;object-fit:contain !important;margin:0 !important;position:static !important;}
+html body .gk-not-sold,html body section.product-listing .product-grid > .product-item.gk-not-sold,html body section.product-listing .product-item.gk-not-sold,html body .gk-product-card.gk-not-sold,html body .range-card.gk-not-sold{display:none !important;}
+/* Shop filters: cards that do not match the chosen filters */
+html body section.product-listing .product-grid > .product-item.gk-filter-hide{display:none !important;}

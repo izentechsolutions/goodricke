@@ -493,12 +493,147 @@ try { (function(){
 
 })(); } catch (e) { console.error("Mega-menu panels", e); }
 
+// ==== Country / currency (multi-country) ====
+/* Stand-in for Shopify Markets in the static build.
+   - Each country has its own price list (fixed, rounded prices; not a live exchange rate)
+     and its own catalog: products that are not sold there are hidden everywhere.
+   - All prices in the HTML stay in INR. This module wraps every "₹1,234" it finds in a
+     .gk-money span (data-inr) and shows it in the shopper's currency. India shows the
+     original text unchanged.
+   - Amounts that are set per country rather than converted (free-shipping threshold, coupon)
+     carry data-gk-amounts="IN,US,GB,AE".
+   - The choice is kept in localStorage; ?country=US in the address also selects it.
+   On Shopify: Markets + the localization form (country selector), a catalog and fixed
+   prices per market; Liquid then prints prices already in the market currency. */
+try { (function(){
+  var ORDER = ['IN','US','GB','AE'];
+  var MARKETS = {
+    IN: { name:'India', cur:'INR', sym:'₹', locale:'en-IN', dec:null, ships:'Ships across India' },
+    US: { name:'United States', inName:'the United States', cur:'USD', sym:'$', locale:'en-US', dec:2, rate:70, ships:'Ships to the United States' },
+    GB: { name:'United Kingdom', inName:'the United Kingdom', cur:'GBP', sym:'£', locale:'en-GB', dec:2, rate:88, ships:'Ships to the United Kingdom' },
+    AE: { name:'United Arab Emirates', inName:'the UAE', cur:'AED', sym:'AED ', locale:'en-AE', dec:0, rate:19, ships:'Ships to the UAE' }
+  };
+  /* catalog: products not sold outside India (matched on the product name) */
+  var INDIA_ONLY = [/supercup/i, /kahwa/i, /roasted darjeeling/i];
+  var NOT_SOLD = { IN: [], US: INDIA_ONLY, GB: INDIA_ONLY, AE: INDIA_ONLY };
+
+  var code = 'IN';
+  try { var saved = localStorage.getItem('gk-country'); if (MARKETS[saved]) code = saved; } catch (e) {}
+  var q = (location.search.match(/[?&]country=([a-z]{2})/i) || [])[1];
+  if (q && MARKETS[q.toUpperCase()]) code = q.toUpperCase();
+
+  function market(){ return MARKETS[code]; }
+  /* INR -> this market's list price */
+  function price(inr){
+    inr = +inr || 0;
+    var m = market(); if (!m.rate) return inr;
+    var x = inr / m.rate;
+    return m.dec ? Math.max(1, Math.round(x)) - 0.01 : Math.max(1, Math.round(x));
+  }
+  /* amount already in this market's currency -> "$20.99" (India keeps the decimals it is given) */
+  function fmt(n, dIN){
+    var m = market(), d = m.dec === null ? (dIN || 0) : m.dec;
+    return m.sym + (+n || 0).toLocaleString(m.locale, { minimumFractionDigits:d, maximumFractionDigits:d });
+  }
+  function money(inr, dIN){ return fmt(price(inr), dIN); }
+  function span(inr, dIN){
+    var d = dIN || 0;
+    return '<span class="gk-money" data-inr="' + (+inr || 0) + '" data-dec="' + d + '">' + money(inr, d) + '</span>';
+  }
+  /* INR value of the first price inside an element */
+  function inrOf(el){
+    if (!el) return 0;
+    var s = el.classList && el.classList.contains('gk-money') ? el : el.querySelector('.gk-money');
+    if (s) return +s.dataset.inr || 0;
+    var m = (el.textContent || '').replace(/,/g, '').match(/₹\s?([0-9]+(?:\.[0-9]+)?)/);
+    return m ? parseFloat(m[1]) : 0;
+  }
+  function isSold(name){ return !NOT_SOLD[code].some(function(r){ return r.test(name || ''); }); }
+
+  /* wrap every "₹1,234.00" text in a .gk-money span */
+  var SKIP = /^(SCRIPT|STYLE|NOSCRIPT|TEXTAREA|SELECT|OPTION|INPUT)$/;
+  function wrap(root){
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if (n.nodeValue.indexOf('₹') < 0) return NodeFilter.FILTER_REJECT;
+        for (var p = n.parentNode; p && p !== root.parentNode; p = p.parentNode){
+          if (p.nodeType === 1 && (SKIP.test(p.nodeName) || p.classList.contains('gk-money') || p.hasAttribute('data-gk-amounts'))) return NodeFilter.FILTER_REJECT;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function(n){
+      var re = /₹\s?([0-9][0-9,]*(?:\.[0-9]+)?)/g, txt = n.nodeValue, last = 0, m, frag = document.createDocumentFragment();
+      while ((m = re.exec(txt))){
+        frag.appendChild(document.createTextNode(txt.slice(last, m.index)));
+        var s = document.createElement('span'), dec = (m[1].split('.')[1] || '').length;
+        s.className = 'gk-money'; s.dataset.inr = m[1].replace(/,/g, ''); s.dataset.dec = dec; s.dataset.orig = m[0];
+        s.textContent = m[0]; frag.appendChild(s); last = re.lastIndex;
+      }
+      frag.appendChild(document.createTextNode(txt.slice(last)));
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+
+  var NOT_SOLD_SEL = [
+    ['.gk-product-card', '.gk-product-info h3'],
+    ['.range-card', 'h3'],
+    ['section.product-listing .product-item', '.product-details h2'],
+    ['.gk-bag-upsell__card', '.gk-bag-upsell__name'],
+    ['.pdp-fbt2__row:not(.pdp-fbt2__row--this)', 'input[data-name]'],
+    ['[data-gk-product]', null]
+  ];
+  function render(){
+    var m = market();
+    document.querySelectorAll('.gk-money').forEach(function(s){
+      s.textContent = code === 'IN' && s.dataset.orig ? s.dataset.orig : money(+s.dataset.inr, +s.dataset.dec);
+    });
+    document.querySelectorAll('[data-gk-amounts]').forEach(function(s){
+      var v = s.getAttribute('data-gk-amounts').split(',')[ORDER.indexOf(code)];
+      s.textContent = m.sym + (+v || 0).toLocaleString(m.locale); /* whole amounts: $35, not $35.00 */
+    });
+    document.querySelectorAll('[data-gk-ships]').forEach(function(s){ s.textContent = m.ships; });
+    /* catalog */
+    NOT_SOLD_SEL.forEach(function(pair){
+      document.querySelectorAll(pair[0]).forEach(function(el){
+        var n = pair[1] ? el.querySelector(pair[1]) : el;
+        var name = n ? (n.getAttribute('data-name') || n.getAttribute('data-gk-product') || n.textContent) : '';
+        el.classList.toggle('gk-not-sold', !isSold(name.trim()));
+      });
+    });
+    document.querySelectorAll('select[data-gk-country]').forEach(function(sel){ sel.value = code; });
+    document.documentElement.setAttribute('data-country', code);
+    if (window.gkScrollHint && window.gkScrollHint.refresh) window.gkScrollHint.refresh();
+  }
+  function set(c){
+    if (!MARKETS[c] || c === code) return;
+    code = c;
+    try { localStorage.setItem('gk-country', c); } catch (e) {}
+    render();
+    document.dispatchEvent(new CustomEvent('gk-market-change', { detail:{ code:c, market:market() } }));
+  }
+
+  window.gkMarket = {
+    get code(){ return code; }, market:market, price:price, fmt:fmt, money:money, span:span,
+    inrOf:inrOf, isSold:isSold, wrap:function(el){ wrap(el); render(); }, set:set, refresh:render
+  };
+
+  wrap(document.body);
+  render();
+  document.addEventListener('change', function(e){
+    var sel = e.target.closest && e.target.closest('select[data-gk-country]');
+    if (sel) set(sel.value);
+  });
+})(); } catch (e) { console.error("Country / currency", e); }
+
 // ==== Bag drawer ====
 /* "Added to Bag" tray (static HTML build): shows the product(s) just added, with subtotal,
    discount and total for them. The coupon field is layout only. The Shopify theme replaces
    this with the real cart (Cart API), so nothing is stored here. */
 try { (function(){
-  var FREE_SHIP = 999; /* matches "Free shipping over ₹999" in the top bar */
+  var M = window.gkMarket; /* country / currency module above */
+  var FREE_SHIP = { IN:999, US:35, GB:30, AE:150 }; /* per country, in that currency; matches the top bar */
 
   function initGoodrickeBagDrawer(){
     var drawer = document.getElementById('gkBagDrawer');
@@ -507,12 +642,15 @@ try { (function(){
     var $ = function(id){ return document.getElementById(id); };
     var overlay = $('gkBagOverlay'), list = $('gkBagItems'), lines = [];
 
-    var inr = function(n){ return '₹' + Math.round(n).toLocaleString('en-IN'); };
+    /* line prices are kept in INR; shown in the shopper's currency (each unit price converted, then multiplied) */
+    var inr = function(n){ return M ? M.fmt(n, 0) : '₹' + Math.round(n).toLocaleString('en-IN'); };
+    var conv = function(n){ return M ? M.price(n) : n; };
     var num = function(t){ var m = String(t || '').replace(/,/g,'').match(/[0-9]+(?:\.[0-9]+)?/); return m ? parseFloat(m[0]) : 0; };
     var esc = function(t){ return String(t).replace(/[&<>"']/g, function(c){ return '&#' + c.charCodeAt(0) + ';'; }); };
     var oldMoney = function(el){ return firstMoney(el); };
 
     function firstMoney(el){
+      if(M && el){ var v=M.inrOf(el); return v ? '₹'+v : ''; }
       var m=(el?el.textContent:'').replace(/\s+/g,' ').match(/(?:₹|Rs\.?)\s?[\d,]+(?:\.\d+)?/i);
       return m?m[0].replace(/\s/g,''):'';
     }
@@ -583,7 +721,8 @@ try { (function(){
 
     function render(){
       var mrp = 0, sell = 0, qty = 0;
-      lines.forEach(function(it){ sell += it.price * it.qty; mrp += Math.max(it.mrp, it.price) * it.qty; qty += it.qty; });
+      lines.forEach(function(it){ sell += conv(it.price) * it.qty; mrp += Math.max(conv(it.mrp), conv(it.price)) * it.qty; qty += it.qty; });
+      var free = FREE_SHIP[M ? M.code : 'IN'] || 999;
       $('gkBagCount').textContent = qty;
       list.innerHTML = lines.map(function(it, i){
         var save = it.mrp > it.price;
@@ -592,16 +731,16 @@ try { (function(){
           '<div class="gk-bag-item__body">' +
             '<p class="gk-bag-item__name">' + esc(it.name) + '</p>' +
             (it.size ? '<p class="gk-bag-item__meta">' + esc(it.size) + '</p>' : '') +
-            '<p class="gk-bag-item__price"><span>' + inr(it.price * it.qty) + '</span>' + (save ? '<s>' + inr(it.mrp * it.qty) + '</s><em>' + Math.round((it.mrp - it.price) / it.mrp * 100) + '% off</em>' : '') + '</p>' +
+            '<p class="gk-bag-item__price"><span>' + inr(conv(it.price) * it.qty) + '</span>' + (save ? '<s>' + inr(conv(it.mrp) * it.qty) + '</s><em>' + Math.round((conv(it.mrp) - conv(it.price)) / conv(it.mrp) * 100) + '% off</em>' : '') + '</p>' +
             '<div class="gk-bag-item__row">' +
               '<div class="gk-bag-qty"><button type="button" data-step="-1" aria-label="Decrease quantity">\u2212</button><span>' + it.qty + '</span><button type="button" data-step="1" aria-label="Increase quantity">+</button></div>' +
               '<button type="button" class="gk-bag-item__remove" aria-label="Remove item"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/></svg></button>' +
             '</div>' +
           '</div></li>';
       }).join('');
-      var left = FREE_SHIP - sell;
+      var left = Math.round((free - sell) * 100) / 100;
       $('gkBagShipText').innerHTML = left > 0 ? 'You are <strong>' + inr(left) + '</strong> away from free shipping' : '<strong>You\u2019ve unlocked free shipping</strong>';
-      $('gkBagShipFill').style.width = Math.min(100, sell / FREE_SHIP * 100) + '%';
+      $('gkBagShipFill').style.width = Math.min(100, sell / free * 100) + '%';
       $('gkBagShip').classList.toggle('is-done', left <= 0);
       $('gkBagMrp').textContent = inr(mrp);
       $('gkBagDiscRow').hidden = !(mrp > sell); $('gkBagDisc').textContent = '\u2212' + inr(mrp - sell);
@@ -667,11 +806,13 @@ try { (function(){
       var c = b.closest('.gk-bag-upsell__card'), name = c.querySelector('.gk-bag-upsell__name').textContent;
       var hit = lines.filter(function(it){ return it.name === name; })[0];
       if(hit) hit.qty = Math.min(99, hit.qty + 1);
-      else lines.push({ name: name, size: '', image: c.querySelector('img').getAttribute('src'), price: num(c.querySelector('.gk-bag-upsell__price span').textContent), mrp: num(c.querySelector('.gk-bag-upsell__price s').textContent), qty: 1 });
+      else lines.push({ name: name, size: '', image: c.querySelector('img').getAttribute('src'), price: M ? M.inrOf(c.querySelector('.gk-bag-upsell__price span')) : num(c.querySelector('.gk-bag-upsell__price span').textContent), mrp: M ? M.inrOf(c.querySelector('.gk-bag-upsell__price s')) : num(c.querySelector('.gk-bag-upsell__price s').textContent), qty: 1 });
       if(window.gkBag) window.gkBag.add(1);
       render();
     });
     $('gkBagClose').addEventListener('click', closeDrawer);
+    /* country changed while the tray is open: show it in the new currency */
+    document.addEventListener('gk-market-change', function(){ if(lines.length) render(); });
     $('gkBagContinue').addEventListener('click', closeDrawer);
     $('gkBagCouponForm').addEventListener('submit', function(e){ e.preventDefault(); }); /* wired up by the Shopify theme */
     overlay.addEventListener('click', closeDrawer);
